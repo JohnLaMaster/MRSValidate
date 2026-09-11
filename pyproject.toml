@@ -1,0 +1,54 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "mrsvalidate"
+version = "0.1.0.dev0"
+description = "Scientific analysis and visualization library for evaluating fitted MRS/metabolite-estimation models"
+readme = "README.md"
+requires-python = ">=3.11"
+license = "LicenseRef-TBD"
+authors = [
+    { name = "Ing. John T. LaMaster", email = "john.lamaster@tum.de" },
+]
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Intended Audience :: Science/Research",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Topic :: Scientific/Engineering",
+]
+dependencies = [
+    "numpy>=1.26",
+    "scipy>=1.11",
+    "statsmodels>=0.14",
+]
+
+[project.optional-dependencies]
+viz = ["matplotlib>=3.8"]
+pandas = ["pandas>=2.0"]
+docs = [
+    "sphinx>=7.0",
+    "pydata-sphinx-theme>=0.15",
+    "sphinx-gallery>=0.15",
+    "sphinx-design>=0.5",
+    "mrsvalidate[viz,pandas]",
+]
+dev = [
+    "pytest>=7.4",
+    "hypothesis>=6.90",
+    "build>=1.0",
+    "mrsvalidate[viz,pandas]",
+]
+
+[project.urls]
+Repository = "https://github.com/JohnLaMaster/MRSValidate"
+Documentation = "https://mrsvalidate.readthedocs.io"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/mrsvalidate"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]

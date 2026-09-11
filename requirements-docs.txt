@@ -1,0 +1,11 @@
+# Dependencies to build the mrsvalidate documentation site locally or on
+# Read the Docs. The package itself (with its `viz`/`pandas` extras) is
+# installed separately -- see .readthedocs.yaml `python.install`, or
+# locally: `pip install -e ".[viz,pandas]"` from the repository root.
+
+sphinx>=7.0
+pydata-sphinx-theme>=0.15
+sphinx-gallery>=0.15
+sphinx-design>=0.5
+matplotlib>=3.8
+numpy>=1.26

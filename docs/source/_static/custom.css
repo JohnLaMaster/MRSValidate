@@ -1,0 +1,9 @@
+/* Minor visual tweaks on top of the pydata-sphinx-theme defaults. */
+
+.bd-main .bd-content {
+    max-width: 100%;
+}
+
+dl.py.class > dt, dl.py.function > dt, dl.py.method > dt {
+    font-family: var(--pst-font-family-monospace);
+}

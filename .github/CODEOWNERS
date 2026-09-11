@@ -1,0 +1,14 @@
+# Code ownership for mrsvalidate.
+#
+# Per LIBRARY_IMPLEMENTATION_SPEC.md §31.1/§31.9, the project/code owner
+# and primary contact is:
+#
+#   Ing. John T. LaMaster <john.lamaster@tum.de>
+#
+# Role-based responsibilities (Scientific Maintainer, Implementation
+# Lead, Statistical Reviewer, Release Maintainer) are described in the
+# spec's stakeholder table; this file records the single identity
+# actually supplied to date rather than inventing additional personal
+# names.
+
+*   @JohnLaMaster

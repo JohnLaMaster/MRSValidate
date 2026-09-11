@@ -1,0 +1,23 @@
+__pycache__/
+*.py[cod]
+*.egg-info/
+.eggs/
+build/
+dist/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+htmlcov/
+.venv/
+venv/
+*.egg
+run-*/
+
+# Sphinx documentation build artifacts (docs/source/* stays tracked;
+# only generated output is ignored).
+docs/build/
+docs/source/generated/
+docs/source/auto_examples/
+docs/source/gen_modules/
+docs/source/sg_execution_times.rst

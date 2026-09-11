@@ -1,0 +1,19 @@
+cff-version: 1.2.0
+message: "If you use this software, please cite it as below."
+title: "mrsvalidate: a scientific analysis and visualization library for evaluating fitted MRS/metabolite-estimation models"
+authors:
+  - family-names: "LaMaster"
+    given-names: "John T."
+    name-particle: "Ing."
+    email: "john.lamaster@tum.de"
+version: 0.1.0.dev0
+date-released: 2026-09-11
+repository-code: "https://github.com/JohnLaMaster/MRSValidate"
+# license field intentionally omitted: not yet finalized, see THIRD_PARTY_CODE.md
+preferred-citation:
+  type: article
+  title: "Laying the Foundations: A Methodological Framework for Deep Learning-Based Model Fitting and Metabolite Quantification in Magnetic Resonance Spectroscopy"
+  authors:
+    - family-names: "LaMaster"
+      given-names: "John T."
+  year: 2026
