@@ -23,25 +23,25 @@ from typing import Literal
 
 import numpy as np
 from numpy.typing import NDArray
-
 from scipy import stats as _stats
 
-from .._numerics import iqr as _iqr, robust_sd as _robust_sd
+from .._numerics import iqr as _iqr
+from .._numerics import robust_sd as _robust_sd
 from ..results import AnalysisResult, ResultStatus, build_meta
 
 __all__ = [
-    "bland_altman",
-    "passing_bablok",
-    "deming",
-    "equivalence_test_1",
-    "equivalence_test_2",
-    "equivalence_test_3",
     "BlandAltmanResult",
-    "PassingBablokResult",
     "DemingResult",
     "EquivalenceTest1Result",
     "EquivalenceTest2Result",
     "EquivalenceTest3Result",
+    "PassingBablokResult",
+    "bland_altman",
+    "deming",
+    "equivalence_test_1",
+    "equivalence_test_2",
+    "equivalence_test_3",
+    "passing_bablok",
 ]
 
 BAAxis = Literal["reference", "mean"]

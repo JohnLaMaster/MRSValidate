@@ -2,7 +2,6 @@ import numpy as np
 import pytest
 
 from mrsvalidate.analysis import uncertainty as unc
-from mrsvalidate.results import ResultStatus
 
 
 def test_cobeau_positive_when_uncertainty_tracks_error():

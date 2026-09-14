@@ -17,8 +17,9 @@ import hashlib
 import json
 import platform
 import sys
-from datetime import datetime, timezone
-from typing import Any, Mapping
+from collections.abc import Mapping
+from datetime import UTC, datetime
+from typing import Any
 
 __all__ = ["build_manifest", "config_digest"]
 
@@ -129,7 +130,7 @@ def build_manifest(
         "python_version": sys.version,
         "dependency_versions": _dependency_versions(),
         "platform": platform.platform(),
-        "timestamp_utc": datetime.now(timezone.utc).isoformat(),
+        "timestamp_utc": datetime.now(UTC).isoformat(),
         "random_seed": random_seed,
         "config_digest": config_digest(resolved_configuration),
         "steps": step_names,

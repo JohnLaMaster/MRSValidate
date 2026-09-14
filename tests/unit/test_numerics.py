@@ -2,8 +2,8 @@ import numpy as np
 import pytest
 
 from mrsvalidate._numerics import (
-    is_near_zero,
     iqr,
+    is_near_zero,
     near_zero_threshold,
     robust_sd,
     robust_variance,

@@ -12,9 +12,9 @@ import numpy as np
 import pytest
 
 import mrsvalidate as mrs
+from mrsvalidate.analysis.agreement import lin_ccc
 from mrsvalidate.analysis.errors import rmse
 from mrsvalidate.analysis.regression import regression_metrics
-from mrsvalidate.analysis.agreement import lin_ccc
 from mrsvalidate.pipeline import AnalysisStep, RunConfig, run_analysis_plan
 
 
@@ -105,7 +105,7 @@ def test_pipeline_continues_after_one_step_fails(tmp_path):
     def _broken(**kwargs):
         raise RuntimeError("boom")
 
-    reference, candidate = _synthetic_observation_sets()
+    reference, _candidate = _synthetic_observation_sets()
     ref_col = reference.column("NAA")
     ids = reference.sample_ids
 

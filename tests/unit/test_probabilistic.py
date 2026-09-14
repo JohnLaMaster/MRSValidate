@@ -48,7 +48,6 @@ def test_nlpd_variance_floor_applied_and_recorded():
 
 
 def test_nlpd_macro_equal_weight():
-    from mrsvalidate.results import ScalarMetricResult, build_meta
 
     m1 = prob.nlpd(np.array([0.0]), np.array([0.0]), np.array([1.0]), np.array(["a"]))
     m2 = prob.nlpd(np.array([1.0]), np.array([0.0]), np.array([4.0]), np.array(["a"]))

@@ -12,9 +12,10 @@ comparison and alignment is always performed by
 
 from __future__ import annotations
 
+from collections.abc import Iterator, Mapping
 from dataclasses import dataclass, field
 from enum import Enum
-from typing import Any, Iterator, Mapping
+from typing import Any
 
 import numpy as np
 from numpy.typing import NDArray

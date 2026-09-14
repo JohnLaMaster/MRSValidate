@@ -25,8 +25,9 @@ method").
 
 from __future__ import annotations
 
+from collections.abc import Callable
 from dataclasses import dataclass
-from typing import Callable, Literal
+from typing import Literal
 
 import numpy as np
 from numpy.typing import NDArray
@@ -35,11 +36,11 @@ from scipy import stats as _stats
 from ..results import AnalysisResult, ResultStatus, build_meta
 
 __all__ = [
+    "BootstrapResult",
+    "PermutationResult",
     "bootstrap_ci",
     "cluster_bootstrap_ci",
     "permutation_test",
-    "BootstrapResult",
-    "PermutationResult",
 ]
 
 BootstrapDesign = Literal["paired", "independent"]

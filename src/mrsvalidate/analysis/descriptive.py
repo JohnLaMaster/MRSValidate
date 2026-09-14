@@ -29,28 +29,36 @@ from numpy.typing import NDArray
 
 from .._numerics import (
     DEFAULT_ABS_TOL,
-    DEFAULT_REL_TOL,
     DEFAULT_QUANTILE_METHOD,
+    DEFAULT_REL_TOL,
     QuantileMethod,
     is_near_zero,
+)
+from .._numerics import (
     iqr as _iqr,
+)
+from .._numerics import (
     robust_sd as _robust_sd,
+)
+from .._numerics import (
     robust_variance as _robust_variance,
+)
+from .._numerics import (
     tukey_outlier_range as _tukey_outlier_range,
 )
 from ..results import IntervalResult, ResultStatus, ScalarMetricResult
 from ._shared import meta_for, valid_subset
 
 __all__ = [
+    "cv",
+    "iqr",
     "mean",
     "median",
-    "variance",
-    "robust_variance",
-    "robust_sd",
-    "iqr",
-    "tukey_outlier_range",
-    "cv",
     "robust_cv",
+    "robust_sd",
+    "robust_variance",
+    "tukey_outlier_range",
+    "variance",
 ]
 
 

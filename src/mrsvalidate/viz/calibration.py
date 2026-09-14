@@ -27,8 +27,8 @@ __all__ = ["plot_calibration_result"]
 
 
 def plot_calibration_result(
-    result: "CalibrationResult", *, ax: "Axes | None" = None
-) -> tuple["Figure", "Axes"]:
+    result: CalibrationResult, *, ax: Axes | None = None
+) -> tuple[Figure, Axes]:
     """Plot empirical vs. nominal coverage with the ECE annotated.
 
     Renders ``result.empirical_coverage`` against

@@ -1,8 +1,8 @@
 import numpy as np
 import pytest
 
-from mrsvalidate.analysis import monte_carlo as mc
 from mrsvalidate.analysis import information
+from mrsvalidate.analysis import monte_carlo as mc
 from mrsvalidate.results import ResultStatus
 
 

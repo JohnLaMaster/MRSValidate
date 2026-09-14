@@ -38,13 +38,13 @@ from ..results import ResultStatus, ScalarMetricResult, build_meta
 from ._shared import meta_for, valid_subset
 
 __all__ = [
-    "mpe",
-    "mepe",
-    "mape",
     "bias_corrected_mape",
+    "mape",
     "meape",
-    "rmse",
+    "mepe",
+    "mpe",
     "rmese",
+    "rmse",
 ]
 
 ZeroReferencePolicy = Literal["omit_and_report", "error"]
@@ -146,15 +146,13 @@ def _prepare(
                         **(extra_configuration or {}),
                     },
                     warnings=(
-                        f"{n_near_zero} reference value(s) are effectively zero "
-                        'and zero_reference_policy="error"',
+                        f'{n_near_zero} reference value(s) are effectively zero and zero_reference_policy="error"',
                     ),
                 )
                 return ScalarMetricResult(meta=meta, value=float("nan")), None, None, None
 
             # "omit_and_report": drop those rows and record the reason.
             keep = ~near_zero_mask
-            dropped_ids = [included_ids[i] for i in np.flatnonzero(near_zero_mask)]
             included_ids = [included_ids[i] for i in np.flatnonzero(keep)]
             exclusion_reasons["near_zero_reference"] = n_near_zero
             ref = ref[keep]

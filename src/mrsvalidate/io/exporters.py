@@ -13,15 +13,16 @@ from __future__ import annotations
 
 import dataclasses
 import json
+from collections.abc import Mapping
 from enum import Enum
 from pathlib import Path
-from typing import Any, Mapping
+from typing import Any
 
 import numpy as np
 
 from ..results import AnalysisResult
 
-__all__ = ["result_to_jsonable", "export_result_json", "export_results_csv", "export_arrays_npz"]
+__all__ = ["export_arrays_npz", "export_result_json", "export_results_csv", "result_to_jsonable"]
 
 
 def _to_jsonable(obj: Any) -> Any:

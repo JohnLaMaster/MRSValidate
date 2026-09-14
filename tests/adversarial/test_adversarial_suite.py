@@ -12,7 +12,12 @@ from mrsvalidate.alignment import align_observations
 from mrsvalidate.analysis import descriptive, errors, information, operating_envelope
 from mrsvalidate.exceptions import AlignmentError
 from mrsvalidate.results import ResultStatus
-from mrsvalidate.schema import ObservationSet, ParameterRole, ParameterSchema, ParameterSpec
+from mrsvalidate.schema import (
+    ObservationSet,
+    ParameterRole,
+    ParameterSchema,
+    ParameterSpec,
+)
 
 _SCHEMA = ParameterSchema((ParameterSpec("NAA", ParameterRole.CONCENTRATION, "mM"),))
 

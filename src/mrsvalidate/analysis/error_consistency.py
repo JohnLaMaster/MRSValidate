@@ -27,7 +27,7 @@ from numpy.typing import NDArray
 
 from ..results import AnalysisResult, ResultStatus, build_meta
 
-__all__ = ["error_consistency", "ErrorConsistencyResult"]
+__all__ = ["ErrorConsistencyResult", "error_consistency"]
 
 
 @dataclass(frozen=True)

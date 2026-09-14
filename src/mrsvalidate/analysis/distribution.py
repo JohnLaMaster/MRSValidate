@@ -73,9 +73,9 @@ from ..results import AnalysisResult, ResultStatus, build_meta
 from .sample_size import MINIMUM_INDEPENDENT_SAMPLES, check_minimum_sample_size
 
 __all__ = [
+    "ECWASResult",
     "ecwas_kossler_mukherjee",
     "ecwas_manuscript_max_shape",
-    "ECWASResult",
 ]
 
 ShapeComponent = Literal["antisavage", "savage", "max_antisavage_savage"]

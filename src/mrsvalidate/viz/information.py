@@ -29,8 +29,8 @@ __all__ = ["plot_operating_envelope"]
 
 
 def plot_operating_envelope(
-    result: "OperatingEnvelopeResult", *, ax: "Axes | None" = None
-) -> tuple["Figure", "Axes"]:
+    result: OperatingEnvelopeResult, *, ax: Axes | None = None
+) -> tuple[Figure, Axes]:
     """Plot per-bin robust lower confidence bounds against a reliability target.
 
     Renders one bar per predicted-concentration bin at

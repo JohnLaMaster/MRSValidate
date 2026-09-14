@@ -37,7 +37,7 @@ from numpy.typing import NDArray
 from ..results import AnalysisResult, ResultStatus, ScalarMetricResult, build_meta
 from .regression import CorrelationResult, median_centered_correlation, pearson_r
 
-__all__ = ["cobeau", "cobeau_fisher_aggregate", "CobeauResult"]
+__all__ = ["CobeauResult", "cobeau", "cobeau_fisher_aggregate"]
 
 CobeauMethod = Literal["pearson", "median_centered"]
 

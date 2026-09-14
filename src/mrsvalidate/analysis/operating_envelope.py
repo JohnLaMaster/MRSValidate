@@ -29,7 +29,7 @@ from scipy.stats import beta as _beta
 
 from ..results import AnalysisResult, ResultStatus, build_meta
 
-__all__ = ["operating_envelope", "OperatingEnvelopeResult"]
+__all__ = ["OperatingEnvelopeResult", "operating_envelope"]
 
 
 @dataclass(frozen=True)

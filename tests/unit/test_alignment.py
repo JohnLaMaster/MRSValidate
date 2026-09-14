@@ -3,7 +3,12 @@ import pytest
 
 from mrsvalidate.alignment import align_observations
 from mrsvalidate.exceptions import AlignmentError
-from mrsvalidate.schema import ObservationSet, ParameterRole, ParameterSchema, ParameterSpec
+from mrsvalidate.schema import (
+    ObservationSet,
+    ParameterRole,
+    ParameterSchema,
+    ParameterSpec,
+)
 
 SCHEMA = ParameterSchema((ParameterSpec("NAA", ParameterRole.CONCENTRATION, "mM"),))
 

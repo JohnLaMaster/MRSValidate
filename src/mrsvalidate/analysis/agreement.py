@@ -30,9 +30,9 @@ from numpy.typing import NDArray
 from .._numerics import robust_sd as _robust_sd
 from ..results import AnalysisResult, ResultStatus
 from ._shared import meta_for, valid_subset
-from .regression import pearson_r, median_centered_correlation
+from .regression import pearson_r
 
-__all__ = ["lin_ccc", "robust_ccc", "ConcordanceResult"]
+__all__ = ["ConcordanceResult", "lin_ccc", "robust_ccc"]
 
 
 @dataclass(frozen=True)

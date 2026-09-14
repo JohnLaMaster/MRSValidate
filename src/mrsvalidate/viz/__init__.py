@@ -45,9 +45,9 @@ from .response_curves import plot_response_curve
 from .scatter import plot_regression_result
 
 __all__ = [
-    "plot_regression_result",
     "plot_bland_altman",
     "plot_calibration_result",
     "plot_operating_envelope",
+    "plot_regression_result",
     "plot_response_curve",
 ]

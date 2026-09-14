@@ -58,13 +58,13 @@ from ..results import AnalysisResult, ResultStatus, build_meta
 from ._shared import meta_for, valid_subset
 
 __all__ = [
-    "shapiro_wilk",
-    "kolmogorov_smirnov",
-    "lilliefors",
+    "NormalityTestResult",
     "anderson_darling",
     "dagostino_pearson",
+    "kolmogorov_smirnov",
+    "lilliefors",
     "normality_test_suite",
-    "NormalityTestResult",
+    "shapiro_wilk",
 ]
 
 _ANDERSON_LEVELS_PCT = (15.0, 10.0, 5.0, 2.5, 1.0)
@@ -419,8 +419,8 @@ def lilliefors(
     False
     """
 
-    from statsmodels.stats.diagnostic import lilliefors as _sm_lilliefors
     from statsmodels.stats._lilliefors import get_lilliefors_table
+    from statsmodels.stats.diagnostic import lilliefors as _sm_lilliefors
 
     meta, valid_x = _base_or_none(x, sample_ids, "lilliefors")
     if valid_x is None:
@@ -713,7 +713,7 @@ def normality_test_suite(
     False
     """
 
-    all_ids, report, (valid_x,) = valid_subset(sample_ids, x)
+    _all_ids, _report, (valid_x,) = valid_subset(sample_ids, x)
     mean = float(np.mean(valid_x)) if valid_x.size else float("nan")
     std = float(np.std(valid_x, ddof=1)) if valid_x.size > 1 else float("nan")
 

@@ -53,12 +53,12 @@ from ..results import AnalysisResult, ResultStatus, build_meta
 from .method_comparison import deming
 
 __all__ = [
-    "mixed_equivalence_test_1",
-    "mixed_equivalence_test_2",
-    "mixed_equivalence_test_3",
     "MixedTest1Result",
     "MixedTest2Result",
     "MixedTest3Result",
+    "mixed_equivalence_test_1",
+    "mixed_equivalence_test_2",
+    "mixed_equivalence_test_3",
 ]
 
 
@@ -268,7 +268,7 @@ def mixed_equivalence_test_1(
         fit = model.fit(reml=True)
         alpha, beta = float(fit.fe_params.iloc[0]), float(fit.fe_params.iloc[1])
         tau_alpha_sq = float(np.asarray(fit.cov_re)[0, 0])
-    except Exception as exc:
+    except Exception as exc:  # noqa: BLE001 -- statsmodels can raise many different exception types on convergence failure; caught broadly and deliberately so it is reported as ResultStatus.FAILED rather than propagating
         meta = build_meta(
             status=ResultStatus.FAILED,
             all_ids=all_ids,
@@ -477,7 +477,7 @@ def mixed_equivalence_test_2(
         fit = model.fit(reml=True)
         alpha, beta = float(fit.fe_params.iloc[0]), float(fit.fe_params.iloc[1])
         tau_beta_sq = float(np.asarray(fit.cov_re)[1, 1])
-    except Exception as exc:
+    except Exception as exc:  # noqa: BLE001 -- statsmodels can raise many different exception types on convergence failure; caught broadly and deliberately so it is reported as ResultStatus.FAILED rather than propagating
         meta = build_meta(
             status=ResultStatus.FAILED,
             all_ids=all_ids,

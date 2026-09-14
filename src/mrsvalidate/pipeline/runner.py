@@ -15,18 +15,18 @@ analysis does not destroy the rest of the run unless
 from __future__ import annotations
 
 import json
+from collections.abc import Mapping
 from dataclasses import dataclass
-from datetime import datetime, timezone
+from datetime import UTC, datetime
 from pathlib import Path
-from typing import Mapping
 
-from ..results import AnalysisResult
 from ..io.exporters import export_result_json, export_results_csv
 from ..io.manifest import build_manifest
+from ..results import AnalysisResult
 from .config import RunConfig
 from .progress import NullProgressReporter, ProgressReporter
 
-__all__ = ["run_analysis_plan", "RunResult"]
+__all__ = ["RunResult", "run_analysis_plan"]
 
 
 @dataclass(frozen=True)
@@ -150,7 +150,7 @@ def run_analysis_plan(config: RunConfig, *, progress: ProgressReporter | None = 
     """
 
     progress = progress or NullProgressReporter()
-    run_id = config.run_id or f"run-{datetime.now(timezone.utc).strftime('%Y-%m-%dT%H%M%SZ')}"
+    run_id = config.run_id or f"run-{datetime.now(UTC).strftime('%Y-%m-%dT%H%M%SZ')}"
     run_dir = Path(config.output_dir) / run_id
     (run_dir / "metrics").mkdir(parents=True, exist_ok=True)
     (run_dir / "figures").mkdir(parents=True, exist_ok=True)

@@ -34,10 +34,10 @@ from .runner import RunResult, run_analysis_plan
 
 __all__ = [
     "AnalysisStep",
+    "NullProgressReporter",
+    "PrintProgressReporter",
+    "ProgressReporter",
     "RunConfig",
     "RunResult",
     "run_analysis_plan",
-    "ProgressReporter",
-    "NullProgressReporter",
-    "PrintProgressReporter",
 ]

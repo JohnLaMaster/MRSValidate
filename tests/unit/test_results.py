@@ -1,6 +1,12 @@
 import pytest
 
-from mrsvalidate.results import AnalysisMeta, ResultStatus, build_meta, is_usable, AnalysisResult
+from mrsvalidate.results import (
+    AnalysisMeta,
+    AnalysisResult,
+    ResultStatus,
+    build_meta,
+    is_usable,
+)
 
 
 def test_build_meta_derives_counts_from_ids():

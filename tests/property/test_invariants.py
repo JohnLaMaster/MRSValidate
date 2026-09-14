@@ -16,7 +16,12 @@ from hypothesis.extra.numpy import arrays
 from mrsvalidate.alignment import align_observations
 from mrsvalidate.analysis import agreement, errors, regression
 from mrsvalidate.analysis.operating_envelope import _clopper_pearson_lower
-from mrsvalidate.schema import ObservationSet, ParameterRole, ParameterSchema, ParameterSpec
+from mrsvalidate.schema import (
+    ObservationSet,
+    ParameterRole,
+    ParameterSchema,
+    ParameterSpec,
+)
 
 _SCHEMA = ParameterSchema((ParameterSpec("NAA", ParameterRole.CONCENTRATION, "mM"),))
 

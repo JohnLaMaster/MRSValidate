@@ -22,7 +22,7 @@ from numpy.typing import NDArray
 
 from ..results import AnalysisResult, ResultStatus, build_meta
 
-__all__ = ["multivariate_ccc", "MultivariateResult"]
+__all__ = ["MultivariateResult", "multivariate_ccc"]
 
 
 @dataclass(frozen=True)

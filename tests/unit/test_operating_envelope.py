@@ -1,7 +1,10 @@
 import numpy as np
 import pytest
 
-from mrsvalidate.analysis.operating_envelope import _clopper_pearson_lower, operating_envelope
+from mrsvalidate.analysis.operating_envelope import (
+    _clopper_pearson_lower,
+    operating_envelope,
+)
 from mrsvalidate.results import ResultStatus
 
 

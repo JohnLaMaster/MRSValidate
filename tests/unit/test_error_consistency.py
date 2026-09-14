@@ -2,7 +2,6 @@ import numpy as np
 import pytest
 
 from mrsvalidate.analysis import error_consistency as ec
-from mrsvalidate.results import ResultStatus
 
 
 def test_error_consistency_identical_residuals_gives_zero_contribution():

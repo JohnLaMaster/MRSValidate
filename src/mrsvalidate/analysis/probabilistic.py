@@ -29,16 +29,20 @@ raw matrix.
 
 from __future__ import annotations
 
-from dataclasses import dataclass
-from typing import Sequence
+from collections.abc import Sequence
 
 import numpy as np
 from numpy.typing import NDArray
 from scipy.linalg import LinAlgError, cho_factor, cho_solve
 
-from ..results import AnalysisResult, PerSampleResult, ResultStatus, ScalarMetricResult, build_meta
+from ..results import (
+    PerSampleResult,
+    ResultStatus,
+    ScalarMetricResult,
+    build_meta,
+)
 
-__all__ = ["nlpd", "nlpd_macro", "joint_nlpd_full_covariance"]
+__all__ = ["joint_nlpd_full_covariance", "nlpd", "nlpd_macro"]
 
 _LOG_2PI = float(np.log(2.0 * np.pi))
 

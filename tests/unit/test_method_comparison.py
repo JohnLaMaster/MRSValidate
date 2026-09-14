@@ -44,7 +44,7 @@ def test_bland_altman_conditional_reports_coefficients():
     r = mc.bland_altman(ref, cand, ids, conditional=True)
     assert r.conditional_bias_coefficients is not None
     assert r.conditional_scale_coefficients is not None
-    intercept, slope = r.conditional_bias_coefficients
+    _intercept, slope = r.conditional_bias_coefficients
     assert slope == pytest.approx(0.05, abs=0.02)
 
 

@@ -4,7 +4,7 @@ from __future__ import annotations
 
 from typing import Protocol
 
-__all__ = ["ProgressReporter", "NullProgressReporter", "PrintProgressReporter"]
+__all__ = ["NullProgressReporter", "PrintProgressReporter", "ProgressReporter"]
 
 
 class ProgressReporter(Protocol):

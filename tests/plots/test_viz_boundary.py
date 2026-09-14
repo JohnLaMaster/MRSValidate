@@ -6,17 +6,15 @@ boundary: ``mrsvalidate.viz.*`` must never import or call
 from __future__ import annotations
 
 import ast
-import importlib
 from pathlib import Path
 
 import numpy as np
-import pytest
 
 import mrsvalidate.viz as viz_pkg
-from mrsvalidate.analysis.regression import regression_metrics
-from mrsvalidate.analysis.method_comparison import bland_altman
 from mrsvalidate.analysis.calibration import expected_calibration_error
+from mrsvalidate.analysis.method_comparison import bland_altman
 from mrsvalidate.analysis.operating_envelope import operating_envelope
+from mrsvalidate.analysis.regression import regression_metrics
 from mrsvalidate.analysis.response_curves import response_curve
 
 
@@ -41,7 +39,7 @@ def test_viz_modules_never_import_analysis_statically():
                         offending.append(f"{path.name}: import {alias.name}")
             elif isinstance(node, ast.ImportFrom):
                 module = node.module or ""
-                if module.startswith("mrsvalidate.analysis") or module == "..analysis" or module.startswith("..analysis"):
+                if module.startswith(("mrsvalidate.analysis", "..analysis")):
                     offending.append(f"{path.name}: from {module} import ...")
 
     assert not offending, f"viz modules must not import analysis: {offending}"
@@ -81,7 +79,7 @@ def test_plot_bland_altman_does_not_invoke_analysis(monkeypatch):
 
     from mrsvalidate.viz import plot_bland_altman
 
-    fig, ax = plot_bland_altman(known_result)
+    fig, _ax = plot_bland_altman(known_result)
     assert fig is not None
 
 
@@ -98,7 +96,7 @@ def test_plot_calibration_result_does_not_invoke_analysis(monkeypatch):
 
     from mrsvalidate.viz import plot_calibration_result
 
-    fig, ax = plot_calibration_result(known_result)
+    fig, _ax = plot_calibration_result(known_result)
     assert fig is not None
 
 
@@ -121,7 +119,7 @@ def test_plot_operating_envelope_does_not_invoke_analysis(monkeypatch):
 
     from mrsvalidate.viz import plot_operating_envelope
 
-    fig, ax = plot_operating_envelope(known_result)
+    fig, _ax = plot_operating_envelope(known_result)
     assert fig is not None
 
 
@@ -140,5 +138,5 @@ def test_plot_response_curve_does_not_invoke_analysis(monkeypatch):
 
     from mrsvalidate.viz import plot_response_curve
 
-    fig, ax = plot_response_curve(known_result)
+    fig, _ax = plot_response_curve(known_result)
     assert fig is not None

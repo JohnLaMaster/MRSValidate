@@ -2,7 +2,12 @@ import numpy as np
 import pytest
 
 from mrsvalidate.exceptions import ValidationError
-from mrsvalidate.schema import ObservationSet, ParameterRole, ParameterSchema, ParameterSpec
+from mrsvalidate.schema import (
+    ObservationSet,
+    ParameterRole,
+    ParameterSchema,
+    ParameterSpec,
+)
 from mrsvalidate.validation import (
     find_duplicate_ids,
     require_non_empty,

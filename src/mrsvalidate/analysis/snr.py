@@ -14,14 +14,14 @@ scalar.
 
 from __future__ import annotations
 
-from typing import Sequence
+from collections.abc import Sequence
 
 import numpy as np
 from numpy.typing import NDArray
 
 from ..results import PerSampleResult, ResultStatus, build_meta
 
-__all__ = ["spectral_snr", "power_snr", "spectral_snr_from_spectra"]
+__all__ = ["power_snr", "spectral_snr", "spectral_snr_from_spectra"]
 
 
 def _broadcast_sigma_noise(sigma_noise: float | NDArray[np.float64], n: int) -> NDArray[np.float64]:

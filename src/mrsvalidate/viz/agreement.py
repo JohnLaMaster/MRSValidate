@@ -28,7 +28,7 @@ if TYPE_CHECKING:
 __all__ = ["plot_bland_altman"]
 
 
-def plot_bland_altman(result: "BlandAltmanResult", *, ax: "Axes | None" = None) -> tuple["Figure", "Axes"]:
+def plot_bland_altman(result: BlandAltmanResult, *, ax: Axes | None = None) -> tuple[Figure, Axes]:
     """Plot a Bland-Altman difference scatter with bias and agreement limits.
 
     Renders ``result.differences`` against ``result.x_values``, plus

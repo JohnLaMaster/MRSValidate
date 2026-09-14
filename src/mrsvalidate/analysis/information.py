@@ -32,12 +32,12 @@ from ..results import AnalysisResult, PerSampleResult, ResultStatus, build_meta
 
 __all__ = [
     "UncertaintyRepresentation",
-    "to_std",
-    "crlb_sd_from_covariance",
-    "standardized_error",
     "VarianceRatioResult",
-    "variance_ratio",
+    "crlb_sd_from_covariance",
     "mahalanobis_squared_error",
+    "standardized_error",
+    "to_std",
+    "variance_ratio",
 ]
 
 #: sqrt(2/pi): the expected absolute standardized error under a correctly

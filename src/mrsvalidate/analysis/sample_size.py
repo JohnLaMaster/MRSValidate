@@ -15,7 +15,7 @@ instead.
 
 from __future__ import annotations
 
-__all__ = ["MINIMUM_INDEPENDENT_SAMPLES", "MINIMUM_INDEPENDENT_CLUSTERS", "check_minimum_sample_size", "check_minimum_clusters"]
+__all__ = ["MINIMUM_INDEPENDENT_CLUSTERS", "MINIMUM_INDEPENDENT_SAMPLES", "check_minimum_clusters", "check_minimum_sample_size"]
 
 #: Manuscript's recommended minimum independent-sample size for
 #: Pearson-r-based and similar asymptotic inference.

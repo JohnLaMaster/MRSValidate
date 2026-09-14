@@ -10,11 +10,10 @@ matched, unmatched, duplicated, or excluded.
 
 from __future__ import annotations
 
-from dataclasses import dataclass, field
+from dataclasses import dataclass
 from typing import Literal
 
 import numpy as np
-from numpy.typing import NDArray
 
 from .exceptions import AlignmentError
 from .schema import ObservationSet

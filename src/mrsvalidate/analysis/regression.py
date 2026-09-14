@@ -27,8 +27,9 @@ equation does not restate the convention locally.
 
 from __future__ import annotations
 
+from collections.abc import Mapping
 from dataclasses import dataclass
-from typing import Any, Mapping
+from typing import Any
 
 import numpy as np
 from numpy.typing import NDArray
@@ -38,17 +39,17 @@ from ..results import AnalysisResult, ResultStatus, ScalarMetricResult, build_me
 from ._shared import meta_for, valid_subset
 
 __all__ = [
-    "pearson_r",
-    "median_centered_correlation",
-    "r_squared_direct",
-    "adjusted_r_squared",
-    "concise_score_original",
-    "concise_score_manuscript",
-    "theil_sen",
-    "regression_metrics",
     "CorrelationResult",
-    "TheilSenResult",
     "RegressionResult",
+    "TheilSenResult",
+    "adjusted_r_squared",
+    "concise_score_manuscript",
+    "concise_score_original",
+    "median_centered_correlation",
+    "pearson_r",
+    "r_squared_direct",
+    "regression_metrics",
+    "theil_sen",
 ]
 
 

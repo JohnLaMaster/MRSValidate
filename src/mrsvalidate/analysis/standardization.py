@@ -16,11 +16,12 @@ from typing import Literal
 import numpy as np
 from numpy.typing import NDArray
 
-from .._numerics import DEFAULT_ABS_TOL, DEFAULT_REL_TOL, is_near_zero, iqr as _iqr
+from .._numerics import DEFAULT_ABS_TOL, DEFAULT_REL_TOL, is_near_zero
+from .._numerics import iqr as _iqr
 from ..results import AnalysisResult, ResultStatus, build_meta
 from ._shared import meta_for, valid_subset
 
-__all__ = ["standardize", "StandardizationResult"]
+__all__ = ["StandardizationResult", "standardize"]
 
 StandardizationMethod = Literal["normal", "robust"]
 

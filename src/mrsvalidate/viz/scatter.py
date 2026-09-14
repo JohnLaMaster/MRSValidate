@@ -32,8 +32,8 @@ __all__ = ["plot_regression_result"]
 
 
 def plot_regression_result(
-    result: "RegressionResult", *, ax: "Axes | None" = None, identity_line: bool = True
-) -> tuple["Figure", "Axes"]:
+    result: RegressionResult, *, ax: Axes | None = None, identity_line: bool = True
+) -> tuple[Figure, Axes]:
     """Plot a prediction-vs-reference scatter with fit lines and annotations.
 
     Renders the scatter of ``result.prediction`` against

@@ -1,6 +1,5 @@
 import numpy as np
 import pytest
-from scipy import stats as scipy_stats
 
 from mrsvalidate.analysis import normality as norm
 from mrsvalidate.results import ResultStatus

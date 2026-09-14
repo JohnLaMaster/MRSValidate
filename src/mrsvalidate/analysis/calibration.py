@@ -31,7 +31,7 @@ from numpy.typing import NDArray
 
 from ..results import AnalysisResult, ResultStatus, build_meta
 
-__all__ = ["expected_calibration_error", "CalibrationResult"]
+__all__ = ["CalibrationResult", "expected_calibration_error"]
 
 
 @dataclass(frozen=True)

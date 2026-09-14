@@ -30,8 +30,8 @@ __all__ = ["plot_response_curve"]
 
 
 def plot_response_curve(
-    result: "ResponseCurveResult", *, ax: "Axes | None" = None
-) -> tuple["Figure", "Axes"]:
+    result: ResponseCurveResult, *, ax: Axes | None = None
+) -> tuple[Figure, Axes]:
     """Plot a 1D response curve or 2D response surface.
 
     Renders an error-bar line plot when ``result`` has one axis

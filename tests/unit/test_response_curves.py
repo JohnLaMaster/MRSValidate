@@ -2,7 +2,6 @@ import numpy as np
 import pytest
 
 from mrsvalidate.analysis import response_curves as rc
-from mrsvalidate.results import ResultStatus
 
 
 def test_response_curve_1d_hand_computed():

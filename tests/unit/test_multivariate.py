@@ -1,7 +1,8 @@
 import numpy as np
 import pytest
 
-from mrsvalidate.analysis import agreement, multivariate as mv
+from mrsvalidate.analysis import agreement
+from mrsvalidate.analysis import multivariate as mv
 from mrsvalidate.results import ResultStatus
 
 

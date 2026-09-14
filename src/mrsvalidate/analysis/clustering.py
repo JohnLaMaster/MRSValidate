@@ -27,10 +27,10 @@ from ..results import AnalysisResult, ResultStatus, build_meta
 from .sample_size import MINIMUM_INDEPENDENT_CLUSTERS, check_minimum_clusters
 
 __all__ = [
-    "one_way_icc",
-    "cross_classified_icc",
-    "EffectiveSampleSizeResult",
     "CrossClassifiedEffectiveSampleSizeResult",
+    "EffectiveSampleSizeResult",
+    "cross_classified_icc",
+    "one_way_icc",
 ]
 
 
@@ -268,16 +268,16 @@ def one_way_icc(
     unique_subjects = np.unique(subj)
     s = int(unique_subjects.shape[0])
 
-    nan_result = dict(
-        rho=float("nan"),
-        between_variance=float("nan"),
-        within_variance=float("nan"),
-        design_effect=float("nan"),
-        n_eff=float("nan"),
-        n_total=n_total,
-        n_subjects=s,
-        mean_cluster_size=(n_total / s) if s else float("nan"),
-    )
+    nan_result = {
+        "rho": float("nan"),
+        "between_variance": float("nan"),
+        "within_variance": float("nan"),
+        "design_effect": float("nan"),
+        "n_eff": float("nan"),
+        "n_total": n_total,
+        "n_subjects": s,
+        "mean_cluster_size": (n_total / s) if s else float("nan"),
+    }
 
     if n_total < 2 or s < min_subjects:
         meta = _insufficient("one_way_icc", all_ids, included_ids, exclusion_reasons)
@@ -289,7 +289,7 @@ def one_way_icc(
         fit = model.fit(reml=True)
         between = float(np.asarray(fit.cov_re)[0, 0])
         within = float(fit.scale)
-    except Exception as exc:  # statsmodels can raise a variety of errors on failure to converge
+    except Exception as exc:  # noqa: BLE001 -- statsmodels can raise many different exception types on convergence failure; caught broadly and deliberately so it is reported as ResultStatus.FAILED rather than propagating
         meta = build_meta(
             status=ResultStatus.FAILED,
             all_ids=all_ids,
@@ -310,8 +310,8 @@ def one_way_icc(
     if not check_minimum_clusters(s):
         warnings = (
             f"only {s} independent subjects; reliable cluster-robust inference "
-            f"recommends >={MINIMUM_INDEPENDENT_CLUSTERS}",
-        )
+            f"recommends >={MINIMUM_INDEPENDENT_CLUSTERS}"
+        ),
     meta = build_meta(
         status=ResultStatus.VALID,
         all_ids=all_ids,
@@ -460,20 +460,20 @@ def cross_classified_icc(
     k = int(unique_metab.shape[0])
     s = int(unique_subj.shape[0])
 
-    nan_result = dict(
-        rho_metabolite=float("nan"),
-        rho_subject=float("nan"),
-        metabolite_variance=float("nan"),
-        subject_variance=float("nan"),
-        residual_variance=float("nan"),
-        design_effect=float("nan"),
-        n_eff=float("nan"),
-        n_total=n_total,
-        n_metabolites=k,
-        n_subjects=s,
-        mean_metabolites_per_spectrum=float("nan"),
-        mean_spectra_per_subject=float("nan"),
-    )
+    nan_result = {
+        "rho_metabolite": float("nan"),
+        "rho_subject": float("nan"),
+        "metabolite_variance": float("nan"),
+        "subject_variance": float("nan"),
+        "residual_variance": float("nan"),
+        "design_effect": float("nan"),
+        "n_eff": float("nan"),
+        "n_total": n_total,
+        "n_metabolites": k,
+        "n_subjects": s,
+        "mean_metabolites_per_spectrum": float("nan"),
+        "mean_spectra_per_subject": float("nan"),
+    }
 
     if n_total < 2 or k < min_levels or s < min_levels:
         meta = _insufficient(
@@ -491,7 +491,7 @@ def cross_classified_icc(
         var_metabolite = float(fit.vcomp[0])
         var_subject = float(fit.vcomp[1])
         residual = float(fit.scale)
-    except Exception as exc:
+    except Exception as exc:  # noqa: BLE001 -- statsmodels can raise many different exception types on convergence failure; caught broadly and deliberately so it is reported as ResultStatus.FAILED rather than propagating
         meta = build_meta(
             status=ResultStatus.FAILED,
             all_ids=all_ids,

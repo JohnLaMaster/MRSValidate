@@ -74,8 +74,8 @@ implicitly anywhere in this module.
 
 from __future__ import annotations
 
+from collections.abc import Mapping, Sequence
 from dataclasses import dataclass
-from typing import Mapping, Sequence
 
 import numpy as np
 from numpy.typing import NDArray
@@ -85,12 +85,12 @@ from .information import variance_ratio
 from .snr import spectral_snr_from_spectra as condition_spectral_snr
 
 __all__ = [
-    "generate_noise_realizations",
-    "monte_carlo_condition",
-    "monte_carlo_characterization",
-    "condition_spectral_snr",
-    "MonteCarloConditionResult",
     "MonteCarloCharacterizationResult",
+    "MonteCarloConditionResult",
+    "condition_spectral_snr",
+    "generate_noise_realizations",
+    "monte_carlo_characterization",
+    "monte_carlo_condition",
 ]
 
 

@@ -23,15 +23,16 @@ the outcome itself — that comes from
 
 from __future__ import annotations
 
+from collections.abc import Mapping
 from dataclasses import dataclass
-from typing import Literal, Mapping
+from typing import Literal
 
 import numpy as np
 from numpy.typing import NDArray
 
 from ..results import AnalysisResult, ResultStatus, build_meta
 
-__all__ = ["response_curve", "ResponseCurveResult"]
+__all__ = ["ResponseCurveResult", "response_curve"]
 
 ResponseStatistic = Literal["mean", "median", "rmse"]
 DispersionMethod = Literal["sd", "se"]
