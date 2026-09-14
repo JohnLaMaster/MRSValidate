@@ -10,7 +10,11 @@ def test_kolmogorov_smirnov_against_true_null_matches_scipy_reference():
     rng = np.random.default_rng(0)
     x = rng.normal(loc=5.0, scale=2.0, size=100)
     ids = np.array([f"s{i}" for i in range(100)])
-    expected = scipy_stats.kstest(x, "norm", args=(5.0, 2.0))
+    # Standardized rather than passed via args=(5.0, 2.0): some SciPy
+    # versions raise a TypeError from kstest's internal fast path for
+    # that call form (see mrsvalidate.analysis.normality.kolmogorov_smirnov),
+    # and the KS statistic is exactly invariant under this rescaling.
+    expected = scipy_stats.kstest((x - 5.0) / 2.0, "norm")
     r = norm.kolmogorov_smirnov(x, ids, mean=5.0, std=2.0)
     assert r.statistic == pytest.approx(expected.statistic)
     assert r.p_value == pytest.approx(expected.pvalue)

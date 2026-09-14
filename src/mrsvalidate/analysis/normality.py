@@ -333,7 +333,19 @@ def kolmogorov_smirnov(
         )
 
     n = valid_x.shape[0]
-    result = _stats.kstest(valid_x, "norm", args=(mean, std))
+    # Standardize explicitly and test against the standard normal, rather
+    # than passing args=(mean, std) through to scipy's "norm" shortcut.
+    # The KS statistic is exactly invariant under this linear rescaling
+    # (CDF_N(mean, std)(x) == Phi((x - mean) / std)), and at least one
+    # installed SciPy version (1.18.1, on Python 3.12) raises
+    # `TypeError: ndtr() takes from 1 to 2 positional arguments but 3
+    # were given` when kstest's internal fast path forwards args=(mean,
+    # std) to the low-level `ndtr` ufunc for the "norm" case. Passing an
+    # already-standardized sample with no `args=` sidesteps that path
+    # entirely rather than depending on a particular SciPy version's
+    # handling of it.
+    standardized = (valid_x - mean) / std
+    result = _stats.kstest(standardized, "norm")
     critical_value = float(_stats.kstwobign.ppf(1 - alpha) / np.sqrt(n))
 
     meta = build_meta(
