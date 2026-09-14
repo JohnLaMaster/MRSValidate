@@ -1,0 +1,1 @@
+job_id,sample_id,condition,cell_id,replicate,metabolite,truth_concentration_mM,estimate_mM,crlb_value,crlb_representation,crlb_unit,crlb_reference,target_snr,measured_snr,snr_definition,linewidth_hz,noise_model,noise_scale,basis_set_id,fit_software,fit_software_version,fit_config_id,fit_status,failure_reason,noise_free_anchor_id

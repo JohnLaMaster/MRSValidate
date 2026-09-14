@@ -1,0 +1,2 @@
+pearson_r,lin_ccc,passing_bablok_intercept,passing_bablok_slope,deming_intercept,deming_slope,bland_altman_bias_mM,loa_lower_mM,loa_upper_mM,difference_ci_low_mM,difference_ci_high_mM,equivalence_lower_mM,equivalence_upper_mM,equivalent
+0.9876,0.9391,0.2368,1.1184,0.3154,1.1055,0.98,-0.253,2.2129,0.8771,1.0794,-1.0,1.0,False

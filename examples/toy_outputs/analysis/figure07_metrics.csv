@@ -1,0 +1,4 @@
+scenario,bias_mM,variance_mM2,mse_mM2,rmse_mM
+Accurate and precise,0.0033,0.0302,0.0302,0.1737
+Bias-dominated,0.7434,0.0305,0.5832,0.7637
+Variance-dominated,-0.0203,0.5992,0.5991,0.774

@@ -1,0 +1,2 @@
+scenario,pearson_r,lin_ccc,rmse_mM,mae_mM,marginal_distance,marginal_test_p
+Permuted predictions,-0.0504,-0.0504,3.59,2.8185,0.0,1.0

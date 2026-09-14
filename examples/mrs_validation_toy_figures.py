@@ -1,0 +1,1074 @@
+#!/usr/bin/env python3
+"""Generate data and Matplotlib figures for eight validation toy examples.
+
+This is intentionally a DATA-GENERATION AND PLOTTING script, not a statistics
+implementation.  It does not calculate Pearson r, R-squared, Lin's CCC, RMSE,
+ICC, effective sample size, confidence intervals, CRLBs, Bland--Altman limits,
+Passing--Bablok/Deming regression, equivalence tests, covariance ellipses, or
+operating-range confidence bounds.  Those results must come from the existing
+statistics library and be supplied in the analysis files described below.
+
+Quick start
+-----------
+Generate all numerical toy datasets, MRS-Sim job manifests, and blank analysis
+templates in a directory selected by the caller::
+
+    python mrs_validation_toy_figures.py generate --savedir ./toy_outputs
+
+Plot figures whose raw-data panels do not require external results::
+
+    python mrs_validation_toy_figures.py plot --savedir ./toy_outputs \
+        --figures 1 2 6 7 8
+
+After the statistics library has populated the files in
+``toy_outputs/analysis/``, plot all eight figures::
+
+    python mrs_validation_toy_figures.py plot --savedir ./toy_outputs \
+        --figures all
+
+Print the metric and MRS-Sim contracts::
+
+    python mrs_validation_toy_figures.py describe
+
+MRS-Sim requirements
+--------------------
+Figure 3 (CRLB is not an accuracy certificate):
+    A noise-free spectrum is useful as a clean anchor and for diagnosing
+    deterministic model mismatch, but it is not sufficient for the intended
+    figure.  Each condition also needs repeated, independently noised spectra
+    (preferably 200--500 realizations; 100 is a pragmatic minimum) at a known,
+    non-zero noise level.  Fit every realization with identical settings and
+    export ground truth, fitted concentration, externally calculated CRLB (or
+    reported standard error), the CRLB representation and units, SNR definition,
+    linewidth, fit status, and sample/condition/replicate IDs.  Include at least
+    a well-specified condition and a controlled model-mismatch condition.  The
+    supplied stats library then calculates empirical bias/dispersion and the
+    comparisons with the externally supplied CRLB.
+
+Figure 4 (evidence-supported operating range):
+    Use noisy Monte Carlo spectra over a COWS-informed concentration x SNR x
+    linewidth grid, preferably 200--500 independent realizations per cell.
+    Preserve ground truth, acquisition/fitting configuration, noise model and
+    seed for every realization.  Pre-specify the acceptable error threshold and
+    the desired success probability before analysis.  The stats library must
+    calculate cell-wise success rates and one-sided lower confidence bounds.
+    Noise-free templates may be retained once per grid cell for provenance, but
+    a separate noise-free spectrum for every replicate is unnecessary.
+
+Analysis files expected from the statistics library
+---------------------------------------------------
+All files are CSV and live in ``<savedir>/analysis``. Blank templates are made
+by the ``generate`` command. Empty cells mean "not yet analyzed".
+
+* figure01_metrics.csv: scenario, slope, intercept, pearson_r, r_squared,
+  mean_error_mM, rmse_mM, lin_ccc.
+* figure02_metrics.csv: design, nominal_n, independent_clusters, icc,
+  design_effect, effective_n, estimate_mM, ci_low_mM, ci_high_mM.
+* figure03_crlb_summary.csv: condition, metabolite, n_replicates, bias_mM,
+  empirical_sd_mM, median_crlb_sd_mM, median_abs_error_mM,
+  median_abs_standardized_error.
+* figure04_operating_range.csv: metabolite, linewidth_hz, concentration_mM,
+  snr, n_total, n_success, success_probability, success_lcb,
+  acceptable_abs_error_mM, evidence_status.
+* figure05_metrics.csv: one row containing pearson_r, lin_ccc,
+  passing_bablok_intercept, passing_bablok_slope, deming_intercept,
+  deming_slope, bland_altman_bias_mM, loa_lower_mM, loa_upper_mM,
+  difference_ci_low_mM, difference_ci_high_mM, equivalence_lower_mM,
+  equivalence_upper_mM, equivalent.
+* figure06_metrics.csv: scenario, pearson_r, lin_ccc, rmse_mM, mae_mM,
+  marginal_distance, marginal_test_p.
+* figure07_metrics.csv: scenario, bias_mM, variance_mM2, mse_mM2, rmse_mM.
+* figure08_metrics.csv: dataset, corr_metabolite_a_b, covariance_a_b,
+  joint_distance, joint_test_p, ellipse_center_a, ellipse_center_b,
+  ellipse_width, ellipse_height, ellipse_angle_deg.
+
+Relevant metrics (state them; calculate them elsewhere)
+-------------------------------------------------------
+1. Association versus agreement: Pearson r, R-squared under an explicitly
+   stated regression, slope, intercept, mean error/bias, MAE or RMSE, Lin's CCC.
+2. Nominal versus effective N: ICC, design effect, effective sample size, naive
+   and cluster-aware or subject-bootstrap confidence intervals; optionally a
+   mixed-effects variance decomposition.
+3. CRLB interpretation: empirical bias, empirical SD/variance, externally
+   supplied CRLB SD/variance, empirical-variance-to-CRLB-variance ratio,
+   standardized absolute error, interval coverage/calibration, and failure rate.
+4. Operating range: absolute/relative error, a pre-specified success indicator,
+   cell-wise success probability, one-sided confidence lower bound, sample count,
+   and an evidence status that distinguishes validated, unacceptable, and
+   insufficiently sampled cells.
+5. Method comparison: Pearson r and Lin's CCC; Bland--Altman bias, limits of
+   agreement and their confidence bands; Passing--Bablok slope/intercept plus a
+   linearity test; Deming slope/intercept with justified error-variance ratio;
+   and pre-specified equivalence analysis (e.g. the manuscript's three-stage
+   accuracy/precision/agreement protocol or another justified TOST design).
+6. Marginal equality versus pairing: a marginal distribution distance/test plus
+   paired MAE/RMSE, Pearson r, and Lin's CCC.
+7. Bias versus variance: empirical bias, variance, MSE, RMSE, and the externally
+   verified bias-squared-plus-variance decomposition.
+8. Multivariate structure: per-variable marginal summaries/distances, covariance
+   and correlation matrices, plus a justified joint-distribution statistic such
+   as energy distance or MMD and, if used, uncertainty for those quantities.
+
+The plotting functions consume the results above. They never derive them.
+"""
+
+from __future__ import annotations
+
+import argparse
+import csv
+import json
+import math
+import sys
+from dataclasses import dataclass
+from pathlib import Path
+from typing import Iterable, Mapping, Sequence
+
+import matplotlib.pyplot as plt
+from matplotlib.colors import BoundaryNorm, ListedColormap
+from matplotlib.patches import Ellipse, Patch
+import numpy as np
+
+
+# A color-blind-conscious, manuscript-friendly palette.
+NAVY = "#173F5F"
+BLUE = "#2878B5"
+TEAL = "#2A9D8F"
+PURPLE = "#7B61A8"
+ORANGE = "#E07A5F"
+GOLD = "#E9C46A"
+GREEN = "#4C956C"
+RED = "#C44536"
+LIGHT_BLUE = "#DCEAF4"
+LIGHT_PURPLE = "#E8E0F0"
+LIGHT_GREY = "#EFF2F5"
+DARK_GREY = "#344054"
+
+
+FIGURE_FILENAMES = {
+    1: "01_high_correlation_can_hide_poor_agreement.png",
+    2: "02_nominal_sample_size_overstates_independent_information.png",
+    3: "03_crlb_precision_bound_does_not_guarantee_accuracy.png",
+    4: "04_evidence_supported_mrs_operating_range.png",
+    5: "05_same_data_different_method_comparison_questions.png",
+    6: "06_matching_marginals_do_not_imply_samplewise_accuracy.png",
+    7: "07_equal_rmse_can_hide_bias_or_variance.png",
+    8: "08_correct_marginals_can_hide_wrong_joint_structure.png",
+}
+
+
+DATA_FILENAMES = {
+    1: "figure01_correlation_vs_agreement.csv",
+    2: "figure02_nominal_vs_effective_sample_size.csv",
+    5: "figure05_method_comparison_pairs.csv",
+    6: "figure06_matching_marginals_wrong_pairing.csv",
+    7: "figure07_bias_variance_equal_rmse.csv",
+    8: "figure08_correct_marginals_wrong_joint_structure.csv",
+}
+
+
+ANALYSIS_TEMPLATES: dict[str, list[str]] = {
+    "figure01_metrics.csv": [
+        "scenario", "slope", "intercept", "pearson_r", "r_squared",
+        "mean_error_mM", "rmse_mM", "lin_ccc",
+    ],
+    "figure02_metrics.csv": [
+        "design", "nominal_n", "independent_clusters", "icc",
+        "design_effect", "effective_n", "estimate_mM", "ci_low_mM",
+        "ci_high_mM",
+    ],
+    "figure03_crlb_summary.csv": [
+        "condition", "metabolite", "n_replicates", "bias_mM",
+        "empirical_sd_mM", "median_crlb_sd_mM", "median_abs_error_mM",
+        "median_abs_standardized_error",
+    ],
+    "figure04_operating_range.csv": [
+        "metabolite", "linewidth_hz", "concentration_mM", "snr",
+        "n_total", "n_success", "success_probability", "success_lcb",
+        "acceptable_abs_error_mM", "evidence_status",
+    ],
+    "figure05_metrics.csv": [
+        "pearson_r", "lin_ccc", "passing_bablok_intercept",
+        "passing_bablok_slope", "deming_intercept", "deming_slope",
+        "bland_altman_bias_mM", "loa_lower_mM", "loa_upper_mM",
+        "difference_ci_low_mM", "difference_ci_high_mM",
+        "equivalence_lower_mM", "equivalence_upper_mM", "equivalent",
+    ],
+    "figure06_metrics.csv": [
+        "scenario", "pearson_r", "lin_ccc", "rmse_mM", "mae_mM",
+        "marginal_distance", "marginal_test_p",
+    ],
+    "figure07_metrics.csv": [
+        "scenario", "bias_mM", "variance_mM2", "mse_mM2", "rmse_mM",
+    ],
+    "figure08_metrics.csv": [
+        "dataset", "corr_metabolite_a_b", "covariance_a_b",
+        "joint_distance", "joint_test_p", "ellipse_center_a",
+        "ellipse_center_b", "ellipse_width", "ellipse_height",
+        "ellipse_angle_deg",
+    ],
+}
+
+
+@dataclass(frozen=True)
+class Settings:
+    """Reproducible dataset and export settings."""
+
+    seed: int = 20260914
+    dpi: int = 300
+    metabolite: str = "NAA"
+    concentration_unit: str = "mM"
+
+
+def configure_matplotlib() -> None:
+    """Apply a consistent publication-oriented style."""
+    plt.rcParams.update(
+        {
+            "font.family": "DejaVu Sans",
+            "font.size": 10,
+            "axes.titlesize": 11,
+            "axes.labelsize": 10,
+            "axes.edgecolor": DARK_GREY,
+            "axes.linewidth": 0.8,
+            "axes.spines.top": False,
+            "axes.spines.right": False,
+            "xtick.color": DARK_GREY,
+            "ytick.color": DARK_GREY,
+            "text.color": DARK_GREY,
+            "figure.facecolor": "white",
+            "axes.facecolor": "white",
+            "savefig.facecolor": "white",
+            "savefig.bbox": "tight",
+        }
+    )
+
+
+def ensure_directories(savedir: Path) -> tuple[Path, Path, Path]:
+    data_dir = savedir / "data"
+    analysis_dir = savedir / "analysis"
+    figures_dir = savedir / "figures"
+    for directory in (data_dir, analysis_dir, figures_dir):
+        directory.mkdir(parents=True, exist_ok=True)
+    return data_dir, analysis_dir, figures_dir
+
+
+def write_csv(path: Path, rows: Iterable[Mapping[str, object]], fields: Sequence[str]) -> None:
+    path.parent.mkdir(parents=True, exist_ok=True)
+    with path.open("w", newline="", encoding="utf-8") as handle:
+        writer = csv.DictWriter(handle, fieldnames=list(fields))
+        writer.writeheader()
+        writer.writerows(rows)
+
+
+def read_csv(path: Path, *, required: bool = True) -> list[dict[str, str]]:
+    if not path.exists():
+        if required:
+            raise FileNotFoundError(f"Required file not found: {path}")
+        return []
+    with path.open(newline="", encoding="utf-8") as handle:
+        return list(csv.DictReader(handle))
+
+
+def as_float(value: str | None, *, field: str, allow_blank: bool = False) -> float:
+    if value is None or value.strip() == "":
+        if allow_blank:
+            return math.nan
+        raise ValueError(f"Missing required numeric value for '{field}'.")
+    try:
+        return float(value)
+    except ValueError as exc:
+        raise ValueError(f"Invalid numeric value for '{field}': {value!r}") from exc
+
+
+def index_rows(rows: Sequence[Mapping[str, str]], key: str) -> dict[str, Mapping[str, str]]:
+    return {str(row[key]): row for row in rows if row.get(key)}
+
+
+def metric_text(row: Mapping[str, str] | None, fields: Sequence[tuple[str, str]]) -> str:
+    """Format supplied values only; no metric is calculated here."""
+    if not row:
+        return ""
+    lines: list[str] = []
+    for field, label in fields:
+        value = row.get(field, "")
+        if value not in (None, ""):
+            lines.append(f"{label} = {value}")
+    return "\n".join(lines)
+
+
+def add_metric_box(ax: plt.Axes, text: str) -> None:
+    if not text:
+        return
+    ax.text(
+        0.97,
+        0.97,
+        text,
+        transform=ax.transAxes,
+        ha="right",
+        va="top",
+        fontsize=8.5,
+        bbox={"boxstyle": "round,pad=0.35", "facecolor": "white", "alpha": 0.9,
+              "edgecolor": "#CBD5E1"},
+    )
+
+
+def save_figure(fig: plt.Figure, path: Path, dpi: int) -> None:
+    path.parent.mkdir(parents=True, exist_ok=True)
+    fig.savefig(path, dpi=dpi)
+    plt.close(fig)
+
+
+def generate_figure01(rng: np.random.Generator, path: Path) -> None:
+    n = 140
+    truth = rng.uniform(1.0, 12.0, n)
+    shared_noise = rng.normal(0.0, 0.30, n)
+    scenarios = {
+        "Accurate": truth + shared_noise,
+        "Constant bias": truth + 2.0 + shared_noise,
+        "Proportional bias": 1.35 * truth + shared_noise,
+    }
+    rows = []
+    for scenario, prediction in scenarios.items():
+        for i, (reference, estimate) in enumerate(zip(truth, prediction, strict=True)):
+            rows.append(
+                {
+                    "sample_id": f"F01-{i:04d}",
+                    "scenario": scenario,
+                    "ground_truth_mM": f"{reference:.8f}",
+                    "prediction_mM": f"{estimate:.8f}",
+                }
+            )
+    write_csv(path, rows, ["sample_id", "scenario", "ground_truth_mM", "prediction_mM"])
+
+
+def generate_figure02(rng: np.random.Generator, path: Path) -> None:
+    rows: list[dict[str, object]] = []
+    # Design A: 100 independent subjects.
+    independent = rng.normal(5.0, 1.0, 100)
+    for i, value in enumerate(independent):
+        rows.append(
+            {
+                "design": "100 independent subjects",
+                "subject_id": f"IND-{i:03d}",
+                "replicate_id": 0,
+                "value_mM": f"{value:.8f}",
+                "nominal_n": 100,
+                "independent_clusters_by_design": 100,
+            }
+        )
+    # Design B: 10 subjects x 10 repeated observations, with strong clustering.
+    subject_effect = rng.normal(0.0, 0.95, 10)
+    residual = rng.normal(0.0, 0.28, (10, 10))
+    clustered = 5.0 + subject_effect[:, None] + residual
+    for subject in range(10):
+        for replicate in range(10):
+            rows.append(
+                {
+                    "design": "10 subjects x 10 repeats",
+                    "subject_id": f"REP-{subject:03d}",
+                    "replicate_id": replicate,
+                    "value_mM": f"{clustered[subject, replicate]:.8f}",
+                    "nominal_n": 100,
+                    "independent_clusters_by_design": 10,
+                }
+            )
+    write_csv(
+        path,
+        rows,
+        ["design", "subject_id", "replicate_id", "value_mM", "nominal_n",
+         "independent_clusters_by_design"],
+    )
+
+
+def generate_figure03_manifest(path: Path, settings: Settings) -> None:
+    """Write requested MRS-Sim jobs; this function does not simulate spectra."""
+    rows: list[dict[str, object]] = []
+    conditions = (
+        ("well_specified", "matched_basis_and_baseline"),
+        ("controlled_model_mismatch", "predeclared_basis_or_baseline_mismatch"),
+    )
+    n_noisy_replicates = 250
+    for condition, fit_model in conditions:
+        # One clean anchor per condition.
+        rows.append(
+            {
+                "job_id": f"F03-{condition}-clean",
+                "condition": condition,
+                "replicate": -1,
+                "is_noise_free_anchor": True,
+                "add_noise": False,
+                "noise_seed": "",
+                "metabolite": settings.metabolite,
+                "truth_concentration_mM": 5.0,
+                "target_snr": "",
+                "linewidth_hz": 6.0,
+                "noise_model": "none",
+                "simulation_model": "same_ground_truth_forward_model",
+                "fit_model_variant": fit_model,
+            }
+        )
+        for replicate in range(n_noisy_replicates):
+            rows.append(
+                {
+                    "job_id": f"F03-{condition}-{replicate:04d}",
+                    "condition": condition,
+                    "replicate": replicate,
+                    "is_noise_free_anchor": False,
+                    "add_noise": True,
+                    "noise_seed": settings.seed + 300_000 + replicate,
+                    "metabolite": settings.metabolite,
+                    "truth_concentration_mM": 5.0,
+                    "target_snr": 20.0,
+                    "linewidth_hz": 6.0,
+                    "noise_model": "complex_zero_mean_gaussian_define_variance_convention",
+                    "simulation_model": "same_ground_truth_forward_model",
+                    "fit_model_variant": fit_model,
+                }
+            )
+    fields = [
+        "job_id", "condition", "replicate", "is_noise_free_anchor", "add_noise",
+        "noise_seed", "metabolite", "truth_concentration_mM", "target_snr",
+        "linewidth_hz", "noise_model", "simulation_model", "fit_model_variant",
+    ]
+    write_csv(path, rows, fields)
+
+
+def generate_figure04_manifest(path: Path, settings: Settings) -> None:
+    """Write a COWS-informed-style MRS-Sim grid; adjust ranges before running."""
+    rows: list[dict[str, object]] = []
+    concentrations = (1.0, 2.0, 3.5, 5.0, 7.0, 9.5, 12.0)
+    snrs = (5.0, 7.5, 10.0, 15.0, 20.0, 30.0, 40.0)
+    linewidths = (4.0, 7.0, 10.0)
+    replicates_per_cell = 250
+    counter = 0
+    for linewidth_hz in linewidths:
+        for concentration_mM in concentrations:
+            for snr in snrs:
+                for replicate in range(replicates_per_cell):
+                    rows.append(
+                        {
+                            "job_id": f"F04-{counter:06d}",
+                            "cell_id": f"LW{linewidth_hz:g}-C{concentration_mM:g}-SNR{snr:g}",
+                            "replicate": replicate,
+                            "noise_seed": settings.seed + 400_000 + counter,
+                            "metabolite": settings.metabolite,
+                            "truth_concentration_mM": concentration_mM,
+                            "target_snr": snr,
+                            "linewidth_hz": linewidth_hz,
+                            "noise_model": "complex_zero_mean_gaussian_define_variance_convention",
+                            "acceptable_abs_error_mM": 0.5,
+                            "required_success_probability": 0.95,
+                            "confidence_level_for_lcb": 0.95,
+                        }
+                    )
+                    counter += 1
+    fields = [
+        "job_id", "cell_id", "replicate", "noise_seed", "metabolite",
+        "truth_concentration_mM", "target_snr", "linewidth_hz", "noise_model",
+        "acceptable_abs_error_mM", "required_success_probability",
+        "confidence_level_for_lcb",
+    ]
+    write_csv(path, rows, fields)
+
+
+def generate_figure05(rng: np.random.Generator, path: Path) -> None:
+    n = 150
+    reference = rng.uniform(1.0, 12.0, n)
+    candidate = 0.35 + 1.10 * reference + rng.normal(0.0, 0.55, n)
+    rows = []
+    for i, (x, y) in enumerate(zip(reference, candidate, strict=True)):
+        rows.append(
+            {
+                "pair_id": f"F05-{i:04d}",
+                "reference_mM": f"{x:.8f}",
+                "candidate_mM": f"{y:.8f}",
+                # These are plot coordinates, not inferential statistics.
+                "pair_mean_mM": f"{0.5 * (x + y):.8f}",
+                "candidate_minus_reference_mM": f"{y - x:.8f}",
+            }
+        )
+    write_csv(
+        path,
+        rows,
+        ["pair_id", "reference_mM", "candidate_mM", "pair_mean_mM",
+         "candidate_minus_reference_mM"],
+    )
+
+
+def generate_figure06(rng: np.random.Generator, path: Path) -> None:
+    n = 140
+    truth = np.sort(rng.gamma(shape=5.0, scale=1.1, size=n))
+    wrong = rng.permutation(truth)
+    rows = []
+    for i, (reference, prediction) in enumerate(zip(truth, wrong, strict=True)):
+        rows.append(
+            {
+                "sample_id": f"F06-{i:04d}",
+                "scenario": "Permuted predictions",
+                "ground_truth_mM": f"{reference:.8f}",
+                "prediction_mM": f"{prediction:.8f}",
+            }
+        )
+    write_csv(path, rows, ["sample_id", "scenario", "ground_truth_mM", "prediction_mM"])
+
+
+def generate_figure07(rng: np.random.Generator, path: Path) -> None:
+    n = 1200
+    truth = 5.0
+    scenarios = {
+        "Accurate and precise": rng.normal(truth, 0.18, n),
+        "Bias-dominated": rng.normal(truth + 0.75, 0.18, n),
+        "Variance-dominated": rng.normal(truth, 0.77, n),
+    }
+    rows = []
+    for scenario, estimates in scenarios.items():
+        for i, estimate in enumerate(estimates):
+            rows.append(
+                {
+                    "sample_id": f"F07-{scenario[:3].upper()}-{i:05d}",
+                    "scenario": scenario,
+                    "truth_mM": truth,
+                    "estimate_mM": f"{estimate:.8f}",
+                }
+            )
+    write_csv(path, rows, ["sample_id", "scenario", "truth_mM", "estimate_mM"])
+
+
+def generate_figure08(rng: np.random.Generator, path: Path) -> None:
+    n = 600
+    mean = np.array([5.0, 7.0])
+    covariance = np.array([[1.4, 1.05], [1.05, 1.8]])
+    truth = rng.multivariate_normal(mean, covariance, size=n)
+    # Permuting B preserves its exact marginal sample but destroys its pairing with A.
+    prediction = np.column_stack([truth[:, 0].copy(), rng.permutation(truth[:, 1])])
+    rows = []
+    for i in range(n):
+        rows.append(
+            {
+                "sample_id": f"F08-{i:04d}",
+                "truth_metabolite_a_mM": f"{truth[i, 0]:.8f}",
+                "truth_metabolite_b_mM": f"{truth[i, 1]:.8f}",
+                "prediction_metabolite_a_mM": f"{prediction[i, 0]:.8f}",
+                "prediction_metabolite_b_mM": f"{prediction[i, 1]:.8f}",
+            }
+        )
+    write_csv(
+        path,
+        rows,
+        ["sample_id", "truth_metabolite_a_mM", "truth_metabolite_b_mM",
+         "prediction_metabolite_a_mM", "prediction_metabolite_b_mM"],
+    )
+
+
+def write_mrs_fit_export_template(path: Path) -> None:
+    fields = [
+        "job_id", "sample_id", "condition", "cell_id", "replicate",
+        "metabolite", "truth_concentration_mM", "estimate_mM", "crlb_value",
+        "crlb_representation", "crlb_unit", "crlb_reference",
+        "target_snr", "measured_snr", "snr_definition", "linewidth_hz",
+        "noise_model", "noise_scale", "basis_set_id", "fit_software",
+        "fit_software_version", "fit_config_id", "fit_status", "failure_reason",
+        "noise_free_anchor_id",
+    ]
+    write_csv(path, [], fields)
+
+
+def write_analysis_templates(analysis_dir: Path) -> None:
+    for filename, fields in ANALYSIS_TEMPLATES.items():
+        path = analysis_dir / filename
+        if not path.exists():
+            write_csv(path, [], fields)
+
+
+def generate_all(savedir: Path, settings: Settings) -> None:
+    data_dir, analysis_dir, _ = ensure_directories(savedir)
+    rng = np.random.default_rng(settings.seed)
+    generate_figure01(rng, data_dir / DATA_FILENAMES[1])
+    generate_figure02(rng, data_dir / DATA_FILENAMES[2])
+    generate_figure03_manifest(data_dir / "figure03_mrssim_manifest.csv", settings)
+    generate_figure04_manifest(data_dir / "figure04_mrssim_manifest.csv", settings)
+    generate_figure05(rng, data_dir / DATA_FILENAMES[5])
+    generate_figure06(rng, data_dir / DATA_FILENAMES[6])
+    generate_figure07(rng, data_dir / DATA_FILENAMES[7])
+    generate_figure08(rng, data_dir / DATA_FILENAMES[8])
+    write_mrs_fit_export_template(data_dir / "figures03_04_fitter_export_template.csv")
+    write_analysis_templates(analysis_dir)
+    provenance = {
+        "generator": Path(__file__).name,
+        "seed": settings.seed,
+        "numpy_rng": "numpy.random.Generator(PCG64 default)",
+        "metabolite": settings.metabolite,
+        "concentration_unit": settings.concentration_unit,
+        "statistics_calculated_by_this_script": False,
+        "note": "MRS-Sim manifests are requests, not simulated spectra.",
+    }
+    (savedir / "generation_provenance.json").write_text(
+        json.dumps(provenance, indent=2) + "\n", encoding="utf-8"
+    )
+
+
+def plot_figure01(data_dir: Path, analysis_dir: Path, output: Path, settings: Settings) -> None:
+    rows = read_csv(data_dir / DATA_FILENAMES[1])
+    metric_rows = read_csv(analysis_dir / "figure01_metrics.csv", required=False)
+    metrics = index_rows(metric_rows, "scenario")
+    scenarios = ("Accurate", "Constant bias", "Proportional bias")
+    colors = (TEAL, ORANGE, PURPLE)
+    fig, axes = plt.subplots(1, 3, figsize=(11.5, 3.7), sharex=True, sharey=True)
+    all_values = [as_float(r["ground_truth_mM"], field="ground_truth_mM") for r in rows]
+    all_values += [as_float(r["prediction_mM"], field="prediction_mM") for r in rows]
+    low, high = math.floor(min(all_values)), math.ceil(max(all_values))
+    for ax, scenario, color in zip(axes, scenarios, colors, strict=True):
+        selected = [r for r in rows if r["scenario"] == scenario]
+        x = np.array([as_float(r["ground_truth_mM"], field="ground_truth_mM") for r in selected])
+        y = np.array([as_float(r["prediction_mM"], field="prediction_mM") for r in selected])
+        ax.scatter(x, y, s=19, color=color, alpha=0.68, edgecolor="white", linewidth=0.3)
+        ax.plot([low, high], [low, high], color=DARK_GREY, linewidth=1.2,
+                linestyle="--", label="Identity")
+        row = metrics.get(scenario)
+        if row and row.get("slope") and row.get("intercept"):
+            slope = as_float(row["slope"], field="slope")
+            intercept = as_float(row["intercept"], field="intercept")
+            ax.plot([low, high], [intercept + slope * low, intercept + slope * high],
+                    color=color, linewidth=2.0, label="Supplied fit")
+        add_metric_box(
+            ax,
+            metric_text(row, (("pearson_r", "r"), ("rmse_mM", "RMSE"),
+                              ("lin_ccc", "CCC"))),
+        )
+        ax.set_title(scenario, color=color, fontweight="bold")
+        ax.set_xlim(low, high)
+        ax.set_ylim(low, high)
+        ax.set_aspect("equal", adjustable="box")
+        ax.grid(color=LIGHT_GREY, linewidth=0.7)
+        ax.set_xlabel("Ground truth (mM)")
+    axes[0].set_ylabel("Prediction (mM)")
+    fig.suptitle("High association can coexist with poor agreement", fontweight="bold", y=1.02)
+    fig.tight_layout()
+    save_figure(fig, output, settings.dpi)
+
+
+def plot_figure02(data_dir: Path, analysis_dir: Path, output: Path, settings: Settings) -> None:
+    rows = read_csv(data_dir / DATA_FILENAMES[2])
+    metric_rows = read_csv(analysis_dir / "figure02_metrics.csv", required=False)
+    metrics = index_rows(metric_rows, "design")
+    designs = ("100 independent subjects", "10 subjects x 10 repeats")
+    colors = (BLUE, PURPLE)
+    fig, axes = plt.subplots(1, 2, figsize=(10.2, 4.3), sharey=True)
+    for ax, design, color in zip(axes, designs, colors, strict=True):
+        selected = [r for r in rows if r["design"] == design]
+        subject_ids = sorted({r["subject_id"] for r in selected})
+        x_map = {subject_id: i for i, subject_id in enumerate(subject_ids)}
+        for subject_id in subject_ids:
+            subject_rows = [r for r in selected if r["subject_id"] == subject_id]
+            x = np.full(len(subject_rows), x_map[subject_id], dtype=float)
+            if len(subject_rows) > 1:
+                # Deterministic horizontal jitter for visibility only.
+                x += np.linspace(-0.22, 0.22, len(subject_rows))
+            values = np.array([as_float(r["value_mM"], field="value_mM") for r in subject_rows])
+            ax.scatter(x, values, s=20, color=color, alpha=0.72, edgecolor="white", linewidth=0.3)
+            if len(values) > 1:
+                ax.plot(x, values, color=color, alpha=0.20, linewidth=0.7)
+        row = metrics.get(design)
+        text = metric_text(
+            row,
+            (("nominal_n", "Nominal N"), ("independent_clusters", "Clusters"),
+             ("icc", "ICC"), ("effective_n", "Effective N")),
+        )
+        if not text:
+            text = f"Nominal N = 100\nIndependent units = {len(subject_ids)}"
+        add_metric_box(ax, text)
+        ax.set_title(design, color=color, fontweight="bold")
+        ax.set_xlabel("Independent sampling unit")
+        ax.set_xticks([])
+        ax.grid(axis="y", color=LIGHT_GREY, linewidth=0.7)
+    axes[0].set_ylabel("Repeated measurement (mM)")
+    fig.suptitle("The same nominal N can contain very different information", fontweight="bold")
+    fig.tight_layout()
+    save_figure(fig, output, settings.dpi)
+
+
+def plot_figure03(analysis_dir: Path, output: Path, settings: Settings) -> None:
+    rows = read_csv(analysis_dir / "figure03_crlb_summary.csv")
+    if not rows:
+        raise ValueError("figure03_crlb_summary.csv is empty; run the stats library first.")
+    labels = [f"{r['condition'].replace('_', ' ')}\n{r['metabolite']}" for r in rows]
+    empirical_sd = np.array([as_float(r["empirical_sd_mM"], field="empirical_sd_mM") for r in rows])
+    crlb_sd = np.array([as_float(r["median_crlb_sd_mM"], field="median_crlb_sd_mM") for r in rows])
+    bias = np.array([as_float(r["bias_mM"], field="bias_mM") for r in rows])
+    standardized = np.array([
+        as_float(r["median_abs_standardized_error"], field="median_abs_standardized_error")
+        for r in rows
+    ])
+    x = np.arange(len(rows))
+    width = 0.36
+    fig, axes = plt.subplots(1, 3, figsize=(12.3, 4.2))
+    axes[0].bar(x - width / 2, empirical_sd, width, color=BLUE, label="Empirical SD")
+    axes[0].bar(x + width / 2, crlb_sd, width, color=GOLD, label="Median supplied CRLB SD")
+    axes[0].set_ylabel("Dispersion / bound scale (mM)")
+    axes[0].set_title("Precision comparison")
+    axes[0].legend(frameon=False)
+    axes[1].bar(x, np.abs(bias), 0.56, color=ORANGE)
+    axes[1].set_ylabel("Absolute empirical bias (mM)")
+    axes[1].set_title("Accuracy")
+    axes[2].bar(x, standardized, 0.56, color=PURPLE)
+    axes[2].set_ylabel("Median |error| / supplied CRLB SD")
+    axes[2].set_title("Error relative to the supplied bound")
+    for ax in axes:
+        ax.set_xticks(x, labels, rotation=15, ha="right")
+        ax.grid(axis="y", color=LIGHT_GREY, linewidth=0.7)
+    fig.suptitle("A CRLB characterizes an information/precision limit—not accuracy", fontweight="bold")
+    fig.tight_layout()
+    save_figure(fig, output, settings.dpi)
+
+
+def plot_figure04(analysis_dir: Path, output: Path, settings: Settings,
+                  metabolite: str | None, linewidth_hz: float | None) -> None:
+    rows = read_csv(analysis_dir / "figure04_operating_range.csv")
+    if not rows:
+        raise ValueError("figure04_operating_range.csv is empty; run the stats library first.")
+    selected_metabolite = metabolite or rows[0]["metabolite"]
+    candidate_lw = sorted({as_float(r["linewidth_hz"], field="linewidth_hz")
+                           for r in rows if r["metabolite"] == selected_metabolite})
+    if not candidate_lw:
+        raise ValueError(f"No operating-range rows for metabolite {selected_metabolite!r}.")
+    selected_lw = linewidth_hz if linewidth_hz is not None else candidate_lw[len(candidate_lw) // 2]
+    subset = [
+        r for r in rows
+        if r["metabolite"] == selected_metabolite
+        and math.isclose(as_float(r["linewidth_hz"], field="linewidth_hz"), selected_lw)
+    ]
+    concentrations = sorted({as_float(r["concentration_mM"], field="concentration_mM") for r in subset})
+    snrs = sorted({as_float(r["snr"], field="snr") for r in subset})
+    if not subset or not concentrations or not snrs:
+        raise ValueError("Selected figure-4 slice has no complete grid.")
+    lcb = np.full((len(snrs), len(concentrations)), np.nan)
+    status = np.full((len(snrs), len(concentrations)), -1, dtype=int)
+    status_code = {"outside_validated_range": 0, "unacceptable": 0,
+                   "insufficient_evidence": 1, "validated": 2}
+    for row in subset:
+        i = snrs.index(as_float(row["snr"], field="snr"))
+        j = concentrations.index(as_float(row["concentration_mM"], field="concentration_mM"))
+        lcb[i, j] = as_float(row["success_lcb"], field="success_lcb")
+        supplied_status = row.get("evidence_status", "").strip().lower()
+        if supplied_status not in status_code:
+            raise ValueError(
+                "evidence_status must be validated, insufficient_evidence, "
+                "unacceptable, or outside_validated_range."
+            )
+        status[i, j] = status_code[supplied_status]
+    fig, axes = plt.subplots(1, 2, figsize=(11.2, 4.3), sharex=True, sharey=True)
+    im0 = axes[0].imshow(lcb, origin="lower", aspect="auto", vmin=0.0, vmax=1.0,
+                         cmap="viridis")
+    fig.colorbar(im0, ax=axes[0], label="Supplied one-sided lower confidence bound")
+    axes[0].set_title("Strength of evidence")
+    cmap = ListedColormap(["#D95D39", "#E9C46A", "#2A9D8F"])
+    norm = BoundaryNorm([-0.5, 0.5, 1.5, 2.5], cmap.N)
+    axes[1].imshow(status, origin="lower", aspect="auto", cmap=cmap, norm=norm)
+    axes[1].set_title("Evidence-supported operating status")
+    axes[1].legend(
+        handles=[Patch(color="#2A9D8F", label="Validated"),
+                 Patch(color="#E9C46A", label="Insufficient evidence"),
+                 Patch(color="#D95D39", label="Unacceptable / outside")],
+        frameon=False,
+        fontsize=8,
+        loc="lower right",
+    )
+    for ax in axes:
+        ax.set_xticks(np.arange(len(concentrations)), [f"{v:g}" for v in concentrations])
+        ax.set_yticks(np.arange(len(snrs)), [f"{v:g}" for v in snrs])
+        ax.set_xlabel("Ground-truth concentration (mM)")
+    axes[0].set_ylabel("SNR")
+    fig.suptitle(
+        f"Validated operating range: {selected_metabolite}, linewidth {selected_lw:g} Hz",
+        fontweight="bold",
+    )
+    fig.tight_layout()
+    save_figure(fig, output, settings.dpi)
+
+
+def plot_figure05(data_dir: Path, analysis_dir: Path, output: Path, settings: Settings) -> None:
+    rows = read_csv(data_dir / DATA_FILENAMES[5])
+    metric_rows = read_csv(analysis_dir / "figure05_metrics.csv")
+    if not metric_rows:
+        raise ValueError("figure05_metrics.csv is empty; run the stats library first.")
+    m = metric_rows[0]
+    reference = np.array([as_float(r["reference_mM"], field="reference_mM") for r in rows])
+    candidate = np.array([as_float(r["candidate_mM"], field="candidate_mM") for r in rows])
+    pair_mean = np.array([as_float(r["pair_mean_mM"], field="pair_mean_mM") for r in rows])
+    difference = np.array([
+        as_float(r["candidate_minus_reference_mM"], field="candidate_minus_reference_mM")
+        for r in rows
+    ])
+    low = math.floor(min(reference.min(), candidate.min()))
+    high = math.ceil(max(reference.max(), candidate.max()))
+    fig, axes = plt.subplots(2, 2, figsize=(10.3, 8.0))
+    ax = axes[0, 0]
+    ax.scatter(reference, candidate, s=18, color=BLUE, alpha=0.65)
+    ax.plot([low, high], [low, high], linestyle="--", color=DARK_GREY, label="Identity")
+    pb_i = as_float(m["passing_bablok_intercept"], field="passing_bablok_intercept")
+    pb_s = as_float(m["passing_bablok_slope"], field="passing_bablok_slope")
+    ax.plot([low, high], [pb_i + pb_s * low, pb_i + pb_s * high], color=PURPLE,
+            linewidth=2, label="Supplied Passing–Bablok")
+    ax.set(xlabel="Reference (mM)", ylabel="Candidate (mM)", title="A. Association")
+    add_metric_box(ax, metric_text(m, (("pearson_r", "r"), ("lin_ccc", "CCC"))))
+    ax.legend(frameon=False, fontsize=8)
+    ax = axes[0, 1]
+    ax.scatter(pair_mean, difference, s=18, color=ORANGE, alpha=0.65)
+    for field, label, color, linestyle in (
+        ("bland_altman_bias_mM", "Bias", NAVY, "-"),
+        ("loa_lower_mM", "Lower LoA", RED, "--"),
+        ("loa_upper_mM", "Upper LoA", RED, "--"),
+    ):
+        value = as_float(m[field], field=field)
+        ax.axhline(value, color=color, linestyle=linestyle, linewidth=1.5, label=label)
+    ax.set(xlabel="Pair mean (mM)", ylabel="Candidate − reference (mM)",
+           title="B. Bland–Altman disagreement")
+    ax.legend(frameon=False, fontsize=8)
+    ax = axes[1, 0]
+    dem_i = as_float(m["deming_intercept"], field="deming_intercept")
+    dem_s = as_float(m["deming_slope"], field="deming_slope")
+    ax.scatter(reference, candidate, s=18, color=TEAL, alpha=0.55)
+    ax.plot([low, high], [low, high], linestyle="--", color=DARK_GREY, label="Identity")
+    ax.plot([low, high], [dem_i + dem_s * low, dem_i + dem_s * high], color=TEAL,
+            linewidth=2, label="Supplied Deming")
+    ax.set(xlabel="Reference (mM)", ylabel="Candidate (mM)",
+           title="C. Constant/proportional bias")
+    ax.legend(frameon=False, fontsize=8)
+    ax = axes[1, 1]
+    ci_low = as_float(m["difference_ci_low_mM"], field="difference_ci_low_mM")
+    ci_high = as_float(m["difference_ci_high_mM"], field="difference_ci_high_mM")
+    eq_low = as_float(m["equivalence_lower_mM"], field="equivalence_lower_mM")
+    eq_high = as_float(m["equivalence_upper_mM"], field="equivalence_upper_mM")
+    center = 0.5 * (ci_low + ci_high)  # Display coordinate, not a re-estimated statistic.
+    ax.axvspan(eq_low, eq_high, color=TEAL, alpha=0.15, label="Pre-specified equivalence region")
+    ax.errorbar(center, 0, xerr=[[center - ci_low], [ci_high - center]], fmt="o",
+                color=PURPLE, capsize=5, linewidth=2, label="Supplied CI")
+    ax.axvline(0, color=DARK_GREY, linestyle="--", linewidth=1)
+    ax.set_ylim(-0.75, 0.75)
+    ax.set_yticks([])
+    ax.set_xlabel("Candidate − reference (mM)")
+    ax.set_title("D. Fit for the intended use")
+    ax.legend(frameon=False, fontsize=8, loc="upper center")
+    for ax in axes.flat:
+        ax.grid(color=LIGHT_GREY, linewidth=0.7)
+    fig.suptitle("One paired dataset answers four different comparison questions", fontweight="bold")
+    fig.tight_layout()
+    save_figure(fig, output, settings.dpi)
+
+
+def plot_figure06(data_dir: Path, analysis_dir: Path, output: Path, settings: Settings) -> None:
+    rows = read_csv(data_dir / DATA_FILENAMES[6])
+    metric_rows = read_csv(analysis_dir / "figure06_metrics.csv", required=False)
+    metric = metric_rows[0] if metric_rows else None
+    truth = np.array([as_float(r["ground_truth_mM"], field="ground_truth_mM") for r in rows])
+    prediction = np.array([as_float(r["prediction_mM"], field="prediction_mM") for r in rows])
+    limits = (math.floor(min(truth.min(), prediction.min())), math.ceil(max(truth.max(), prediction.max())))
+    bins = np.linspace(limits[0], limits[1], 20)
+    fig, axes = plt.subplots(1, 2, figsize=(9.5, 3.9))
+    axes[0].hist(truth, bins=bins, color=TEAL, alpha=0.52, label="Ground truth")
+    axes[0].hist(prediction, bins=bins, histtype="step", color=PURPLE, linewidth=2,
+                 label="Permuted predictions")
+    axes[0].set(xlabel="Concentration (mM)", ylabel="Count",
+                title="Identical marginal samples")
+    axes[0].legend(frameon=False)
+    axes[1].scatter(truth, prediction, s=20, color=PURPLE, alpha=0.62)
+    axes[1].plot(limits, limits, linestyle="--", color=DARK_GREY)
+    axes[1].set(xlabel="Ground truth (mM)", ylabel="Prediction (mM)",
+                title="Wrong sample-wise pairing", xlim=limits, ylim=limits)
+    axes[1].set_aspect("equal", adjustable="box")
+    add_metric_box(
+        axes[1],
+        metric_text(metric, (("pearson_r", "r"), ("rmse_mM", "RMSE"),
+                             ("lin_ccc", "CCC"))),
+    )
+    for ax in axes:
+        ax.grid(color=LIGHT_GREY, linewidth=0.7)
+    fig.suptitle("Matching distributions do not imply correct individual predictions", fontweight="bold")
+    fig.tight_layout()
+    save_figure(fig, output, settings.dpi)
+
+
+def plot_figure07(data_dir: Path, analysis_dir: Path, output: Path, settings: Settings) -> None:
+    rows = read_csv(data_dir / DATA_FILENAMES[7])
+    metric_rows = read_csv(analysis_dir / "figure07_metrics.csv", required=False)
+    metrics = index_rows(metric_rows, "scenario")
+    scenarios = ("Accurate and precise", "Bias-dominated", "Variance-dominated")
+    colors = (TEAL, ORANGE, PURPLE)
+    all_estimates = np.array([as_float(r["estimate_mM"], field="estimate_mM") for r in rows])
+    bins = np.linspace(all_estimates.min(), all_estimates.max(), 42)
+    fig, axes = plt.subplots(1, 3, figsize=(11.3, 3.7), sharex=True, sharey=True)
+    for ax, scenario, color in zip(axes, scenarios, colors, strict=True):
+        selected = [as_float(r["estimate_mM"], field="estimate_mM")
+                    for r in rows if r["scenario"] == scenario]
+        ax.hist(selected, bins=bins, density=True, color=color, alpha=0.72)
+        ax.axvline(5.0, color=DARK_GREY, linestyle="--", linewidth=1.4, label="Truth")
+        add_metric_box(
+            ax,
+            metric_text(metrics.get(scenario), (("bias_mM", "Bias"),
+                                                ("variance_mM2", "Variance"),
+                                                ("rmse_mM", "RMSE"))),
+        )
+        ax.set_title(scenario, color=color, fontweight="bold")
+        ax.set_xlabel("Repeated estimate (mM)")
+        ax.grid(axis="y", color=LIGHT_GREY, linewidth=0.7)
+    axes[0].set_ylabel("Density")
+    fig.suptitle("Similar total error can arise from different failure mechanisms", fontweight="bold")
+    fig.tight_layout()
+    save_figure(fig, output, settings.dpi)
+
+
+def add_supplied_ellipse(ax: plt.Axes, row: Mapping[str, str], color: str,
+                         label: str) -> None:
+    required = ("ellipse_center_a", "ellipse_center_b", "ellipse_width",
+                "ellipse_height", "ellipse_angle_deg")
+    if not all(row.get(field, "") for field in required):
+        return
+    ellipse = Ellipse(
+        xy=(as_float(row["ellipse_center_a"], field="ellipse_center_a"),
+            as_float(row["ellipse_center_b"], field="ellipse_center_b")),
+        width=as_float(row["ellipse_width"], field="ellipse_width"),
+        height=as_float(row["ellipse_height"], field="ellipse_height"),
+        angle=as_float(row["ellipse_angle_deg"], field="ellipse_angle_deg"),
+        fill=False,
+        color=color,
+        linewidth=2.2,
+        label=label,
+    )
+    ax.add_patch(ellipse)
+
+
+def plot_figure08(data_dir: Path, analysis_dir: Path, output: Path, settings: Settings) -> None:
+    rows = read_csv(data_dir / DATA_FILENAMES[8])
+    metric_rows = read_csv(analysis_dir / "figure08_metrics.csv", required=False)
+    metrics = index_rows(metric_rows, "dataset")
+    ta = np.array([as_float(r["truth_metabolite_a_mM"], field="truth_metabolite_a_mM") for r in rows])
+    tb = np.array([as_float(r["truth_metabolite_b_mM"], field="truth_metabolite_b_mM") for r in rows])
+    pa = np.array([as_float(r["prediction_metabolite_a_mM"], field="prediction_metabolite_a_mM") for r in rows])
+    pb = np.array([as_float(r["prediction_metabolite_b_mM"], field="prediction_metabolite_b_mM") for r in rows])
+    fig = plt.figure(figsize=(10.3, 7.4), constrained_layout=True)
+    grid = fig.add_gridspec(2, 2, height_ratios=(1.0, 2.0), hspace=0.32, wspace=0.25)
+    ax_a = fig.add_subplot(grid[0, 0])
+    ax_b = fig.add_subplot(grid[0, 1])
+    ax_truth = fig.add_subplot(grid[1, 0])
+    ax_prediction = fig.add_subplot(grid[1, 1], sharex=ax_truth, sharey=ax_truth)
+    bins_a = np.linspace(min(ta.min(), pa.min()), max(ta.max(), pa.max()), 25)
+    bins_b = np.linspace(min(tb.min(), pb.min()), max(tb.max(), pb.max()), 25)
+    ax_a.hist(ta, bins=bins_a, color=TEAL, alpha=0.5, label="Truth")
+    ax_a.hist(pa, bins=bins_a, histtype="step", color=PURPLE, linewidth=2, label="Prediction")
+    ax_b.hist(tb, bins=bins_b, color=TEAL, alpha=0.5)
+    ax_b.hist(pb, bins=bins_b, histtype="step", color=PURPLE, linewidth=2)
+    ax_a.set_title("Metabolite A: matching marginal")
+    ax_b.set_title("Metabolite B: matching marginal")
+    ax_a.set_ylabel("Count")
+    ax_a.legend(frameon=False)
+    ax_truth.scatter(ta, tb, s=13, color=TEAL, alpha=0.38)
+    ax_prediction.scatter(pa, pb, s=13, color=PURPLE, alpha=0.38)
+    add_supplied_ellipse(ax_truth, metrics.get("Ground truth", {}), TEAL, "Supplied ellipse")
+    add_supplied_ellipse(ax_prediction, metrics.get("Prediction", {}), PURPLE, "Supplied ellipse")
+    ax_truth.set(xlabel="Metabolite A (mM)", ylabel="Metabolite B (mM)",
+                 title="Ground-truth joint structure")
+    ax_prediction.set(xlabel="Metabolite A (mM)", title="Prediction: dependence destroyed")
+    add_metric_box(ax_truth, metric_text(metrics.get("Ground truth"),
+                                         (("corr_metabolite_a_b", "Correlation"),)))
+    add_metric_box(ax_prediction, metric_text(metrics.get("Prediction"),
+                                              (("corr_metabolite_a_b", "Correlation"),
+                                               ("joint_distance", "Joint distance"))))
+    for ax in (ax_a, ax_b, ax_truth, ax_prediction):
+        ax.grid(color=LIGHT_GREY, linewidth=0.7)
+    fig.suptitle("Correct marginals can hide the wrong multivariate structure", fontweight="bold")
+    save_figure(fig, output, settings.dpi)
+
+
+def parse_figure_selection(values: Sequence[str]) -> list[int]:
+    if len(values) == 1 and values[0].lower() == "all":
+        return list(range(1, 9))
+    figures: list[int] = []
+    for value in values:
+        figure = int(value)
+        if figure not in FIGURE_FILENAMES:
+            raise ValueError("Figure numbers must be between 1 and 8.")
+        figures.append(figure)
+    return sorted(set(figures))
+
+
+def plot_selected(savedir: Path, figures: Sequence[int], settings: Settings,
+                  metabolite: str | None, linewidth_hz: float | None) -> list[Path]:
+    data_dir, analysis_dir, figures_dir = ensure_directories(savedir)
+    configure_matplotlib()
+    made: list[Path] = []
+    for figure in figures:
+        output = figures_dir / FIGURE_FILENAMES[figure]
+        if figure == 1:
+            plot_figure01(data_dir, analysis_dir, output, settings)
+        elif figure == 2:
+            plot_figure02(data_dir, analysis_dir, output, settings)
+        elif figure == 3:
+            plot_figure03(analysis_dir, output, settings)
+        elif figure == 4:
+            plot_figure04(analysis_dir, output, settings, metabolite, linewidth_hz)
+        elif figure == 5:
+            plot_figure05(data_dir, analysis_dir, output, settings)
+        elif figure == 6:
+            plot_figure06(data_dir, analysis_dir, output, settings)
+        elif figure == 7:
+            plot_figure07(data_dir, analysis_dir, output, settings)
+        elif figure == 8:
+            plot_figure08(data_dir, analysis_dir, output, settings)
+        made.append(output)
+    return made
+
+
+def describe() -> None:
+    print(__doc__)
+
+
+def build_parser() -> argparse.ArgumentParser:
+    parser = argparse.ArgumentParser(
+        description="Generate datasets/manifests and plot eight MRS validation toy figures."
+    )
+    subparsers = parser.add_subparsers(dest="command", required=True)
+    generate_parser = subparsers.add_parser("generate", help="Generate toy data and templates.")
+    generate_parser.add_argument("--savedir", type=Path, required=True,
+                                 help="Output root selected by the caller.")
+    generate_parser.add_argument("--seed", type=int, default=Settings.seed)
+    generate_parser.add_argument("--metabolite", default=Settings.metabolite)
+    plot_parser = subparsers.add_parser("plot", help="Create Matplotlib figures.")
+    plot_parser.add_argument("--savedir", type=Path, required=True,
+                             help="Root containing data/ and analysis/ directories.")
+    plot_parser.add_argument("--figures", nargs="+", default=["all"],
+                             help="Figure numbers 1..8 or 'all'.")
+    plot_parser.add_argument("--dpi", type=int, default=Settings.dpi)
+    plot_parser.add_argument("--metabolite", default=None,
+                             help="Figure-4 metabolite slice; default is first available.")
+    plot_parser.add_argument("--linewidth-hz", type=float, default=None,
+                             help="Figure-4 linewidth slice; default is middle available.")
+    subparsers.add_parser("describe", help="Print metric and MRS-Sim contracts.")
+    return parser
+
+
+def main(argv: Sequence[str] | None = None) -> int:
+    args = build_parser().parse_args(argv)
+    if args.command == "describe":
+        describe()
+        return 0
+    if args.command == "generate":
+        settings = Settings(seed=args.seed, metabolite=args.metabolite)
+        generate_all(args.savedir.resolve(), settings)
+        print(f"Generated datasets, manifests, and templates under: {args.savedir.resolve()}")
+        return 0
+    if args.command == "plot":
+        settings = Settings(dpi=args.dpi)
+        figures = parse_figure_selection(args.figures)
+        made = plot_selected(args.savedir.resolve(), figures, settings,
+                             args.metabolite, args.linewidth_hz)
+        for path in made:
+            print(path)
+        return 0
+    raise AssertionError("Unreachable command state")
+
+
+if __name__ == "__main__":
+    try:
+        raise SystemExit(main())
+    except (FileNotFoundError, ValueError) as exc:
+        print(f"Error: {exc}", file=sys.stderr)
+        raise SystemExit(2) from exc

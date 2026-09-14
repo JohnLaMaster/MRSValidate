@@ -1,0 +1,9 @@
+{
+  "generator": "mrs_validation_toy_figures.py",
+  "seed": 20260914,
+  "numpy_rng": "numpy.random.Generator(PCG64 default)",
+  "metabolite": "NAA",
+  "concentration_unit": "mM",
+  "statistics_calculated_by_this_script": false,
+  "note": "MRS-Sim manifests are requests, not simulated spectra."
+}

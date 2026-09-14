@@ -1,0 +1,3601 @@
+sample_id,scenario,truth_mM,estimate_mM
+F07-ACC-00000,Accurate and precise,5.0,5.12825287
+F07-ACC-00001,Accurate and precise,5.0,4.87239651
+F07-ACC-00002,Accurate and precise,5.0,5.05446091
+F07-ACC-00003,Accurate and precise,5.0,4.86604679
+F07-ACC-00004,Accurate and precise,5.0,4.94848525
+F07-ACC-00005,Accurate and precise,5.0,4.83384619
+F07-ACC-00006,Accurate and precise,5.0,5.17140506
+F07-ACC-00007,Accurate and precise,5.0,5.20888195
+F07-ACC-00008,Accurate and precise,5.0,4.99410076
+F07-ACC-00009,Accurate and precise,5.0,4.93531023
+F07-ACC-00010,Accurate and precise,5.0,4.96044312
+F07-ACC-00011,Accurate and precise,5.0,4.65309597
+F07-ACC-00012,Accurate and precise,5.0,5.04060902
+F07-ACC-00013,Accurate and precise,5.0,4.93314230
+F07-ACC-00014,Accurate and precise,5.0,5.17868081
+F07-ACC-00015,Accurate and precise,5.0,4.96462757
+F07-ACC-00016,Accurate and precise,5.0,5.27620547
+F07-ACC-00017,Accurate and precise,5.0,5.05001146
+F07-ACC-00018,Accurate and precise,5.0,4.99143471
+F07-ACC-00019,Accurate and precise,5.0,5.04016532
+F07-ACC-00020,Accurate and precise,5.0,4.90282494
+F07-ACC-00021,Accurate and precise,5.0,5.02963653
+F07-ACC-00022,Accurate and precise,5.0,5.00017361
+F07-ACC-00023,Accurate and precise,5.0,4.59786828
+F07-ACC-00024,Accurate and precise,5.0,5.01204000
+F07-ACC-00025,Accurate and precise,5.0,5.13617374
+F07-ACC-00026,Accurate and precise,5.0,4.94605642
+F07-ACC-00027,Accurate and precise,5.0,4.89951379
+F07-ACC-00028,Accurate and precise,5.0,5.04002000
+F07-ACC-00029,Accurate and precise,5.0,5.18003969
+F07-ACC-00030,Accurate and precise,5.0,4.91919829
+F07-ACC-00031,Accurate and precise,5.0,4.88115294
+F07-ACC-00032,Accurate and precise,5.0,5.07177271
+F07-ACC-00033,Accurate and precise,5.0,5.17893486
+F07-ACC-00034,Accurate and precise,5.0,4.96125696
+F07-ACC-00035,Accurate and precise,5.0,4.88540723
+F07-ACC-00036,Accurate and precise,5.0,4.94268228
+F07-ACC-00037,Accurate and precise,5.0,4.94821212
+F07-ACC-00038,Accurate and precise,5.0,4.75564096
+F07-ACC-00039,Accurate and precise,5.0,4.91682071
+F07-ACC-00040,Accurate and precise,5.0,4.74937323
+F07-ACC-00041,Accurate and precise,5.0,5.25614432
+F07-ACC-00042,Accurate and precise,5.0,5.17134853
+F07-ACC-00043,Accurate and precise,5.0,4.93768896
+F07-ACC-00044,Accurate and precise,5.0,5.15978969
+F07-ACC-00045,Accurate and precise,5.0,5.07747778
+F07-ACC-00046,Accurate and precise,5.0,5.10668229
+F07-ACC-00047,Accurate and precise,5.0,5.00871102
+F07-ACC-00048,Accurate and precise,5.0,5.03949008
+F07-ACC-00049,Accurate and precise,5.0,5.04823497
+F07-ACC-00050,Accurate and precise,5.0,5.09761004
+F07-ACC-00051,Accurate and precise,5.0,5.12593332
+F07-ACC-00052,Accurate and precise,5.0,5.12350609
+F07-ACC-00053,Accurate and precise,5.0,5.34267739
+F07-ACC-00054,Accurate and precise,5.0,4.80091798
+F07-ACC-00055,Accurate and precise,5.0,5.23430812
+F07-ACC-00056,Accurate and precise,5.0,5.12714147
+F07-ACC-00057,Accurate and precise,5.0,5.14681566
+F07-ACC-00058,Accurate and precise,5.0,5.17978432
+F07-ACC-00059,Accurate and precise,5.0,4.98260935
+F07-ACC-00060,Accurate and precise,5.0,5.12760853
+F07-ACC-00061,Accurate and precise,5.0,5.11793443
+F07-ACC-00062,Accurate and precise,5.0,4.97688005
+F07-ACC-00063,Accurate and precise,5.0,4.92132424
+F07-ACC-00064,Accurate and precise,5.0,4.99737592
+F07-ACC-00065,Accurate and precise,5.0,4.82512731
+F07-ACC-00066,Accurate and precise,5.0,4.70587926
+F07-ACC-00067,Accurate and precise,5.0,5.09191570
+F07-ACC-00068,Accurate and precise,5.0,5.03474318
+F07-ACC-00069,Accurate and precise,5.0,5.11100382
+F07-ACC-00070,Accurate and precise,5.0,4.78774577
+F07-ACC-00071,Accurate and precise,5.0,4.81024679
+F07-ACC-00072,Accurate and precise,5.0,5.26842459
+F07-ACC-00073,Accurate and precise,5.0,5.00160290
+F07-ACC-00074,Accurate and precise,5.0,5.33585400
+F07-ACC-00075,Accurate and precise,5.0,4.95613265
+F07-ACC-00076,Accurate and precise,5.0,4.80061394
+F07-ACC-00077,Accurate and precise,5.0,4.89654979
+F07-ACC-00078,Accurate and precise,5.0,4.83036422
+F07-ACC-00079,Accurate and precise,5.0,5.24615261
+F07-ACC-00080,Accurate and precise,5.0,5.12998391
+F07-ACC-00081,Accurate and precise,5.0,4.75824913
+F07-ACC-00082,Accurate and precise,5.0,4.97412641
+F07-ACC-00083,Accurate and precise,5.0,4.87161307
+F07-ACC-00084,Accurate and precise,5.0,4.54529693
+F07-ACC-00085,Accurate and precise,5.0,4.74217913
+F07-ACC-00086,Accurate and precise,5.0,5.10114757
+F07-ACC-00087,Accurate and precise,5.0,4.82913493
+F07-ACC-00088,Accurate and precise,5.0,5.12971874
+F07-ACC-00089,Accurate and precise,5.0,4.86301401
+F07-ACC-00090,Accurate and precise,5.0,5.08553838
+F07-ACC-00091,Accurate and precise,5.0,4.74448809
+F07-ACC-00092,Accurate and precise,5.0,4.96720700
+F07-ACC-00093,Accurate and precise,5.0,5.00556824
+F07-ACC-00094,Accurate and precise,5.0,5.14457585
+F07-ACC-00095,Accurate and precise,5.0,5.24251758
+F07-ACC-00096,Accurate and precise,5.0,4.85124420
+F07-ACC-00097,Accurate and precise,5.0,4.85469220
+F07-ACC-00098,Accurate and precise,5.0,5.27093744
+F07-ACC-00099,Accurate and precise,5.0,5.02866335
+F07-ACC-00100,Accurate and precise,5.0,4.95070498
+F07-ACC-00101,Accurate and precise,5.0,4.80051810
+F07-ACC-00102,Accurate and precise,5.0,5.09044037
+F07-ACC-00103,Accurate and precise,5.0,4.83003729
+F07-ACC-00104,Accurate and precise,5.0,4.98316410
+F07-ACC-00105,Accurate and precise,5.0,5.10420143
+F07-ACC-00106,Accurate and precise,5.0,4.98426269
+F07-ACC-00107,Accurate and precise,5.0,4.88556929
+F07-ACC-00108,Accurate and precise,5.0,5.04305178
+F07-ACC-00109,Accurate and precise,5.0,4.82599109
+F07-ACC-00110,Accurate and precise,5.0,5.04138441
+F07-ACC-00111,Accurate and precise,5.0,4.87637031
+F07-ACC-00112,Accurate and precise,5.0,5.08721720
+F07-ACC-00113,Accurate and precise,5.0,4.99036692
+F07-ACC-00114,Accurate and precise,5.0,5.04193696
+F07-ACC-00115,Accurate and precise,5.0,5.16849964
+F07-ACC-00116,Accurate and precise,5.0,4.93588674
+F07-ACC-00117,Accurate and precise,5.0,4.93461271
+F07-ACC-00118,Accurate and precise,5.0,4.86163686
+F07-ACC-00119,Accurate and precise,5.0,5.10324945
+F07-ACC-00120,Accurate and precise,5.0,5.35177789
+F07-ACC-00121,Accurate and precise,5.0,4.80090802
+F07-ACC-00122,Accurate and precise,5.0,4.85260109
+F07-ACC-00123,Accurate and precise,5.0,4.93588812
+F07-ACC-00124,Accurate and precise,5.0,5.06753102
+F07-ACC-00125,Accurate and precise,5.0,5.12910279
+F07-ACC-00126,Accurate and precise,5.0,4.97996104
+F07-ACC-00127,Accurate and precise,5.0,5.22172403
+F07-ACC-00128,Accurate and precise,5.0,4.99005089
+F07-ACC-00129,Accurate and precise,5.0,4.89019402
+F07-ACC-00130,Accurate and precise,5.0,5.04471350
+F07-ACC-00131,Accurate and precise,5.0,4.81975603
+F07-ACC-00132,Accurate and precise,5.0,4.91426238
+F07-ACC-00133,Accurate and precise,5.0,4.61087648
+F07-ACC-00134,Accurate and precise,5.0,5.11321586
+F07-ACC-00135,Accurate and precise,5.0,5.07341440
+F07-ACC-00136,Accurate and precise,5.0,5.05379942
+F07-ACC-00137,Accurate and precise,5.0,5.14747683
+F07-ACC-00138,Accurate and precise,5.0,5.01370439
+F07-ACC-00139,Accurate and precise,5.0,5.05807470
+F07-ACC-00140,Accurate and precise,5.0,4.89166230
+F07-ACC-00141,Accurate and precise,5.0,5.01606233
+F07-ACC-00142,Accurate and precise,5.0,5.05508134
+F07-ACC-00143,Accurate and precise,5.0,4.69946679
+F07-ACC-00144,Accurate and precise,5.0,5.00132666
+F07-ACC-00145,Accurate and precise,5.0,5.23868920
+F07-ACC-00146,Accurate and precise,5.0,5.14938941
+F07-ACC-00147,Accurate and precise,5.0,5.14915071
+F07-ACC-00148,Accurate and precise,5.0,5.26784003
+F07-ACC-00149,Accurate and precise,5.0,5.00057943
+F07-ACC-00150,Accurate and precise,5.0,5.12908745
+F07-ACC-00151,Accurate and precise,5.0,5.17998036
+F07-ACC-00152,Accurate and precise,5.0,5.04612395
+F07-ACC-00153,Accurate and precise,5.0,4.95896648
+F07-ACC-00154,Accurate and precise,5.0,5.26659415
+F07-ACC-00155,Accurate and precise,5.0,5.29621997
+F07-ACC-00156,Accurate and precise,5.0,5.11166652
+F07-ACC-00157,Accurate and precise,5.0,5.13615839
+F07-ACC-00158,Accurate and precise,5.0,5.09909808
+F07-ACC-00159,Accurate and precise,5.0,4.85581793
+F07-ACC-00160,Accurate and precise,5.0,4.95391447
+F07-ACC-00161,Accurate and precise,5.0,4.97992484
+F07-ACC-00162,Accurate and precise,5.0,4.90009966
+F07-ACC-00163,Accurate and precise,5.0,5.08508999
+F07-ACC-00164,Accurate and precise,5.0,4.88808747
+F07-ACC-00165,Accurate and precise,5.0,4.81919528
+F07-ACC-00166,Accurate and precise,5.0,5.06870095
+F07-ACC-00167,Accurate and precise,5.0,4.97841727
+F07-ACC-00168,Accurate and precise,5.0,4.83665594
+F07-ACC-00169,Accurate and precise,5.0,4.99324865
+F07-ACC-00170,Accurate and precise,5.0,5.11643136
+F07-ACC-00171,Accurate and precise,5.0,4.93928808
+F07-ACC-00172,Accurate and precise,5.0,4.71431650
+F07-ACC-00173,Accurate and precise,5.0,4.78737732
+F07-ACC-00174,Accurate and precise,5.0,4.80621288
+F07-ACC-00175,Accurate and precise,5.0,5.21456693
+F07-ACC-00176,Accurate and precise,5.0,5.00835244
+F07-ACC-00177,Accurate and precise,5.0,4.90617130
+F07-ACC-00178,Accurate and precise,5.0,4.92319012
+F07-ACC-00179,Accurate and precise,5.0,4.97390477
+F07-ACC-00180,Accurate and precise,5.0,5.02008134
+F07-ACC-00181,Accurate and precise,5.0,5.14906972
+F07-ACC-00182,Accurate and precise,5.0,4.86940493
+F07-ACC-00183,Accurate and precise,5.0,4.97833552
+F07-ACC-00184,Accurate and precise,5.0,4.78976871
+F07-ACC-00185,Accurate and precise,5.0,4.86365354
+F07-ACC-00186,Accurate and precise,5.0,5.33615628
+F07-ACC-00187,Accurate and precise,5.0,5.06879741
+F07-ACC-00188,Accurate and precise,5.0,4.97790902
+F07-ACC-00189,Accurate and precise,5.0,5.02763148
+F07-ACC-00190,Accurate and precise,5.0,5.26241912
+F07-ACC-00191,Accurate and precise,5.0,5.16267548
+F07-ACC-00192,Accurate and precise,5.0,5.21500072
+F07-ACC-00193,Accurate and precise,5.0,5.00160568
+F07-ACC-00194,Accurate and precise,5.0,5.01897203
+F07-ACC-00195,Accurate and precise,5.0,4.88632360
+F07-ACC-00196,Accurate and precise,5.0,5.01392703
+F07-ACC-00197,Accurate and precise,5.0,4.87024797
+F07-ACC-00198,Accurate and precise,5.0,5.09328181
+F07-ACC-00199,Accurate and precise,5.0,5.17968074
+F07-ACC-00200,Accurate and precise,5.0,4.92253623
+F07-ACC-00201,Accurate and precise,5.0,4.99989275
+F07-ACC-00202,Accurate and precise,5.0,5.24507720
+F07-ACC-00203,Accurate and precise,5.0,5.21320186
+F07-ACC-00204,Accurate and precise,5.0,4.93367176
+F07-ACC-00205,Accurate and precise,5.0,4.84212986
+F07-ACC-00206,Accurate and precise,5.0,4.88226909
+F07-ACC-00207,Accurate and precise,5.0,4.94796438
+F07-ACC-00208,Accurate and precise,5.0,4.76655251
+F07-ACC-00209,Accurate and precise,5.0,4.95058526
+F07-ACC-00210,Accurate and precise,5.0,4.79708192
+F07-ACC-00211,Accurate and precise,5.0,5.29949424
+F07-ACC-00212,Accurate and precise,5.0,5.39459614
+F07-ACC-00213,Accurate and precise,5.0,5.07287104
+F07-ACC-00214,Accurate and precise,5.0,4.97584615
+F07-ACC-00215,Accurate and precise,5.0,4.75595898
+F07-ACC-00216,Accurate and precise,5.0,4.80679215
+F07-ACC-00217,Accurate and precise,5.0,4.92957519
+F07-ACC-00218,Accurate and precise,5.0,4.92380707
+F07-ACC-00219,Accurate and precise,5.0,4.92707186
+F07-ACC-00220,Accurate and precise,5.0,4.91508071
+F07-ACC-00221,Accurate and precise,5.0,5.14397913
+F07-ACC-00222,Accurate and precise,5.0,5.04975844
+F07-ACC-00223,Accurate and precise,5.0,4.96938095
+F07-ACC-00224,Accurate and precise,5.0,5.06557261
+F07-ACC-00225,Accurate and precise,5.0,5.08436220
+F07-ACC-00226,Accurate and precise,5.0,4.71124832
+F07-ACC-00227,Accurate and precise,5.0,4.79290124
+F07-ACC-00228,Accurate and precise,5.0,5.08355208
+F07-ACC-00229,Accurate and precise,5.0,5.08165488
+F07-ACC-00230,Accurate and precise,5.0,4.91324062
+F07-ACC-00231,Accurate and precise,5.0,5.19161044
+F07-ACC-00232,Accurate and precise,5.0,4.98970037
+F07-ACC-00233,Accurate and precise,5.0,4.62189054
+F07-ACC-00234,Accurate and precise,5.0,4.96318287
+F07-ACC-00235,Accurate and precise,5.0,5.05728440
+F07-ACC-00236,Accurate and precise,5.0,5.26120539
+F07-ACC-00237,Accurate and precise,5.0,5.05884054
+F07-ACC-00238,Accurate and precise,5.0,4.97534432
+F07-ACC-00239,Accurate and precise,5.0,4.91109919
+F07-ACC-00240,Accurate and precise,5.0,4.92329264
+F07-ACC-00241,Accurate and precise,5.0,4.98756170
+F07-ACC-00242,Accurate and precise,5.0,4.87228441
+F07-ACC-00243,Accurate and precise,5.0,4.65135713
+F07-ACC-00244,Accurate and precise,5.0,5.27787344
+F07-ACC-00245,Accurate and precise,5.0,4.87701826
+F07-ACC-00246,Accurate and precise,5.0,4.70688137
+F07-ACC-00247,Accurate and precise,5.0,4.61241374
+F07-ACC-00248,Accurate and precise,5.0,5.14711367
+F07-ACC-00249,Accurate and precise,5.0,4.81780589
+F07-ACC-00250,Accurate and precise,5.0,5.03443910
+F07-ACC-00251,Accurate and precise,5.0,4.88651954
+F07-ACC-00252,Accurate and precise,5.0,4.85322378
+F07-ACC-00253,Accurate and precise,5.0,5.12635462
+F07-ACC-00254,Accurate and precise,5.0,5.14450131
+F07-ACC-00255,Accurate and precise,5.0,5.44564432
+F07-ACC-00256,Accurate and precise,5.0,5.11529717
+F07-ACC-00257,Accurate and precise,5.0,5.11337512
+F07-ACC-00258,Accurate and precise,5.0,5.01177569
+F07-ACC-00259,Accurate and precise,5.0,5.07677674
+F07-ACC-00260,Accurate and precise,5.0,5.20894836
+F07-ACC-00261,Accurate and precise,5.0,4.67472419
+F07-ACC-00262,Accurate and precise,5.0,5.06862074
+F07-ACC-00263,Accurate and precise,5.0,4.77014139
+F07-ACC-00264,Accurate and precise,5.0,4.96814773
+F07-ACC-00265,Accurate and precise,5.0,4.93783055
+F07-ACC-00266,Accurate and precise,5.0,5.19029315
+F07-ACC-00267,Accurate and precise,5.0,5.00556046
+F07-ACC-00268,Accurate and precise,5.0,4.94230767
+F07-ACC-00269,Accurate and precise,5.0,5.27387648
+F07-ACC-00270,Accurate and precise,5.0,5.10136930
+F07-ACC-00271,Accurate and precise,5.0,4.97343929
+F07-ACC-00272,Accurate and precise,5.0,4.68269051
+F07-ACC-00273,Accurate and precise,5.0,4.75178592
+F07-ACC-00274,Accurate and precise,5.0,4.94402875
+F07-ACC-00275,Accurate and precise,5.0,4.67112041
+F07-ACC-00276,Accurate and precise,5.0,4.97587878
+F07-ACC-00277,Accurate and precise,5.0,5.15281389
+F07-ACC-00278,Accurate and precise,5.0,4.72575567
+F07-ACC-00279,Accurate and precise,5.0,5.12222663
+F07-ACC-00280,Accurate and precise,5.0,5.22061826
+F07-ACC-00281,Accurate and precise,5.0,4.77634709
+F07-ACC-00282,Accurate and precise,5.0,5.01926784
+F07-ACC-00283,Accurate and precise,5.0,4.92075956
+F07-ACC-00284,Accurate and precise,5.0,5.17008784
+F07-ACC-00285,Accurate and precise,5.0,5.09557930
+F07-ACC-00286,Accurate and precise,5.0,5.13283450
+F07-ACC-00287,Accurate and precise,5.0,5.03426061
+F07-ACC-00288,Accurate and precise,5.0,5.05411383
+F07-ACC-00289,Accurate and precise,5.0,4.96499813
+F07-ACC-00290,Accurate and precise,5.0,4.86393287
+F07-ACC-00291,Accurate and precise,5.0,4.99573525
+F07-ACC-00292,Accurate and precise,5.0,5.07337566
+F07-ACC-00293,Accurate and precise,5.0,4.63774592
+F07-ACC-00294,Accurate and precise,5.0,5.25433131
+F07-ACC-00295,Accurate and precise,5.0,4.98617303
+F07-ACC-00296,Accurate and precise,5.0,4.88679894
+F07-ACC-00297,Accurate and precise,5.0,4.95914838
+F07-ACC-00298,Accurate and precise,5.0,4.89875370
+F07-ACC-00299,Accurate and precise,5.0,5.15434435
+F07-ACC-00300,Accurate and precise,5.0,4.70246273
+F07-ACC-00301,Accurate and precise,5.0,5.19219216
+F07-ACC-00302,Accurate and precise,5.0,4.87273410
+F07-ACC-00303,Accurate and precise,5.0,5.12519140
+F07-ACC-00304,Accurate and precise,5.0,4.98419229
+F07-ACC-00305,Accurate and precise,5.0,4.84374999
+F07-ACC-00306,Accurate and precise,5.0,5.12473525
+F07-ACC-00307,Accurate and precise,5.0,5.01625573
+F07-ACC-00308,Accurate and precise,5.0,5.28827827
+F07-ACC-00309,Accurate and precise,5.0,5.04907017
+F07-ACC-00310,Accurate and precise,5.0,4.93493119
+F07-ACC-00311,Accurate and precise,5.0,5.32655899
+F07-ACC-00312,Accurate and precise,5.0,4.97056720
+F07-ACC-00313,Accurate and precise,5.0,4.93291719
+F07-ACC-00314,Accurate and precise,5.0,4.89753180
+F07-ACC-00315,Accurate and precise,5.0,4.94405206
+F07-ACC-00316,Accurate and precise,5.0,5.22319119
+F07-ACC-00317,Accurate and precise,5.0,5.06321374
+F07-ACC-00318,Accurate and precise,5.0,5.04354103
+F07-ACC-00319,Accurate and precise,5.0,4.74331498
+F07-ACC-00320,Accurate and precise,5.0,4.89457597
+F07-ACC-00321,Accurate and precise,5.0,5.01445292
+F07-ACC-00322,Accurate and precise,5.0,5.03679814
+F07-ACC-00323,Accurate and precise,5.0,5.18211263
+F07-ACC-00324,Accurate and precise,5.0,4.91437018
+F07-ACC-00325,Accurate and precise,5.0,4.95895205
+F07-ACC-00326,Accurate and precise,5.0,4.85746828
+F07-ACC-00327,Accurate and precise,5.0,5.04155773
+F07-ACC-00328,Accurate and precise,5.0,5.01779711
+F07-ACC-00329,Accurate and precise,5.0,4.90370461
+F07-ACC-00330,Accurate and precise,5.0,5.10724411
+F07-ACC-00331,Accurate and precise,5.0,4.80439155
+F07-ACC-00332,Accurate and precise,5.0,5.00540306
+F07-ACC-00333,Accurate and precise,5.0,5.24712270
+F07-ACC-00334,Accurate and precise,5.0,4.99387831
+F07-ACC-00335,Accurate and precise,5.0,4.80695096
+F07-ACC-00336,Accurate and precise,5.0,5.26181146
+F07-ACC-00337,Accurate and precise,5.0,4.96703805
+F07-ACC-00338,Accurate and precise,5.0,5.29475801
+F07-ACC-00339,Accurate and precise,5.0,5.07418753
+F07-ACC-00340,Accurate and precise,5.0,5.10577478
+F07-ACC-00341,Accurate and precise,5.0,5.08780122
+F07-ACC-00342,Accurate and precise,5.0,4.52746310
+F07-ACC-00343,Accurate and precise,5.0,4.94177533
+F07-ACC-00344,Accurate and precise,5.0,4.96413506
+F07-ACC-00345,Accurate and precise,5.0,5.22645680
+F07-ACC-00346,Accurate and precise,5.0,4.99619578
+F07-ACC-00347,Accurate and precise,5.0,5.12419904
+F07-ACC-00348,Accurate and precise,5.0,4.75159687
+F07-ACC-00349,Accurate and precise,5.0,4.93943574
+F07-ACC-00350,Accurate and precise,5.0,5.01255316
+F07-ACC-00351,Accurate and precise,5.0,5.25424471
+F07-ACC-00352,Accurate and precise,5.0,5.00046180
+F07-ACC-00353,Accurate and precise,5.0,5.13012282
+F07-ACC-00354,Accurate and precise,5.0,4.65628169
+F07-ACC-00355,Accurate and precise,5.0,5.14090225
+F07-ACC-00356,Accurate and precise,5.0,5.19496332
+F07-ACC-00357,Accurate and precise,5.0,5.03894695
+F07-ACC-00358,Accurate and precise,5.0,5.05402480
+F07-ACC-00359,Accurate and precise,5.0,4.93685851
+F07-ACC-00360,Accurate and precise,5.0,4.81250387
+F07-ACC-00361,Accurate and precise,5.0,4.92962743
+F07-ACC-00362,Accurate and precise,5.0,5.23531753
+F07-ACC-00363,Accurate and precise,5.0,5.40460849
+F07-ACC-00364,Accurate and precise,5.0,5.09968478
+F07-ACC-00365,Accurate and precise,5.0,5.06277936
+F07-ACC-00366,Accurate and precise,5.0,4.79540052
+F07-ACC-00367,Accurate and precise,5.0,4.78036542
+F07-ACC-00368,Accurate and precise,5.0,4.94174865
+F07-ACC-00369,Accurate and precise,5.0,5.12210039
+F07-ACC-00370,Accurate and precise,5.0,4.75422014
+F07-ACC-00371,Accurate and precise,5.0,4.78584047
+F07-ACC-00372,Accurate and precise,5.0,4.80557590
+F07-ACC-00373,Accurate and precise,5.0,4.97691696
+F07-ACC-00374,Accurate and precise,5.0,5.19196081
+F07-ACC-00375,Accurate and precise,5.0,5.12969929
+F07-ACC-00376,Accurate and precise,5.0,4.67537520
+F07-ACC-00377,Accurate and precise,5.0,4.81658039
+F07-ACC-00378,Accurate and precise,5.0,5.13081812
+F07-ACC-00379,Accurate and precise,5.0,5.11113228
+F07-ACC-00380,Accurate and precise,5.0,4.77752726
+F07-ACC-00381,Accurate and precise,5.0,4.87685264
+F07-ACC-00382,Accurate and precise,5.0,5.11157634
+F07-ACC-00383,Accurate and precise,5.0,5.15476032
+F07-ACC-00384,Accurate and precise,5.0,5.08596510
+F07-ACC-00385,Accurate and precise,5.0,5.22117470
+F07-ACC-00386,Accurate and precise,5.0,5.02337058
+F07-ACC-00387,Accurate and precise,5.0,4.95776507
+F07-ACC-00388,Accurate and precise,5.0,5.00493067
+F07-ACC-00389,Accurate and precise,5.0,4.80004144
+F07-ACC-00390,Accurate and precise,5.0,5.06938481
+F07-ACC-00391,Accurate and precise,5.0,4.93068662
+F07-ACC-00392,Accurate and precise,5.0,5.10492223
+F07-ACC-00393,Accurate and precise,5.0,4.85041742
+F07-ACC-00394,Accurate and precise,5.0,5.02373298
+F07-ACC-00395,Accurate and precise,5.0,4.89426348
+F07-ACC-00396,Accurate and precise,5.0,4.91416336
+F07-ACC-00397,Accurate and precise,5.0,4.97052371
+F07-ACC-00398,Accurate and precise,5.0,5.02879399
+F07-ACC-00399,Accurate and precise,5.0,4.78290198
+F07-ACC-00400,Accurate and precise,5.0,4.68096761
+F07-ACC-00401,Accurate and precise,5.0,5.11349918
+F07-ACC-00402,Accurate and precise,5.0,4.64552317
+F07-ACC-00403,Accurate and precise,5.0,5.06806255
+F07-ACC-00404,Accurate and precise,5.0,4.79751030
+F07-ACC-00405,Accurate and precise,5.0,5.31153104
+F07-ACC-00406,Accurate and precise,5.0,4.84374928
+F07-ACC-00407,Accurate and precise,5.0,4.99173638
+F07-ACC-00408,Accurate and precise,5.0,5.05328264
+F07-ACC-00409,Accurate and precise,5.0,4.71760129
+F07-ACC-00410,Accurate and precise,5.0,4.85615174
+F07-ACC-00411,Accurate and precise,5.0,5.10455876
+F07-ACC-00412,Accurate and precise,5.0,4.79262287
+F07-ACC-00413,Accurate and precise,5.0,4.98260340
+F07-ACC-00414,Accurate and precise,5.0,5.26910568
+F07-ACC-00415,Accurate and precise,5.0,4.66749049
+F07-ACC-00416,Accurate and precise,5.0,4.93565661
+F07-ACC-00417,Accurate and precise,5.0,5.21746494
+F07-ACC-00418,Accurate and precise,5.0,4.80744743
+F07-ACC-00419,Accurate and precise,5.0,4.83856394
+F07-ACC-00420,Accurate and precise,5.0,5.09540503
+F07-ACC-00421,Accurate and precise,5.0,5.05120294
+F07-ACC-00422,Accurate and precise,5.0,5.06975552
+F07-ACC-00423,Accurate and precise,5.0,5.05976267
+F07-ACC-00424,Accurate and precise,5.0,5.39860993
+F07-ACC-00425,Accurate and precise,5.0,5.17677751
+F07-ACC-00426,Accurate and precise,5.0,5.24784659
+F07-ACC-00427,Accurate and precise,5.0,4.97981384
+F07-ACC-00428,Accurate and precise,5.0,5.19038329
+F07-ACC-00429,Accurate and precise,5.0,4.89012355
+F07-ACC-00430,Accurate and precise,5.0,4.82767107
+F07-ACC-00431,Accurate and precise,5.0,5.17413996
+F07-ACC-00432,Accurate and precise,5.0,4.78676886
+F07-ACC-00433,Accurate and precise,5.0,5.19579695
+F07-ACC-00434,Accurate and precise,5.0,5.22099030
+F07-ACC-00435,Accurate and precise,5.0,4.54279758
+F07-ACC-00436,Accurate and precise,5.0,5.03005189
+F07-ACC-00437,Accurate and precise,5.0,5.17349771
+F07-ACC-00438,Accurate and precise,5.0,5.01326680
+F07-ACC-00439,Accurate and precise,5.0,5.01599598
+F07-ACC-00440,Accurate and precise,5.0,5.02504688
+F07-ACC-00441,Accurate and precise,5.0,5.16949698
+F07-ACC-00442,Accurate and precise,5.0,5.11119072
+F07-ACC-00443,Accurate and precise,5.0,5.04938555
+F07-ACC-00444,Accurate and precise,5.0,5.21733079
+F07-ACC-00445,Accurate and precise,5.0,5.19750833
+F07-ACC-00446,Accurate and precise,5.0,5.17621614
+F07-ACC-00447,Accurate and precise,5.0,4.88719606
+F07-ACC-00448,Accurate and precise,5.0,4.98042180
+F07-ACC-00449,Accurate and precise,5.0,5.28329798
+F07-ACC-00450,Accurate and precise,5.0,5.13110026
+F07-ACC-00451,Accurate and precise,5.0,4.99916010
+F07-ACC-00452,Accurate and precise,5.0,5.04725964
+F07-ACC-00453,Accurate and precise,5.0,4.96761082
+F07-ACC-00454,Accurate and precise,5.0,4.70041446
+F07-ACC-00455,Accurate and precise,5.0,5.19039632
+F07-ACC-00456,Accurate and precise,5.0,5.04579925
+F07-ACC-00457,Accurate and precise,5.0,4.81021706
+F07-ACC-00458,Accurate and precise,5.0,5.14263024
+F07-ACC-00459,Accurate and precise,5.0,5.26429415
+F07-ACC-00460,Accurate and precise,5.0,4.98228597
+F07-ACC-00461,Accurate and precise,5.0,4.83884849
+F07-ACC-00462,Accurate and precise,5.0,4.97117495
+F07-ACC-00463,Accurate and precise,5.0,5.02941784
+F07-ACC-00464,Accurate and precise,5.0,5.03746240
+F07-ACC-00465,Accurate and precise,5.0,5.24307853
+F07-ACC-00466,Accurate and precise,5.0,5.27635210
+F07-ACC-00467,Accurate and precise,5.0,5.09784406
+F07-ACC-00468,Accurate and precise,5.0,5.08943961
+F07-ACC-00469,Accurate and precise,5.0,4.84835597
+F07-ACC-00470,Accurate and precise,5.0,4.84663162
+F07-ACC-00471,Accurate and precise,5.0,4.95929248
+F07-ACC-00472,Accurate and precise,5.0,4.76452509
+F07-ACC-00473,Accurate and precise,5.0,4.73950176
+F07-ACC-00474,Accurate and precise,5.0,4.96016011
+F07-ACC-00475,Accurate and precise,5.0,5.03678528
+F07-ACC-00476,Accurate and precise,5.0,5.22926048
+F07-ACC-00477,Accurate and precise,5.0,4.87793205
+F07-ACC-00478,Accurate and precise,5.0,4.57089407
+F07-ACC-00479,Accurate and precise,5.0,4.99412299
+F07-ACC-00480,Accurate and precise,5.0,4.86444022
+F07-ACC-00481,Accurate and precise,5.0,5.18573185
+F07-ACC-00482,Accurate and precise,5.0,5.24042315
+F07-ACC-00483,Accurate and precise,5.0,4.98174398
+F07-ACC-00484,Accurate and precise,5.0,5.05373365
+F07-ACC-00485,Accurate and precise,5.0,5.26315342
+F07-ACC-00486,Accurate and precise,5.0,5.02570661
+F07-ACC-00487,Accurate and precise,5.0,4.74629430
+F07-ACC-00488,Accurate and precise,5.0,4.98430401
+F07-ACC-00489,Accurate and precise,5.0,5.14999629
+F07-ACC-00490,Accurate and precise,5.0,4.74492359
+F07-ACC-00491,Accurate and precise,5.0,4.74310289
+F07-ACC-00492,Accurate and precise,5.0,4.96916575
+F07-ACC-00493,Accurate and precise,5.0,5.09392551
+F07-ACC-00494,Accurate and precise,5.0,4.92625820
+F07-ACC-00495,Accurate and precise,5.0,5.03207299
+F07-ACC-00496,Accurate and precise,5.0,4.88333901
+F07-ACC-00497,Accurate and precise,5.0,5.02999635
+F07-ACC-00498,Accurate and precise,5.0,4.84319679
+F07-ACC-00499,Accurate and precise,5.0,5.03007776
+F07-ACC-00500,Accurate and precise,5.0,4.78106674
+F07-ACC-00501,Accurate and precise,5.0,4.78741120
+F07-ACC-00502,Accurate and precise,5.0,4.91828539
+F07-ACC-00503,Accurate and precise,5.0,5.29720018
+F07-ACC-00504,Accurate and precise,5.0,4.90340812
+F07-ACC-00505,Accurate and precise,5.0,5.15885933
+F07-ACC-00506,Accurate and precise,5.0,5.18853159
+F07-ACC-00507,Accurate and precise,5.0,4.77389423
+F07-ACC-00508,Accurate and precise,5.0,5.14435356
+F07-ACC-00509,Accurate and precise,5.0,4.85378019
+F07-ACC-00510,Accurate and precise,5.0,5.12700106
+F07-ACC-00511,Accurate and precise,5.0,5.01723514
+F07-ACC-00512,Accurate and precise,5.0,4.92952746
+F07-ACC-00513,Accurate and precise,5.0,5.07216699
+F07-ACC-00514,Accurate and precise,5.0,4.80417744
+F07-ACC-00515,Accurate and precise,5.0,4.62731167
+F07-ACC-00516,Accurate and precise,5.0,4.61581645
+F07-ACC-00517,Accurate and precise,5.0,4.95519528
+F07-ACC-00518,Accurate and precise,5.0,5.04684490
+F07-ACC-00519,Accurate and precise,5.0,4.97604871
+F07-ACC-00520,Accurate and precise,5.0,4.98284783
+F07-ACC-00521,Accurate and precise,5.0,5.22333153
+F07-ACC-00522,Accurate and precise,5.0,4.78151988
+F07-ACC-00523,Accurate and precise,5.0,5.00053775
+F07-ACC-00524,Accurate and precise,5.0,4.59346611
+F07-ACC-00525,Accurate and precise,5.0,4.94855150
+F07-ACC-00526,Accurate and precise,5.0,5.17074445
+F07-ACC-00527,Accurate and precise,5.0,4.87134138
+F07-ACC-00528,Accurate and precise,5.0,5.16785111
+F07-ACC-00529,Accurate and precise,5.0,5.14140280
+F07-ACC-00530,Accurate and precise,5.0,5.14075353
+F07-ACC-00531,Accurate and precise,5.0,5.30631628
+F07-ACC-00532,Accurate and precise,5.0,5.01259897
+F07-ACC-00533,Accurate and precise,5.0,4.88437109
+F07-ACC-00534,Accurate and precise,5.0,5.01101797
+F07-ACC-00535,Accurate and precise,5.0,5.06508185
+F07-ACC-00536,Accurate and precise,5.0,4.95725724
+F07-ACC-00537,Accurate and precise,5.0,5.03094756
+F07-ACC-00538,Accurate and precise,5.0,5.10278408
+F07-ACC-00539,Accurate and precise,5.0,5.30729936
+F07-ACC-00540,Accurate and precise,5.0,5.09057627
+F07-ACC-00541,Accurate and precise,5.0,5.35625262
+F07-ACC-00542,Accurate and precise,5.0,5.07039367
+F07-ACC-00543,Accurate and precise,5.0,5.22414172
+F07-ACC-00544,Accurate and precise,5.0,5.14718986
+F07-ACC-00545,Accurate and precise,5.0,4.65803683
+F07-ACC-00546,Accurate and precise,5.0,4.92532364
+F07-ACC-00547,Accurate and precise,5.0,5.01932720
+F07-ACC-00548,Accurate and precise,5.0,4.92652641
+F07-ACC-00549,Accurate and precise,5.0,4.93584354
+F07-ACC-00550,Accurate and precise,5.0,4.90376423
+F07-ACC-00551,Accurate and precise,5.0,5.09830374
+F07-ACC-00552,Accurate and precise,5.0,4.89637067
+F07-ACC-00553,Accurate and precise,5.0,5.00164900
+F07-ACC-00554,Accurate and precise,5.0,4.67359455
+F07-ACC-00555,Accurate and precise,5.0,4.82088255
+F07-ACC-00556,Accurate and precise,5.0,4.99787689
+F07-ACC-00557,Accurate and precise,5.0,5.16482836
+F07-ACC-00558,Accurate and precise,5.0,5.15161855
+F07-ACC-00559,Accurate and precise,5.0,5.07088071
+F07-ACC-00560,Accurate and precise,5.0,5.15321705
+F07-ACC-00561,Accurate and precise,5.0,5.30439594
+F07-ACC-00562,Accurate and precise,5.0,5.15508833
+F07-ACC-00563,Accurate and precise,5.0,5.06948896
+F07-ACC-00564,Accurate and precise,5.0,5.30258432
+F07-ACC-00565,Accurate and precise,5.0,5.27940941
+F07-ACC-00566,Accurate and precise,5.0,4.84532265
+F07-ACC-00567,Accurate and precise,5.0,4.89978177
+F07-ACC-00568,Accurate and precise,5.0,5.05798392
+F07-ACC-00569,Accurate and precise,5.0,5.34542962
+F07-ACC-00570,Accurate and precise,5.0,4.65307213
+F07-ACC-00571,Accurate and precise,5.0,5.36073827
+F07-ACC-00572,Accurate and precise,5.0,4.89485392
+F07-ACC-00573,Accurate and precise,5.0,4.73866095
+F07-ACC-00574,Accurate and precise,5.0,4.86803018
+F07-ACC-00575,Accurate and precise,5.0,4.90512724
+F07-ACC-00576,Accurate and precise,5.0,5.49600156
+F07-ACC-00577,Accurate and precise,5.0,5.14746313
+F07-ACC-00578,Accurate and precise,5.0,4.88317580
+F07-ACC-00579,Accurate and precise,5.0,4.86335417
+F07-ACC-00580,Accurate and precise,5.0,4.91164451
+F07-ACC-00581,Accurate and precise,5.0,5.18324970
+F07-ACC-00582,Accurate and precise,5.0,5.23410316
+F07-ACC-00583,Accurate and precise,5.0,5.10746710
+F07-ACC-00584,Accurate and precise,5.0,4.96174334
+F07-ACC-00585,Accurate and precise,5.0,4.82979001
+F07-ACC-00586,Accurate and precise,5.0,5.10958047
+F07-ACC-00587,Accurate and precise,5.0,5.33171563
+F07-ACC-00588,Accurate and precise,5.0,4.75054298
+F07-ACC-00589,Accurate and precise,5.0,4.84629712
+F07-ACC-00590,Accurate and precise,5.0,5.32329104
+F07-ACC-00591,Accurate and precise,5.0,4.68277534
+F07-ACC-00592,Accurate and precise,5.0,5.23497162
+F07-ACC-00593,Accurate and precise,5.0,5.06112947
+F07-ACC-00594,Accurate and precise,5.0,5.30801343
+F07-ACC-00595,Accurate and precise,5.0,5.20092418
+F07-ACC-00596,Accurate and precise,5.0,4.93382973
+F07-ACC-00597,Accurate and precise,5.0,4.96952102
+F07-ACC-00598,Accurate and precise,5.0,4.98357532
+F07-ACC-00599,Accurate and precise,5.0,5.00087459
+F07-ACC-00600,Accurate and precise,5.0,4.79167674
+F07-ACC-00601,Accurate and precise,5.0,5.08946851
+F07-ACC-00602,Accurate and precise,5.0,5.02903477
+F07-ACC-00603,Accurate and precise,5.0,4.91160499
+F07-ACC-00604,Accurate and precise,5.0,5.03815224
+F07-ACC-00605,Accurate and precise,5.0,5.02559176
+F07-ACC-00606,Accurate and precise,5.0,4.93283168
+F07-ACC-00607,Accurate and precise,5.0,4.83951054
+F07-ACC-00608,Accurate and precise,5.0,4.68796736
+F07-ACC-00609,Accurate and precise,5.0,5.19655496
+F07-ACC-00610,Accurate and precise,5.0,5.10188745
+F07-ACC-00611,Accurate and precise,5.0,5.10500649
+F07-ACC-00612,Accurate and precise,5.0,5.09570637
+F07-ACC-00613,Accurate and precise,5.0,4.93014645
+F07-ACC-00614,Accurate and precise,5.0,4.62045778
+F07-ACC-00615,Accurate and precise,5.0,5.02955600
+F07-ACC-00616,Accurate and precise,5.0,4.92798432
+F07-ACC-00617,Accurate and precise,5.0,5.00759181
+F07-ACC-00618,Accurate and precise,5.0,5.02526401
+F07-ACC-00619,Accurate and precise,5.0,4.94872303
+F07-ACC-00620,Accurate and precise,5.0,4.93530190
+F07-ACC-00621,Accurate and precise,5.0,5.01012825
+F07-ACC-00622,Accurate and precise,5.0,4.95178689
+F07-ACC-00623,Accurate and precise,5.0,4.81124413
+F07-ACC-00624,Accurate and precise,5.0,5.06692178
+F07-ACC-00625,Accurate and precise,5.0,4.80179924
+F07-ACC-00626,Accurate and precise,5.0,5.17167071
+F07-ACC-00627,Accurate and precise,5.0,4.79895982
+F07-ACC-00628,Accurate and precise,5.0,4.92198797
+F07-ACC-00629,Accurate and precise,5.0,5.14640873
+F07-ACC-00630,Accurate and precise,5.0,5.13073321
+F07-ACC-00631,Accurate and precise,5.0,4.98122534
+F07-ACC-00632,Accurate and precise,5.0,5.09311278
+F07-ACC-00633,Accurate and precise,5.0,4.88153720
+F07-ACC-00634,Accurate and precise,5.0,4.90485522
+F07-ACC-00635,Accurate and precise,5.0,4.88806070
+F07-ACC-00636,Accurate and precise,5.0,4.78796853
+F07-ACC-00637,Accurate and precise,5.0,4.86063747
+F07-ACC-00638,Accurate and precise,5.0,4.89246519
+F07-ACC-00639,Accurate and precise,5.0,4.88544629
+F07-ACC-00640,Accurate and precise,5.0,5.25875102
+F07-ACC-00641,Accurate and precise,5.0,5.08058683
+F07-ACC-00642,Accurate and precise,5.0,4.97751361
+F07-ACC-00643,Accurate and precise,5.0,5.20706748
+F07-ACC-00644,Accurate and precise,5.0,5.01657747
+F07-ACC-00645,Accurate and precise,5.0,4.51773126
+F07-ACC-00646,Accurate and precise,5.0,5.02387044
+F07-ACC-00647,Accurate and precise,5.0,5.10642363
+F07-ACC-00648,Accurate and precise,5.0,4.87200855
+F07-ACC-00649,Accurate and precise,5.0,4.95615190
+F07-ACC-00650,Accurate and precise,5.0,4.67417274
+F07-ACC-00651,Accurate and precise,5.0,5.03147215
+F07-ACC-00652,Accurate and precise,5.0,4.73198257
+F07-ACC-00653,Accurate and precise,5.0,4.94023660
+F07-ACC-00654,Accurate and precise,5.0,5.13315574
+F07-ACC-00655,Accurate and precise,5.0,5.28905144
+F07-ACC-00656,Accurate and precise,5.0,5.10161024
+F07-ACC-00657,Accurate and precise,5.0,5.33348194
+F07-ACC-00658,Accurate and precise,5.0,5.01276250
+F07-ACC-00659,Accurate and precise,5.0,4.55581959
+F07-ACC-00660,Accurate and precise,5.0,4.84294651
+F07-ACC-00661,Accurate and precise,5.0,5.63427951
+F07-ACC-00662,Accurate and precise,5.0,5.03467819
+F07-ACC-00663,Accurate and precise,5.0,5.03115417
+F07-ACC-00664,Accurate and precise,5.0,5.11367399
+F07-ACC-00665,Accurate and precise,5.0,5.06785286
+F07-ACC-00666,Accurate and precise,5.0,4.99749040
+F07-ACC-00667,Accurate and precise,5.0,5.13735858
+F07-ACC-00668,Accurate and precise,5.0,5.21840175
+F07-ACC-00669,Accurate and precise,5.0,4.98754327
+F07-ACC-00670,Accurate and precise,5.0,4.86335490
+F07-ACC-00671,Accurate and precise,5.0,4.88842579
+F07-ACC-00672,Accurate and precise,5.0,4.93053409
+F07-ACC-00673,Accurate and precise,5.0,5.08184437
+F07-ACC-00674,Accurate and precise,5.0,5.05296908
+F07-ACC-00675,Accurate and precise,5.0,5.12969292
+F07-ACC-00676,Accurate and precise,5.0,4.83694820
+F07-ACC-00677,Accurate and precise,5.0,4.90848222
+F07-ACC-00678,Accurate and precise,5.0,5.04888017
+F07-ACC-00679,Accurate and precise,5.0,4.82556344
+F07-ACC-00680,Accurate and precise,5.0,5.37308258
+F07-ACC-00681,Accurate and precise,5.0,5.24914106
+F07-ACC-00682,Accurate and precise,5.0,4.99795818
+F07-ACC-00683,Accurate and precise,5.0,5.19189917
+F07-ACC-00684,Accurate and precise,5.0,4.89985208
+F07-ACC-00685,Accurate and precise,5.0,5.05339445
+F07-ACC-00686,Accurate and precise,5.0,5.33204551
+F07-ACC-00687,Accurate and precise,5.0,4.90444619
+F07-ACC-00688,Accurate and precise,5.0,4.86333849
+F07-ACC-00689,Accurate and precise,5.0,4.91291559
+F07-ACC-00690,Accurate and precise,5.0,5.25005213
+F07-ACC-00691,Accurate and precise,5.0,5.48871687
+F07-ACC-00692,Accurate and precise,5.0,4.64615887
+F07-ACC-00693,Accurate and precise,5.0,4.76854659
+F07-ACC-00694,Accurate and precise,5.0,4.90905847
+F07-ACC-00695,Accurate and precise,5.0,4.99905809
+F07-ACC-00696,Accurate and precise,5.0,5.03454917
+F07-ACC-00697,Accurate and precise,5.0,5.01126213
+F07-ACC-00698,Accurate and precise,5.0,5.00329251
+F07-ACC-00699,Accurate and precise,5.0,4.88218962
+F07-ACC-00700,Accurate and precise,5.0,5.10288381
+F07-ACC-00701,Accurate and precise,5.0,5.00532871
+F07-ACC-00702,Accurate and precise,5.0,5.09284513
+F07-ACC-00703,Accurate and precise,5.0,4.76959031
+F07-ACC-00704,Accurate and precise,5.0,5.31743410
+F07-ACC-00705,Accurate and precise,5.0,4.96858128
+F07-ACC-00706,Accurate and precise,5.0,4.83507192
+F07-ACC-00707,Accurate and precise,5.0,4.74337138
+F07-ACC-00708,Accurate and precise,5.0,4.95502582
+F07-ACC-00709,Accurate and precise,5.0,4.77655940
+F07-ACC-00710,Accurate and precise,5.0,4.92105354
+F07-ACC-00711,Accurate and precise,5.0,4.97753085
+F07-ACC-00712,Accurate and precise,5.0,4.98692577
+F07-ACC-00713,Accurate and precise,5.0,5.03460563
+F07-ACC-00714,Accurate and precise,5.0,5.12545156
+F07-ACC-00715,Accurate and precise,5.0,4.96163794
+F07-ACC-00716,Accurate and precise,5.0,4.80373211
+F07-ACC-00717,Accurate and precise,5.0,5.05158275
+F07-ACC-00718,Accurate and precise,5.0,4.68724324
+F07-ACC-00719,Accurate and precise,5.0,4.80160281
+F07-ACC-00720,Accurate and precise,5.0,5.18930136
+F07-ACC-00721,Accurate and precise,5.0,5.08191911
+F07-ACC-00722,Accurate and precise,5.0,5.13968399
+F07-ACC-00723,Accurate and precise,5.0,4.94410039
+F07-ACC-00724,Accurate and precise,5.0,5.27831861
+F07-ACC-00725,Accurate and precise,5.0,4.94755943
+F07-ACC-00726,Accurate and precise,5.0,5.28844562
+F07-ACC-00727,Accurate and precise,5.0,5.15790916
+F07-ACC-00728,Accurate and precise,5.0,5.00127507
+F07-ACC-00729,Accurate and precise,5.0,5.01343488
+F07-ACC-00730,Accurate and precise,5.0,4.77219431
+F07-ACC-00731,Accurate and precise,5.0,5.11786572
+F07-ACC-00732,Accurate and precise,5.0,5.05476962
+F07-ACC-00733,Accurate and precise,5.0,5.00347722
+F07-ACC-00734,Accurate and precise,5.0,5.00903180
+F07-ACC-00735,Accurate and precise,5.0,5.04545853
+F07-ACC-00736,Accurate and precise,5.0,4.75411814
+F07-ACC-00737,Accurate and precise,5.0,4.97547267
+F07-ACC-00738,Accurate and precise,5.0,4.99778788
+F07-ACC-00739,Accurate and precise,5.0,5.23034431
+F07-ACC-00740,Accurate and precise,5.0,4.65212893
+F07-ACC-00741,Accurate and precise,5.0,4.95841605
+F07-ACC-00742,Accurate and precise,5.0,5.00242089
+F07-ACC-00743,Accurate and precise,5.0,5.17539196
+F07-ACC-00744,Accurate and precise,5.0,4.88330553
+F07-ACC-00745,Accurate and precise,5.0,5.09373800
+F07-ACC-00746,Accurate and precise,5.0,5.02128394
+F07-ACC-00747,Accurate and precise,5.0,5.10120202
+F07-ACC-00748,Accurate and precise,5.0,5.05214027
+F07-ACC-00749,Accurate and precise,5.0,5.02741585
+F07-ACC-00750,Accurate and precise,5.0,5.24610707
+F07-ACC-00751,Accurate and precise,5.0,5.38180465
+F07-ACC-00752,Accurate and precise,5.0,5.05778825
+F07-ACC-00753,Accurate and precise,5.0,5.26699132
+F07-ACC-00754,Accurate and precise,5.0,5.11545705
+F07-ACC-00755,Accurate and precise,5.0,5.10422572
+F07-ACC-00756,Accurate and precise,5.0,4.81280478
+F07-ACC-00757,Accurate and precise,5.0,4.80644132
+F07-ACC-00758,Accurate and precise,5.0,4.81648915
+F07-ACC-00759,Accurate and precise,5.0,4.69043461
+F07-ACC-00760,Accurate and precise,5.0,5.27531651
+F07-ACC-00761,Accurate and precise,5.0,4.93309426
+F07-ACC-00762,Accurate and precise,5.0,5.11964678
+F07-ACC-00763,Accurate and precise,5.0,5.15422863
+F07-ACC-00764,Accurate and precise,5.0,5.09591480
+F07-ACC-00765,Accurate and precise,5.0,4.68462842
+F07-ACC-00766,Accurate and precise,5.0,5.01289584
+F07-ACC-00767,Accurate and precise,5.0,5.15443421
+F07-ACC-00768,Accurate and precise,5.0,4.78175996
+F07-ACC-00769,Accurate and precise,5.0,4.98159741
+F07-ACC-00770,Accurate and precise,5.0,4.99766495
+F07-ACC-00771,Accurate and precise,5.0,5.00104501
+F07-ACC-00772,Accurate and precise,5.0,5.33502421
+F07-ACC-00773,Accurate and precise,5.0,5.03606973
+F07-ACC-00774,Accurate and precise,5.0,4.83489059
+F07-ACC-00775,Accurate and precise,5.0,5.15393769
+F07-ACC-00776,Accurate and precise,5.0,5.14537846
+F07-ACC-00777,Accurate and precise,5.0,5.08454656
+F07-ACC-00778,Accurate and precise,5.0,4.84177477
+F07-ACC-00779,Accurate and precise,5.0,5.18803525
+F07-ACC-00780,Accurate and precise,5.0,4.90458893
+F07-ACC-00781,Accurate and precise,5.0,4.66798907
+F07-ACC-00782,Accurate and precise,5.0,5.02161764
+F07-ACC-00783,Accurate and precise,5.0,4.98838105
+F07-ACC-00784,Accurate and precise,5.0,5.00075118
+F07-ACC-00785,Accurate and precise,5.0,4.95562130
+F07-ACC-00786,Accurate and precise,5.0,4.88274919
+F07-ACC-00787,Accurate and precise,5.0,5.05546697
+F07-ACC-00788,Accurate and precise,5.0,4.86727014
+F07-ACC-00789,Accurate and precise,5.0,5.14345541
+F07-ACC-00790,Accurate and precise,5.0,4.82454977
+F07-ACC-00791,Accurate and precise,5.0,4.73003460
+F07-ACC-00792,Accurate and precise,5.0,4.95579040
+F07-ACC-00793,Accurate and precise,5.0,5.13368737
+F07-ACC-00794,Accurate and precise,5.0,4.92453042
+F07-ACC-00795,Accurate and precise,5.0,5.03190748
+F07-ACC-00796,Accurate and precise,5.0,5.04841248
+F07-ACC-00797,Accurate and precise,5.0,5.02326569
+F07-ACC-00798,Accurate and precise,5.0,5.12821807
+F07-ACC-00799,Accurate and precise,5.0,5.07260514
+F07-ACC-00800,Accurate and precise,5.0,4.83526650
+F07-ACC-00801,Accurate and precise,5.0,5.04377059
+F07-ACC-00802,Accurate and precise,5.0,5.26184565
+F07-ACC-00803,Accurate and precise,5.0,5.28573301
+F07-ACC-00804,Accurate and precise,5.0,4.74679283
+F07-ACC-00805,Accurate and precise,5.0,4.76767366
+F07-ACC-00806,Accurate and precise,5.0,4.93061641
+F07-ACC-00807,Accurate and precise,5.0,4.84827415
+F07-ACC-00808,Accurate and precise,5.0,4.82672926
+F07-ACC-00809,Accurate and precise,5.0,4.90195816
+F07-ACC-00810,Accurate and precise,5.0,5.05947720
+F07-ACC-00811,Accurate and precise,5.0,4.92603693
+F07-ACC-00812,Accurate and precise,5.0,5.09273356
+F07-ACC-00813,Accurate and precise,5.0,4.75134344
+F07-ACC-00814,Accurate and precise,5.0,4.66271022
+F07-ACC-00815,Accurate and precise,5.0,4.91680524
+F07-ACC-00816,Accurate and precise,5.0,5.21564489
+F07-ACC-00817,Accurate and precise,5.0,5.19007809
+F07-ACC-00818,Accurate and precise,5.0,4.82986780
+F07-ACC-00819,Accurate and precise,5.0,5.19953757
+F07-ACC-00820,Accurate and precise,5.0,5.13220198
+F07-ACC-00821,Accurate and precise,5.0,5.14164810
+F07-ACC-00822,Accurate and precise,5.0,4.89305927
+F07-ACC-00823,Accurate and precise,5.0,4.94601450
+F07-ACC-00824,Accurate and precise,5.0,4.78629596
+F07-ACC-00825,Accurate and precise,5.0,4.99728118
+F07-ACC-00826,Accurate and precise,5.0,5.09315930
+F07-ACC-00827,Accurate and precise,5.0,4.97627848
+F07-ACC-00828,Accurate and precise,5.0,4.98239608
+F07-ACC-00829,Accurate and precise,5.0,5.04951740
+F07-ACC-00830,Accurate and precise,5.0,4.93640705
+F07-ACC-00831,Accurate and precise,5.0,4.95055032
+F07-ACC-00832,Accurate and precise,5.0,4.85301816
+F07-ACC-00833,Accurate and precise,5.0,5.02823204
+F07-ACC-00834,Accurate and precise,5.0,5.12010098
+F07-ACC-00835,Accurate and precise,5.0,4.69771362
+F07-ACC-00836,Accurate and precise,5.0,5.14226013
+F07-ACC-00837,Accurate and precise,5.0,4.91758724
+F07-ACC-00838,Accurate and precise,5.0,4.85864241
+F07-ACC-00839,Accurate and precise,5.0,5.66054655
+F07-ACC-00840,Accurate and precise,5.0,5.11244014
+F07-ACC-00841,Accurate and precise,5.0,5.15814230
+F07-ACC-00842,Accurate and precise,5.0,4.74591361
+F07-ACC-00843,Accurate and precise,5.0,5.35212103
+F07-ACC-00844,Accurate and precise,5.0,5.33851852
+F07-ACC-00845,Accurate and precise,5.0,4.98777801
+F07-ACC-00846,Accurate and precise,5.0,4.57795543
+F07-ACC-00847,Accurate and precise,5.0,5.22992992
+F07-ACC-00848,Accurate and precise,5.0,4.99274771
+F07-ACC-00849,Accurate and precise,5.0,5.16738685
+F07-ACC-00850,Accurate and precise,5.0,5.13777251
+F07-ACC-00851,Accurate and precise,5.0,4.97632665
+F07-ACC-00852,Accurate and precise,5.0,4.82592309
+F07-ACC-00853,Accurate and precise,5.0,5.32785115
+F07-ACC-00854,Accurate and precise,5.0,5.10551352
+F07-ACC-00855,Accurate and precise,5.0,4.66270751
+F07-ACC-00856,Accurate and precise,5.0,4.91664579
+F07-ACC-00857,Accurate and precise,5.0,5.18775166
+F07-ACC-00858,Accurate and precise,5.0,4.87401537
+F07-ACC-00859,Accurate and precise,5.0,5.15716520
+F07-ACC-00860,Accurate and precise,5.0,4.80507312
+F07-ACC-00861,Accurate and precise,5.0,4.90725311
+F07-ACC-00862,Accurate and precise,5.0,5.32253457
+F07-ACC-00863,Accurate and precise,5.0,4.70941332
+F07-ACC-00864,Accurate and precise,5.0,5.16951786
+F07-ACC-00865,Accurate and precise,5.0,4.74534216
+F07-ACC-00866,Accurate and precise,5.0,5.17522430
+F07-ACC-00867,Accurate and precise,5.0,5.16164129
+F07-ACC-00868,Accurate and precise,5.0,5.30673598
+F07-ACC-00869,Accurate and precise,5.0,5.32026160
+F07-ACC-00870,Accurate and precise,5.0,5.13678003
+F07-ACC-00871,Accurate and precise,5.0,5.28213866
+F07-ACC-00872,Accurate and precise,5.0,5.07812602
+F07-ACC-00873,Accurate and precise,5.0,5.31094144
+F07-ACC-00874,Accurate and precise,5.0,4.91595291
+F07-ACC-00875,Accurate and precise,5.0,5.17637614
+F07-ACC-00876,Accurate and precise,5.0,5.52212828
+F07-ACC-00877,Accurate and precise,5.0,5.06452959
+F07-ACC-00878,Accurate and precise,5.0,5.02861185
+F07-ACC-00879,Accurate and precise,5.0,4.96147239
+F07-ACC-00880,Accurate and precise,5.0,4.89249546
+F07-ACC-00881,Accurate and precise,5.0,5.10769787
+F07-ACC-00882,Accurate and precise,5.0,5.03233781
+F07-ACC-00883,Accurate and precise,5.0,5.18982152
+F07-ACC-00884,Accurate and precise,5.0,5.29354878
+F07-ACC-00885,Accurate and precise,5.0,5.42810468
+F07-ACC-00886,Accurate and precise,5.0,5.17619009
+F07-ACC-00887,Accurate and precise,5.0,4.68719604
+F07-ACC-00888,Accurate and precise,5.0,5.14659704
+F07-ACC-00889,Accurate and precise,5.0,4.89527411
+F07-ACC-00890,Accurate and precise,5.0,4.85595889
+F07-ACC-00891,Accurate and precise,5.0,4.78479170
+F07-ACC-00892,Accurate and precise,5.0,4.97280266
+F07-ACC-00893,Accurate and precise,5.0,5.16440621
+F07-ACC-00894,Accurate and precise,5.0,5.07452532
+F07-ACC-00895,Accurate and precise,5.0,4.89450433
+F07-ACC-00896,Accurate and precise,5.0,4.86316277
+F07-ACC-00897,Accurate and precise,5.0,4.76357636
+F07-ACC-00898,Accurate and precise,5.0,5.08207939
+F07-ACC-00899,Accurate and precise,5.0,5.02551459
+F07-ACC-00900,Accurate and precise,5.0,4.72731910
+F07-ACC-00901,Accurate and precise,5.0,5.16661570
+F07-ACC-00902,Accurate and precise,5.0,4.82068000
+F07-ACC-00903,Accurate and precise,5.0,5.01722764
+F07-ACC-00904,Accurate and precise,5.0,4.77442135
+F07-ACC-00905,Accurate and precise,5.0,4.96285345
+F07-ACC-00906,Accurate and precise,5.0,4.77062806
+F07-ACC-00907,Accurate and precise,5.0,4.80250738
+F07-ACC-00908,Accurate and precise,5.0,4.84608110
+F07-ACC-00909,Accurate and precise,5.0,4.77763882
+F07-ACC-00910,Accurate and precise,5.0,4.97367533
+F07-ACC-00911,Accurate and precise,5.0,4.95753878
+F07-ACC-00912,Accurate and precise,5.0,5.02361618
+F07-ACC-00913,Accurate and precise,5.0,5.24106025
+F07-ACC-00914,Accurate and precise,5.0,4.82760075
+F07-ACC-00915,Accurate and precise,5.0,4.88827489
+F07-ACC-00916,Accurate and precise,5.0,4.92762995
+F07-ACC-00917,Accurate and precise,5.0,4.97610073
+F07-ACC-00918,Accurate and precise,5.0,4.97984395
+F07-ACC-00919,Accurate and precise,5.0,5.19203455
+F07-ACC-00920,Accurate and precise,5.0,4.82302530
+F07-ACC-00921,Accurate and precise,5.0,5.19580100
+F07-ACC-00922,Accurate and precise,5.0,5.15735405
+F07-ACC-00923,Accurate and precise,5.0,5.06842110
+F07-ACC-00924,Accurate and precise,5.0,5.31286602
+F07-ACC-00925,Accurate and precise,5.0,5.12652274
+F07-ACC-00926,Accurate and precise,5.0,4.85120424
+F07-ACC-00927,Accurate and precise,5.0,4.96722529
+F07-ACC-00928,Accurate and precise,5.0,4.59396552
+F07-ACC-00929,Accurate and precise,5.0,4.94300092
+F07-ACC-00930,Accurate and precise,5.0,5.26927868
+F07-ACC-00931,Accurate and precise,5.0,5.15735824
+F07-ACC-00932,Accurate and precise,5.0,5.32042316
+F07-ACC-00933,Accurate and precise,5.0,5.17743234
+F07-ACC-00934,Accurate and precise,5.0,5.15336855
+F07-ACC-00935,Accurate and precise,5.0,4.87251288
+F07-ACC-00936,Accurate and precise,5.0,4.83041140
+F07-ACC-00937,Accurate and precise,5.0,4.85518770
+F07-ACC-00938,Accurate and precise,5.0,4.85284020
+F07-ACC-00939,Accurate and precise,5.0,5.00200375
+F07-ACC-00940,Accurate and precise,5.0,4.83310554
+F07-ACC-00941,Accurate and precise,5.0,4.94796182
+F07-ACC-00942,Accurate and precise,5.0,4.84898825
+F07-ACC-00943,Accurate and precise,5.0,5.42399297
+F07-ACC-00944,Accurate and precise,5.0,5.19226757
+F07-ACC-00945,Accurate and precise,5.0,5.06117162
+F07-ACC-00946,Accurate and precise,5.0,4.53482857
+F07-ACC-00947,Accurate and precise,5.0,4.93055667
+F07-ACC-00948,Accurate and precise,5.0,5.22066598
+F07-ACC-00949,Accurate and precise,5.0,4.85574289
+F07-ACC-00950,Accurate and precise,5.0,4.71936657
+F07-ACC-00951,Accurate and precise,5.0,4.77713589
+F07-ACC-00952,Accurate and precise,5.0,5.27802795
+F07-ACC-00953,Accurate and precise,5.0,4.94276140
+F07-ACC-00954,Accurate and precise,5.0,5.04616113
+F07-ACC-00955,Accurate and precise,5.0,4.94860467
+F07-ACC-00956,Accurate and precise,5.0,5.11866580
+F07-ACC-00957,Accurate and precise,5.0,4.80163554
+F07-ACC-00958,Accurate and precise,5.0,4.76259283
+F07-ACC-00959,Accurate and precise,5.0,4.99562886
+F07-ACC-00960,Accurate and precise,5.0,5.12395243
+F07-ACC-00961,Accurate and precise,5.0,5.00028482
+F07-ACC-00962,Accurate and precise,5.0,4.84533327
+F07-ACC-00963,Accurate and precise,5.0,4.97451205
+F07-ACC-00964,Accurate and precise,5.0,5.06538989
+F07-ACC-00965,Accurate and precise,5.0,5.08251944
+F07-ACC-00966,Accurate and precise,5.0,4.85674994
+F07-ACC-00967,Accurate and precise,5.0,5.28462249
+F07-ACC-00968,Accurate and precise,5.0,4.73231473
+F07-ACC-00969,Accurate and precise,5.0,5.08724253
+F07-ACC-00970,Accurate and precise,5.0,4.98349201
+F07-ACC-00971,Accurate and precise,5.0,4.95843514
+F07-ACC-00972,Accurate and precise,5.0,4.97424754
+F07-ACC-00973,Accurate and precise,5.0,4.97755579
+F07-ACC-00974,Accurate and precise,5.0,5.04319339
+F07-ACC-00975,Accurate and precise,5.0,5.12470861
+F07-ACC-00976,Accurate and precise,5.0,4.99510501
+F07-ACC-00977,Accurate and precise,5.0,5.12457608
+F07-ACC-00978,Accurate and precise,5.0,5.30530631
+F07-ACC-00979,Accurate and precise,5.0,5.03837973
+F07-ACC-00980,Accurate and precise,5.0,4.64614070
+F07-ACC-00981,Accurate and precise,5.0,5.03384980
+F07-ACC-00982,Accurate and precise,5.0,4.88984135
+F07-ACC-00983,Accurate and precise,5.0,5.12019057
+F07-ACC-00984,Accurate and precise,5.0,5.24633832
+F07-ACC-00985,Accurate and precise,5.0,4.88680402
+F07-ACC-00986,Accurate and precise,5.0,5.12814859
+F07-ACC-00987,Accurate and precise,5.0,4.84687411
+F07-ACC-00988,Accurate and precise,5.0,5.03068544
+F07-ACC-00989,Accurate and precise,5.0,5.24249719
+F07-ACC-00990,Accurate and precise,5.0,5.12076850
+F07-ACC-00991,Accurate and precise,5.0,4.95446373
+F07-ACC-00992,Accurate and precise,5.0,4.53674582
+F07-ACC-00993,Accurate and precise,5.0,5.04313605
+F07-ACC-00994,Accurate and precise,5.0,5.04536002
+F07-ACC-00995,Accurate and precise,5.0,5.08503307
+F07-ACC-00996,Accurate and precise,5.0,4.91699128
+F07-ACC-00997,Accurate and precise,5.0,5.12571931
+F07-ACC-00998,Accurate and precise,5.0,5.06900612
+F07-ACC-00999,Accurate and precise,5.0,4.90063500
+F07-ACC-01000,Accurate and precise,5.0,5.20489809
+F07-ACC-01001,Accurate and precise,5.0,5.04503412
+F07-ACC-01002,Accurate and precise,5.0,5.36914545
+F07-ACC-01003,Accurate and precise,5.0,5.12328353
+F07-ACC-01004,Accurate and precise,5.0,4.78028715
+F07-ACC-01005,Accurate and precise,5.0,4.83332083
+F07-ACC-01006,Accurate and precise,5.0,5.17524484
+F07-ACC-01007,Accurate and precise,5.0,5.33787625
+F07-ACC-01008,Accurate and precise,5.0,4.88668837
+F07-ACC-01009,Accurate and precise,5.0,4.88162409
+F07-ACC-01010,Accurate and precise,5.0,5.14497382
+F07-ACC-01011,Accurate and precise,5.0,5.06504664
+F07-ACC-01012,Accurate and precise,5.0,5.17733896
+F07-ACC-01013,Accurate and precise,5.0,5.17843366
+F07-ACC-01014,Accurate and precise,5.0,5.14076505
+F07-ACC-01015,Accurate and precise,5.0,5.10259858
+F07-ACC-01016,Accurate and precise,5.0,5.15997712
+F07-ACC-01017,Accurate and precise,5.0,5.10939964
+F07-ACC-01018,Accurate and precise,5.0,5.22042970
+F07-ACC-01019,Accurate and precise,5.0,5.00859934
+F07-ACC-01020,Accurate and precise,5.0,4.82988301
+F07-ACC-01021,Accurate and precise,5.0,5.27472727
+F07-ACC-01022,Accurate and precise,5.0,4.96807991
+F07-ACC-01023,Accurate and precise,5.0,5.09677268
+F07-ACC-01024,Accurate and precise,5.0,4.80386508
+F07-ACC-01025,Accurate and precise,5.0,4.99354949
+F07-ACC-01026,Accurate and precise,5.0,4.98690147
+F07-ACC-01027,Accurate and precise,5.0,4.86400641
+F07-ACC-01028,Accurate and precise,5.0,5.07963482
+F07-ACC-01029,Accurate and precise,5.0,4.92870220
+F07-ACC-01030,Accurate and precise,5.0,4.59698776
+F07-ACC-01031,Accurate and precise,5.0,4.96803442
+F07-ACC-01032,Accurate and precise,5.0,4.84967192
+F07-ACC-01033,Accurate and precise,5.0,5.17815480
+F07-ACC-01034,Accurate and precise,5.0,5.36406967
+F07-ACC-01035,Accurate and precise,5.0,5.06126609
+F07-ACC-01036,Accurate and precise,5.0,4.90101127
+F07-ACC-01037,Accurate and precise,5.0,4.98467726
+F07-ACC-01038,Accurate and precise,5.0,5.16218914
+F07-ACC-01039,Accurate and precise,5.0,4.91111082
+F07-ACC-01040,Accurate and precise,5.0,5.26174625
+F07-ACC-01041,Accurate and precise,5.0,4.97455218
+F07-ACC-01042,Accurate and precise,5.0,4.86484758
+F07-ACC-01043,Accurate and precise,5.0,5.09145945
+F07-ACC-01044,Accurate and precise,5.0,4.77986133
+F07-ACC-01045,Accurate and precise,5.0,4.83310818
+F07-ACC-01046,Accurate and precise,5.0,4.90621449
+F07-ACC-01047,Accurate and precise,5.0,5.12908112
+F07-ACC-01048,Accurate and precise,5.0,4.89252849
+F07-ACC-01049,Accurate and precise,5.0,4.95685403
+F07-ACC-01050,Accurate and precise,5.0,4.97725866
+F07-ACC-01051,Accurate and precise,5.0,5.03985043
+F07-ACC-01052,Accurate and precise,5.0,4.98240679
+F07-ACC-01053,Accurate and precise,5.0,5.08973259
+F07-ACC-01054,Accurate and precise,5.0,5.15889910
+F07-ACC-01055,Accurate and precise,5.0,5.06630634
+F07-ACC-01056,Accurate and precise,5.0,5.17547908
+F07-ACC-01057,Accurate and precise,5.0,5.12940054
+F07-ACC-01058,Accurate and precise,5.0,4.93548348
+F07-ACC-01059,Accurate and precise,5.0,4.77750528
+F07-ACC-01060,Accurate and precise,5.0,4.79004351
+F07-ACC-01061,Accurate and precise,5.0,4.96881243
+F07-ACC-01062,Accurate and precise,5.0,5.17247189
+F07-ACC-01063,Accurate and precise,5.0,4.75164244
+F07-ACC-01064,Accurate and precise,5.0,4.88956640
+F07-ACC-01065,Accurate and precise,5.0,5.00205371
+F07-ACC-01066,Accurate and precise,5.0,5.15178984
+F07-ACC-01067,Accurate and precise,5.0,4.92560165
+F07-ACC-01068,Accurate and precise,5.0,4.77287758
+F07-ACC-01069,Accurate and precise,5.0,4.71137535
+F07-ACC-01070,Accurate and precise,5.0,4.76718324
+F07-ACC-01071,Accurate and precise,5.0,4.94841851
+F07-ACC-01072,Accurate and precise,5.0,4.92103848
+F07-ACC-01073,Accurate and precise,5.0,4.97653265
+F07-ACC-01074,Accurate and precise,5.0,4.81290078
+F07-ACC-01075,Accurate and precise,5.0,4.85567538
+F07-ACC-01076,Accurate and precise,5.0,5.10137406
+F07-ACC-01077,Accurate and precise,5.0,5.06139532
+F07-ACC-01078,Accurate and precise,5.0,4.76597607
+F07-ACC-01079,Accurate and precise,5.0,4.86604579
+F07-ACC-01080,Accurate and precise,5.0,5.17199362
+F07-ACC-01081,Accurate and precise,5.0,5.21490294
+F07-ACC-01082,Accurate and precise,5.0,5.31589543
+F07-ACC-01083,Accurate and precise,5.0,5.06519838
+F07-ACC-01084,Accurate and precise,5.0,4.79460712
+F07-ACC-01085,Accurate and precise,5.0,4.97225109
+F07-ACC-01086,Accurate and precise,5.0,5.06328987
+F07-ACC-01087,Accurate and precise,5.0,4.82453963
+F07-ACC-01088,Accurate and precise,5.0,5.20233327
+F07-ACC-01089,Accurate and precise,5.0,4.75639521
+F07-ACC-01090,Accurate and precise,5.0,5.36855720
+F07-ACC-01091,Accurate and precise,5.0,4.94308348
+F07-ACC-01092,Accurate and precise,5.0,4.82881176
+F07-ACC-01093,Accurate and precise,5.0,4.93735938
+F07-ACC-01094,Accurate and precise,5.0,5.08705424
+F07-ACC-01095,Accurate and precise,5.0,5.05736700
+F07-ACC-01096,Accurate and precise,5.0,5.13594369
+F07-ACC-01097,Accurate and precise,5.0,4.97901000
+F07-ACC-01098,Accurate and precise,5.0,4.80915158
+F07-ACC-01099,Accurate and precise,5.0,5.08516028
+F07-ACC-01100,Accurate and precise,5.0,5.00233811
+F07-ACC-01101,Accurate and precise,5.0,5.15103838
+F07-ACC-01102,Accurate and precise,5.0,5.06323802
+F07-ACC-01103,Accurate and precise,5.0,5.24365593
+F07-ACC-01104,Accurate and precise,5.0,4.93944898
+F07-ACC-01105,Accurate and precise,5.0,4.80199224
+F07-ACC-01106,Accurate and precise,5.0,4.98714153
+F07-ACC-01107,Accurate and precise,5.0,5.23962935
+F07-ACC-01108,Accurate and precise,5.0,5.25173053
+F07-ACC-01109,Accurate and precise,5.0,4.94676006
+F07-ACC-01110,Accurate and precise,5.0,4.91381460
+F07-ACC-01111,Accurate and precise,5.0,4.87233657
+F07-ACC-01112,Accurate and precise,5.0,5.16979516
+F07-ACC-01113,Accurate and precise,5.0,5.04824400
+F07-ACC-01114,Accurate and precise,5.0,5.02676420
+F07-ACC-01115,Accurate and precise,5.0,5.01900283
+F07-ACC-01116,Accurate and precise,5.0,5.03548614
+F07-ACC-01117,Accurate and precise,5.0,5.05367542
+F07-ACC-01118,Accurate and precise,5.0,4.94323932
+F07-ACC-01119,Accurate and precise,5.0,4.80926740
+F07-ACC-01120,Accurate and precise,5.0,4.90974830
+F07-ACC-01121,Accurate and precise,5.0,4.62190602
+F07-ACC-01122,Accurate and precise,5.0,5.21049861
+F07-ACC-01123,Accurate and precise,5.0,5.29808268
+F07-ACC-01124,Accurate and precise,5.0,4.90787338
+F07-ACC-01125,Accurate and precise,5.0,4.88354763
+F07-ACC-01126,Accurate and precise,5.0,4.90997876
+F07-ACC-01127,Accurate and precise,5.0,5.08690859
+F07-ACC-01128,Accurate and precise,5.0,5.00452191
+F07-ACC-01129,Accurate and precise,5.0,4.73593197
+F07-ACC-01130,Accurate and precise,5.0,5.23378943
+F07-ACC-01131,Accurate and precise,5.0,5.04844957
+F07-ACC-01132,Accurate and precise,5.0,5.41406107
+F07-ACC-01133,Accurate and precise,5.0,5.12329648
+F07-ACC-01134,Accurate and precise,5.0,5.12082294
+F07-ACC-01135,Accurate and precise,5.0,4.92961889
+F07-ACC-01136,Accurate and precise,5.0,4.97449303
+F07-ACC-01137,Accurate and precise,5.0,4.98315007
+F07-ACC-01138,Accurate and precise,5.0,4.88543169
+F07-ACC-01139,Accurate and precise,5.0,4.97205707
+F07-ACC-01140,Accurate and precise,5.0,4.61845690
+F07-ACC-01141,Accurate and precise,5.0,5.17458452
+F07-ACC-01142,Accurate and precise,5.0,5.16834601
+F07-ACC-01143,Accurate and precise,5.0,4.94298403
+F07-ACC-01144,Accurate and precise,5.0,4.95437302
+F07-ACC-01145,Accurate and precise,5.0,4.69398458
+F07-ACC-01146,Accurate and precise,5.0,4.73296443
+F07-ACC-01147,Accurate and precise,5.0,5.11496499
+F07-ACC-01148,Accurate and precise,5.0,5.05463175
+F07-ACC-01149,Accurate and precise,5.0,4.82095926
+F07-ACC-01150,Accurate and precise,5.0,4.99006860
+F07-ACC-01151,Accurate and precise,5.0,5.03649397
+F07-ACC-01152,Accurate and precise,5.0,4.80333186
+F07-ACC-01153,Accurate and precise,5.0,4.97040205
+F07-ACC-01154,Accurate and precise,5.0,4.72074022
+F07-ACC-01155,Accurate and precise,5.0,4.83163953
+F07-ACC-01156,Accurate and precise,5.0,4.60002945
+F07-ACC-01157,Accurate and precise,5.0,4.96046227
+F07-ACC-01158,Accurate and precise,5.0,5.03562601
+F07-ACC-01159,Accurate and precise,5.0,5.06900244
+F07-ACC-01160,Accurate and precise,5.0,5.07963314
+F07-ACC-01161,Accurate and precise,5.0,4.79653953
+F07-ACC-01162,Accurate and precise,5.0,4.80029633
+F07-ACC-01163,Accurate and precise,5.0,4.96178653
+F07-ACC-01164,Accurate and precise,5.0,5.18755994
+F07-ACC-01165,Accurate and precise,5.0,4.90936681
+F07-ACC-01166,Accurate and precise,5.0,5.29709495
+F07-ACC-01167,Accurate and precise,5.0,4.98353120
+F07-ACC-01168,Accurate and precise,5.0,5.39162053
+F07-ACC-01169,Accurate and precise,5.0,5.33019722
+F07-ACC-01170,Accurate and precise,5.0,4.87729357
+F07-ACC-01171,Accurate and precise,5.0,4.96200677
+F07-ACC-01172,Accurate and precise,5.0,4.64516435
+F07-ACC-01173,Accurate and precise,5.0,4.88130363
+F07-ACC-01174,Accurate and precise,5.0,5.00108187
+F07-ACC-01175,Accurate and precise,5.0,5.14070204
+F07-ACC-01176,Accurate and precise,5.0,5.01914151
+F07-ACC-01177,Accurate and precise,5.0,5.11333956
+F07-ACC-01178,Accurate and precise,5.0,5.33922040
+F07-ACC-01179,Accurate and precise,5.0,4.92006696
+F07-ACC-01180,Accurate and precise,5.0,4.95432603
+F07-ACC-01181,Accurate and precise,5.0,5.04156674
+F07-ACC-01182,Accurate and precise,5.0,4.90702519
+F07-ACC-01183,Accurate and precise,5.0,5.10738938
+F07-ACC-01184,Accurate and precise,5.0,4.87561990
+F07-ACC-01185,Accurate and precise,5.0,4.98495933
+F07-ACC-01186,Accurate and precise,5.0,4.87258089
+F07-ACC-01187,Accurate and precise,5.0,4.92721064
+F07-ACC-01188,Accurate and precise,5.0,5.23154165
+F07-ACC-01189,Accurate and precise,5.0,4.91105243
+F07-ACC-01190,Accurate and precise,5.0,5.07394787
+F07-ACC-01191,Accurate and precise,5.0,5.20134529
+F07-ACC-01192,Accurate and precise,5.0,5.03155183
+F07-ACC-01193,Accurate and precise,5.0,5.10448652
+F07-ACC-01194,Accurate and precise,5.0,5.34389986
+F07-ACC-01195,Accurate and precise,5.0,4.67894439
+F07-ACC-01196,Accurate and precise,5.0,5.03393066
+F07-ACC-01197,Accurate and precise,5.0,5.16070288
+F07-ACC-01198,Accurate and precise,5.0,4.99647682
+F07-ACC-01199,Accurate and precise,5.0,5.25493269
+F07-BIA-00000,Bias-dominated,5.0,5.76606022
+F07-BIA-00001,Bias-dominated,5.0,5.97002860
+F07-BIA-00002,Bias-dominated,5.0,5.89730874
+F07-BIA-00003,Bias-dominated,5.0,6.04755301
+F07-BIA-00004,Bias-dominated,5.0,5.60693992
+F07-BIA-00005,Bias-dominated,5.0,5.60982257
+F07-BIA-00006,Bias-dominated,5.0,5.88146179
+F07-BIA-00007,Bias-dominated,5.0,5.79017642
+F07-BIA-00008,Bias-dominated,5.0,5.80333732
+F07-BIA-00009,Bias-dominated,5.0,6.13663838
+F07-BIA-00010,Bias-dominated,5.0,5.84993386
+F07-BIA-00011,Bias-dominated,5.0,5.71906547
+F07-BIA-00012,Bias-dominated,5.0,5.89486425
+F07-BIA-00013,Bias-dominated,5.0,5.51922910
+F07-BIA-00014,Bias-dominated,5.0,5.58393816
+F07-BIA-00015,Bias-dominated,5.0,5.83368294
+F07-BIA-00016,Bias-dominated,5.0,5.88278786
+F07-BIA-00017,Bias-dominated,5.0,5.57335219
+F07-BIA-00018,Bias-dominated,5.0,5.85294229
+F07-BIA-00019,Bias-dominated,5.0,6.00506353
+F07-BIA-00020,Bias-dominated,5.0,5.68900844
+F07-BIA-00021,Bias-dominated,5.0,5.74751653
+F07-BIA-00022,Bias-dominated,5.0,5.46516420
+F07-BIA-00023,Bias-dominated,5.0,5.73875470
+F07-BIA-00024,Bias-dominated,5.0,5.73557120
+F07-BIA-00025,Bias-dominated,5.0,5.92376661
+F07-BIA-00026,Bias-dominated,5.0,5.61641655
+F07-BIA-00027,Bias-dominated,5.0,5.59972007
+F07-BIA-00028,Bias-dominated,5.0,5.70485760
+F07-BIA-00029,Bias-dominated,5.0,5.87810502
+F07-BIA-00030,Bias-dominated,5.0,5.46386475
+F07-BIA-00031,Bias-dominated,5.0,5.75478798
+F07-BIA-00032,Bias-dominated,5.0,5.79806156
+F07-BIA-00033,Bias-dominated,5.0,5.71831364
+F07-BIA-00034,Bias-dominated,5.0,5.50688886
+F07-BIA-00035,Bias-dominated,5.0,5.73711716
+F07-BIA-00036,Bias-dominated,5.0,5.79219733
+F07-BIA-00037,Bias-dominated,5.0,5.80277329
+F07-BIA-00038,Bias-dominated,5.0,5.83217346
+F07-BIA-00039,Bias-dominated,5.0,5.49438995
+F07-BIA-00040,Bias-dominated,5.0,5.85165440
+F07-BIA-00041,Bias-dominated,5.0,5.66815867
+F07-BIA-00042,Bias-dominated,5.0,5.84522270
+F07-BIA-00043,Bias-dominated,5.0,5.82414968
+F07-BIA-00044,Bias-dominated,5.0,5.76455892
+F07-BIA-00045,Bias-dominated,5.0,5.58752179
+F07-BIA-00046,Bias-dominated,5.0,5.68105269
+F07-BIA-00047,Bias-dominated,5.0,5.79810493
+F07-BIA-00048,Bias-dominated,5.0,5.77024569
+F07-BIA-00049,Bias-dominated,5.0,5.85932579
+F07-BIA-00050,Bias-dominated,5.0,5.80624381
+F07-BIA-00051,Bias-dominated,5.0,5.67151481
+F07-BIA-00052,Bias-dominated,5.0,5.76995486
+F07-BIA-00053,Bias-dominated,5.0,5.61030766
+F07-BIA-00054,Bias-dominated,5.0,5.76674589
+F07-BIA-00055,Bias-dominated,5.0,6.04896536
+F07-BIA-00056,Bias-dominated,5.0,5.78972856
+F07-BIA-00057,Bias-dominated,5.0,5.75695556
+F07-BIA-00058,Bias-dominated,5.0,5.85697713
+F07-BIA-00059,Bias-dominated,5.0,5.70017071
+F07-BIA-00060,Bias-dominated,5.0,5.62915617
+F07-BIA-00061,Bias-dominated,5.0,5.89940321
+F07-BIA-00062,Bias-dominated,5.0,5.95159203
+F07-BIA-00063,Bias-dominated,5.0,5.73598263
+F07-BIA-00064,Bias-dominated,5.0,5.36516542
+F07-BIA-00065,Bias-dominated,5.0,5.77871315
+F07-BIA-00066,Bias-dominated,5.0,5.87451835
+F07-BIA-00067,Bias-dominated,5.0,5.57120233
+F07-BIA-00068,Bias-dominated,5.0,5.65785037
+F07-BIA-00069,Bias-dominated,5.0,5.90629497
+F07-BIA-00070,Bias-dominated,5.0,5.98270731
+F07-BIA-00071,Bias-dominated,5.0,5.74087910
+F07-BIA-00072,Bias-dominated,5.0,5.92834050
+F07-BIA-00073,Bias-dominated,5.0,5.69233148
+F07-BIA-00074,Bias-dominated,5.0,5.82294019
+F07-BIA-00075,Bias-dominated,5.0,5.62729886
+F07-BIA-00076,Bias-dominated,5.0,5.80453938
+F07-BIA-00077,Bias-dominated,5.0,5.85107335
+F07-BIA-00078,Bias-dominated,5.0,5.95126140
+F07-BIA-00079,Bias-dominated,5.0,5.71564145
+F07-BIA-00080,Bias-dominated,5.0,5.62356981
+F07-BIA-00081,Bias-dominated,5.0,5.89160803
+F07-BIA-00082,Bias-dominated,5.0,5.83780203
+F07-BIA-00083,Bias-dominated,5.0,5.69715636
+F07-BIA-00084,Bias-dominated,5.0,5.41038421
+F07-BIA-00085,Bias-dominated,5.0,5.87938514
+F07-BIA-00086,Bias-dominated,5.0,5.60126758
+F07-BIA-00087,Bias-dominated,5.0,5.36730044
+F07-BIA-00088,Bias-dominated,5.0,5.90763971
+F07-BIA-00089,Bias-dominated,5.0,5.67008076
+F07-BIA-00090,Bias-dominated,5.0,5.79376954
+F07-BIA-00091,Bias-dominated,5.0,5.71980263
+F07-BIA-00092,Bias-dominated,5.0,5.85365033
+F07-BIA-00093,Bias-dominated,5.0,5.74659119
+F07-BIA-00094,Bias-dominated,5.0,5.62085775
+F07-BIA-00095,Bias-dominated,5.0,5.76093239
+F07-BIA-00096,Bias-dominated,5.0,5.73470465
+F07-BIA-00097,Bias-dominated,5.0,6.00885916
+F07-BIA-00098,Bias-dominated,5.0,5.60497816
+F07-BIA-00099,Bias-dominated,5.0,5.81146007
+F07-BIA-00100,Bias-dominated,5.0,6.09788100
+F07-BIA-00101,Bias-dominated,5.0,5.73776223
+F07-BIA-00102,Bias-dominated,5.0,5.61553716
+F07-BIA-00103,Bias-dominated,5.0,5.78716213
+F07-BIA-00104,Bias-dominated,5.0,5.86497699
+F07-BIA-00105,Bias-dominated,5.0,5.37008996
+F07-BIA-00106,Bias-dominated,5.0,5.58279144
+F07-BIA-00107,Bias-dominated,5.0,5.63517274
+F07-BIA-00108,Bias-dominated,5.0,5.61415610
+F07-BIA-00109,Bias-dominated,5.0,5.54823334
+F07-BIA-00110,Bias-dominated,5.0,6.12950128
+F07-BIA-00111,Bias-dominated,5.0,5.78251376
+F07-BIA-00112,Bias-dominated,5.0,5.66559175
+F07-BIA-00113,Bias-dominated,5.0,5.82490755
+F07-BIA-00114,Bias-dominated,5.0,5.80500687
+F07-BIA-00115,Bias-dominated,5.0,5.78977595
+F07-BIA-00116,Bias-dominated,5.0,5.94542389
+F07-BIA-00117,Bias-dominated,5.0,5.79800313
+F07-BIA-00118,Bias-dominated,5.0,5.89435302
+F07-BIA-00119,Bias-dominated,5.0,5.98477060
+F07-BIA-00120,Bias-dominated,5.0,6.12223503
+F07-BIA-00121,Bias-dominated,5.0,5.50818519
+F07-BIA-00122,Bias-dominated,5.0,5.49378833
+F07-BIA-00123,Bias-dominated,5.0,5.63891576
+F07-BIA-00124,Bias-dominated,5.0,5.50840219
+F07-BIA-00125,Bias-dominated,5.0,5.82769241
+F07-BIA-00126,Bias-dominated,5.0,5.64127557
+F07-BIA-00127,Bias-dominated,5.0,5.81159449
+F07-BIA-00128,Bias-dominated,5.0,6.04799325
+F07-BIA-00129,Bias-dominated,5.0,5.78042252
+F07-BIA-00130,Bias-dominated,5.0,5.84229019
+F07-BIA-00131,Bias-dominated,5.0,5.83976720
+F07-BIA-00132,Bias-dominated,5.0,5.60557450
+F07-BIA-00133,Bias-dominated,5.0,5.77419546
+F07-BIA-00134,Bias-dominated,5.0,5.92017266
+F07-BIA-00135,Bias-dominated,5.0,5.54683404
+F07-BIA-00136,Bias-dominated,5.0,5.64017794
+F07-BIA-00137,Bias-dominated,5.0,5.31354409
+F07-BIA-00138,Bias-dominated,5.0,5.94889397
+F07-BIA-00139,Bias-dominated,5.0,5.93626536
+F07-BIA-00140,Bias-dominated,5.0,5.98871007
+F07-BIA-00141,Bias-dominated,5.0,6.02604860
+F07-BIA-00142,Bias-dominated,5.0,5.83268362
+F07-BIA-00143,Bias-dominated,5.0,5.83557762
+F07-BIA-00144,Bias-dominated,5.0,5.59728868
+F07-BIA-00145,Bias-dominated,5.0,5.70782016
+F07-BIA-00146,Bias-dominated,5.0,5.76050274
+F07-BIA-00147,Bias-dominated,5.0,6.00125685
+F07-BIA-00148,Bias-dominated,5.0,5.53219979
+F07-BIA-00149,Bias-dominated,5.0,5.74640045
+F07-BIA-00150,Bias-dominated,5.0,5.99428594
+F07-BIA-00151,Bias-dominated,5.0,5.79914647
+F07-BIA-00152,Bias-dominated,5.0,5.76169069
+F07-BIA-00153,Bias-dominated,5.0,5.43383785
+F07-BIA-00154,Bias-dominated,5.0,5.95910623
+F07-BIA-00155,Bias-dominated,5.0,5.66530126
+F07-BIA-00156,Bias-dominated,5.0,5.95558321
+F07-BIA-00157,Bias-dominated,5.0,5.65353697
+F07-BIA-00158,Bias-dominated,5.0,5.83722651
+F07-BIA-00159,Bias-dominated,5.0,5.76212264
+F07-BIA-00160,Bias-dominated,5.0,5.89694000
+F07-BIA-00161,Bias-dominated,5.0,5.88628793
+F07-BIA-00162,Bias-dominated,5.0,5.63796162
+F07-BIA-00163,Bias-dominated,5.0,5.97212202
+F07-BIA-00164,Bias-dominated,5.0,5.50506977
+F07-BIA-00165,Bias-dominated,5.0,6.19808792
+F07-BIA-00166,Bias-dominated,5.0,5.94045325
+F07-BIA-00167,Bias-dominated,5.0,5.86750854
+F07-BIA-00168,Bias-dominated,5.0,5.50487954
+F07-BIA-00169,Bias-dominated,5.0,5.76859035
+F07-BIA-00170,Bias-dominated,5.0,6.04304286
+F07-BIA-00171,Bias-dominated,5.0,5.72408278
+F07-BIA-00172,Bias-dominated,5.0,5.77445352
+F07-BIA-00173,Bias-dominated,5.0,5.75356566
+F07-BIA-00174,Bias-dominated,5.0,5.80170662
+F07-BIA-00175,Bias-dominated,5.0,5.84937800
+F07-BIA-00176,Bias-dominated,5.0,5.67330871
+F07-BIA-00177,Bias-dominated,5.0,5.77550449
+F07-BIA-00178,Bias-dominated,5.0,5.78067025
+F07-BIA-00179,Bias-dominated,5.0,5.67080107
+F07-BIA-00180,Bias-dominated,5.0,5.68193364
+F07-BIA-00181,Bias-dominated,5.0,5.60961839
+F07-BIA-00182,Bias-dominated,5.0,5.87004036
+F07-BIA-00183,Bias-dominated,5.0,5.83994933
+F07-BIA-00184,Bias-dominated,5.0,5.48222236
+F07-BIA-00185,Bias-dominated,5.0,5.78059716
+F07-BIA-00186,Bias-dominated,5.0,5.66736805
+F07-BIA-00187,Bias-dominated,5.0,5.65640249
+F07-BIA-00188,Bias-dominated,5.0,5.69542883
+F07-BIA-00189,Bias-dominated,5.0,5.87403228
+F07-BIA-00190,Bias-dominated,5.0,5.70977844
+F07-BIA-00191,Bias-dominated,5.0,5.74710180
+F07-BIA-00192,Bias-dominated,5.0,5.75895296
+F07-BIA-00193,Bias-dominated,5.0,5.92445962
+F07-BIA-00194,Bias-dominated,5.0,5.73144181
+F07-BIA-00195,Bias-dominated,5.0,5.43898469
+F07-BIA-00196,Bias-dominated,5.0,5.47663024
+F07-BIA-00197,Bias-dominated,5.0,5.63294971
+F07-BIA-00198,Bias-dominated,5.0,5.78549497
+F07-BIA-00199,Bias-dominated,5.0,5.92938312
+F07-BIA-00200,Bias-dominated,5.0,5.63923476
+F07-BIA-00201,Bias-dominated,5.0,5.41824105
+F07-BIA-00202,Bias-dominated,5.0,5.93563294
+F07-BIA-00203,Bias-dominated,5.0,5.93941857
+F07-BIA-00204,Bias-dominated,5.0,5.59047331
+F07-BIA-00205,Bias-dominated,5.0,5.82743437
+F07-BIA-00206,Bias-dominated,5.0,5.78720037
+F07-BIA-00207,Bias-dominated,5.0,5.82690114
+F07-BIA-00208,Bias-dominated,5.0,5.66801733
+F07-BIA-00209,Bias-dominated,5.0,5.61385414
+F07-BIA-00210,Bias-dominated,5.0,5.85690884
+F07-BIA-00211,Bias-dominated,5.0,5.43710123
+F07-BIA-00212,Bias-dominated,5.0,5.75161753
+F07-BIA-00213,Bias-dominated,5.0,5.77514195
+F07-BIA-00214,Bias-dominated,5.0,5.68897621
+F07-BIA-00215,Bias-dominated,5.0,5.83404765
+F07-BIA-00216,Bias-dominated,5.0,5.61179411
+F07-BIA-00217,Bias-dominated,5.0,5.72657898
+F07-BIA-00218,Bias-dominated,5.0,5.74343008
+F07-BIA-00219,Bias-dominated,5.0,5.98163994
+F07-BIA-00220,Bias-dominated,5.0,5.86746119
+F07-BIA-00221,Bias-dominated,5.0,5.57437040
+F07-BIA-00222,Bias-dominated,5.0,5.82887983
+F07-BIA-00223,Bias-dominated,5.0,5.92061478
+F07-BIA-00224,Bias-dominated,5.0,6.13225300
+F07-BIA-00225,Bias-dominated,5.0,5.84457838
+F07-BIA-00226,Bias-dominated,5.0,5.93561698
+F07-BIA-00227,Bias-dominated,5.0,5.94785820
+F07-BIA-00228,Bias-dominated,5.0,5.81611449
+F07-BIA-00229,Bias-dominated,5.0,6.15915838
+F07-BIA-00230,Bias-dominated,5.0,5.95209390
+F07-BIA-00231,Bias-dominated,5.0,5.60720236
+F07-BIA-00232,Bias-dominated,5.0,5.48612251
+F07-BIA-00233,Bias-dominated,5.0,5.84668891
+F07-BIA-00234,Bias-dominated,5.0,6.11462602
+F07-BIA-00235,Bias-dominated,5.0,5.57488459
+F07-BIA-00236,Bias-dominated,5.0,5.30044174
+F07-BIA-00237,Bias-dominated,5.0,5.95051622
+F07-BIA-00238,Bias-dominated,5.0,5.62203887
+F07-BIA-00239,Bias-dominated,5.0,5.99267797
+F07-BIA-00240,Bias-dominated,5.0,5.86945895
+F07-BIA-00241,Bias-dominated,5.0,5.77933997
+F07-BIA-00242,Bias-dominated,5.0,5.78000940
+F07-BIA-00243,Bias-dominated,5.0,5.48540245
+F07-BIA-00244,Bias-dominated,5.0,5.72966842
+F07-BIA-00245,Bias-dominated,5.0,5.94808027
+F07-BIA-00246,Bias-dominated,5.0,6.10549816
+F07-BIA-00247,Bias-dominated,5.0,5.83538230
+F07-BIA-00248,Bias-dominated,5.0,6.12343431
+F07-BIA-00249,Bias-dominated,5.0,5.75162240
+F07-BIA-00250,Bias-dominated,5.0,5.74968296
+F07-BIA-00251,Bias-dominated,5.0,5.98267049
+F07-BIA-00252,Bias-dominated,5.0,5.78985058
+F07-BIA-00253,Bias-dominated,5.0,5.61835900
+F07-BIA-00254,Bias-dominated,5.0,6.03856082
+F07-BIA-00255,Bias-dominated,5.0,5.69225168
+F07-BIA-00256,Bias-dominated,5.0,5.48210643
+F07-BIA-00257,Bias-dominated,5.0,5.88953139
+F07-BIA-00258,Bias-dominated,5.0,5.37429051
+F07-BIA-00259,Bias-dominated,5.0,5.81465826
+F07-BIA-00260,Bias-dominated,5.0,5.95382531
+F07-BIA-00261,Bias-dominated,5.0,5.63768520
+F07-BIA-00262,Bias-dominated,5.0,5.98838562
+F07-BIA-00263,Bias-dominated,5.0,5.89641236
+F07-BIA-00264,Bias-dominated,5.0,5.50538454
+F07-BIA-00265,Bias-dominated,5.0,5.91936773
+F07-BIA-00266,Bias-dominated,5.0,5.57615926
+F07-BIA-00267,Bias-dominated,5.0,5.73590443
+F07-BIA-00268,Bias-dominated,5.0,5.83193238
+F07-BIA-00269,Bias-dominated,5.0,5.78039833
+F07-BIA-00270,Bias-dominated,5.0,5.36707553
+F07-BIA-00271,Bias-dominated,5.0,6.08772008
+F07-BIA-00272,Bias-dominated,5.0,5.61546467
+F07-BIA-00273,Bias-dominated,5.0,5.58369076
+F07-BIA-00274,Bias-dominated,5.0,5.82708892
+F07-BIA-00275,Bias-dominated,5.0,5.95476044
+F07-BIA-00276,Bias-dominated,5.0,5.66162561
+F07-BIA-00277,Bias-dominated,5.0,5.66896515
+F07-BIA-00278,Bias-dominated,5.0,5.51391801
+F07-BIA-00279,Bias-dominated,5.0,5.70237695
+F07-BIA-00280,Bias-dominated,5.0,5.57968721
+F07-BIA-00281,Bias-dominated,5.0,5.91540754
+F07-BIA-00282,Bias-dominated,5.0,5.51783530
+F07-BIA-00283,Bias-dominated,5.0,5.97628232
+F07-BIA-00284,Bias-dominated,5.0,5.60286082
+F07-BIA-00285,Bias-dominated,5.0,5.37509951
+F07-BIA-00286,Bias-dominated,5.0,5.72207326
+F07-BIA-00287,Bias-dominated,5.0,5.42392082
+F07-BIA-00288,Bias-dominated,5.0,5.64723642
+F07-BIA-00289,Bias-dominated,5.0,5.84988067
+F07-BIA-00290,Bias-dominated,5.0,5.60745199
+F07-BIA-00291,Bias-dominated,5.0,5.59966614
+F07-BIA-00292,Bias-dominated,5.0,5.70714780
+F07-BIA-00293,Bias-dominated,5.0,5.82430211
+F07-BIA-00294,Bias-dominated,5.0,5.74139243
+F07-BIA-00295,Bias-dominated,5.0,5.54067571
+F07-BIA-00296,Bias-dominated,5.0,5.89465996
+F07-BIA-00297,Bias-dominated,5.0,5.72563979
+F07-BIA-00298,Bias-dominated,5.0,5.70992915
+F07-BIA-00299,Bias-dominated,5.0,5.91618629
+F07-BIA-00300,Bias-dominated,5.0,5.73230537
+F07-BIA-00301,Bias-dominated,5.0,5.91366825
+F07-BIA-00302,Bias-dominated,5.0,5.64739853
+F07-BIA-00303,Bias-dominated,5.0,5.58925324
+F07-BIA-00304,Bias-dominated,5.0,5.96401492
+F07-BIA-00305,Bias-dominated,5.0,5.67725269
+F07-BIA-00306,Bias-dominated,5.0,5.85424811
+F07-BIA-00307,Bias-dominated,5.0,5.73516705
+F07-BIA-00308,Bias-dominated,5.0,5.59894498
+F07-BIA-00309,Bias-dominated,5.0,5.67573763
+F07-BIA-00310,Bias-dominated,5.0,5.87302925
+F07-BIA-00311,Bias-dominated,5.0,5.55691545
+F07-BIA-00312,Bias-dominated,5.0,5.81896825
+F07-BIA-00313,Bias-dominated,5.0,5.97744054
+F07-BIA-00314,Bias-dominated,5.0,5.87145696
+F07-BIA-00315,Bias-dominated,5.0,5.60205171
+F07-BIA-00316,Bias-dominated,5.0,5.62989048
+F07-BIA-00317,Bias-dominated,5.0,5.71616136
+F07-BIA-00318,Bias-dominated,5.0,5.63878127
+F07-BIA-00319,Bias-dominated,5.0,5.42239223
+F07-BIA-00320,Bias-dominated,5.0,5.66272581
+F07-BIA-00321,Bias-dominated,5.0,5.68983730
+F07-BIA-00322,Bias-dominated,5.0,6.06816861
+F07-BIA-00323,Bias-dominated,5.0,5.69269363
+F07-BIA-00324,Bias-dominated,5.0,5.68778142
+F07-BIA-00325,Bias-dominated,5.0,6.10346829
+F07-BIA-00326,Bias-dominated,5.0,5.65771580
+F07-BIA-00327,Bias-dominated,5.0,5.58302185
+F07-BIA-00328,Bias-dominated,5.0,5.77832122
+F07-BIA-00329,Bias-dominated,5.0,5.78261607
+F07-BIA-00330,Bias-dominated,5.0,5.66937960
+F07-BIA-00331,Bias-dominated,5.0,5.82840072
+F07-BIA-00332,Bias-dominated,5.0,5.98790663
+F07-BIA-00333,Bias-dominated,5.0,6.06398601
+F07-BIA-00334,Bias-dominated,5.0,5.63298319
+F07-BIA-00335,Bias-dominated,5.0,5.90743114
+F07-BIA-00336,Bias-dominated,5.0,5.80609562
+F07-BIA-00337,Bias-dominated,5.0,5.84551090
+F07-BIA-00338,Bias-dominated,5.0,5.75891962
+F07-BIA-00339,Bias-dominated,5.0,5.69926437
+F07-BIA-00340,Bias-dominated,5.0,6.21348970
+F07-BIA-00341,Bias-dominated,5.0,6.15170631
+F07-BIA-00342,Bias-dominated,5.0,5.70536344
+F07-BIA-00343,Bias-dominated,5.0,5.69149113
+F07-BIA-00344,Bias-dominated,5.0,5.55039238
+F07-BIA-00345,Bias-dominated,5.0,5.83481271
+F07-BIA-00346,Bias-dominated,5.0,5.69157292
+F07-BIA-00347,Bias-dominated,5.0,5.69139139
+F07-BIA-00348,Bias-dominated,5.0,5.95801954
+F07-BIA-00349,Bias-dominated,5.0,5.86555323
+F07-BIA-00350,Bias-dominated,5.0,5.83768652
+F07-BIA-00351,Bias-dominated,5.0,5.68454650
+F07-BIA-00352,Bias-dominated,5.0,5.70416852
+F07-BIA-00353,Bias-dominated,5.0,5.74416780
+F07-BIA-00354,Bias-dominated,5.0,5.64707814
+F07-BIA-00355,Bias-dominated,5.0,5.54198726
+F07-BIA-00356,Bias-dominated,5.0,5.75384906
+F07-BIA-00357,Bias-dominated,5.0,5.81780125
+F07-BIA-00358,Bias-dominated,5.0,5.69439758
+F07-BIA-00359,Bias-dominated,5.0,5.84289743
+F07-BIA-00360,Bias-dominated,5.0,5.84265830
+F07-BIA-00361,Bias-dominated,5.0,5.87177321
+F07-BIA-00362,Bias-dominated,5.0,5.90773009
+F07-BIA-00363,Bias-dominated,5.0,5.76745882
+F07-BIA-00364,Bias-dominated,5.0,5.55217185
+F07-BIA-00365,Bias-dominated,5.0,5.62314065
+F07-BIA-00366,Bias-dominated,5.0,5.78121735
+F07-BIA-00367,Bias-dominated,5.0,5.97449445
+F07-BIA-00368,Bias-dominated,5.0,5.69507027
+F07-BIA-00369,Bias-dominated,5.0,5.72557025
+F07-BIA-00370,Bias-dominated,5.0,5.69502689
+F07-BIA-00371,Bias-dominated,5.0,5.52845303
+F07-BIA-00372,Bias-dominated,5.0,5.67065114
+F07-BIA-00373,Bias-dominated,5.0,5.99340680
+F07-BIA-00374,Bias-dominated,5.0,5.59936529
+F07-BIA-00375,Bias-dominated,5.0,5.71761142
+F07-BIA-00376,Bias-dominated,5.0,5.82342931
+F07-BIA-00377,Bias-dominated,5.0,5.88216024
+F07-BIA-00378,Bias-dominated,5.0,5.96592742
+F07-BIA-00379,Bias-dominated,5.0,5.95069802
+F07-BIA-00380,Bias-dominated,5.0,5.61303515
+F07-BIA-00381,Bias-dominated,5.0,5.76917673
+F07-BIA-00382,Bias-dominated,5.0,5.96981682
+F07-BIA-00383,Bias-dominated,5.0,5.55090718
+F07-BIA-00384,Bias-dominated,5.0,5.84489125
+F07-BIA-00385,Bias-dominated,5.0,5.74661254
+F07-BIA-00386,Bias-dominated,5.0,5.71438572
+F07-BIA-00387,Bias-dominated,5.0,5.48304621
+F07-BIA-00388,Bias-dominated,5.0,5.54929641
+F07-BIA-00389,Bias-dominated,5.0,5.76654056
+F07-BIA-00390,Bias-dominated,5.0,5.61456167
+F07-BIA-00391,Bias-dominated,5.0,5.71862241
+F07-BIA-00392,Bias-dominated,5.0,6.04086532
+F07-BIA-00393,Bias-dominated,5.0,5.86767987
+F07-BIA-00394,Bias-dominated,5.0,5.63394312
+F07-BIA-00395,Bias-dominated,5.0,5.56592697
+F07-BIA-00396,Bias-dominated,5.0,5.58818722
+F07-BIA-00397,Bias-dominated,5.0,5.73544809
+F07-BIA-00398,Bias-dominated,5.0,5.85693560
+F07-BIA-00399,Bias-dominated,5.0,5.92970198
+F07-BIA-00400,Bias-dominated,5.0,5.74645261
+F07-BIA-00401,Bias-dominated,5.0,5.60018788
+F07-BIA-00402,Bias-dominated,5.0,5.72004556
+F07-BIA-00403,Bias-dominated,5.0,5.85334604
+F07-BIA-00404,Bias-dominated,5.0,5.84954343
+F07-BIA-00405,Bias-dominated,5.0,5.67088599
+F07-BIA-00406,Bias-dominated,5.0,5.70782986
+F07-BIA-00407,Bias-dominated,5.0,5.50603745
+F07-BIA-00408,Bias-dominated,5.0,5.33274621
+F07-BIA-00409,Bias-dominated,5.0,5.97013294
+F07-BIA-00410,Bias-dominated,5.0,5.41152042
+F07-BIA-00411,Bias-dominated,5.0,5.75884976
+F07-BIA-00412,Bias-dominated,5.0,5.74262348
+F07-BIA-00413,Bias-dominated,5.0,5.60132413
+F07-BIA-00414,Bias-dominated,5.0,5.92262642
+F07-BIA-00415,Bias-dominated,5.0,5.85199448
+F07-BIA-00416,Bias-dominated,5.0,5.78384855
+F07-BIA-00417,Bias-dominated,5.0,5.90243486
+F07-BIA-00418,Bias-dominated,5.0,5.85637862
+F07-BIA-00419,Bias-dominated,5.0,5.79324297
+F07-BIA-00420,Bias-dominated,5.0,5.66166986
+F07-BIA-00421,Bias-dominated,5.0,5.78201656
+F07-BIA-00422,Bias-dominated,5.0,5.52882102
+F07-BIA-00423,Bias-dominated,5.0,5.65242187
+F07-BIA-00424,Bias-dominated,5.0,5.64203456
+F07-BIA-00425,Bias-dominated,5.0,6.01153175
+F07-BIA-00426,Bias-dominated,5.0,5.53499907
+F07-BIA-00427,Bias-dominated,5.0,5.76774003
+F07-BIA-00428,Bias-dominated,5.0,5.97518510
+F07-BIA-00429,Bias-dominated,5.0,5.77541656
+F07-BIA-00430,Bias-dominated,5.0,5.74583965
+F07-BIA-00431,Bias-dominated,5.0,5.73030237
+F07-BIA-00432,Bias-dominated,5.0,5.80620150
+F07-BIA-00433,Bias-dominated,5.0,5.66240228
+F07-BIA-00434,Bias-dominated,5.0,5.85706856
+F07-BIA-00435,Bias-dominated,5.0,5.84928790
+F07-BIA-00436,Bias-dominated,5.0,5.64598089
+F07-BIA-00437,Bias-dominated,5.0,5.56380005
+F07-BIA-00438,Bias-dominated,5.0,5.67278378
+F07-BIA-00439,Bias-dominated,5.0,5.66140662
+F07-BIA-00440,Bias-dominated,5.0,5.33218809
+F07-BIA-00441,Bias-dominated,5.0,5.86500734
+F07-BIA-00442,Bias-dominated,5.0,5.69614142
+F07-BIA-00443,Bias-dominated,5.0,5.41153942
+F07-BIA-00444,Bias-dominated,5.0,5.72812506
+F07-BIA-00445,Bias-dominated,5.0,5.65403694
+F07-BIA-00446,Bias-dominated,5.0,5.62080274
+F07-BIA-00447,Bias-dominated,5.0,6.06384936
+F07-BIA-00448,Bias-dominated,5.0,5.57599450
+F07-BIA-00449,Bias-dominated,5.0,5.55804851
+F07-BIA-00450,Bias-dominated,5.0,5.79997537
+F07-BIA-00451,Bias-dominated,5.0,5.31569473
+F07-BIA-00452,Bias-dominated,5.0,5.69326386
+F07-BIA-00453,Bias-dominated,5.0,5.80269692
+F07-BIA-00454,Bias-dominated,5.0,5.58270313
+F07-BIA-00455,Bias-dominated,5.0,5.73019310
+F07-BIA-00456,Bias-dominated,5.0,5.95768990
+F07-BIA-00457,Bias-dominated,5.0,5.81941009
+F07-BIA-00458,Bias-dominated,5.0,5.61427218
+F07-BIA-00459,Bias-dominated,5.0,5.83979482
+F07-BIA-00460,Bias-dominated,5.0,5.66701200
+F07-BIA-00461,Bias-dominated,5.0,5.57730909
+F07-BIA-00462,Bias-dominated,5.0,5.65148940
+F07-BIA-00463,Bias-dominated,5.0,5.60914645
+F07-BIA-00464,Bias-dominated,5.0,5.80362360
+F07-BIA-00465,Bias-dominated,5.0,6.05922685
+F07-BIA-00466,Bias-dominated,5.0,5.84629597
+F07-BIA-00467,Bias-dominated,5.0,5.72805229
+F07-BIA-00468,Bias-dominated,5.0,5.79421947
+F07-BIA-00469,Bias-dominated,5.0,5.62486306
+F07-BIA-00470,Bias-dominated,5.0,5.68983962
+F07-BIA-00471,Bias-dominated,5.0,5.90371244
+F07-BIA-00472,Bias-dominated,5.0,5.60962730
+F07-BIA-00473,Bias-dominated,5.0,5.54632086
+F07-BIA-00474,Bias-dominated,5.0,5.78884044
+F07-BIA-00475,Bias-dominated,5.0,5.69868925
+F07-BIA-00476,Bias-dominated,5.0,5.48283210
+F07-BIA-00477,Bias-dominated,5.0,5.63620408
+F07-BIA-00478,Bias-dominated,5.0,6.05045187
+F07-BIA-00479,Bias-dominated,5.0,5.66240715
+F07-BIA-00480,Bias-dominated,5.0,5.38584043
+F07-BIA-00481,Bias-dominated,5.0,5.58904986
+F07-BIA-00482,Bias-dominated,5.0,6.09617545
+F07-BIA-00483,Bias-dominated,5.0,5.76226710
+F07-BIA-00484,Bias-dominated,5.0,5.37348268
+F07-BIA-00485,Bias-dominated,5.0,5.70497332
+F07-BIA-00486,Bias-dominated,5.0,5.81320878
+F07-BIA-00487,Bias-dominated,5.0,5.78598859
+F07-BIA-00488,Bias-dominated,5.0,5.73503122
+F07-BIA-00489,Bias-dominated,5.0,5.59904169
+F07-BIA-00490,Bias-dominated,5.0,5.95734472
+F07-BIA-00491,Bias-dominated,5.0,5.92704719
+F07-BIA-00492,Bias-dominated,5.0,6.04594829
+F07-BIA-00493,Bias-dominated,5.0,5.98072002
+F07-BIA-00494,Bias-dominated,5.0,5.65292746
+F07-BIA-00495,Bias-dominated,5.0,5.74261371
+F07-BIA-00496,Bias-dominated,5.0,5.67377518
+F07-BIA-00497,Bias-dominated,5.0,6.02904490
+F07-BIA-00498,Bias-dominated,5.0,5.62074887
+F07-BIA-00499,Bias-dominated,5.0,5.62033343
+F07-BIA-00500,Bias-dominated,5.0,5.68196752
+F07-BIA-00501,Bias-dominated,5.0,5.93799631
+F07-BIA-00502,Bias-dominated,5.0,5.67613637
+F07-BIA-00503,Bias-dominated,5.0,5.72657486
+F07-BIA-00504,Bias-dominated,5.0,6.00795863
+F07-BIA-00505,Bias-dominated,5.0,5.90066498
+F07-BIA-00506,Bias-dominated,5.0,5.90297814
+F07-BIA-00507,Bias-dominated,5.0,5.40664615
+F07-BIA-00508,Bias-dominated,5.0,5.66454698
+F07-BIA-00509,Bias-dominated,5.0,5.87117299
+F07-BIA-00510,Bias-dominated,5.0,5.52104715
+F07-BIA-00511,Bias-dominated,5.0,5.54373475
+F07-BIA-00512,Bias-dominated,5.0,5.50408202
+F07-BIA-00513,Bias-dominated,5.0,5.57469865
+F07-BIA-00514,Bias-dominated,5.0,5.56990551
+F07-BIA-00515,Bias-dominated,5.0,5.73552970
+F07-BIA-00516,Bias-dominated,5.0,5.59246003
+F07-BIA-00517,Bias-dominated,5.0,5.63599561
+F07-BIA-00518,Bias-dominated,5.0,5.65444140
+F07-BIA-00519,Bias-dominated,5.0,5.69967890
+F07-BIA-00520,Bias-dominated,5.0,5.34554032
+F07-BIA-00521,Bias-dominated,5.0,5.77849218
+F07-BIA-00522,Bias-dominated,5.0,5.57595840
+F07-BIA-00523,Bias-dominated,5.0,5.94040454
+F07-BIA-00524,Bias-dominated,5.0,5.42827816
+F07-BIA-00525,Bias-dominated,5.0,5.50675636
+F07-BIA-00526,Bias-dominated,5.0,5.77384611
+F07-BIA-00527,Bias-dominated,5.0,5.75678714
+F07-BIA-00528,Bias-dominated,5.0,5.63989827
+F07-BIA-00529,Bias-dominated,5.0,5.61957629
+F07-BIA-00530,Bias-dominated,5.0,5.62485024
+F07-BIA-00531,Bias-dominated,5.0,6.07778359
+F07-BIA-00532,Bias-dominated,5.0,5.57241957
+F07-BIA-00533,Bias-dominated,5.0,5.66854599
+F07-BIA-00534,Bias-dominated,5.0,6.02228678
+F07-BIA-00535,Bias-dominated,5.0,5.86768149
+F07-BIA-00536,Bias-dominated,5.0,6.10401750
+F07-BIA-00537,Bias-dominated,5.0,5.73421488
+F07-BIA-00538,Bias-dominated,5.0,5.62143026
+F07-BIA-00539,Bias-dominated,5.0,5.76053984
+F07-BIA-00540,Bias-dominated,5.0,5.36204535
+F07-BIA-00541,Bias-dominated,5.0,5.61813995
+F07-BIA-00542,Bias-dominated,5.0,5.50805068
+F07-BIA-00543,Bias-dominated,5.0,5.75031997
+F07-BIA-00544,Bias-dominated,5.0,5.83639291
+F07-BIA-00545,Bias-dominated,5.0,5.86449331
+F07-BIA-00546,Bias-dominated,5.0,5.79981348
+F07-BIA-00547,Bias-dominated,5.0,6.14823604
+F07-BIA-00548,Bias-dominated,5.0,5.66950189
+F07-BIA-00549,Bias-dominated,5.0,5.76158535
+F07-BIA-00550,Bias-dominated,5.0,5.68799229
+F07-BIA-00551,Bias-dominated,5.0,5.63436252
+F07-BIA-00552,Bias-dominated,5.0,5.61402313
+F07-BIA-00553,Bias-dominated,5.0,5.80026414
+F07-BIA-00554,Bias-dominated,5.0,5.65577165
+F07-BIA-00555,Bias-dominated,5.0,5.31207935
+F07-BIA-00556,Bias-dominated,5.0,5.83107906
+F07-BIA-00557,Bias-dominated,5.0,5.94982256
+F07-BIA-00558,Bias-dominated,5.0,5.65992173
+F07-BIA-00559,Bias-dominated,5.0,6.02572793
+F07-BIA-00560,Bias-dominated,5.0,6.05537032
+F07-BIA-00561,Bias-dominated,5.0,5.59668210
+F07-BIA-00562,Bias-dominated,5.0,5.47256241
+F07-BIA-00563,Bias-dominated,5.0,5.90563403
+F07-BIA-00564,Bias-dominated,5.0,5.45635514
+F07-BIA-00565,Bias-dominated,5.0,6.10098684
+F07-BIA-00566,Bias-dominated,5.0,5.73045633
+F07-BIA-00567,Bias-dominated,5.0,5.66197349
+F07-BIA-00568,Bias-dominated,5.0,5.87736800
+F07-BIA-00569,Bias-dominated,5.0,6.04949932
+F07-BIA-00570,Bias-dominated,5.0,6.10679089
+F07-BIA-00571,Bias-dominated,5.0,5.66723457
+F07-BIA-00572,Bias-dominated,5.0,5.52426868
+F07-BIA-00573,Bias-dominated,5.0,5.79751444
+F07-BIA-00574,Bias-dominated,5.0,5.73516375
+F07-BIA-00575,Bias-dominated,5.0,5.75285256
+F07-BIA-00576,Bias-dominated,5.0,5.23640005
+F07-BIA-00577,Bias-dominated,5.0,5.75995276
+F07-BIA-00578,Bias-dominated,5.0,5.56020864
+F07-BIA-00579,Bias-dominated,5.0,5.53017789
+F07-BIA-00580,Bias-dominated,5.0,5.61735257
+F07-BIA-00581,Bias-dominated,5.0,5.51040770
+F07-BIA-00582,Bias-dominated,5.0,5.41954640
+F07-BIA-00583,Bias-dominated,5.0,5.67223972
+F07-BIA-00584,Bias-dominated,5.0,5.64341175
+F07-BIA-00585,Bias-dominated,5.0,5.79620395
+F07-BIA-00586,Bias-dominated,5.0,5.61175128
+F07-BIA-00587,Bias-dominated,5.0,5.76137787
+F07-BIA-00588,Bias-dominated,5.0,5.88376187
+F07-BIA-00589,Bias-dominated,5.0,5.68658835
+F07-BIA-00590,Bias-dominated,5.0,5.61835611
+F07-BIA-00591,Bias-dominated,5.0,5.63370315
+F07-BIA-00592,Bias-dominated,5.0,6.00276451
+F07-BIA-00593,Bias-dominated,5.0,5.85235007
+F07-BIA-00594,Bias-dominated,5.0,5.62848512
+F07-BIA-00595,Bias-dominated,5.0,5.47406788
+F07-BIA-00596,Bias-dominated,5.0,5.90522095
+F07-BIA-00597,Bias-dominated,5.0,5.76157776
+F07-BIA-00598,Bias-dominated,5.0,5.77339292
+F07-BIA-00599,Bias-dominated,5.0,5.89108597
+F07-BIA-00600,Bias-dominated,5.0,5.64082876
+F07-BIA-00601,Bias-dominated,5.0,5.93022843
+F07-BIA-00602,Bias-dominated,5.0,5.70476819
+F07-BIA-00603,Bias-dominated,5.0,5.71126383
+F07-BIA-00604,Bias-dominated,5.0,5.65789158
+F07-BIA-00605,Bias-dominated,5.0,5.92614979
+F07-BIA-00606,Bias-dominated,5.0,5.70017244
+F07-BIA-00607,Bias-dominated,5.0,5.86687478
+F07-BIA-00608,Bias-dominated,5.0,5.68781439
+F07-BIA-00609,Bias-dominated,5.0,5.52544519
+F07-BIA-00610,Bias-dominated,5.0,5.64406439
+F07-BIA-00611,Bias-dominated,5.0,5.58233606
+F07-BIA-00612,Bias-dominated,5.0,6.03498057
+F07-BIA-00613,Bias-dominated,5.0,5.74892796
+F07-BIA-00614,Bias-dominated,5.0,5.87334153
+F07-BIA-00615,Bias-dominated,5.0,5.66153885
+F07-BIA-00616,Bias-dominated,5.0,5.65089126
+F07-BIA-00617,Bias-dominated,5.0,5.79922573
+F07-BIA-00618,Bias-dominated,5.0,6.04154529
+F07-BIA-00619,Bias-dominated,5.0,5.74626041
+F07-BIA-00620,Bias-dominated,5.0,5.60859177
+F07-BIA-00621,Bias-dominated,5.0,5.53707844
+F07-BIA-00622,Bias-dominated,5.0,5.47866528
+F07-BIA-00623,Bias-dominated,5.0,5.88101561
+F07-BIA-00624,Bias-dominated,5.0,5.61063078
+F07-BIA-00625,Bias-dominated,5.0,5.80017899
+F07-BIA-00626,Bias-dominated,5.0,5.96516901
+F07-BIA-00627,Bias-dominated,5.0,5.84728313
+F07-BIA-00628,Bias-dominated,5.0,5.66487786
+F07-BIA-00629,Bias-dominated,5.0,6.04586585
+F07-BIA-00630,Bias-dominated,5.0,5.89716786
+F07-BIA-00631,Bias-dominated,5.0,5.86674705
+F07-BIA-00632,Bias-dominated,5.0,5.68988930
+F07-BIA-00633,Bias-dominated,5.0,5.74408325
+F07-BIA-00634,Bias-dominated,5.0,5.69122990
+F07-BIA-00635,Bias-dominated,5.0,5.69582751
+F07-BIA-00636,Bias-dominated,5.0,5.50353397
+F07-BIA-00637,Bias-dominated,5.0,5.92485473
+F07-BIA-00638,Bias-dominated,5.0,5.89709211
+F07-BIA-00639,Bias-dominated,5.0,5.41156504
+F07-BIA-00640,Bias-dominated,5.0,5.90669445
+F07-BIA-00641,Bias-dominated,5.0,5.36372913
+F07-BIA-00642,Bias-dominated,5.0,5.59273824
+F07-BIA-00643,Bias-dominated,5.0,5.60771510
+F07-BIA-00644,Bias-dominated,5.0,6.00614808
+F07-BIA-00645,Bias-dominated,5.0,5.46682230
+F07-BIA-00646,Bias-dominated,5.0,5.86218988
+F07-BIA-00647,Bias-dominated,5.0,6.08738926
+F07-BIA-00648,Bias-dominated,5.0,5.52367980
+F07-BIA-00649,Bias-dominated,5.0,5.67587135
+F07-BIA-00650,Bias-dominated,5.0,5.32659899
+F07-BIA-00651,Bias-dominated,5.0,5.91794484
+F07-BIA-00652,Bias-dominated,5.0,5.75182158
+F07-BIA-00653,Bias-dominated,5.0,6.18479547
+F07-BIA-00654,Bias-dominated,5.0,5.56610208
+F07-BIA-00655,Bias-dominated,5.0,5.80646271
+F07-BIA-00656,Bias-dominated,5.0,5.62463520
+F07-BIA-00657,Bias-dominated,5.0,5.80021110
+F07-BIA-00658,Bias-dominated,5.0,5.82707021
+F07-BIA-00659,Bias-dominated,5.0,5.55529528
+F07-BIA-00660,Bias-dominated,5.0,5.60672023
+F07-BIA-00661,Bias-dominated,5.0,5.75804243
+F07-BIA-00662,Bias-dominated,5.0,5.71172302
+F07-BIA-00663,Bias-dominated,5.0,5.70984343
+F07-BIA-00664,Bias-dominated,5.0,5.68966025
+F07-BIA-00665,Bias-dominated,5.0,6.10151014
+F07-BIA-00666,Bias-dominated,5.0,5.89589101
+F07-BIA-00667,Bias-dominated,5.0,5.75840765
+F07-BIA-00668,Bias-dominated,5.0,5.73433593
+F07-BIA-00669,Bias-dominated,5.0,5.69143079
+F07-BIA-00670,Bias-dominated,5.0,5.63729054
+F07-BIA-00671,Bias-dominated,5.0,5.70835636
+F07-BIA-00672,Bias-dominated,5.0,5.99801113
+F07-BIA-00673,Bias-dominated,5.0,5.67746888
+F07-BIA-00674,Bias-dominated,5.0,5.37769747
+F07-BIA-00675,Bias-dominated,5.0,5.89052261
+F07-BIA-00676,Bias-dominated,5.0,5.74567049
+F07-BIA-00677,Bias-dominated,5.0,5.79208473
+F07-BIA-00678,Bias-dominated,5.0,5.81480975
+F07-BIA-00679,Bias-dominated,5.0,5.61295767
+F07-BIA-00680,Bias-dominated,5.0,5.46369738
+F07-BIA-00681,Bias-dominated,5.0,5.96325910
+F07-BIA-00682,Bias-dominated,5.0,5.39598383
+F07-BIA-00683,Bias-dominated,5.0,5.79071901
+F07-BIA-00684,Bias-dominated,5.0,5.32650744
+F07-BIA-00685,Bias-dominated,5.0,5.69134971
+F07-BIA-00686,Bias-dominated,5.0,5.54947119
+F07-BIA-00687,Bias-dominated,5.0,5.43556907
+F07-BIA-00688,Bias-dominated,5.0,5.74191085
+F07-BIA-00689,Bias-dominated,5.0,5.72335744
+F07-BIA-00690,Bias-dominated,5.0,5.97571412
+F07-BIA-00691,Bias-dominated,5.0,5.35665555
+F07-BIA-00692,Bias-dominated,5.0,5.62762038
+F07-BIA-00693,Bias-dominated,5.0,5.67054155
+F07-BIA-00694,Bias-dominated,5.0,5.67129405
+F07-BIA-00695,Bias-dominated,5.0,6.02238025
+F07-BIA-00696,Bias-dominated,5.0,5.90703681
+F07-BIA-00697,Bias-dominated,5.0,5.82121199
+F07-BIA-00698,Bias-dominated,5.0,5.66201750
+F07-BIA-00699,Bias-dominated,5.0,5.87430378
+F07-BIA-00700,Bias-dominated,5.0,5.81388841
+F07-BIA-00701,Bias-dominated,5.0,5.49617297
+F07-BIA-00702,Bias-dominated,5.0,5.80525907
+F07-BIA-00703,Bias-dominated,5.0,5.86552210
+F07-BIA-00704,Bias-dominated,5.0,5.95103176
+F07-BIA-00705,Bias-dominated,5.0,5.88362745
+F07-BIA-00706,Bias-dominated,5.0,5.77774170
+F07-BIA-00707,Bias-dominated,5.0,6.00005497
+F07-BIA-00708,Bias-dominated,5.0,5.67397168
+F07-BIA-00709,Bias-dominated,5.0,5.91836938
+F07-BIA-00710,Bias-dominated,5.0,5.70504099
+F07-BIA-00711,Bias-dominated,5.0,5.66137650
+F07-BIA-00712,Bias-dominated,5.0,5.54692491
+F07-BIA-00713,Bias-dominated,5.0,5.64413304
+F07-BIA-00714,Bias-dominated,5.0,5.78887875
+F07-BIA-00715,Bias-dominated,5.0,5.65495370
+F07-BIA-00716,Bias-dominated,5.0,5.56905168
+F07-BIA-00717,Bias-dominated,5.0,5.36556646
+F07-BIA-00718,Bias-dominated,5.0,6.09447588
+F07-BIA-00719,Bias-dominated,5.0,5.89595454
+F07-BIA-00720,Bias-dominated,5.0,5.49917727
+F07-BIA-00721,Bias-dominated,5.0,5.58692429
+F07-BIA-00722,Bias-dominated,5.0,5.70684340
+F07-BIA-00723,Bias-dominated,5.0,5.74955548
+F07-BIA-00724,Bias-dominated,5.0,5.63415942
+F07-BIA-00725,Bias-dominated,5.0,5.79241464
+F07-BIA-00726,Bias-dominated,5.0,5.78965707
+F07-BIA-00727,Bias-dominated,5.0,5.74472670
+F07-BIA-00728,Bias-dominated,5.0,5.50592612
+F07-BIA-00729,Bias-dominated,5.0,5.64504133
+F07-BIA-00730,Bias-dominated,5.0,5.92047288
+F07-BIA-00731,Bias-dominated,5.0,5.87858378
+F07-BIA-00732,Bias-dominated,5.0,5.71013878
+F07-BIA-00733,Bias-dominated,5.0,5.79076055
+F07-BIA-00734,Bias-dominated,5.0,6.01377914
+F07-BIA-00735,Bias-dominated,5.0,5.58950120
+F07-BIA-00736,Bias-dominated,5.0,5.76944406
+F07-BIA-00737,Bias-dominated,5.0,5.74503976
+F07-BIA-00738,Bias-dominated,5.0,5.76775335
+F07-BIA-00739,Bias-dominated,5.0,6.28727532
+F07-BIA-00740,Bias-dominated,5.0,5.59327865
+F07-BIA-00741,Bias-dominated,5.0,5.87818966
+F07-BIA-00742,Bias-dominated,5.0,5.31447042
+F07-BIA-00743,Bias-dominated,5.0,6.25257856
+F07-BIA-00744,Bias-dominated,5.0,5.80612020
+F07-BIA-00745,Bias-dominated,5.0,6.05312819
+F07-BIA-00746,Bias-dominated,5.0,5.82937577
+F07-BIA-00747,Bias-dominated,5.0,5.78109778
+F07-BIA-00748,Bias-dominated,5.0,5.68335133
+F07-BIA-00749,Bias-dominated,5.0,5.66356320
+F07-BIA-00750,Bias-dominated,5.0,5.55018604
+F07-BIA-00751,Bias-dominated,5.0,5.77419570
+F07-BIA-00752,Bias-dominated,5.0,5.51233968
+F07-BIA-00753,Bias-dominated,5.0,5.57330224
+F07-BIA-00754,Bias-dominated,5.0,5.44502983
+F07-BIA-00755,Bias-dominated,5.0,5.47796109
+F07-BIA-00756,Bias-dominated,5.0,5.89400192
+F07-BIA-00757,Bias-dominated,5.0,5.63102714
+F07-BIA-00758,Bias-dominated,5.0,5.77238703
+F07-BIA-00759,Bias-dominated,5.0,5.75304991
+F07-BIA-00760,Bias-dominated,5.0,5.70186138
+F07-BIA-00761,Bias-dominated,5.0,5.89216303
+F07-BIA-00762,Bias-dominated,5.0,5.63091817
+F07-BIA-00763,Bias-dominated,5.0,5.94499920
+F07-BIA-00764,Bias-dominated,5.0,6.06276003
+F07-BIA-00765,Bias-dominated,5.0,5.55866663
+F07-BIA-00766,Bias-dominated,5.0,5.65061364
+F07-BIA-00767,Bias-dominated,5.0,5.88075769
+F07-BIA-00768,Bias-dominated,5.0,6.09760241
+F07-BIA-00769,Bias-dominated,5.0,5.71553537
+F07-BIA-00770,Bias-dominated,5.0,5.45714915
+F07-BIA-00771,Bias-dominated,5.0,5.52127865
+F07-BIA-00772,Bias-dominated,5.0,5.91412129
+F07-BIA-00773,Bias-dominated,5.0,5.52558203
+F07-BIA-00774,Bias-dominated,5.0,5.52022488
+F07-BIA-00775,Bias-dominated,5.0,5.72042512
+F07-BIA-00776,Bias-dominated,5.0,5.93543578
+F07-BIA-00777,Bias-dominated,5.0,5.66610079
+F07-BIA-00778,Bias-dominated,5.0,5.74682748
+F07-BIA-00779,Bias-dominated,5.0,5.75570740
+F07-BIA-00780,Bias-dominated,5.0,5.72402930
+F07-BIA-00781,Bias-dominated,5.0,5.84663808
+F07-BIA-00782,Bias-dominated,5.0,5.35724855
+F07-BIA-00783,Bias-dominated,5.0,5.34640238
+F07-BIA-00784,Bias-dominated,5.0,5.78665593
+F07-BIA-00785,Bias-dominated,5.0,5.68950063
+F07-BIA-00786,Bias-dominated,5.0,5.50185478
+F07-BIA-00787,Bias-dominated,5.0,5.92193405
+F07-BIA-00788,Bias-dominated,5.0,5.89645925
+F07-BIA-00789,Bias-dominated,5.0,5.94044277
+F07-BIA-00790,Bias-dominated,5.0,6.00051406
+F07-BIA-00791,Bias-dominated,5.0,5.98841749
+F07-BIA-00792,Bias-dominated,5.0,5.63351181
+F07-BIA-00793,Bias-dominated,5.0,5.85026811
+F07-BIA-00794,Bias-dominated,5.0,5.99630182
+F07-BIA-00795,Bias-dominated,5.0,5.81994763
+F07-BIA-00796,Bias-dominated,5.0,5.81531856
+F07-BIA-00797,Bias-dominated,5.0,5.88299426
+F07-BIA-00798,Bias-dominated,5.0,5.62171922
+F07-BIA-00799,Bias-dominated,5.0,5.85073998
+F07-BIA-00800,Bias-dominated,5.0,5.59137346
+F07-BIA-00801,Bias-dominated,5.0,5.84367282
+F07-BIA-00802,Bias-dominated,5.0,5.83098760
+F07-BIA-00803,Bias-dominated,5.0,5.58604142
+F07-BIA-00804,Bias-dominated,5.0,5.54290387
+F07-BIA-00805,Bias-dominated,5.0,5.85476642
+F07-BIA-00806,Bias-dominated,5.0,5.91026089
+F07-BIA-00807,Bias-dominated,5.0,5.80958689
+F07-BIA-00808,Bias-dominated,5.0,5.54279303
+F07-BIA-00809,Bias-dominated,5.0,5.33393357
+F07-BIA-00810,Bias-dominated,5.0,5.90459579
+F07-BIA-00811,Bias-dominated,5.0,5.61063419
+F07-BIA-00812,Bias-dominated,5.0,5.81413581
+F07-BIA-00813,Bias-dominated,5.0,6.03683223
+F07-BIA-00814,Bias-dominated,5.0,5.66370960
+F07-BIA-00815,Bias-dominated,5.0,5.79738822
+F07-BIA-00816,Bias-dominated,5.0,5.55908803
+F07-BIA-00817,Bias-dominated,5.0,5.50310428
+F07-BIA-00818,Bias-dominated,5.0,5.78200430
+F07-BIA-00819,Bias-dominated,5.0,5.55834089
+F07-BIA-00820,Bias-dominated,5.0,5.57008490
+F07-BIA-00821,Bias-dominated,5.0,5.72103825
+F07-BIA-00822,Bias-dominated,5.0,5.58572441
+F07-BIA-00823,Bias-dominated,5.0,6.09051521
+F07-BIA-00824,Bias-dominated,5.0,5.64948902
+F07-BIA-00825,Bias-dominated,5.0,5.41320456
+F07-BIA-00826,Bias-dominated,5.0,5.69295008
+F07-BIA-00827,Bias-dominated,5.0,5.69566840
+F07-BIA-00828,Bias-dominated,5.0,5.73318524
+F07-BIA-00829,Bias-dominated,5.0,5.56891154
+F07-BIA-00830,Bias-dominated,5.0,5.70486320
+F07-BIA-00831,Bias-dominated,5.0,5.88614802
+F07-BIA-00832,Bias-dominated,5.0,5.60857793
+F07-BIA-00833,Bias-dominated,5.0,5.73564668
+F07-BIA-00834,Bias-dominated,5.0,5.50429476
+F07-BIA-00835,Bias-dominated,5.0,5.56542917
+F07-BIA-00836,Bias-dominated,5.0,5.79594547
+F07-BIA-00837,Bias-dominated,5.0,5.65592583
+F07-BIA-00838,Bias-dominated,5.0,5.57929847
+F07-BIA-00839,Bias-dominated,5.0,5.55213419
+F07-BIA-00840,Bias-dominated,5.0,5.81275323
+F07-BIA-00841,Bias-dominated,5.0,5.90077905
+F07-BIA-00842,Bias-dominated,5.0,5.68575253
+F07-BIA-00843,Bias-dominated,5.0,5.55215743
+F07-BIA-00844,Bias-dominated,5.0,5.77414835
+F07-BIA-00845,Bias-dominated,5.0,5.73471529
+F07-BIA-00846,Bias-dominated,5.0,5.89248959
+F07-BIA-00847,Bias-dominated,5.0,5.95637122
+F07-BIA-00848,Bias-dominated,5.0,5.97359722
+F07-BIA-00849,Bias-dominated,5.0,6.08166925
+F07-BIA-00850,Bias-dominated,5.0,5.77436414
+F07-BIA-00851,Bias-dominated,5.0,5.64249300
+F07-BIA-00852,Bias-dominated,5.0,5.73708531
+F07-BIA-00853,Bias-dominated,5.0,5.62580423
+F07-BIA-00854,Bias-dominated,5.0,6.00174787
+F07-BIA-00855,Bias-dominated,5.0,5.98569731
+F07-BIA-00856,Bias-dominated,5.0,5.90125507
+F07-BIA-00857,Bias-dominated,5.0,5.66493513
+F07-BIA-00858,Bias-dominated,5.0,5.78743771
+F07-BIA-00859,Bias-dominated,5.0,5.90966090
+F07-BIA-00860,Bias-dominated,5.0,5.59741829
+F07-BIA-00861,Bias-dominated,5.0,5.61342566
+F07-BIA-00862,Bias-dominated,5.0,5.91972702
+F07-BIA-00863,Bias-dominated,5.0,5.69579374
+F07-BIA-00864,Bias-dominated,5.0,5.99901431
+F07-BIA-00865,Bias-dominated,5.0,5.70129473
+F07-BIA-00866,Bias-dominated,5.0,5.66692710
+F07-BIA-00867,Bias-dominated,5.0,5.87094514
+F07-BIA-00868,Bias-dominated,5.0,5.64933534
+F07-BIA-00869,Bias-dominated,5.0,6.01411244
+F07-BIA-00870,Bias-dominated,5.0,5.86948629
+F07-BIA-00871,Bias-dominated,5.0,5.51987360
+F07-BIA-00872,Bias-dominated,5.0,5.84997150
+F07-BIA-00873,Bias-dominated,5.0,5.57698288
+F07-BIA-00874,Bias-dominated,5.0,5.70357030
+F07-BIA-00875,Bias-dominated,5.0,5.85514673
+F07-BIA-00876,Bias-dominated,5.0,5.75080252
+F07-BIA-00877,Bias-dominated,5.0,5.59208494
+F07-BIA-00878,Bias-dominated,5.0,5.49412466
+F07-BIA-00879,Bias-dominated,5.0,5.82984522
+F07-BIA-00880,Bias-dominated,5.0,5.69511506
+F07-BIA-00881,Bias-dominated,5.0,5.41795142
+F07-BIA-00882,Bias-dominated,5.0,5.60567707
+F07-BIA-00883,Bias-dominated,5.0,5.96339424
+F07-BIA-00884,Bias-dominated,5.0,5.83529380
+F07-BIA-00885,Bias-dominated,5.0,5.66295987
+F07-BIA-00886,Bias-dominated,5.0,5.74412427
+F07-BIA-00887,Bias-dominated,5.0,5.45465768
+F07-BIA-00888,Bias-dominated,5.0,5.81964065
+F07-BIA-00889,Bias-dominated,5.0,5.44081249
+F07-BIA-00890,Bias-dominated,5.0,5.99006788
+F07-BIA-00891,Bias-dominated,5.0,5.81559436
+F07-BIA-00892,Bias-dominated,5.0,5.98003702
+F07-BIA-00893,Bias-dominated,5.0,5.81056187
+F07-BIA-00894,Bias-dominated,5.0,5.59406580
+F07-BIA-00895,Bias-dominated,5.0,5.86711595
+F07-BIA-00896,Bias-dominated,5.0,5.89349697
+F07-BIA-00897,Bias-dominated,5.0,5.79144565
+F07-BIA-00898,Bias-dominated,5.0,5.68342682
+F07-BIA-00899,Bias-dominated,5.0,5.62775469
+F07-BIA-00900,Bias-dominated,5.0,5.70597288
+F07-BIA-00901,Bias-dominated,5.0,5.74009640
+F07-BIA-00902,Bias-dominated,5.0,5.76653895
+F07-BIA-00903,Bias-dominated,5.0,5.60706484
+F07-BIA-00904,Bias-dominated,5.0,5.87324768
+F07-BIA-00905,Bias-dominated,5.0,5.86389142
+F07-BIA-00906,Bias-dominated,5.0,5.59727014
+F07-BIA-00907,Bias-dominated,5.0,5.50266853
+F07-BIA-00908,Bias-dominated,5.0,5.77573618
+F07-BIA-00909,Bias-dominated,5.0,5.69268062
+F07-BIA-00910,Bias-dominated,5.0,5.69522402
+F07-BIA-00911,Bias-dominated,5.0,5.56736204
+F07-BIA-00912,Bias-dominated,5.0,5.97950363
+F07-BIA-00913,Bias-dominated,5.0,5.85435899
+F07-BIA-00914,Bias-dominated,5.0,5.87908248
+F07-BIA-00915,Bias-dominated,5.0,5.89889670
+F07-BIA-00916,Bias-dominated,5.0,5.75631300
+F07-BIA-00917,Bias-dominated,5.0,5.80861621
+F07-BIA-00918,Bias-dominated,5.0,5.80179874
+F07-BIA-00919,Bias-dominated,5.0,5.93110648
+F07-BIA-00920,Bias-dominated,5.0,6.00327043
+F07-BIA-00921,Bias-dominated,5.0,5.95479162
+F07-BIA-00922,Bias-dominated,5.0,5.87494678
+F07-BIA-00923,Bias-dominated,5.0,5.75448834
+F07-BIA-00924,Bias-dominated,5.0,5.75484765
+F07-BIA-00925,Bias-dominated,5.0,5.76326496
+F07-BIA-00926,Bias-dominated,5.0,5.71976495
+F07-BIA-00927,Bias-dominated,5.0,5.45610739
+F07-BIA-00928,Bias-dominated,5.0,5.93578931
+F07-BIA-00929,Bias-dominated,5.0,5.52191813
+F07-BIA-00930,Bias-dominated,5.0,5.85907216
+F07-BIA-00931,Bias-dominated,5.0,6.17185936
+F07-BIA-00932,Bias-dominated,5.0,5.50517857
+F07-BIA-00933,Bias-dominated,5.0,5.51332458
+F07-BIA-00934,Bias-dominated,5.0,5.69932215
+F07-BIA-00935,Bias-dominated,5.0,5.30490135
+F07-BIA-00936,Bias-dominated,5.0,5.97597511
+F07-BIA-00937,Bias-dominated,5.0,5.66132018
+F07-BIA-00938,Bias-dominated,5.0,5.90350738
+F07-BIA-00939,Bias-dominated,5.0,5.66249695
+F07-BIA-00940,Bias-dominated,5.0,5.80085555
+F07-BIA-00941,Bias-dominated,5.0,5.64347375
+F07-BIA-00942,Bias-dominated,5.0,5.60926180
+F07-BIA-00943,Bias-dominated,5.0,5.68825923
+F07-BIA-00944,Bias-dominated,5.0,5.89624869
+F07-BIA-00945,Bias-dominated,5.0,5.58148793
+F07-BIA-00946,Bias-dominated,5.0,5.71100530
+F07-BIA-00947,Bias-dominated,5.0,5.66718203
+F07-BIA-00948,Bias-dominated,5.0,5.86369964
+F07-BIA-00949,Bias-dominated,5.0,5.59198798
+F07-BIA-00950,Bias-dominated,5.0,5.83733931
+F07-BIA-00951,Bias-dominated,5.0,5.82055681
+F07-BIA-00952,Bias-dominated,5.0,5.66060684
+F07-BIA-00953,Bias-dominated,5.0,5.57671892
+F07-BIA-00954,Bias-dominated,5.0,6.05380610
+F07-BIA-00955,Bias-dominated,5.0,6.08454890
+F07-BIA-00956,Bias-dominated,5.0,5.66390481
+F07-BIA-00957,Bias-dominated,5.0,5.78142605
+F07-BIA-00958,Bias-dominated,5.0,5.88792589
+F07-BIA-00959,Bias-dominated,5.0,5.73497781
+F07-BIA-00960,Bias-dominated,5.0,5.40265205
+F07-BIA-00961,Bias-dominated,5.0,5.70326933
+F07-BIA-00962,Bias-dominated,5.0,5.67234570
+F07-BIA-00963,Bias-dominated,5.0,5.70613846
+F07-BIA-00964,Bias-dominated,5.0,5.83111640
+F07-BIA-00965,Bias-dominated,5.0,6.08452850
+F07-BIA-00966,Bias-dominated,5.0,5.91435552
+F07-BIA-00967,Bias-dominated,5.0,5.97848000
+F07-BIA-00968,Bias-dominated,5.0,6.07126532
+F07-BIA-00969,Bias-dominated,5.0,5.84326978
+F07-BIA-00970,Bias-dominated,5.0,5.57894049
+F07-BIA-00971,Bias-dominated,5.0,5.68069944
+F07-BIA-00972,Bias-dominated,5.0,5.69230531
+F07-BIA-00973,Bias-dominated,5.0,5.87841733
+F07-BIA-00974,Bias-dominated,5.0,5.60538760
+F07-BIA-00975,Bias-dominated,5.0,5.73016801
+F07-BIA-00976,Bias-dominated,5.0,5.74875462
+F07-BIA-00977,Bias-dominated,5.0,5.88012690
+F07-BIA-00978,Bias-dominated,5.0,5.64071993
+F07-BIA-00979,Bias-dominated,5.0,6.12412250
+F07-BIA-00980,Bias-dominated,5.0,5.85767646
+F07-BIA-00981,Bias-dominated,5.0,5.63016568
+F07-BIA-00982,Bias-dominated,5.0,6.09167136
+F07-BIA-00983,Bias-dominated,5.0,5.55950748
+F07-BIA-00984,Bias-dominated,5.0,5.86366979
+F07-BIA-00985,Bias-dominated,5.0,5.49931760
+F07-BIA-00986,Bias-dominated,5.0,5.80561626
+F07-BIA-00987,Bias-dominated,5.0,5.74624445
+F07-BIA-00988,Bias-dominated,5.0,5.80271903
+F07-BIA-00989,Bias-dominated,5.0,5.64281248
+F07-BIA-00990,Bias-dominated,5.0,5.85861965
+F07-BIA-00991,Bias-dominated,5.0,5.78170493
+F07-BIA-00992,Bias-dominated,5.0,5.58371567
+F07-BIA-00993,Bias-dominated,5.0,5.73185588
+F07-BIA-00994,Bias-dominated,5.0,5.79592744
+F07-BIA-00995,Bias-dominated,5.0,5.52860582
+F07-BIA-00996,Bias-dominated,5.0,5.71476929
+F07-BIA-00997,Bias-dominated,5.0,5.37342684
+F07-BIA-00998,Bias-dominated,5.0,5.87944129
+F07-BIA-00999,Bias-dominated,5.0,5.39454917
+F07-BIA-01000,Bias-dominated,5.0,5.28352531
+F07-BIA-01001,Bias-dominated,5.0,5.60931027
+F07-BIA-01002,Bias-dominated,5.0,5.70807463
+F07-BIA-01003,Bias-dominated,5.0,5.70437030
+F07-BIA-01004,Bias-dominated,5.0,5.71619592
+F07-BIA-01005,Bias-dominated,5.0,5.95146740
+F07-BIA-01006,Bias-dominated,5.0,5.44890603
+F07-BIA-01007,Bias-dominated,5.0,5.79930478
+F07-BIA-01008,Bias-dominated,5.0,5.61556199
+F07-BIA-01009,Bias-dominated,5.0,5.45237329
+F07-BIA-01010,Bias-dominated,5.0,6.00875243
+F07-BIA-01011,Bias-dominated,5.0,5.64411406
+F07-BIA-01012,Bias-dominated,5.0,6.16982355
+F07-BIA-01013,Bias-dominated,5.0,5.95612526
+F07-BIA-01014,Bias-dominated,5.0,5.64088763
+F07-BIA-01015,Bias-dominated,5.0,5.50252844
+F07-BIA-01016,Bias-dominated,5.0,6.09250181
+F07-BIA-01017,Bias-dominated,5.0,5.43679392
+F07-BIA-01018,Bias-dominated,5.0,5.67099920
+F07-BIA-01019,Bias-dominated,5.0,5.72560839
+F07-BIA-01020,Bias-dominated,5.0,5.28124127
+F07-BIA-01021,Bias-dominated,5.0,5.89804010
+F07-BIA-01022,Bias-dominated,5.0,5.89943823
+F07-BIA-01023,Bias-dominated,5.0,6.03241194
+F07-BIA-01024,Bias-dominated,5.0,5.64330126
+F07-BIA-01025,Bias-dominated,5.0,5.82670197
+F07-BIA-01026,Bias-dominated,5.0,5.64508231
+F07-BIA-01027,Bias-dominated,5.0,5.66031304
+F07-BIA-01028,Bias-dominated,5.0,5.86289999
+F07-BIA-01029,Bias-dominated,5.0,5.90389012
+F07-BIA-01030,Bias-dominated,5.0,5.61032699
+F07-BIA-01031,Bias-dominated,5.0,5.73868901
+F07-BIA-01032,Bias-dominated,5.0,5.48488902
+F07-BIA-01033,Bias-dominated,5.0,5.75203901
+F07-BIA-01034,Bias-dominated,5.0,5.87276628
+F07-BIA-01035,Bias-dominated,5.0,5.38213288
+F07-BIA-01036,Bias-dominated,5.0,5.93275407
+F07-BIA-01037,Bias-dominated,5.0,5.64327875
+F07-BIA-01038,Bias-dominated,5.0,5.91457806
+F07-BIA-01039,Bias-dominated,5.0,5.74406634
+F07-BIA-01040,Bias-dominated,5.0,5.73229668
+F07-BIA-01041,Bias-dominated,5.0,5.98620354
+F07-BIA-01042,Bias-dominated,5.0,5.61391388
+F07-BIA-01043,Bias-dominated,5.0,5.63073227
+F07-BIA-01044,Bias-dominated,5.0,5.77936239
+F07-BIA-01045,Bias-dominated,5.0,5.58434455
+F07-BIA-01046,Bias-dominated,5.0,5.38541844
+F07-BIA-01047,Bias-dominated,5.0,5.74011775
+F07-BIA-01048,Bias-dominated,5.0,5.89295975
+F07-BIA-01049,Bias-dominated,5.0,5.38965352
+F07-BIA-01050,Bias-dominated,5.0,5.55990633
+F07-BIA-01051,Bias-dominated,5.0,5.54144794
+F07-BIA-01052,Bias-dominated,5.0,5.60095174
+F07-BIA-01053,Bias-dominated,5.0,5.71475288
+F07-BIA-01054,Bias-dominated,5.0,5.55042794
+F07-BIA-01055,Bias-dominated,5.0,5.84360035
+F07-BIA-01056,Bias-dominated,5.0,5.68211009
+F07-BIA-01057,Bias-dominated,5.0,5.44772087
+F07-BIA-01058,Bias-dominated,5.0,5.72540644
+F07-BIA-01059,Bias-dominated,5.0,5.64297743
+F07-BIA-01060,Bias-dominated,5.0,5.77204711
+F07-BIA-01061,Bias-dominated,5.0,5.50322520
+F07-BIA-01062,Bias-dominated,5.0,5.86678354
+F07-BIA-01063,Bias-dominated,5.0,5.90463111
+F07-BIA-01064,Bias-dominated,5.0,5.72869225
+F07-BIA-01065,Bias-dominated,5.0,5.81261557
+F07-BIA-01066,Bias-dominated,5.0,5.65179398
+F07-BIA-01067,Bias-dominated,5.0,5.92211253
+F07-BIA-01068,Bias-dominated,5.0,5.78880322
+F07-BIA-01069,Bias-dominated,5.0,5.78286311
+F07-BIA-01070,Bias-dominated,5.0,5.77240873
+F07-BIA-01071,Bias-dominated,5.0,5.75305712
+F07-BIA-01072,Bias-dominated,5.0,5.65671295
+F07-BIA-01073,Bias-dominated,5.0,5.64773777
+F07-BIA-01074,Bias-dominated,5.0,5.56555297
+F07-BIA-01075,Bias-dominated,5.0,6.03540306
+F07-BIA-01076,Bias-dominated,5.0,5.84325285
+F07-BIA-01077,Bias-dominated,5.0,5.83610352
+F07-BIA-01078,Bias-dominated,5.0,5.71815293
+F07-BIA-01079,Bias-dominated,5.0,5.77649318
+F07-BIA-01080,Bias-dominated,5.0,5.78864085
+F07-BIA-01081,Bias-dominated,5.0,5.38124276
+F07-BIA-01082,Bias-dominated,5.0,5.44905908
+F07-BIA-01083,Bias-dominated,5.0,5.87756673
+F07-BIA-01084,Bias-dominated,5.0,5.59691348
+F07-BIA-01085,Bias-dominated,5.0,5.71301237
+F07-BIA-01086,Bias-dominated,5.0,5.70564891
+F07-BIA-01087,Bias-dominated,5.0,5.86809166
+F07-BIA-01088,Bias-dominated,5.0,5.90406745
+F07-BIA-01089,Bias-dominated,5.0,5.43649083
+F07-BIA-01090,Bias-dominated,5.0,5.94318558
+F07-BIA-01091,Bias-dominated,5.0,5.75357471
+F07-BIA-01092,Bias-dominated,5.0,5.74175842
+F07-BIA-01093,Bias-dominated,5.0,5.69019304
+F07-BIA-01094,Bias-dominated,5.0,5.88148299
+F07-BIA-01095,Bias-dominated,5.0,5.64252330
+F07-BIA-01096,Bias-dominated,5.0,5.85060523
+F07-BIA-01097,Bias-dominated,5.0,5.73048332
+F07-BIA-01098,Bias-dominated,5.0,5.80796195
+F07-BIA-01099,Bias-dominated,5.0,5.80729560
+F07-BIA-01100,Bias-dominated,5.0,5.92411475
+F07-BIA-01101,Bias-dominated,5.0,5.70264906
+F07-BIA-01102,Bias-dominated,5.0,6.23926666
+F07-BIA-01103,Bias-dominated,5.0,5.73200451
+F07-BIA-01104,Bias-dominated,5.0,5.50403133
+F07-BIA-01105,Bias-dominated,5.0,5.47824301
+F07-BIA-01106,Bias-dominated,5.0,5.76361180
+F07-BIA-01107,Bias-dominated,5.0,5.75823254
+F07-BIA-01108,Bias-dominated,5.0,5.83866528
+F07-BIA-01109,Bias-dominated,5.0,5.70052576
+F07-BIA-01110,Bias-dominated,5.0,5.63877171
+F07-BIA-01111,Bias-dominated,5.0,5.97512471
+F07-BIA-01112,Bias-dominated,5.0,5.60498176
+F07-BIA-01113,Bias-dominated,5.0,5.59104180
+F07-BIA-01114,Bias-dominated,5.0,5.71938878
+F07-BIA-01115,Bias-dominated,5.0,5.62071991
+F07-BIA-01116,Bias-dominated,5.0,5.75435012
+F07-BIA-01117,Bias-dominated,5.0,5.79700893
+F07-BIA-01118,Bias-dominated,5.0,5.99392820
+F07-BIA-01119,Bias-dominated,5.0,5.96360500
+F07-BIA-01120,Bias-dominated,5.0,5.88679968
+F07-BIA-01121,Bias-dominated,5.0,5.88725646
+F07-BIA-01122,Bias-dominated,5.0,5.89193413
+F07-BIA-01123,Bias-dominated,5.0,5.98091530
+F07-BIA-01124,Bias-dominated,5.0,5.99658110
+F07-BIA-01125,Bias-dominated,5.0,5.57402688
+F07-BIA-01126,Bias-dominated,5.0,5.72617622
+F07-BIA-01127,Bias-dominated,5.0,5.84449647
+F07-BIA-01128,Bias-dominated,5.0,5.56897528
+F07-BIA-01129,Bias-dominated,5.0,5.71627813
+F07-BIA-01130,Bias-dominated,5.0,6.21273963
+F07-BIA-01131,Bias-dominated,5.0,6.02688636
+F07-BIA-01132,Bias-dominated,5.0,5.66354582
+F07-BIA-01133,Bias-dominated,5.0,6.01232097
+F07-BIA-01134,Bias-dominated,5.0,5.67767892
+F07-BIA-01135,Bias-dominated,5.0,5.49717325
+F07-BIA-01136,Bias-dominated,5.0,5.69974221
+F07-BIA-01137,Bias-dominated,5.0,5.53966994
+F07-BIA-01138,Bias-dominated,5.0,5.85737689
+F07-BIA-01139,Bias-dominated,5.0,5.54462183
+F07-BIA-01140,Bias-dominated,5.0,5.90713640
+F07-BIA-01141,Bias-dominated,5.0,5.68929047
+F07-BIA-01142,Bias-dominated,5.0,6.19119041
+F07-BIA-01143,Bias-dominated,5.0,5.93434794
+F07-BIA-01144,Bias-dominated,5.0,5.65005046
+F07-BIA-01145,Bias-dominated,5.0,5.93022676
+F07-BIA-01146,Bias-dominated,5.0,5.39221437
+F07-BIA-01147,Bias-dominated,5.0,5.61715877
+F07-BIA-01148,Bias-dominated,5.0,5.69108935
+F07-BIA-01149,Bias-dominated,5.0,5.70232866
+F07-BIA-01150,Bias-dominated,5.0,5.69143106
+F07-BIA-01151,Bias-dominated,5.0,5.60191606
+F07-BIA-01152,Bias-dominated,5.0,5.59729279
+F07-BIA-01153,Bias-dominated,5.0,5.90527545
+F07-BIA-01154,Bias-dominated,5.0,5.80642242
+F07-BIA-01155,Bias-dominated,5.0,5.83530593
+F07-BIA-01156,Bias-dominated,5.0,5.67529513
+F07-BIA-01157,Bias-dominated,5.0,5.76914693
+F07-BIA-01158,Bias-dominated,5.0,5.62700627
+F07-BIA-01159,Bias-dominated,5.0,5.61960945
+F07-BIA-01160,Bias-dominated,5.0,6.04016936
+F07-BIA-01161,Bias-dominated,5.0,5.65696194
+F07-BIA-01162,Bias-dominated,5.0,5.61398078
+F07-BIA-01163,Bias-dominated,5.0,5.91796487
+F07-BIA-01164,Bias-dominated,5.0,5.60731721
+F07-BIA-01165,Bias-dominated,5.0,5.91672289
+F07-BIA-01166,Bias-dominated,5.0,5.69512760
+F07-BIA-01167,Bias-dominated,5.0,5.73806996
+F07-BIA-01168,Bias-dominated,5.0,5.87206679
+F07-BIA-01169,Bias-dominated,5.0,5.94092949
+F07-BIA-01170,Bias-dominated,5.0,5.75525050
+F07-BIA-01171,Bias-dominated,5.0,5.48542879
+F07-BIA-01172,Bias-dominated,5.0,5.86874816
+F07-BIA-01173,Bias-dominated,5.0,5.85911522
+F07-BIA-01174,Bias-dominated,5.0,5.54452460
+F07-BIA-01175,Bias-dominated,5.0,5.84758136
+F07-BIA-01176,Bias-dominated,5.0,5.75820361
+F07-BIA-01177,Bias-dominated,5.0,5.79484753
+F07-BIA-01178,Bias-dominated,5.0,5.70454667
+F07-BIA-01179,Bias-dominated,5.0,5.43227423
+F07-BIA-01180,Bias-dominated,5.0,5.74824626
+F07-BIA-01181,Bias-dominated,5.0,5.83737568
+F07-BIA-01182,Bias-dominated,5.0,5.81912752
+F07-BIA-01183,Bias-dominated,5.0,5.59971389
+F07-BIA-01184,Bias-dominated,5.0,5.64335991
+F07-BIA-01185,Bias-dominated,5.0,5.74978876
+F07-BIA-01186,Bias-dominated,5.0,5.86230213
+F07-BIA-01187,Bias-dominated,5.0,5.73941136
+F07-BIA-01188,Bias-dominated,5.0,5.60874554
+F07-BIA-01189,Bias-dominated,5.0,5.82106577
+F07-BIA-01190,Bias-dominated,5.0,5.67102215
+F07-BIA-01191,Bias-dominated,5.0,5.76355974
+F07-BIA-01192,Bias-dominated,5.0,5.69064247
+F07-BIA-01193,Bias-dominated,5.0,6.01314332
+F07-BIA-01194,Bias-dominated,5.0,5.79819254
+F07-BIA-01195,Bias-dominated,5.0,5.81613806
+F07-BIA-01196,Bias-dominated,5.0,5.92751241
+F07-BIA-01197,Bias-dominated,5.0,5.78184381
+F07-BIA-01198,Bias-dominated,5.0,5.80106969
+F07-BIA-01199,Bias-dominated,5.0,5.64098315
+F07-VAR-00000,Variance-dominated,5.0,4.99961245
+F07-VAR-00001,Variance-dominated,5.0,5.49265195
+F07-VAR-00002,Variance-dominated,5.0,5.42840573
+F07-VAR-00003,Variance-dominated,5.0,5.83436909
+F07-VAR-00004,Variance-dominated,5.0,4.88617322
+F07-VAR-00005,Variance-dominated,5.0,4.93667940
+F07-VAR-00006,Variance-dominated,5.0,5.09324910
+F07-VAR-00007,Variance-dominated,5.0,5.45089109
+F07-VAR-00008,Variance-dominated,5.0,4.30994331
+F07-VAR-00009,Variance-dominated,5.0,4.80324444
+F07-VAR-00010,Variance-dominated,5.0,6.24706626
+F07-VAR-00011,Variance-dominated,5.0,5.78110246
+F07-VAR-00012,Variance-dominated,5.0,5.60095847
+F07-VAR-00013,Variance-dominated,5.0,4.46096098
+F07-VAR-00014,Variance-dominated,5.0,4.99360833
+F07-VAR-00015,Variance-dominated,5.0,5.99771544
+F07-VAR-00016,Variance-dominated,5.0,5.37696877
+F07-VAR-00017,Variance-dominated,5.0,3.87287617
+F07-VAR-00018,Variance-dominated,5.0,5.71168960
+F07-VAR-00019,Variance-dominated,5.0,4.23805361
+F07-VAR-00020,Variance-dominated,5.0,4.87027257
+F07-VAR-00021,Variance-dominated,5.0,5.24068215
+F07-VAR-00022,Variance-dominated,5.0,5.69586837
+F07-VAR-00023,Variance-dominated,5.0,6.51391185
+F07-VAR-00024,Variance-dominated,5.0,5.38668959
+F07-VAR-00025,Variance-dominated,5.0,4.95617214
+F07-VAR-00026,Variance-dominated,5.0,5.23197375
+F07-VAR-00027,Variance-dominated,5.0,6.05369193
+F07-VAR-00028,Variance-dominated,5.0,3.95755836
+F07-VAR-00029,Variance-dominated,5.0,4.85412447
+F07-VAR-00030,Variance-dominated,5.0,4.60460798
+F07-VAR-00031,Variance-dominated,5.0,4.75451764
+F07-VAR-00032,Variance-dominated,5.0,5.21018939
+F07-VAR-00033,Variance-dominated,5.0,4.43385322
+F07-VAR-00034,Variance-dominated,5.0,4.43455563
+F07-VAR-00035,Variance-dominated,5.0,4.73674032
+F07-VAR-00036,Variance-dominated,5.0,3.93432323
+F07-VAR-00037,Variance-dominated,5.0,4.11323130
+F07-VAR-00038,Variance-dominated,5.0,6.26114824
+F07-VAR-00039,Variance-dominated,5.0,4.98048180
+F07-VAR-00040,Variance-dominated,5.0,5.86822792
+F07-VAR-00041,Variance-dominated,5.0,5.84677607
+F07-VAR-00042,Variance-dominated,5.0,5.45681348
+F07-VAR-00043,Variance-dominated,5.0,5.78448859
+F07-VAR-00044,Variance-dominated,5.0,5.07485242
+F07-VAR-00045,Variance-dominated,5.0,3.34494421
+F07-VAR-00046,Variance-dominated,5.0,5.81027760
+F07-VAR-00047,Variance-dominated,5.0,4.95343138
+F07-VAR-00048,Variance-dominated,5.0,6.14870718
+F07-VAR-00049,Variance-dominated,5.0,4.91974437
+F07-VAR-00050,Variance-dominated,5.0,4.59253264
+F07-VAR-00051,Variance-dominated,5.0,3.37994236
+F07-VAR-00052,Variance-dominated,5.0,3.77114869
+F07-VAR-00053,Variance-dominated,5.0,6.16255105
+F07-VAR-00054,Variance-dominated,5.0,4.68443947
+F07-VAR-00055,Variance-dominated,5.0,5.44272758
+F07-VAR-00056,Variance-dominated,5.0,4.75075761
+F07-VAR-00057,Variance-dominated,5.0,4.52143417
+F07-VAR-00058,Variance-dominated,5.0,5.13390896
+F07-VAR-00059,Variance-dominated,5.0,5.49792898
+F07-VAR-00060,Variance-dominated,5.0,4.53119618
+F07-VAR-00061,Variance-dominated,5.0,4.45828937
+F07-VAR-00062,Variance-dominated,5.0,4.64984630
+F07-VAR-00063,Variance-dominated,5.0,6.84347525
+F07-VAR-00064,Variance-dominated,5.0,6.20070803
+F07-VAR-00065,Variance-dominated,5.0,4.32927181
+F07-VAR-00066,Variance-dominated,5.0,4.53152009
+F07-VAR-00067,Variance-dominated,5.0,4.57653306
+F07-VAR-00068,Variance-dominated,5.0,4.55192967
+F07-VAR-00069,Variance-dominated,5.0,4.89537070
+F07-VAR-00070,Variance-dominated,5.0,5.61327412
+F07-VAR-00071,Variance-dominated,5.0,5.16868509
+F07-VAR-00072,Variance-dominated,5.0,4.47283272
+F07-VAR-00073,Variance-dominated,5.0,5.19170985
+F07-VAR-00074,Variance-dominated,5.0,6.38537417
+F07-VAR-00075,Variance-dominated,5.0,5.03196652
+F07-VAR-00076,Variance-dominated,5.0,4.23317708
+F07-VAR-00077,Variance-dominated,5.0,6.16973564
+F07-VAR-00078,Variance-dominated,5.0,4.32113899
+F07-VAR-00079,Variance-dominated,5.0,5.38920956
+F07-VAR-00080,Variance-dominated,5.0,4.85115234
+F07-VAR-00081,Variance-dominated,5.0,4.97890856
+F07-VAR-00082,Variance-dominated,5.0,4.89960465
+F07-VAR-00083,Variance-dominated,5.0,4.68842242
+F07-VAR-00084,Variance-dominated,5.0,5.77630227
+F07-VAR-00085,Variance-dominated,5.0,5.00799826
+F07-VAR-00086,Variance-dominated,5.0,5.00871747
+F07-VAR-00087,Variance-dominated,5.0,5.83529672
+F07-VAR-00088,Variance-dominated,5.0,3.79978695
+F07-VAR-00089,Variance-dominated,5.0,5.00224000
+F07-VAR-00090,Variance-dominated,5.0,3.86140381
+F07-VAR-00091,Variance-dominated,5.0,4.15264084
+F07-VAR-00092,Variance-dominated,5.0,4.84363615
+F07-VAR-00093,Variance-dominated,5.0,4.57078062
+F07-VAR-00094,Variance-dominated,5.0,4.50153420
+F07-VAR-00095,Variance-dominated,5.0,5.81627877
+F07-VAR-00096,Variance-dominated,5.0,5.31308166
+F07-VAR-00097,Variance-dominated,5.0,5.37401103
+F07-VAR-00098,Variance-dominated,5.0,5.50608370
+F07-VAR-00099,Variance-dominated,5.0,3.86858742
+F07-VAR-00100,Variance-dominated,5.0,4.29288693
+F07-VAR-00101,Variance-dominated,5.0,4.63626523
+F07-VAR-00102,Variance-dominated,5.0,4.74999696
+F07-VAR-00103,Variance-dominated,5.0,5.12763592
+F07-VAR-00104,Variance-dominated,5.0,5.26255494
+F07-VAR-00105,Variance-dominated,5.0,5.52357717
+F07-VAR-00106,Variance-dominated,5.0,5.31753099
+F07-VAR-00107,Variance-dominated,5.0,4.17628251
+F07-VAR-00108,Variance-dominated,5.0,4.93225327
+F07-VAR-00109,Variance-dominated,5.0,4.51459439
+F07-VAR-00110,Variance-dominated,5.0,5.38688602
+F07-VAR-00111,Variance-dominated,5.0,6.47510174
+F07-VAR-00112,Variance-dominated,5.0,3.86949226
+F07-VAR-00113,Variance-dominated,5.0,4.61419156
+F07-VAR-00114,Variance-dominated,5.0,6.10198771
+F07-VAR-00115,Variance-dominated,5.0,4.13781292
+F07-VAR-00116,Variance-dominated,5.0,5.31232298
+F07-VAR-00117,Variance-dominated,5.0,4.86672566
+F07-VAR-00118,Variance-dominated,5.0,6.28348396
+F07-VAR-00119,Variance-dominated,5.0,4.89863148
+F07-VAR-00120,Variance-dominated,5.0,4.52041996
+F07-VAR-00121,Variance-dominated,5.0,5.26472107
+F07-VAR-00122,Variance-dominated,5.0,5.12426523
+F07-VAR-00123,Variance-dominated,5.0,3.48906891
+F07-VAR-00124,Variance-dominated,5.0,5.83938162
+F07-VAR-00125,Variance-dominated,5.0,4.17451690
+F07-VAR-00126,Variance-dominated,5.0,5.38349413
+F07-VAR-00127,Variance-dominated,5.0,4.61898963
+F07-VAR-00128,Variance-dominated,5.0,3.69539001
+F07-VAR-00129,Variance-dominated,5.0,5.26723160
+F07-VAR-00130,Variance-dominated,5.0,5.54979056
+F07-VAR-00131,Variance-dominated,5.0,4.89062436
+F07-VAR-00132,Variance-dominated,5.0,5.42129167
+F07-VAR-00133,Variance-dominated,5.0,4.76766668
+F07-VAR-00134,Variance-dominated,5.0,5.21186010
+F07-VAR-00135,Variance-dominated,5.0,6.06708355
+F07-VAR-00136,Variance-dominated,5.0,4.94210228
+F07-VAR-00137,Variance-dominated,5.0,3.49466227
+F07-VAR-00138,Variance-dominated,5.0,4.23876825
+F07-VAR-00139,Variance-dominated,5.0,5.03775050
+F07-VAR-00140,Variance-dominated,5.0,4.05844905
+F07-VAR-00141,Variance-dominated,5.0,5.34252380
+F07-VAR-00142,Variance-dominated,5.0,6.13266451
+F07-VAR-00143,Variance-dominated,5.0,6.16415304
+F07-VAR-00144,Variance-dominated,5.0,4.33572000
+F07-VAR-00145,Variance-dominated,5.0,3.52812833
+F07-VAR-00146,Variance-dominated,5.0,4.94400252
+F07-VAR-00147,Variance-dominated,5.0,4.13945187
+F07-VAR-00148,Variance-dominated,5.0,5.80448843
+F07-VAR-00149,Variance-dominated,5.0,3.85217225
+F07-VAR-00150,Variance-dominated,5.0,4.80486094
+F07-VAR-00151,Variance-dominated,5.0,4.90995110
+F07-VAR-00152,Variance-dominated,5.0,6.10481299
+F07-VAR-00153,Variance-dominated,5.0,4.61938634
+F07-VAR-00154,Variance-dominated,5.0,5.06436664
+F07-VAR-00155,Variance-dominated,5.0,4.47318812
+F07-VAR-00156,Variance-dominated,5.0,4.72215086
+F07-VAR-00157,Variance-dominated,5.0,5.33000601
+F07-VAR-00158,Variance-dominated,5.0,4.64328678
+F07-VAR-00159,Variance-dominated,5.0,4.98036700
+F07-VAR-00160,Variance-dominated,5.0,5.08952864
+F07-VAR-00161,Variance-dominated,5.0,4.48878470
+F07-VAR-00162,Variance-dominated,5.0,4.12021612
+F07-VAR-00163,Variance-dominated,5.0,4.15764796
+F07-VAR-00164,Variance-dominated,5.0,3.18983242
+F07-VAR-00165,Variance-dominated,5.0,6.09960391
+F07-VAR-00166,Variance-dominated,5.0,4.77776795
+F07-VAR-00167,Variance-dominated,5.0,4.50588474
+F07-VAR-00168,Variance-dominated,5.0,4.49854609
+F07-VAR-00169,Variance-dominated,5.0,5.28220168
+F07-VAR-00170,Variance-dominated,5.0,3.74366236
+F07-VAR-00171,Variance-dominated,5.0,4.42236293
+F07-VAR-00172,Variance-dominated,5.0,4.80963770
+F07-VAR-00173,Variance-dominated,5.0,6.07593172
+F07-VAR-00174,Variance-dominated,5.0,4.12958145
+F07-VAR-00175,Variance-dominated,5.0,5.07838745
+F07-VAR-00176,Variance-dominated,5.0,6.11387726
+F07-VAR-00177,Variance-dominated,5.0,5.31670285
+F07-VAR-00178,Variance-dominated,5.0,4.61189343
+F07-VAR-00179,Variance-dominated,5.0,5.21573520
+F07-VAR-00180,Variance-dominated,5.0,5.20132137
+F07-VAR-00181,Variance-dominated,5.0,4.67709675
+F07-VAR-00182,Variance-dominated,5.0,4.12474898
+F07-VAR-00183,Variance-dominated,5.0,4.78083988
+F07-VAR-00184,Variance-dominated,5.0,3.89684617
+F07-VAR-00185,Variance-dominated,5.0,5.02679110
+F07-VAR-00186,Variance-dominated,5.0,6.10975266
+F07-VAR-00187,Variance-dominated,5.0,4.57722609
+F07-VAR-00188,Variance-dominated,5.0,4.80182681
+F07-VAR-00189,Variance-dominated,5.0,4.37216520
+F07-VAR-00190,Variance-dominated,5.0,5.44293458
+F07-VAR-00191,Variance-dominated,5.0,6.24579643
+F07-VAR-00192,Variance-dominated,5.0,3.98269044
+F07-VAR-00193,Variance-dominated,5.0,4.79817286
+F07-VAR-00194,Variance-dominated,5.0,3.96295150
+F07-VAR-00195,Variance-dominated,5.0,5.16176521
+F07-VAR-00196,Variance-dominated,5.0,5.40708002
+F07-VAR-00197,Variance-dominated,5.0,4.12969650
+F07-VAR-00198,Variance-dominated,5.0,4.18297562
+F07-VAR-00199,Variance-dominated,5.0,6.24611322
+F07-VAR-00200,Variance-dominated,5.0,5.57467060
+F07-VAR-00201,Variance-dominated,5.0,4.80721989
+F07-VAR-00202,Variance-dominated,5.0,5.50244982
+F07-VAR-00203,Variance-dominated,5.0,5.49511917
+F07-VAR-00204,Variance-dominated,5.0,4.82461922
+F07-VAR-00205,Variance-dominated,5.0,4.18333550
+F07-VAR-00206,Variance-dominated,5.0,6.29885016
+F07-VAR-00207,Variance-dominated,5.0,5.39983621
+F07-VAR-00208,Variance-dominated,5.0,6.37983464
+F07-VAR-00209,Variance-dominated,5.0,5.69042001
+F07-VAR-00210,Variance-dominated,5.0,5.16825566
+F07-VAR-00211,Variance-dominated,5.0,4.60029999
+F07-VAR-00212,Variance-dominated,5.0,3.60554144
+F07-VAR-00213,Variance-dominated,5.0,3.83869983
+F07-VAR-00214,Variance-dominated,5.0,5.44285605
+F07-VAR-00215,Variance-dominated,5.0,5.33796663
+F07-VAR-00216,Variance-dominated,5.0,4.72372758
+F07-VAR-00217,Variance-dominated,5.0,6.11019621
+F07-VAR-00218,Variance-dominated,5.0,4.78204366
+F07-VAR-00219,Variance-dominated,5.0,3.37391108
+F07-VAR-00220,Variance-dominated,5.0,5.80598296
+F07-VAR-00221,Variance-dominated,5.0,2.68549121
+F07-VAR-00222,Variance-dominated,5.0,3.76979752
+F07-VAR-00223,Variance-dominated,5.0,7.52085740
+F07-VAR-00224,Variance-dominated,5.0,4.95149436
+F07-VAR-00225,Variance-dominated,5.0,5.41744740
+F07-VAR-00226,Variance-dominated,5.0,4.62973598
+F07-VAR-00227,Variance-dominated,5.0,4.37436500
+F07-VAR-00228,Variance-dominated,5.0,5.10775652
+F07-VAR-00229,Variance-dominated,5.0,5.21930983
+F07-VAR-00230,Variance-dominated,5.0,4.31764749
+F07-VAR-00231,Variance-dominated,5.0,6.50442101
+F07-VAR-00232,Variance-dominated,5.0,5.05265608
+F07-VAR-00233,Variance-dominated,5.0,4.71094465
+F07-VAR-00234,Variance-dominated,5.0,6.16891940
+F07-VAR-00235,Variance-dominated,5.0,4.62217708
+F07-VAR-00236,Variance-dominated,5.0,4.47546615
+F07-VAR-00237,Variance-dominated,5.0,6.05265190
+F07-VAR-00238,Variance-dominated,5.0,6.24461593
+F07-VAR-00239,Variance-dominated,5.0,4.94591727
+F07-VAR-00240,Variance-dominated,5.0,5.90048760
+F07-VAR-00241,Variance-dominated,5.0,4.15568815
+F07-VAR-00242,Variance-dominated,5.0,5.91364292
+F07-VAR-00243,Variance-dominated,5.0,4.67249925
+F07-VAR-00244,Variance-dominated,5.0,5.36980041
+F07-VAR-00245,Variance-dominated,5.0,5.56187955
+F07-VAR-00246,Variance-dominated,5.0,3.66520173
+F07-VAR-00247,Variance-dominated,5.0,5.44315500
+F07-VAR-00248,Variance-dominated,5.0,4.56539051
+F07-VAR-00249,Variance-dominated,5.0,5.46295668
+F07-VAR-00250,Variance-dominated,5.0,5.50475354
+F07-VAR-00251,Variance-dominated,5.0,5.50631125
+F07-VAR-00252,Variance-dominated,5.0,4.90729719
+F07-VAR-00253,Variance-dominated,5.0,5.52487856
+F07-VAR-00254,Variance-dominated,5.0,5.62670563
+F07-VAR-00255,Variance-dominated,5.0,5.24216392
+F07-VAR-00256,Variance-dominated,5.0,5.89522813
+F07-VAR-00257,Variance-dominated,5.0,5.11606345
+F07-VAR-00258,Variance-dominated,5.0,3.82267556
+F07-VAR-00259,Variance-dominated,5.0,3.58838430
+F07-VAR-00260,Variance-dominated,5.0,5.00000014
+F07-VAR-00261,Variance-dominated,5.0,5.29350373
+F07-VAR-00262,Variance-dominated,5.0,5.64316113
+F07-VAR-00263,Variance-dominated,5.0,4.69208494
+F07-VAR-00264,Variance-dominated,5.0,4.80177090
+F07-VAR-00265,Variance-dominated,5.0,4.86303821
+F07-VAR-00266,Variance-dominated,5.0,5.75217485
+F07-VAR-00267,Variance-dominated,5.0,6.06014421
+F07-VAR-00268,Variance-dominated,5.0,4.82944670
+F07-VAR-00269,Variance-dominated,5.0,5.67234213
+F07-VAR-00270,Variance-dominated,5.0,6.35470437
+F07-VAR-00271,Variance-dominated,5.0,5.14872334
+F07-VAR-00272,Variance-dominated,5.0,6.73236085
+F07-VAR-00273,Variance-dominated,5.0,3.86392566
+F07-VAR-00274,Variance-dominated,5.0,5.08222435
+F07-VAR-00275,Variance-dominated,5.0,4.88060174
+F07-VAR-00276,Variance-dominated,5.0,4.33057463
+F07-VAR-00277,Variance-dominated,5.0,5.81210101
+F07-VAR-00278,Variance-dominated,5.0,3.99632503
+F07-VAR-00279,Variance-dominated,5.0,4.47752460
+F07-VAR-00280,Variance-dominated,5.0,5.56549188
+F07-VAR-00281,Variance-dominated,5.0,4.63974781
+F07-VAR-00282,Variance-dominated,5.0,4.89329638
+F07-VAR-00283,Variance-dominated,5.0,4.81312396
+F07-VAR-00284,Variance-dominated,5.0,5.90871785
+F07-VAR-00285,Variance-dominated,5.0,4.00554771
+F07-VAR-00286,Variance-dominated,5.0,5.61673935
+F07-VAR-00287,Variance-dominated,5.0,4.22993820
+F07-VAR-00288,Variance-dominated,5.0,3.37759145
+F07-VAR-00289,Variance-dominated,5.0,4.69580392
+F07-VAR-00290,Variance-dominated,5.0,3.70929544
+F07-VAR-00291,Variance-dominated,5.0,3.71029121
+F07-VAR-00292,Variance-dominated,5.0,4.61103926
+F07-VAR-00293,Variance-dominated,5.0,3.57659631
+F07-VAR-00294,Variance-dominated,5.0,6.59598037
+F07-VAR-00295,Variance-dominated,5.0,4.10002248
+F07-VAR-00296,Variance-dominated,5.0,6.51356469
+F07-VAR-00297,Variance-dominated,5.0,4.10788271
+F07-VAR-00298,Variance-dominated,5.0,5.23370956
+F07-VAR-00299,Variance-dominated,5.0,5.44347034
+F07-VAR-00300,Variance-dominated,5.0,5.56232117
+F07-VAR-00301,Variance-dominated,5.0,5.87109386
+F07-VAR-00302,Variance-dominated,5.0,4.38761399
+F07-VAR-00303,Variance-dominated,5.0,4.25434096
+F07-VAR-00304,Variance-dominated,5.0,5.35354037
+F07-VAR-00305,Variance-dominated,5.0,4.41227078
+F07-VAR-00306,Variance-dominated,5.0,4.86394668
+F07-VAR-00307,Variance-dominated,5.0,4.64183409
+F07-VAR-00308,Variance-dominated,5.0,5.75560471
+F07-VAR-00309,Variance-dominated,5.0,4.62924612
+F07-VAR-00310,Variance-dominated,5.0,4.57493578
+F07-VAR-00311,Variance-dominated,5.0,5.51571334
+F07-VAR-00312,Variance-dominated,5.0,5.60250643
+F07-VAR-00313,Variance-dominated,5.0,4.63165338
+F07-VAR-00314,Variance-dominated,5.0,5.74466511
+F07-VAR-00315,Variance-dominated,5.0,6.21726172
+F07-VAR-00316,Variance-dominated,5.0,5.94776800
+F07-VAR-00317,Variance-dominated,5.0,5.01010892
+F07-VAR-00318,Variance-dominated,5.0,4.64337506
+F07-VAR-00319,Variance-dominated,5.0,5.10898145
+F07-VAR-00320,Variance-dominated,5.0,5.66385868
+F07-VAR-00321,Variance-dominated,5.0,4.02525685
+F07-VAR-00322,Variance-dominated,5.0,5.30185508
+F07-VAR-00323,Variance-dominated,5.0,5.21522460
+F07-VAR-00324,Variance-dominated,5.0,5.88871772
+F07-VAR-00325,Variance-dominated,5.0,4.54551139
+F07-VAR-00326,Variance-dominated,5.0,4.79591940
+F07-VAR-00327,Variance-dominated,5.0,4.47546515
+F07-VAR-00328,Variance-dominated,5.0,4.65324610
+F07-VAR-00329,Variance-dominated,5.0,4.66777460
+F07-VAR-00330,Variance-dominated,5.0,5.00230568
+F07-VAR-00331,Variance-dominated,5.0,4.81135294
+F07-VAR-00332,Variance-dominated,5.0,5.79289750
+F07-VAR-00333,Variance-dominated,5.0,5.90092036
+F07-VAR-00334,Variance-dominated,5.0,3.67239043
+F07-VAR-00335,Variance-dominated,5.0,4.78278233
+F07-VAR-00336,Variance-dominated,5.0,5.33137314
+F07-VAR-00337,Variance-dominated,5.0,6.24352309
+F07-VAR-00338,Variance-dominated,5.0,2.97776667
+F07-VAR-00339,Variance-dominated,5.0,5.82386129
+F07-VAR-00340,Variance-dominated,5.0,5.06529261
+F07-VAR-00341,Variance-dominated,5.0,4.67906823
+F07-VAR-00342,Variance-dominated,5.0,5.10943956
+F07-VAR-00343,Variance-dominated,5.0,5.78034836
+F07-VAR-00344,Variance-dominated,5.0,4.64114047
+F07-VAR-00345,Variance-dominated,5.0,5.55881714
+F07-VAR-00346,Variance-dominated,5.0,4.38122220
+F07-VAR-00347,Variance-dominated,5.0,5.09919166
+F07-VAR-00348,Variance-dominated,5.0,4.70473311
+F07-VAR-00349,Variance-dominated,5.0,3.38504241
+F07-VAR-00350,Variance-dominated,5.0,4.35335106
+F07-VAR-00351,Variance-dominated,5.0,5.48898141
+F07-VAR-00352,Variance-dominated,5.0,6.13403812
+F07-VAR-00353,Variance-dominated,5.0,4.62585832
+F07-VAR-00354,Variance-dominated,5.0,6.47740886
+F07-VAR-00355,Variance-dominated,5.0,6.08134712
+F07-VAR-00356,Variance-dominated,5.0,5.24912864
+F07-VAR-00357,Variance-dominated,5.0,5.87364471
+F07-VAR-00358,Variance-dominated,5.0,5.48734536
+F07-VAR-00359,Variance-dominated,5.0,4.37000183
+F07-VAR-00360,Variance-dominated,5.0,5.29810451
+F07-VAR-00361,Variance-dominated,5.0,5.18517536
+F07-VAR-00362,Variance-dominated,5.0,5.01042746
+F07-VAR-00363,Variance-dominated,5.0,3.36325379
+F07-VAR-00364,Variance-dominated,5.0,4.80450248
+F07-VAR-00365,Variance-dominated,5.0,5.96476688
+F07-VAR-00366,Variance-dominated,5.0,5.74713966
+F07-VAR-00367,Variance-dominated,5.0,5.71957195
+F07-VAR-00368,Variance-dominated,5.0,5.12094197
+F07-VAR-00369,Variance-dominated,5.0,5.75361147
+F07-VAR-00370,Variance-dominated,5.0,5.86988187
+F07-VAR-00371,Variance-dominated,5.0,4.71806643
+F07-VAR-00372,Variance-dominated,5.0,4.19846036
+F07-VAR-00373,Variance-dominated,5.0,6.03798221
+F07-VAR-00374,Variance-dominated,5.0,4.74105421
+F07-VAR-00375,Variance-dominated,5.0,5.77635564
+F07-VAR-00376,Variance-dominated,5.0,4.40092993
+F07-VAR-00377,Variance-dominated,5.0,4.75206323
+F07-VAR-00378,Variance-dominated,5.0,6.16369962
+F07-VAR-00379,Variance-dominated,5.0,4.06567640
+F07-VAR-00380,Variance-dominated,5.0,4.44522682
+F07-VAR-00381,Variance-dominated,5.0,5.51891887
+F07-VAR-00382,Variance-dominated,5.0,6.11924010
+F07-VAR-00383,Variance-dominated,5.0,4.86577856
+F07-VAR-00384,Variance-dominated,5.0,4.85186625
+F07-VAR-00385,Variance-dominated,5.0,5.67593723
+F07-VAR-00386,Variance-dominated,5.0,4.22720488
+F07-VAR-00387,Variance-dominated,5.0,5.12129023
+F07-VAR-00388,Variance-dominated,5.0,4.79704981
+F07-VAR-00389,Variance-dominated,5.0,5.56874030
+F07-VAR-00390,Variance-dominated,5.0,4.39127503
+F07-VAR-00391,Variance-dominated,5.0,4.16473463
+F07-VAR-00392,Variance-dominated,5.0,4.34450772
+F07-VAR-00393,Variance-dominated,5.0,5.76765185
+F07-VAR-00394,Variance-dominated,5.0,5.64648119
+F07-VAR-00395,Variance-dominated,5.0,6.09166182
+F07-VAR-00396,Variance-dominated,5.0,5.67395662
+F07-VAR-00397,Variance-dominated,5.0,5.24363944
+F07-VAR-00398,Variance-dominated,5.0,3.54229639
+F07-VAR-00399,Variance-dominated,5.0,4.12533763
+F07-VAR-00400,Variance-dominated,5.0,4.71943836
+F07-VAR-00401,Variance-dominated,5.0,5.05615236
+F07-VAR-00402,Variance-dominated,5.0,5.69566449
+F07-VAR-00403,Variance-dominated,5.0,5.72248946
+F07-VAR-00404,Variance-dominated,5.0,4.29067504
+F07-VAR-00405,Variance-dominated,5.0,4.24167392
+F07-VAR-00406,Variance-dominated,5.0,6.16635525
+F07-VAR-00407,Variance-dominated,5.0,5.04438836
+F07-VAR-00408,Variance-dominated,5.0,4.68085612
+F07-VAR-00409,Variance-dominated,5.0,3.57466956
+F07-VAR-00410,Variance-dominated,5.0,5.15057570
+F07-VAR-00411,Variance-dominated,5.0,4.60093202
+F07-VAR-00412,Variance-dominated,5.0,6.60014481
+F07-VAR-00413,Variance-dominated,5.0,5.81303905
+F07-VAR-00414,Variance-dominated,5.0,5.20791396
+F07-VAR-00415,Variance-dominated,5.0,5.01433796
+F07-VAR-00416,Variance-dominated,5.0,4.74517072
+F07-VAR-00417,Variance-dominated,5.0,4.08059678
+F07-VAR-00418,Variance-dominated,5.0,4.98357020
+F07-VAR-00419,Variance-dominated,5.0,4.72334356
+F07-VAR-00420,Variance-dominated,5.0,5.65741093
+F07-VAR-00421,Variance-dominated,5.0,4.33328766
+F07-VAR-00422,Variance-dominated,5.0,4.89516662
+F07-VAR-00423,Variance-dominated,5.0,5.71081577
+F07-VAR-00424,Variance-dominated,5.0,5.70259413
+F07-VAR-00425,Variance-dominated,5.0,5.05695338
+F07-VAR-00426,Variance-dominated,5.0,4.08816838
+F07-VAR-00427,Variance-dominated,5.0,4.19687899
+F07-VAR-00428,Variance-dominated,5.0,5.13319067
+F07-VAR-00429,Variance-dominated,5.0,4.76883931
+F07-VAR-00430,Variance-dominated,5.0,4.56557911
+F07-VAR-00431,Variance-dominated,5.0,4.26223415
+F07-VAR-00432,Variance-dominated,5.0,4.81196461
+F07-VAR-00433,Variance-dominated,5.0,5.36413645
+F07-VAR-00434,Variance-dominated,5.0,5.77263655
+F07-VAR-00435,Variance-dominated,5.0,4.14374051
+F07-VAR-00436,Variance-dominated,5.0,4.08896506
+F07-VAR-00437,Variance-dominated,5.0,4.70585466
+F07-VAR-00438,Variance-dominated,5.0,5.86800481
+F07-VAR-00439,Variance-dominated,5.0,4.24809599
+F07-VAR-00440,Variance-dominated,5.0,4.21426306
+F07-VAR-00441,Variance-dominated,5.0,4.97659505
+F07-VAR-00442,Variance-dominated,5.0,5.29479946
+F07-VAR-00443,Variance-dominated,5.0,5.08251389
+F07-VAR-00444,Variance-dominated,5.0,6.34402264
+F07-VAR-00445,Variance-dominated,5.0,6.29129131
+F07-VAR-00446,Variance-dominated,5.0,4.90594979
+F07-VAR-00447,Variance-dominated,5.0,4.51673856
+F07-VAR-00448,Variance-dominated,5.0,4.73236012
+F07-VAR-00449,Variance-dominated,5.0,5.69383617
+F07-VAR-00450,Variance-dominated,5.0,4.27471389
+F07-VAR-00451,Variance-dominated,5.0,4.10675643
+F07-VAR-00452,Variance-dominated,5.0,3.78387248
+F07-VAR-00453,Variance-dominated,5.0,3.40138845
+F07-VAR-00454,Variance-dominated,5.0,5.88666423
+F07-VAR-00455,Variance-dominated,5.0,5.69547238
+F07-VAR-00456,Variance-dominated,5.0,4.62539406
+F07-VAR-00457,Variance-dominated,5.0,5.35532344
+F07-VAR-00458,Variance-dominated,5.0,4.64898879
+F07-VAR-00459,Variance-dominated,5.0,5.35168892
+F07-VAR-00460,Variance-dominated,5.0,6.36594048
+F07-VAR-00461,Variance-dominated,5.0,5.12477496
+F07-VAR-00462,Variance-dominated,5.0,3.84328855
+F07-VAR-00463,Variance-dominated,5.0,3.87613382
+F07-VAR-00464,Variance-dominated,5.0,6.21935631
+F07-VAR-00465,Variance-dominated,5.0,3.71340125
+F07-VAR-00466,Variance-dominated,5.0,6.23662088
+F07-VAR-00467,Variance-dominated,5.0,5.51871407
+F07-VAR-00468,Variance-dominated,5.0,5.05768285
+F07-VAR-00469,Variance-dominated,5.0,4.92562392
+F07-VAR-00470,Variance-dominated,5.0,4.90743379
+F07-VAR-00471,Variance-dominated,5.0,3.68999904
+F07-VAR-00472,Variance-dominated,5.0,5.65311629
+F07-VAR-00473,Variance-dominated,5.0,5.60556661
+F07-VAR-00474,Variance-dominated,5.0,5.02483814
+F07-VAR-00475,Variance-dominated,5.0,4.29007868
+F07-VAR-00476,Variance-dominated,5.0,5.99056550
+F07-VAR-00477,Variance-dominated,5.0,5.46827386
+F07-VAR-00478,Variance-dominated,5.0,6.04090786
+F07-VAR-00479,Variance-dominated,5.0,5.06554439
+F07-VAR-00480,Variance-dominated,5.0,5.54481345
+F07-VAR-00481,Variance-dominated,5.0,4.01601353
+F07-VAR-00482,Variance-dominated,5.0,5.33553987
+F07-VAR-00483,Variance-dominated,5.0,4.07076699
+F07-VAR-00484,Variance-dominated,5.0,4.92462878
+F07-VAR-00485,Variance-dominated,5.0,5.78557574
+F07-VAR-00486,Variance-dominated,5.0,5.69421493
+F07-VAR-00487,Variance-dominated,5.0,5.95893891
+F07-VAR-00488,Variance-dominated,5.0,5.72333793
+F07-VAR-00489,Variance-dominated,5.0,6.21907401
+F07-VAR-00490,Variance-dominated,5.0,3.78918082
+F07-VAR-00491,Variance-dominated,5.0,4.25807175
+F07-VAR-00492,Variance-dominated,5.0,5.46266354
+F07-VAR-00493,Variance-dominated,5.0,4.28022863
+F07-VAR-00494,Variance-dominated,5.0,4.10151306
+F07-VAR-00495,Variance-dominated,5.0,5.23081159
+F07-VAR-00496,Variance-dominated,5.0,4.35224015
+F07-VAR-00497,Variance-dominated,5.0,4.14845274
+F07-VAR-00498,Variance-dominated,5.0,4.42208500
+F07-VAR-00499,Variance-dominated,5.0,4.99711605
+F07-VAR-00500,Variance-dominated,5.0,4.98064090
+F07-VAR-00501,Variance-dominated,5.0,5.30316959
+F07-VAR-00502,Variance-dominated,5.0,4.36238176
+F07-VAR-00503,Variance-dominated,5.0,4.09638241
+F07-VAR-00504,Variance-dominated,5.0,4.03653953
+F07-VAR-00505,Variance-dominated,5.0,5.39117530
+F07-VAR-00506,Variance-dominated,5.0,4.79719739
+F07-VAR-00507,Variance-dominated,5.0,6.16325017
+F07-VAR-00508,Variance-dominated,5.0,3.62955942
+F07-VAR-00509,Variance-dominated,5.0,5.20973220
+F07-VAR-00510,Variance-dominated,5.0,5.30891827
+F07-VAR-00511,Variance-dominated,5.0,4.90684035
+F07-VAR-00512,Variance-dominated,5.0,4.28567716
+F07-VAR-00513,Variance-dominated,5.0,5.97911909
+F07-VAR-00514,Variance-dominated,5.0,4.70153958
+F07-VAR-00515,Variance-dominated,5.0,4.56664895
+F07-VAR-00516,Variance-dominated,5.0,4.09914401
+F07-VAR-00517,Variance-dominated,5.0,6.13570137
+F07-VAR-00518,Variance-dominated,5.0,4.49418377
+F07-VAR-00519,Variance-dominated,5.0,6.56198962
+F07-VAR-00520,Variance-dominated,5.0,5.97874126
+F07-VAR-00521,Variance-dominated,5.0,5.61785077
+F07-VAR-00522,Variance-dominated,5.0,5.69181697
+F07-VAR-00523,Variance-dominated,5.0,4.84717247
+F07-VAR-00524,Variance-dominated,5.0,5.42253408
+F07-VAR-00525,Variance-dominated,5.0,4.13168051
+F07-VAR-00526,Variance-dominated,5.0,4.89904048
+F07-VAR-00527,Variance-dominated,5.0,4.99156873
+F07-VAR-00528,Variance-dominated,5.0,4.13262889
+F07-VAR-00529,Variance-dominated,5.0,3.83586152
+F07-VAR-00530,Variance-dominated,5.0,5.44874888
+F07-VAR-00531,Variance-dominated,5.0,3.45263956
+F07-VAR-00532,Variance-dominated,5.0,4.13844098
+F07-VAR-00533,Variance-dominated,5.0,4.71148487
+F07-VAR-00534,Variance-dominated,5.0,6.06818659
+F07-VAR-00535,Variance-dominated,5.0,4.94952141
+F07-VAR-00536,Variance-dominated,5.0,6.12941807
+F07-VAR-00537,Variance-dominated,5.0,4.98812758
+F07-VAR-00538,Variance-dominated,5.0,3.68269881
+F07-VAR-00539,Variance-dominated,5.0,5.68062522
+F07-VAR-00540,Variance-dominated,5.0,5.16237914
+F07-VAR-00541,Variance-dominated,5.0,6.02453950
+F07-VAR-00542,Variance-dominated,5.0,6.75005099
+F07-VAR-00543,Variance-dominated,5.0,5.85489859
+F07-VAR-00544,Variance-dominated,5.0,6.43372316
+F07-VAR-00545,Variance-dominated,5.0,4.91181748
+F07-VAR-00546,Variance-dominated,5.0,4.92993898
+F07-VAR-00547,Variance-dominated,5.0,5.16743624
+F07-VAR-00548,Variance-dominated,5.0,4.35420357
+F07-VAR-00549,Variance-dominated,5.0,4.23661611
+F07-VAR-00550,Variance-dominated,5.0,5.21474964
+F07-VAR-00551,Variance-dominated,5.0,5.22961605
+F07-VAR-00552,Variance-dominated,5.0,6.68915056
+F07-VAR-00553,Variance-dominated,5.0,6.53175758
+F07-VAR-00554,Variance-dominated,5.0,4.37648178
+F07-VAR-00555,Variance-dominated,5.0,3.69935844
+F07-VAR-00556,Variance-dominated,5.0,4.45739087
+F07-VAR-00557,Variance-dominated,5.0,6.78358055
+F07-VAR-00558,Variance-dominated,5.0,3.85360478
+F07-VAR-00559,Variance-dominated,5.0,5.47930017
+F07-VAR-00560,Variance-dominated,5.0,4.38716101
+F07-VAR-00561,Variance-dominated,5.0,4.77971393
+F07-VAR-00562,Variance-dominated,5.0,5.75651690
+F07-VAR-00563,Variance-dominated,5.0,4.84346439
+F07-VAR-00564,Variance-dominated,5.0,5.02930420
+F07-VAR-00565,Variance-dominated,5.0,3.94933793
+F07-VAR-00566,Variance-dominated,5.0,5.72483936
+F07-VAR-00567,Variance-dominated,5.0,4.44580284
+F07-VAR-00568,Variance-dominated,5.0,5.92112206
+F07-VAR-00569,Variance-dominated,5.0,5.04281573
+F07-VAR-00570,Variance-dominated,5.0,5.78488079
+F07-VAR-00571,Variance-dominated,5.0,6.00571504
+F07-VAR-00572,Variance-dominated,5.0,5.19487641
+F07-VAR-00573,Variance-dominated,5.0,3.54220875
+F07-VAR-00574,Variance-dominated,5.0,3.92240290
+F07-VAR-00575,Variance-dominated,5.0,5.20306820
+F07-VAR-00576,Variance-dominated,5.0,5.19698280
+F07-VAR-00577,Variance-dominated,5.0,4.36374287
+F07-VAR-00578,Variance-dominated,5.0,5.44990685
+F07-VAR-00579,Variance-dominated,5.0,4.60067017
+F07-VAR-00580,Variance-dominated,5.0,4.88666845
+F07-VAR-00581,Variance-dominated,5.0,5.04870961
+F07-VAR-00582,Variance-dominated,5.0,3.60483883
+F07-VAR-00583,Variance-dominated,5.0,4.09958490
+F07-VAR-00584,Variance-dominated,5.0,5.24910888
+F07-VAR-00585,Variance-dominated,5.0,4.24614418
+F07-VAR-00586,Variance-dominated,5.0,4.43591478
+F07-VAR-00587,Variance-dominated,5.0,3.84181961
+F07-VAR-00588,Variance-dominated,5.0,5.84497980
+F07-VAR-00589,Variance-dominated,5.0,6.78014539
+F07-VAR-00590,Variance-dominated,5.0,4.11704626
+F07-VAR-00591,Variance-dominated,5.0,4.12124495
+F07-VAR-00592,Variance-dominated,5.0,5.17393744
+F07-VAR-00593,Variance-dominated,5.0,5.63127997
+F07-VAR-00594,Variance-dominated,5.0,4.36321093
+F07-VAR-00595,Variance-dominated,5.0,5.72000740
+F07-VAR-00596,Variance-dominated,5.0,5.75382305
+F07-VAR-00597,Variance-dominated,5.0,4.63895585
+F07-VAR-00598,Variance-dominated,5.0,7.07040530
+F07-VAR-00599,Variance-dominated,5.0,5.36060617
+F07-VAR-00600,Variance-dominated,5.0,4.48760069
+F07-VAR-00601,Variance-dominated,5.0,6.05868122
+F07-VAR-00602,Variance-dominated,5.0,4.36926221
+F07-VAR-00603,Variance-dominated,5.0,4.85910764
+F07-VAR-00604,Variance-dominated,5.0,5.16283978
+F07-VAR-00605,Variance-dominated,5.0,4.76784201
+F07-VAR-00606,Variance-dominated,5.0,5.53662241
+F07-VAR-00607,Variance-dominated,5.0,4.82060962
+F07-VAR-00608,Variance-dominated,5.0,3.88407521
+F07-VAR-00609,Variance-dominated,5.0,7.11867656
+F07-VAR-00610,Variance-dominated,5.0,5.44718608
+F07-VAR-00611,Variance-dominated,5.0,5.93702029
+F07-VAR-00612,Variance-dominated,5.0,4.57558972
+F07-VAR-00613,Variance-dominated,5.0,6.68038566
+F07-VAR-00614,Variance-dominated,5.0,5.48153693
+F07-VAR-00615,Variance-dominated,5.0,5.49356493
+F07-VAR-00616,Variance-dominated,5.0,4.18919110
+F07-VAR-00617,Variance-dominated,5.0,6.27664175
+F07-VAR-00618,Variance-dominated,5.0,4.26498618
+F07-VAR-00619,Variance-dominated,5.0,4.05737202
+F07-VAR-00620,Variance-dominated,5.0,3.89855739
+F07-VAR-00621,Variance-dominated,5.0,5.41936473
+F07-VAR-00622,Variance-dominated,5.0,4.96947229
+F07-VAR-00623,Variance-dominated,5.0,5.55588299
+F07-VAR-00624,Variance-dominated,5.0,5.19764793
+F07-VAR-00625,Variance-dominated,5.0,6.49537466
+F07-VAR-00626,Variance-dominated,5.0,5.18991300
+F07-VAR-00627,Variance-dominated,5.0,5.78449391
+F07-VAR-00628,Variance-dominated,5.0,5.19826826
+F07-VAR-00629,Variance-dominated,5.0,4.76361722
+F07-VAR-00630,Variance-dominated,5.0,5.12665253
+F07-VAR-00631,Variance-dominated,5.0,4.21725573
+F07-VAR-00632,Variance-dominated,5.0,4.70578713
+F07-VAR-00633,Variance-dominated,5.0,4.47993807
+F07-VAR-00634,Variance-dominated,5.0,4.24782071
+F07-VAR-00635,Variance-dominated,5.0,3.89576592
+F07-VAR-00636,Variance-dominated,5.0,4.81791230
+F07-VAR-00637,Variance-dominated,5.0,5.83558784
+F07-VAR-00638,Variance-dominated,5.0,6.32591274
+F07-VAR-00639,Variance-dominated,5.0,6.73291068
+F07-VAR-00640,Variance-dominated,5.0,3.55540098
+F07-VAR-00641,Variance-dominated,5.0,4.94663905
+F07-VAR-00642,Variance-dominated,5.0,3.76427998
+F07-VAR-00643,Variance-dominated,5.0,5.27545760
+F07-VAR-00644,Variance-dominated,5.0,5.38232357
+F07-VAR-00645,Variance-dominated,5.0,4.92480524
+F07-VAR-00646,Variance-dominated,5.0,6.04322587
+F07-VAR-00647,Variance-dominated,5.0,5.47825529
+F07-VAR-00648,Variance-dominated,5.0,3.95569339
+F07-VAR-00649,Variance-dominated,5.0,5.29821662
+F07-VAR-00650,Variance-dominated,5.0,5.89281203
+F07-VAR-00651,Variance-dominated,5.0,4.52935054
+F07-VAR-00652,Variance-dominated,5.0,5.99327552
+F07-VAR-00653,Variance-dominated,5.0,5.16664307
+F07-VAR-00654,Variance-dominated,5.0,5.31422600
+F07-VAR-00655,Variance-dominated,5.0,4.83103985
+F07-VAR-00656,Variance-dominated,5.0,5.20923779
+F07-VAR-00657,Variance-dominated,5.0,5.47672998
+F07-VAR-00658,Variance-dominated,5.0,5.27549075
+F07-VAR-00659,Variance-dominated,5.0,4.72842349
+F07-VAR-00660,Variance-dominated,5.0,4.55037769
+F07-VAR-00661,Variance-dominated,5.0,5.20497519
+F07-VAR-00662,Variance-dominated,5.0,3.81844563
+F07-VAR-00663,Variance-dominated,5.0,4.31396296
+F07-VAR-00664,Variance-dominated,5.0,4.56746474
+F07-VAR-00665,Variance-dominated,5.0,5.55882885
+F07-VAR-00666,Variance-dominated,5.0,5.24019840
+F07-VAR-00667,Variance-dominated,5.0,5.19813198
+F07-VAR-00668,Variance-dominated,5.0,5.32247068
+F07-VAR-00669,Variance-dominated,5.0,4.59301785
+F07-VAR-00670,Variance-dominated,5.0,4.28894053
+F07-VAR-00671,Variance-dominated,5.0,3.79999742
+F07-VAR-00672,Variance-dominated,5.0,5.61909640
+F07-VAR-00673,Variance-dominated,5.0,6.66098612
+F07-VAR-00674,Variance-dominated,5.0,3.99707386
+F07-VAR-00675,Variance-dominated,5.0,3.87676824
+F07-VAR-00676,Variance-dominated,5.0,3.95153660
+F07-VAR-00677,Variance-dominated,5.0,4.40534108
+F07-VAR-00678,Variance-dominated,5.0,4.15854102
+F07-VAR-00679,Variance-dominated,5.0,4.13585137
+F07-VAR-00680,Variance-dominated,5.0,5.54829910
+F07-VAR-00681,Variance-dominated,5.0,6.27099492
+F07-VAR-00682,Variance-dominated,5.0,4.70328661
+F07-VAR-00683,Variance-dominated,5.0,4.45615971
+F07-VAR-00684,Variance-dominated,5.0,4.84884915
+F07-VAR-00685,Variance-dominated,5.0,3.86488742
+F07-VAR-00686,Variance-dominated,5.0,4.53139983
+F07-VAR-00687,Variance-dominated,5.0,3.56285357
+F07-VAR-00688,Variance-dominated,5.0,5.42863192
+F07-VAR-00689,Variance-dominated,5.0,2.79731974
+F07-VAR-00690,Variance-dominated,5.0,5.43554752
+F07-VAR-00691,Variance-dominated,5.0,5.50671552
+F07-VAR-00692,Variance-dominated,5.0,6.22729265
+F07-VAR-00693,Variance-dominated,5.0,4.29843134
+F07-VAR-00694,Variance-dominated,5.0,4.75315944
+F07-VAR-00695,Variance-dominated,5.0,4.44967537
+F07-VAR-00696,Variance-dominated,5.0,6.10208445
+F07-VAR-00697,Variance-dominated,5.0,5.41590600
+F07-VAR-00698,Variance-dominated,5.0,5.86251257
+F07-VAR-00699,Variance-dominated,5.0,4.35677695
+F07-VAR-00700,Variance-dominated,5.0,5.02758329
+F07-VAR-00701,Variance-dominated,5.0,4.88160028
+F07-VAR-00702,Variance-dominated,5.0,4.20176919
+F07-VAR-00703,Variance-dominated,5.0,3.93254506
+F07-VAR-00704,Variance-dominated,5.0,5.12737351
+F07-VAR-00705,Variance-dominated,5.0,4.23537328
+F07-VAR-00706,Variance-dominated,5.0,4.47430168
+F07-VAR-00707,Variance-dominated,5.0,4.71999791
+F07-VAR-00708,Variance-dominated,5.0,4.65841115
+F07-VAR-00709,Variance-dominated,5.0,4.69865734
+F07-VAR-00710,Variance-dominated,5.0,4.76681880
+F07-VAR-00711,Variance-dominated,5.0,5.49139229
+F07-VAR-00712,Variance-dominated,5.0,4.55060762
+F07-VAR-00713,Variance-dominated,5.0,5.47706084
+F07-VAR-00714,Variance-dominated,5.0,4.12853013
+F07-VAR-00715,Variance-dominated,5.0,3.96996912
+F07-VAR-00716,Variance-dominated,5.0,4.39648424
+F07-VAR-00717,Variance-dominated,5.0,4.12776232
+F07-VAR-00718,Variance-dominated,5.0,5.46367937
+F07-VAR-00719,Variance-dominated,5.0,5.33783989
+F07-VAR-00720,Variance-dominated,5.0,4.46400704
+F07-VAR-00721,Variance-dominated,5.0,4.98160792
+F07-VAR-00722,Variance-dominated,5.0,5.04418988
+F07-VAR-00723,Variance-dominated,5.0,5.36754473
+F07-VAR-00724,Variance-dominated,5.0,3.04826623
+F07-VAR-00725,Variance-dominated,5.0,4.03162449
+F07-VAR-00726,Variance-dominated,5.0,5.15364650
+F07-VAR-00727,Variance-dominated,5.0,4.67026589
+F07-VAR-00728,Variance-dominated,5.0,5.26239010
+F07-VAR-00729,Variance-dominated,5.0,4.65691219
+F07-VAR-00730,Variance-dominated,5.0,5.65138766
+F07-VAR-00731,Variance-dominated,5.0,6.18235428
+F07-VAR-00732,Variance-dominated,5.0,5.08846344
+F07-VAR-00733,Variance-dominated,5.0,3.20157749
+F07-VAR-00734,Variance-dominated,5.0,6.45295343
+F07-VAR-00735,Variance-dominated,5.0,4.56362679
+F07-VAR-00736,Variance-dominated,5.0,4.69426660
+F07-VAR-00737,Variance-dominated,5.0,5.09630614
+F07-VAR-00738,Variance-dominated,5.0,4.17871195
+F07-VAR-00739,Variance-dominated,5.0,5.67855413
+F07-VAR-00740,Variance-dominated,5.0,4.20082832
+F07-VAR-00741,Variance-dominated,5.0,5.30486526
+F07-VAR-00742,Variance-dominated,5.0,7.31855191
+F07-VAR-00743,Variance-dominated,5.0,5.26235042
+F07-VAR-00744,Variance-dominated,5.0,4.58981166
+F07-VAR-00745,Variance-dominated,5.0,5.67239717
+F07-VAR-00746,Variance-dominated,5.0,3.56859134
+F07-VAR-00747,Variance-dominated,5.0,4.59532685
+F07-VAR-00748,Variance-dominated,5.0,5.54520426
+F07-VAR-00749,Variance-dominated,5.0,4.11383752
+F07-VAR-00750,Variance-dominated,5.0,6.73881831
+F07-VAR-00751,Variance-dominated,5.0,5.69597107
+F07-VAR-00752,Variance-dominated,5.0,5.85263901
+F07-VAR-00753,Variance-dominated,5.0,5.41614765
+F07-VAR-00754,Variance-dominated,5.0,5.31626546
+F07-VAR-00755,Variance-dominated,5.0,4.83221762
+F07-VAR-00756,Variance-dominated,5.0,5.29623035
+F07-VAR-00757,Variance-dominated,5.0,4.57256894
+F07-VAR-00758,Variance-dominated,5.0,3.91791625
+F07-VAR-00759,Variance-dominated,5.0,5.47362782
+F07-VAR-00760,Variance-dominated,5.0,5.82451203
+F07-VAR-00761,Variance-dominated,5.0,5.58515224
+F07-VAR-00762,Variance-dominated,5.0,5.55889351
+F07-VAR-00763,Variance-dominated,5.0,5.51803653
+F07-VAR-00764,Variance-dominated,5.0,4.76901376
+F07-VAR-00765,Variance-dominated,5.0,5.70231683
+F07-VAR-00766,Variance-dominated,5.0,3.93305885
+F07-VAR-00767,Variance-dominated,5.0,4.57355343
+F07-VAR-00768,Variance-dominated,5.0,5.16882757
+F07-VAR-00769,Variance-dominated,5.0,5.21398012
+F07-VAR-00770,Variance-dominated,5.0,4.19701260
+F07-VAR-00771,Variance-dominated,5.0,3.73854626
+F07-VAR-00772,Variance-dominated,5.0,5.21173554
+F07-VAR-00773,Variance-dominated,5.0,4.81014164
+F07-VAR-00774,Variance-dominated,5.0,4.83287868
+F07-VAR-00775,Variance-dominated,5.0,5.22896701
+F07-VAR-00776,Variance-dominated,5.0,4.72339242
+F07-VAR-00777,Variance-dominated,5.0,4.48471893
+F07-VAR-00778,Variance-dominated,5.0,4.87456021
+F07-VAR-00779,Variance-dominated,5.0,4.40199574
+F07-VAR-00780,Variance-dominated,5.0,5.34421727
+F07-VAR-00781,Variance-dominated,5.0,5.74201956
+F07-VAR-00782,Variance-dominated,5.0,4.99497698
+F07-VAR-00783,Variance-dominated,5.0,4.32613527
+F07-VAR-00784,Variance-dominated,5.0,6.15647365
+F07-VAR-00785,Variance-dominated,5.0,4.00125272
+F07-VAR-00786,Variance-dominated,5.0,4.58832036
+F07-VAR-00787,Variance-dominated,5.0,4.57927512
+F07-VAR-00788,Variance-dominated,5.0,4.19631758
+F07-VAR-00789,Variance-dominated,5.0,4.67252720
+F07-VAR-00790,Variance-dominated,5.0,3.76648950
+F07-VAR-00791,Variance-dominated,5.0,5.98257000
+F07-VAR-00792,Variance-dominated,5.0,6.20033316
+F07-VAR-00793,Variance-dominated,5.0,5.09001778
+F07-VAR-00794,Variance-dominated,5.0,6.61544374
+F07-VAR-00795,Variance-dominated,5.0,4.44771871
+F07-VAR-00796,Variance-dominated,5.0,4.13023019
+F07-VAR-00797,Variance-dominated,5.0,5.45496253
+F07-VAR-00798,Variance-dominated,5.0,5.64452244
+F07-VAR-00799,Variance-dominated,5.0,4.32273089
+F07-VAR-00800,Variance-dominated,5.0,4.49359882
+F07-VAR-00801,Variance-dominated,5.0,3.70968954
+F07-VAR-00802,Variance-dominated,5.0,5.47637806
+F07-VAR-00803,Variance-dominated,5.0,4.83166299
+F07-VAR-00804,Variance-dominated,5.0,4.05714287
+F07-VAR-00805,Variance-dominated,5.0,4.77140066
+F07-VAR-00806,Variance-dominated,5.0,6.26435261
+F07-VAR-00807,Variance-dominated,5.0,6.50598578
+F07-VAR-00808,Variance-dominated,5.0,4.87386621
+F07-VAR-00809,Variance-dominated,5.0,6.05394600
+F07-VAR-00810,Variance-dominated,5.0,4.66263816
+F07-VAR-00811,Variance-dominated,5.0,4.71408271
+F07-VAR-00812,Variance-dominated,5.0,5.01895835
+F07-VAR-00813,Variance-dominated,5.0,5.96942377
+F07-VAR-00814,Variance-dominated,5.0,3.61315702
+F07-VAR-00815,Variance-dominated,5.0,4.54992468
+F07-VAR-00816,Variance-dominated,5.0,6.39871682
+F07-VAR-00817,Variance-dominated,5.0,4.25006631
+F07-VAR-00818,Variance-dominated,5.0,4.84169080
+F07-VAR-00819,Variance-dominated,5.0,4.72564831
+F07-VAR-00820,Variance-dominated,5.0,6.88064043
+F07-VAR-00821,Variance-dominated,5.0,5.63540672
+F07-VAR-00822,Variance-dominated,5.0,4.22354320
+F07-VAR-00823,Variance-dominated,5.0,5.26681682
+F07-VAR-00824,Variance-dominated,5.0,4.39225259
+F07-VAR-00825,Variance-dominated,5.0,4.18535589
+F07-VAR-00826,Variance-dominated,5.0,5.02890587
+F07-VAR-00827,Variance-dominated,5.0,5.39392226
+F07-VAR-00828,Variance-dominated,5.0,4.90755004
+F07-VAR-00829,Variance-dominated,5.0,6.24796406
+F07-VAR-00830,Variance-dominated,5.0,4.56895321
+F07-VAR-00831,Variance-dominated,5.0,3.92871442
+F07-VAR-00832,Variance-dominated,5.0,3.87184891
+F07-VAR-00833,Variance-dominated,5.0,4.84739915
+F07-VAR-00834,Variance-dominated,5.0,4.78559794
+F07-VAR-00835,Variance-dominated,5.0,5.76852627
+F07-VAR-00836,Variance-dominated,5.0,3.83101526
+F07-VAR-00837,Variance-dominated,5.0,4.60886845
+F07-VAR-00838,Variance-dominated,5.0,3.95282571
+F07-VAR-00839,Variance-dominated,5.0,4.92009655
+F07-VAR-00840,Variance-dominated,5.0,5.56056860
+F07-VAR-00841,Variance-dominated,5.0,4.38047001
+F07-VAR-00842,Variance-dominated,5.0,5.19118709
+F07-VAR-00843,Variance-dominated,5.0,4.23811108
+F07-VAR-00844,Variance-dominated,5.0,3.24100005
+F07-VAR-00845,Variance-dominated,5.0,3.97870483
+F07-VAR-00846,Variance-dominated,5.0,4.26270247
+F07-VAR-00847,Variance-dominated,5.0,5.27013806
+F07-VAR-00848,Variance-dominated,5.0,4.28273345
+F07-VAR-00849,Variance-dominated,5.0,3.82967406
+F07-VAR-00850,Variance-dominated,5.0,4.37585668
+F07-VAR-00851,Variance-dominated,5.0,4.21961326
+F07-VAR-00852,Variance-dominated,5.0,4.45998463
+F07-VAR-00853,Variance-dominated,5.0,6.46414060
+F07-VAR-00854,Variance-dominated,5.0,4.66239774
+F07-VAR-00855,Variance-dominated,5.0,5.52297567
+F07-VAR-00856,Variance-dominated,5.0,5.15386191
+F07-VAR-00857,Variance-dominated,5.0,6.08957481
+F07-VAR-00858,Variance-dominated,5.0,4.82708014
+F07-VAR-00859,Variance-dominated,5.0,4.26169046
+F07-VAR-00860,Variance-dominated,5.0,5.08901809
+F07-VAR-00861,Variance-dominated,5.0,5.57347979
+F07-VAR-00862,Variance-dominated,5.0,5.40239950
+F07-VAR-00863,Variance-dominated,5.0,5.62683572
+F07-VAR-00864,Variance-dominated,5.0,4.39049225
+F07-VAR-00865,Variance-dominated,5.0,4.77220458
+F07-VAR-00866,Variance-dominated,5.0,5.16241936
+F07-VAR-00867,Variance-dominated,5.0,4.92175396
+F07-VAR-00868,Variance-dominated,5.0,5.69373154
+F07-VAR-00869,Variance-dominated,5.0,4.29082997
+F07-VAR-00870,Variance-dominated,5.0,5.81004457
+F07-VAR-00871,Variance-dominated,5.0,4.68861183
+F07-VAR-00872,Variance-dominated,5.0,5.11785947
+F07-VAR-00873,Variance-dominated,5.0,5.80437298
+F07-VAR-00874,Variance-dominated,5.0,4.21715251
+F07-VAR-00875,Variance-dominated,5.0,4.63126328
+F07-VAR-00876,Variance-dominated,5.0,4.92922476
+F07-VAR-00877,Variance-dominated,5.0,5.09003238
+F07-VAR-00878,Variance-dominated,5.0,4.61348992
+F07-VAR-00879,Variance-dominated,5.0,5.38620290
+F07-VAR-00880,Variance-dominated,5.0,5.55142891
+F07-VAR-00881,Variance-dominated,5.0,5.06730061
+F07-VAR-00882,Variance-dominated,5.0,3.63011702
+F07-VAR-00883,Variance-dominated,5.0,4.74371794
+F07-VAR-00884,Variance-dominated,5.0,4.19747805
+F07-VAR-00885,Variance-dominated,5.0,4.76265318
+F07-VAR-00886,Variance-dominated,5.0,5.99599822
+F07-VAR-00887,Variance-dominated,5.0,5.03894512
+F07-VAR-00888,Variance-dominated,5.0,5.69076373
+F07-VAR-00889,Variance-dominated,5.0,4.27356907
+F07-VAR-00890,Variance-dominated,5.0,6.65777781
+F07-VAR-00891,Variance-dominated,5.0,3.57394942
+F07-VAR-00892,Variance-dominated,5.0,5.10717493
+F07-VAR-00893,Variance-dominated,5.0,5.51419766
+F07-VAR-00894,Variance-dominated,5.0,5.67645372
+F07-VAR-00895,Variance-dominated,5.0,5.08763971
+F07-VAR-00896,Variance-dominated,5.0,5.50055391
+F07-VAR-00897,Variance-dominated,5.0,3.10213916
+F07-VAR-00898,Variance-dominated,5.0,4.58706541
+F07-VAR-00899,Variance-dominated,5.0,4.47371496
+F07-VAR-00900,Variance-dominated,5.0,4.78325621
+F07-VAR-00901,Variance-dominated,5.0,5.33084374
+F07-VAR-00902,Variance-dominated,5.0,6.24267260
+F07-VAR-00903,Variance-dominated,5.0,6.04543828
+F07-VAR-00904,Variance-dominated,5.0,4.01948490
+F07-VAR-00905,Variance-dominated,5.0,4.41892703
+F07-VAR-00906,Variance-dominated,5.0,5.15157987
+F07-VAR-00907,Variance-dominated,5.0,5.52779530
+F07-VAR-00908,Variance-dominated,5.0,5.09122948
+F07-VAR-00909,Variance-dominated,5.0,5.63280494
+F07-VAR-00910,Variance-dominated,5.0,5.72956490
+F07-VAR-00911,Variance-dominated,5.0,5.24615324
+F07-VAR-00912,Variance-dominated,5.0,5.87579114
+F07-VAR-00913,Variance-dominated,5.0,4.35309818
+F07-VAR-00914,Variance-dominated,5.0,4.55854499
+F07-VAR-00915,Variance-dominated,5.0,4.17160752
+F07-VAR-00916,Variance-dominated,5.0,3.86497489
+F07-VAR-00917,Variance-dominated,5.0,4.70926399
+F07-VAR-00918,Variance-dominated,5.0,4.41388598
+F07-VAR-00919,Variance-dominated,5.0,6.02739740
+F07-VAR-00920,Variance-dominated,5.0,6.00550629
+F07-VAR-00921,Variance-dominated,5.0,5.73406775
+F07-VAR-00922,Variance-dominated,5.0,4.91004111
+F07-VAR-00923,Variance-dominated,5.0,4.53193113
+F07-VAR-00924,Variance-dominated,5.0,4.31078867
+F07-VAR-00925,Variance-dominated,5.0,6.81884427
+F07-VAR-00926,Variance-dominated,5.0,4.51216221
+F07-VAR-00927,Variance-dominated,5.0,6.26441615
+F07-VAR-00928,Variance-dominated,5.0,2.73934096
+F07-VAR-00929,Variance-dominated,5.0,4.42957543
+F07-VAR-00930,Variance-dominated,5.0,4.58577772
+F07-VAR-00931,Variance-dominated,5.0,4.73523424
+F07-VAR-00932,Variance-dominated,5.0,5.91819768
+F07-VAR-00933,Variance-dominated,5.0,4.86023736
+F07-VAR-00934,Variance-dominated,5.0,5.52030083
+F07-VAR-00935,Variance-dominated,5.0,5.15956852
+F07-VAR-00936,Variance-dominated,5.0,5.44183834
+F07-VAR-00937,Variance-dominated,5.0,4.38865254
+F07-VAR-00938,Variance-dominated,5.0,6.02566714
+F07-VAR-00939,Variance-dominated,5.0,4.87037154
+F07-VAR-00940,Variance-dominated,5.0,4.76047779
+F07-VAR-00941,Variance-dominated,5.0,5.82515618
+F07-VAR-00942,Variance-dominated,5.0,4.36884656
+F07-VAR-00943,Variance-dominated,5.0,4.31746142
+F07-VAR-00944,Variance-dominated,5.0,5.57298829
+F07-VAR-00945,Variance-dominated,5.0,5.46941908
+F07-VAR-00946,Variance-dominated,5.0,4.14608201
+F07-VAR-00947,Variance-dominated,5.0,5.50522747
+F07-VAR-00948,Variance-dominated,5.0,4.69015676
+F07-VAR-00949,Variance-dominated,5.0,4.90051366
+F07-VAR-00950,Variance-dominated,5.0,4.90009293
+F07-VAR-00951,Variance-dominated,5.0,4.95686480
+F07-VAR-00952,Variance-dominated,5.0,3.87569436
+F07-VAR-00953,Variance-dominated,5.0,4.28694403
+F07-VAR-00954,Variance-dominated,5.0,4.43121921
+F07-VAR-00955,Variance-dominated,5.0,5.04539694
+F07-VAR-00956,Variance-dominated,5.0,6.13328987
+F07-VAR-00957,Variance-dominated,5.0,3.80950663
+F07-VAR-00958,Variance-dominated,5.0,6.32785682
+F07-VAR-00959,Variance-dominated,5.0,5.08363413
+F07-VAR-00960,Variance-dominated,5.0,5.21645814
+F07-VAR-00961,Variance-dominated,5.0,4.05896318
+F07-VAR-00962,Variance-dominated,5.0,5.84042763
+F07-VAR-00963,Variance-dominated,5.0,4.04119777
+F07-VAR-00964,Variance-dominated,5.0,5.01137671
+F07-VAR-00965,Variance-dominated,5.0,3.79534134
+F07-VAR-00966,Variance-dominated,5.0,5.77276316
+F07-VAR-00967,Variance-dominated,5.0,4.13026469
+F07-VAR-00968,Variance-dominated,5.0,5.44506945
+F07-VAR-00969,Variance-dominated,5.0,5.83028058
+F07-VAR-00970,Variance-dominated,5.0,4.99551106
+F07-VAR-00971,Variance-dominated,5.0,6.35714298
+F07-VAR-00972,Variance-dominated,5.0,3.54723445
+F07-VAR-00973,Variance-dominated,5.0,5.13887929
+F07-VAR-00974,Variance-dominated,5.0,5.57316787
+F07-VAR-00975,Variance-dominated,5.0,5.67784651
+F07-VAR-00976,Variance-dominated,5.0,5.05794366
+F07-VAR-00977,Variance-dominated,5.0,4.42949580
+F07-VAR-00978,Variance-dominated,5.0,5.97793976
+F07-VAR-00979,Variance-dominated,5.0,4.43963531
+F07-VAR-00980,Variance-dominated,5.0,4.70354043
+F07-VAR-00981,Variance-dominated,5.0,3.91761797
+F07-VAR-00982,Variance-dominated,5.0,4.42419367
+F07-VAR-00983,Variance-dominated,5.0,5.51198988
+F07-VAR-00984,Variance-dominated,5.0,6.36471418
+F07-VAR-00985,Variance-dominated,5.0,4.39892039
+F07-VAR-00986,Variance-dominated,5.0,4.93705388
+F07-VAR-00987,Variance-dominated,5.0,5.73575076
+F07-VAR-00988,Variance-dominated,5.0,5.02912158
+F07-VAR-00989,Variance-dominated,5.0,4.40005458
+F07-VAR-00990,Variance-dominated,5.0,5.75045962
+F07-VAR-00991,Variance-dominated,5.0,4.64695480
+F07-VAR-00992,Variance-dominated,5.0,5.26767609
+F07-VAR-00993,Variance-dominated,5.0,4.22212447
+F07-VAR-00994,Variance-dominated,5.0,4.91197315
+F07-VAR-00995,Variance-dominated,5.0,4.75904676
+F07-VAR-00996,Variance-dominated,5.0,5.19996786
+F07-VAR-00997,Variance-dominated,5.0,4.25767142
+F07-VAR-00998,Variance-dominated,5.0,4.54949734
+F07-VAR-00999,Variance-dominated,5.0,3.11106383
+F07-VAR-01000,Variance-dominated,5.0,4.66151288
+F07-VAR-01001,Variance-dominated,5.0,3.13326769
+F07-VAR-01002,Variance-dominated,5.0,5.14580495
+F07-VAR-01003,Variance-dominated,5.0,5.59382995
+F07-VAR-01004,Variance-dominated,5.0,3.70762294
+F07-VAR-01005,Variance-dominated,5.0,5.42185459
+F07-VAR-01006,Variance-dominated,5.0,4.93501266
+F07-VAR-01007,Variance-dominated,5.0,4.12414454
+F07-VAR-01008,Variance-dominated,5.0,5.29060938
+F07-VAR-01009,Variance-dominated,5.0,5.80155093
+F07-VAR-01010,Variance-dominated,5.0,5.76466621
+F07-VAR-01011,Variance-dominated,5.0,4.80670491
+F07-VAR-01012,Variance-dominated,5.0,4.97250730
+F07-VAR-01013,Variance-dominated,5.0,3.08325556
+F07-VAR-01014,Variance-dominated,5.0,4.44115154
+F07-VAR-01015,Variance-dominated,5.0,6.63789103
+F07-VAR-01016,Variance-dominated,5.0,4.22402504
+F07-VAR-01017,Variance-dominated,5.0,3.35627602
+F07-VAR-01018,Variance-dominated,5.0,6.04274763
+F07-VAR-01019,Variance-dominated,5.0,4.30348045
+F07-VAR-01020,Variance-dominated,5.0,5.28557825
+F07-VAR-01021,Variance-dominated,5.0,5.09358649
+F07-VAR-01022,Variance-dominated,5.0,5.89619847
+F07-VAR-01023,Variance-dominated,5.0,4.13523900
+F07-VAR-01024,Variance-dominated,5.0,3.57732271
+F07-VAR-01025,Variance-dominated,5.0,4.01478106
+F07-VAR-01026,Variance-dominated,5.0,4.77156064
+F07-VAR-01027,Variance-dominated,5.0,6.01635529
+F07-VAR-01028,Variance-dominated,5.0,5.10948432
+F07-VAR-01029,Variance-dominated,5.0,5.36367321
+F07-VAR-01030,Variance-dominated,5.0,5.10075753
+F07-VAR-01031,Variance-dominated,5.0,4.12371435
+F07-VAR-01032,Variance-dominated,5.0,3.85111533
+F07-VAR-01033,Variance-dominated,5.0,3.67532735
+F07-VAR-01034,Variance-dominated,5.0,4.56779238
+F07-VAR-01035,Variance-dominated,5.0,4.72612193
+F07-VAR-01036,Variance-dominated,5.0,3.94220795
+F07-VAR-01037,Variance-dominated,5.0,4.67811600
+F07-VAR-01038,Variance-dominated,5.0,4.68245831
+F07-VAR-01039,Variance-dominated,5.0,5.08222116
+F07-VAR-01040,Variance-dominated,5.0,4.69342781
+F07-VAR-01041,Variance-dominated,5.0,5.79436025
+F07-VAR-01042,Variance-dominated,5.0,5.72887613
+F07-VAR-01043,Variance-dominated,5.0,4.68364682
+F07-VAR-01044,Variance-dominated,5.0,5.44135461
+F07-VAR-01045,Variance-dominated,5.0,5.14532309
+F07-VAR-01046,Variance-dominated,5.0,4.81263411
+F07-VAR-01047,Variance-dominated,5.0,4.90771628
+F07-VAR-01048,Variance-dominated,5.0,3.84801878
+F07-VAR-01049,Variance-dominated,5.0,4.65692388
+F07-VAR-01050,Variance-dominated,5.0,5.08417873
+F07-VAR-01051,Variance-dominated,5.0,6.71328243
+F07-VAR-01052,Variance-dominated,5.0,3.26747820
+F07-VAR-01053,Variance-dominated,5.0,5.60381135
+F07-VAR-01054,Variance-dominated,5.0,5.80905453
+F07-VAR-01055,Variance-dominated,5.0,4.96840775
+F07-VAR-01056,Variance-dominated,5.0,4.63604609
+F07-VAR-01057,Variance-dominated,5.0,6.55495333
+F07-VAR-01058,Variance-dominated,5.0,4.53297171
+F07-VAR-01059,Variance-dominated,5.0,4.51221334
+F07-VAR-01060,Variance-dominated,5.0,4.89851962
+F07-VAR-01061,Variance-dominated,5.0,4.29831053
+F07-VAR-01062,Variance-dominated,5.0,6.49378797
+F07-VAR-01063,Variance-dominated,5.0,5.72280908
+F07-VAR-01064,Variance-dominated,5.0,4.41887543
+F07-VAR-01065,Variance-dominated,5.0,6.25025917
+F07-VAR-01066,Variance-dominated,5.0,5.33519657
+F07-VAR-01067,Variance-dominated,5.0,3.66589980
+F07-VAR-01068,Variance-dominated,5.0,5.07258100
+F07-VAR-01069,Variance-dominated,5.0,5.50305944
+F07-VAR-01070,Variance-dominated,5.0,4.36575242
+F07-VAR-01071,Variance-dominated,5.0,6.07917243
+F07-VAR-01072,Variance-dominated,5.0,5.18627939
+F07-VAR-01073,Variance-dominated,5.0,5.98164941
+F07-VAR-01074,Variance-dominated,5.0,4.78713866
+F07-VAR-01075,Variance-dominated,5.0,4.84348133
+F07-VAR-01076,Variance-dominated,5.0,3.08575263
+F07-VAR-01077,Variance-dominated,5.0,4.16049765
+F07-VAR-01078,Variance-dominated,5.0,5.81344929
+F07-VAR-01079,Variance-dominated,5.0,5.35549268
+F07-VAR-01080,Variance-dominated,5.0,5.13321331
+F07-VAR-01081,Variance-dominated,5.0,4.57444019
+F07-VAR-01082,Variance-dominated,5.0,5.69472608
+F07-VAR-01083,Variance-dominated,5.0,5.32818772
+F07-VAR-01084,Variance-dominated,5.0,4.09419399
+F07-VAR-01085,Variance-dominated,5.0,5.28730315
+F07-VAR-01086,Variance-dominated,5.0,4.00411498
+F07-VAR-01087,Variance-dominated,5.0,5.57036088
+F07-VAR-01088,Variance-dominated,5.0,5.83912194
+F07-VAR-01089,Variance-dominated,5.0,6.06040293
+F07-VAR-01090,Variance-dominated,5.0,4.07847981
+F07-VAR-01091,Variance-dominated,5.0,5.31004566
+F07-VAR-01092,Variance-dominated,5.0,4.69694364
+F07-VAR-01093,Variance-dominated,5.0,4.42422423
+F07-VAR-01094,Variance-dominated,5.0,5.66834625
+F07-VAR-01095,Variance-dominated,5.0,5.27832368
+F07-VAR-01096,Variance-dominated,5.0,5.85401912
+F07-VAR-01097,Variance-dominated,5.0,5.44517354
+F07-VAR-01098,Variance-dominated,5.0,5.31778195
+F07-VAR-01099,Variance-dominated,5.0,4.87054013
+F07-VAR-01100,Variance-dominated,5.0,5.31860580
+F07-VAR-01101,Variance-dominated,5.0,5.11372553
+F07-VAR-01102,Variance-dominated,5.0,6.23611057
+F07-VAR-01103,Variance-dominated,5.0,5.67567826
+F07-VAR-01104,Variance-dominated,5.0,5.48161003
+F07-VAR-01105,Variance-dominated,5.0,5.09814885
+F07-VAR-01106,Variance-dominated,5.0,4.05329203
+F07-VAR-01107,Variance-dominated,5.0,4.74220717
+F07-VAR-01108,Variance-dominated,5.0,6.16094153
+F07-VAR-01109,Variance-dominated,5.0,4.01413021
+F07-VAR-01110,Variance-dominated,5.0,3.42021212
+F07-VAR-01111,Variance-dominated,5.0,5.10998407
+F07-VAR-01112,Variance-dominated,5.0,3.43822861
+F07-VAR-01113,Variance-dominated,5.0,4.26945572
+F07-VAR-01114,Variance-dominated,5.0,5.40818639
+F07-VAR-01115,Variance-dominated,5.0,6.85009656
+F07-VAR-01116,Variance-dominated,5.0,4.88488866
+F07-VAR-01117,Variance-dominated,5.0,4.87411397
+F07-VAR-01118,Variance-dominated,5.0,5.73349960
+F07-VAR-01119,Variance-dominated,5.0,5.60044195
+F07-VAR-01120,Variance-dominated,5.0,5.99257900
+F07-VAR-01121,Variance-dominated,5.0,5.79939039
+F07-VAR-01122,Variance-dominated,5.0,5.03922452
+F07-VAR-01123,Variance-dominated,5.0,6.12040631
+F07-VAR-01124,Variance-dominated,5.0,4.99035148
+F07-VAR-01125,Variance-dominated,5.0,4.36181718
+F07-VAR-01126,Variance-dominated,5.0,5.61083044
+F07-VAR-01127,Variance-dominated,5.0,4.76444875
+F07-VAR-01128,Variance-dominated,5.0,5.41458847
+F07-VAR-01129,Variance-dominated,5.0,2.90514204
+F07-VAR-01130,Variance-dominated,5.0,5.57520038
+F07-VAR-01131,Variance-dominated,5.0,4.55449849
+F07-VAR-01132,Variance-dominated,5.0,5.01005970
+F07-VAR-01133,Variance-dominated,5.0,5.23331151
+F07-VAR-01134,Variance-dominated,5.0,4.36929529
+F07-VAR-01135,Variance-dominated,5.0,4.49849813
+F07-VAR-01136,Variance-dominated,5.0,5.16048529
+F07-VAR-01137,Variance-dominated,5.0,5.39203943
+F07-VAR-01138,Variance-dominated,5.0,3.73061356
+F07-VAR-01139,Variance-dominated,5.0,5.41207468
+F07-VAR-01140,Variance-dominated,5.0,5.20809881
+F07-VAR-01141,Variance-dominated,5.0,5.48634302
+F07-VAR-01142,Variance-dominated,5.0,4.96356488
+F07-VAR-01143,Variance-dominated,5.0,5.63289101
+F07-VAR-01144,Variance-dominated,5.0,4.68044205
+F07-VAR-01145,Variance-dominated,5.0,5.50586856
+F07-VAR-01146,Variance-dominated,5.0,5.75583650
+F07-VAR-01147,Variance-dominated,5.0,3.34375089
+F07-VAR-01148,Variance-dominated,5.0,5.64057548
+F07-VAR-01149,Variance-dominated,5.0,5.15074047
+F07-VAR-01150,Variance-dominated,5.0,4.60938252
+F07-VAR-01151,Variance-dominated,5.0,4.91882437
+F07-VAR-01152,Variance-dominated,5.0,4.91347341
+F07-VAR-01153,Variance-dominated,5.0,5.16431952
+F07-VAR-01154,Variance-dominated,5.0,4.33297870
+F07-VAR-01155,Variance-dominated,5.0,5.02306470
+F07-VAR-01156,Variance-dominated,5.0,4.48664376
+F07-VAR-01157,Variance-dominated,5.0,5.80448300
+F07-VAR-01158,Variance-dominated,5.0,5.35851735
+F07-VAR-01159,Variance-dominated,5.0,4.61432185
+F07-VAR-01160,Variance-dominated,5.0,4.86210424
+F07-VAR-01161,Variance-dominated,5.0,3.60140051
+F07-VAR-01162,Variance-dominated,5.0,5.18151904
+F07-VAR-01163,Variance-dominated,5.0,5.39357297
+F07-VAR-01164,Variance-dominated,5.0,3.94760698
+F07-VAR-01165,Variance-dominated,5.0,5.35815806
+F07-VAR-01166,Variance-dominated,5.0,4.71738456
+F07-VAR-01167,Variance-dominated,5.0,4.57814026
+F07-VAR-01168,Variance-dominated,5.0,4.44074237
+F07-VAR-01169,Variance-dominated,5.0,4.83858621
+F07-VAR-01170,Variance-dominated,5.0,5.00277490
+F07-VAR-01171,Variance-dominated,5.0,5.03831777
+F07-VAR-01172,Variance-dominated,5.0,4.97372790
+F07-VAR-01173,Variance-dominated,5.0,5.32815570
+F07-VAR-01174,Variance-dominated,5.0,4.48959289
+F07-VAR-01175,Variance-dominated,5.0,4.99901023
+F07-VAR-01176,Variance-dominated,5.0,5.01395315
+F07-VAR-01177,Variance-dominated,5.0,5.72226431
+F07-VAR-01178,Variance-dominated,5.0,4.22130707
+F07-VAR-01179,Variance-dominated,5.0,4.46656594
+F07-VAR-01180,Variance-dominated,5.0,4.82009469
+F07-VAR-01181,Variance-dominated,5.0,4.97294695
+F07-VAR-01182,Variance-dominated,5.0,5.69498691
+F07-VAR-01183,Variance-dominated,5.0,4.43394042
+F07-VAR-01184,Variance-dominated,5.0,4.21332726
+F07-VAR-01185,Variance-dominated,5.0,4.99935331
+F07-VAR-01186,Variance-dominated,5.0,5.17239373
+F07-VAR-01187,Variance-dominated,5.0,4.72153021
+F07-VAR-01188,Variance-dominated,5.0,4.58123951
+F07-VAR-01189,Variance-dominated,5.0,4.90763454
+F07-VAR-01190,Variance-dominated,5.0,5.02365245
+F07-VAR-01191,Variance-dominated,5.0,4.33571581
+F07-VAR-01192,Variance-dominated,5.0,5.90862901
+F07-VAR-01193,Variance-dominated,5.0,4.60058124
+F07-VAR-01194,Variance-dominated,5.0,4.65929300
+F07-VAR-01195,Variance-dominated,5.0,6.04728994
+F07-VAR-01196,Variance-dominated,5.0,4.43935251
+F07-VAR-01197,Variance-dominated,5.0,4.26360055
+F07-VAR-01198,Variance-dominated,5.0,5.26874642
+F07-VAR-01199,Variance-dominated,5.0,4.84393256
