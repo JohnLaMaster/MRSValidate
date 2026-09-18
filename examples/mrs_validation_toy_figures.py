@@ -85,7 +85,7 @@ by the ``generate`` command. Empty cells mean "not yet analyzed".
 Relevant metrics (state them; calculate them elsewhere)
 -------------------------------------------------------
 1. Association versus agreement: Pearson r, R-squared under an explicitly
-   stated regression, slope, intercept, mean error/bias, MAE or RMSE, Lin's CCC.
+   stated regression, slope, intercept, mean error/bias, MAE or RMSE, Lin's $\rho_C$.
 2. Nominal versus effective N: ICC, design effect, effective sample size, naive
    and cluster-aware or subject-bootstrap confidence intervals; optionally a
    mixed-effects variance decomposition.
@@ -96,13 +96,13 @@ Relevant metrics (state them; calculate them elsewhere)
    cell-wise success probability, one-sided confidence lower bound, sample count,
    and an evidence status that distinguishes validated, unacceptable, and
    insufficiently sampled cells.
-5. Method comparison: Pearson r and Lin's CCC; Bland--Altman bias, limits of
+5. Method comparison: Pearson r and Lin's $\rho_C$; Bland--Altman bias, limits of
    agreement and their confidence bands; Passing--Bablok slope/intercept plus a
    linearity test; Deming slope/intercept with justified error-variance ratio;
    and pre-specified equivalence analysis (e.g. the manuscript's three-stage
    accuracy/precision/agreement protocol or another justified TOST design).
 6. Marginal equality versus pairing: a marginal distribution distance/test plus
-   paired MAE/RMSE, Pearson r, and Lin's CCC.
+   paired MAE/RMSE, Pearson r, and Lin's $\rho_C$.
 7. Bias versus variance: empirical bias, variance, MSE, RMSE, and the externally
    verified bias-squared-plus-variance decomposition.
 8. Multivariate structure: per-variable marginal summaries/distances, covariance
@@ -287,24 +287,32 @@ def metric_text(row: Mapping[str, str] | None, fields: Sequence[tuple[str, str]]
     """Format supplied values only; no metric is calculated here."""
     if not row:
         return ""
-    lines: list[str] = []
+    entries: list[tuple[str, str]] = []
     for field, label in fields:
         value = row.get(field, "")
         if value not in (None, ""):
-            lines.append(f"{label} = {value}")
-    return "\n".join(lines)
+            entries.append((label, value))
+    if not entries:
+        return ""
+    # add_metric_box right-justifies each line independently (ha="right"),
+    # so the "=" only lands in the same place on every line when the text
+    # following it is the same width on every line -- the label width is
+    # irrelevant under right justification. Padding values to a common
+    # width (rather than labels) is what actually keeps the "=" aligned.
+    value_width = max(len(value) for _, value in entries)
+    return "\n".join(f"{label} = {value.rjust(value_width)}" for label, value in entries)
 
 
-def add_metric_box(ax: plt.Axes, text: str) -> None:
+def add_metric_box(ax: plt.Axes, text: str, x: float = 0.97, y: float = 0.97, ha: str="right", va: str="top") -> None:
     if not text:
         return
     ax.text(
-        0.97,
-        0.97,
+        x,
+        y,
         text,
         transform=ax.transAxes,
-        ha="right",
-        va="top",
+        ha=ha,
+        va=va,
         fontsize=8.5,
         bbox={"boxstyle": "round,pad=0.35", "facecolor": "white", "alpha": 0.9,
               "edgecolor": "#CBD5E1"},
@@ -632,7 +640,8 @@ def plot_figure01(data_dir: Path, analysis_dir: Path, output: Path, settings: Se
         add_metric_box(
             ax,
             metric_text(row, (("pearson_r", "r"), ("rmse_mM", "RMSE"),
-                              ("lin_ccc", "CCC"))),
+                              ("lin_ccc", r'$\rho_C$'))),#"CCC"))),
+                        x=0.97, y=0.2, ha="right", va="top",
         )
         ax.set_title(scenario, color=color, fontweight="bold")
         ax.set_xlim(low, high)
@@ -809,7 +818,7 @@ def plot_figure05(data_dir: Path, analysis_dir: Path, output: Path, settings: Se
     ax.plot([low, high], [pb_i + pb_s * low, pb_i + pb_s * high], color=PURPLE,
             linewidth=2, label="Supplied Passing–Bablok")
     ax.set(xlabel="Reference (mM)", ylabel="Candidate (mM)", title="A. Association")
-    add_metric_box(ax, metric_text(m, (("pearson_r", "r"), ("lin_ccc", "CCC"))))
+    add_metric_box(ax, metric_text(m, (("pearson_r", "r"), ("lin_ccc", r'$\rho_C$'))))
     ax.legend(frameon=False, fontsize=8)
     ax = axes[0, 1]
     ax.scatter(pair_mean, difference, s=18, color=ORANGE, alpha=0.65)
@@ -863,7 +872,7 @@ def plot_figure06(data_dir: Path, analysis_dir: Path, output: Path, settings: Se
     prediction = np.array([as_float(r["prediction_mM"], field="prediction_mM") for r in rows])
     limits = (math.floor(min(truth.min(), prediction.min())), math.ceil(max(truth.max(), prediction.max())))
     bins = np.linspace(limits[0], limits[1], 20)
-    fig, axes = plt.subplots(1, 2, figsize=(9.5, 3.9))
+    fig, axes = plt.subplots(1, 2, figsize=(9.5, 3.9), constrained_layout=True)
     axes[0].hist(truth, bins=bins, color=TEAL, alpha=0.52, label="Ground truth")
     axes[0].hist(prediction, bins=bins, histtype="step", color=PURPLE, linewidth=2,
                  label="Permuted predictions")
@@ -878,12 +887,11 @@ def plot_figure06(data_dir: Path, analysis_dir: Path, output: Path, settings: Se
     add_metric_box(
         axes[1],
         metric_text(metric, (("pearson_r", "r"), ("rmse_mM", "RMSE"),
-                             ("lin_ccc", "CCC"))),
+                             ("lin_ccc", r'$\rho_C$'))),
     )
     for ax in axes:
         ax.grid(color=LIGHT_GREY, linewidth=0.7)
     fig.suptitle("Matching distributions do not imply correct individual predictions", fontweight="bold")
-    fig.tight_layout()
     save_figure(fig, output, settings.dpi)
 
 
@@ -945,7 +953,8 @@ def plot_figure08(data_dir: Path, analysis_dir: Path, output: Path, settings: Se
     pa = np.array([as_float(r["prediction_metabolite_a_mM"], field="prediction_metabolite_a_mM") for r in rows])
     pb = np.array([as_float(r["prediction_metabolite_b_mM"], field="prediction_metabolite_b_mM") for r in rows])
     fig = plt.figure(figsize=(10.3, 7.4), constrained_layout=True)
-    grid = fig.add_gridspec(2, 2, height_ratios=(1.0, 2.0), hspace=0.32, wspace=0.25)
+    fig.get_layout_engine().set(hspace=0.04, wspace=0.04)
+    grid = fig.add_gridspec(2, 2, height_ratios=(1.0, 2.0))
     ax_a = fig.add_subplot(grid[0, 0])
     ax_b = fig.add_subplot(grid[0, 1])
     ax_truth = fig.add_subplot(grid[1, 0])
