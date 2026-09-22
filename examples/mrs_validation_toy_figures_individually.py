@@ -135,6 +135,9 @@ from dataclasses import dataclass
 from pathlib import Path
 from typing import Callable, Iterable, Mapping, Sequence
 
+import matplotlib
+
+matplotlib.use("Agg")  # File export only; avoids requiring a GUI/Qt backend.
 import matplotlib.pyplot as plt
 from matplotlib.colors import BoundaryNorm, ListedColormap
 from matplotlib.patches import Ellipse, Patch
@@ -675,7 +678,7 @@ def plot_figure01(data_dir: Path, analysis_dir: Path, panels_dir: Path, settings
                               ("lin_ccc", r'$\rho_C$'))),
             x=0.97, y=0.2, ha="right", va="top",
         )
-        ax.set_title(scenario, color=color, fontweight="bold")
+        # ax.set_title(scenario, color=color, fontweight="bold")
         ax.set_xlim(low, high)
         ax.set_ylim(low, high)
         ax.set_aspect("equal", adjustable="box")
@@ -724,7 +727,7 @@ def plot_figure02(data_dir: Path, analysis_dir: Path, panels_dir: Path, settings
         if not text:
             text = f"Nominal N = 100\nIndependent units = {len(subject_ids)}"
         add_metric_box(ax, text)
-        ax.set_title(design, color=color, fontweight="bold")
+        # ax.set_title(design, color=color, fontweight="bold")
         ax.set_xlabel("Independent sampling unit")
         ax.set_ylabel("Repeated measurement (mM)")
         ax.set_xticks([])
@@ -759,21 +762,21 @@ def plot_figure03(analysis_dir: Path, panels_dir: Path, settings: Settings) -> l
         ax.bar(x - width / 2, empirical_sd, width, color=BLUE, label="Empirical SD")
         ax.bar(x + width / 2, crlb_sd, width, color=GOLD, label="Median supplied CRLB SD")
         ax.set_ylabel("Dispersion / bound scale (mM)")
-        ax.set_title("Precision comparison")
+        # ax.set_title("Precision comparison")
         ax.set_xticks(x, labels, rotation=15, ha="right")
         ax.grid(axis="y", color=LIGHT_GREY, linewidth=0.7)
 
     def draw_accuracy(ax: plt.Axes) -> None:
         ax.bar(x, np.abs(bias), 0.56, color=ORANGE)
         ax.set_ylabel("Absolute empirical bias (mM)")
-        ax.set_title("Accuracy")
+        # ax.set_title("Accuracy")
         ax.set_xticks(x, labels, rotation=15, ha="right")
         ax.grid(axis="y", color=LIGHT_GREY, linewidth=0.7)
 
     def draw_relative_error(ax: plt.Axes) -> None:
         ax.bar(x, standardized, 0.56, color=PURPLE)
         ax.set_ylabel("Median |error| / supplied CRLB SD")
-        ax.set_title("Error relative to the supplied bound")
+        # ax.set_title("Error relative to the supplied bound")
         ax.set_xticks(x, labels, rotation=15, ha="right")
         ax.grid(axis="y", color=LIGHT_GREY, linewidth=0.7)
 
@@ -833,14 +836,14 @@ def plot_figure04(analysis_dir: Path, panels_dir: Path, settings: Settings,
     def draw_evidence_strength(ax: plt.Axes) -> None:
         im = ax.imshow(lcb, origin="lower", aspect="auto", vmin=0.0, vmax=1.0, cmap="viridis")
         ax.figure.colorbar(im, ax=ax, label="Supplied one-sided lower confidence bound")
-        ax.set_title(f"Strength of evidence: {title_suffix}")
+        # ax.set_title(f"Strength of evidence: {title_suffix}")
         format_axes(ax)
 
     def draw_operating_status(ax: plt.Axes) -> None:
         cmap = ListedColormap(["#D95D39", "#E9C46A", "#2A9D8F"])
         norm = BoundaryNorm([-0.5, 0.5, 1.5, 2.5], cmap.N)
         ax.imshow(status, origin="lower", aspect="auto", cmap=cmap, norm=norm)
-        ax.set_title(f"Evidence-supported operating status: {title_suffix}")
+        # ax.set_title(f"Evidence-supported operating status: {title_suffix}")
         ax.legend(
             handles=[Patch(color="#2A9D8F", label="Validated"),
                      Patch(color="#E9C46A", label="Insufficient evidence"),
@@ -881,7 +884,9 @@ def plot_figure05(data_dir: Path, analysis_dir: Path, panels_dir: Path, settings
         pb_s = as_float(m["passing_bablok_slope"], field="passing_bablok_slope")
         ax.plot([low, high], [pb_i + pb_s * low, pb_i + pb_s * high], color=PURPLE,
                 linewidth=2, label="Supplied Passing–Bablok")
-        ax.set(xlabel="Reference (mM)", ylabel="Candidate (mM)", title="A. Association")
+        ax.set(xlabel="Reference (mM)", ylabel="Candidate (mM)", 
+            #    title="A. Association"
+               )
         add_metric_box(ax, metric_text(m, (("pearson_r", "r"), ("lin_ccc", r'$\rho_C$'))))
         ax.grid(color=LIGHT_GREY, linewidth=0.7)
 
@@ -895,7 +900,8 @@ def plot_figure05(data_dir: Path, analysis_dir: Path, panels_dir: Path, settings
             value = as_float(m[field], field=field)
             ax.axhline(value, color=color, linestyle=linestyle, linewidth=1.5, label=label)
         ax.set(xlabel="Pair mean (mM)", ylabel="Candidate − reference (mM)",
-               title="B. Bland–Altman disagreement")
+            #    title="B. Bland–Altman disagreement"
+            )
         ax.grid(color=LIGHT_GREY, linewidth=0.7)
 
     def draw_deming(ax: plt.Axes) -> None:
@@ -906,7 +912,8 @@ def plot_figure05(data_dir: Path, analysis_dir: Path, panels_dir: Path, settings
         ax.plot([low, high], [dem_i + dem_s * low, dem_i + dem_s * high], color=TEAL,
                 linewidth=2, label="Supplied Deming")
         ax.set(xlabel="Reference (mM)", ylabel="Candidate (mM)",
-               title="C. Constant/proportional bias")
+            #    title="C. Constant/proportional bias"
+            )
         ax.grid(color=LIGHT_GREY, linewidth=0.7)
 
     def draw_fit_for_use(ax: plt.Axes) -> None:
@@ -922,7 +929,7 @@ def plot_figure05(data_dir: Path, analysis_dir: Path, panels_dir: Path, settings
         ax.set_ylim(-0.75, 0.75)
         ax.set_yticks([])
         ax.set_xlabel("Candidate − reference (mM)")
-        ax.set_title("D. Fit for the intended use")
+        # ax.set_title("D. Fit for the intended use")
         ax.grid(color=LIGHT_GREY, linewidth=0.7)
 
     saved = save_panel(panels_dir, 5, "a_association", draw_association,
@@ -949,14 +956,17 @@ def plot_figure06(data_dir: Path, analysis_dir: Path, panels_dir: Path, settings
         ax.hist(truth, bins=bins, color=TEAL, alpha=0.52, label="Ground truth")
         ax.hist(prediction, bins=bins, histtype="step", color=PURPLE, linewidth=2,
                 label="Permuted predictions")
-        ax.set(xlabel="Concentration (mM)", ylabel="Count", title="Identical marginal samples")
+        ax.set(xlabel="Concentration (mM)", ylabel="Count", 
+            #    title="Identical marginal samples"
+               )
         ax.grid(color=LIGHT_GREY, linewidth=0.7)
 
     def draw_pairing(ax: plt.Axes) -> None:
         ax.scatter(truth, prediction, s=20, color=PURPLE, alpha=0.62)
         ax.plot(limits, limits, linestyle="--", color=DARK_GREY)
         ax.set(xlabel="Ground truth (mM)", ylabel="Prediction (mM)",
-               title="Wrong sample-wise pairing", xlim=limits, ylim=limits)
+            #    title="Wrong sample-wise pairing", 
+               xlim=limits, ylim=limits)
         ax.set_aspect("equal", adjustable="box")
         add_metric_box(
             ax,
@@ -992,7 +1002,7 @@ def plot_figure07(data_dir: Path, analysis_dir: Path, panels_dir: Path, settings
                                                 ("variance_mM2", "Variance"),
                                                 ("rmse_mM", "RMSE"))),
         )
-        ax.set_title(scenario, color=color, fontweight="bold")
+        # ax.set_title(scenario, color=color, fontweight="bold")
         ax.set_xlabel("Repeated estimate (mM)")
         ax.set_ylabel("Density")
         ax.grid(axis="y", color=LIGHT_GREY, linewidth=0.7)
@@ -1062,7 +1072,8 @@ def plot_figure08(data_dir: Path, analysis_dir: Path, panels_dir: Path, settings
         ax.scatter(ta, tb, s=13, color=TEAL, alpha=0.38)
         add_supplied_ellipse(ax, metrics.get("Ground truth", {}), TEAL, "Supplied ellipse")
         ax.set(xlabel="Metabolite A (mM)", ylabel="Metabolite B (mM)",
-               title="Ground-truth joint structure", xlim=joint_xlim, ylim=joint_ylim)
+            #    title="Ground-truth joint structure", 
+               xlim=joint_xlim, ylim=joint_ylim)
         add_metric_box(ax, metric_text(metrics.get("Ground truth"),
                                        (("corr_metabolite_a_b", "Correlation"),)))
         ax.grid(color=LIGHT_GREY, linewidth=0.7)
@@ -1071,7 +1082,8 @@ def plot_figure08(data_dir: Path, analysis_dir: Path, panels_dir: Path, settings
         ax.scatter(pa, pb, s=13, color=PURPLE, alpha=0.38)
         add_supplied_ellipse(ax, metrics.get("Prediction", {}), PURPLE, "Supplied ellipse")
         ax.set(xlabel="Metabolite A (mM)", ylabel="Metabolite B (mM)",
-               title="Prediction: dependence destroyed", xlim=joint_xlim, ylim=joint_ylim)
+            #    title="Prediction: dependence destroyed", 
+               xlim=joint_xlim, ylim=joint_ylim)
         add_metric_box(ax, metric_text(metrics.get("Prediction"),
                                        (("corr_metabolite_a_b", "Correlation"),
                                         ("joint_distance", "Joint distance"))))
@@ -1107,24 +1119,28 @@ def plot_selected(savedir: Path, figures: Sequence[int], settings: Settings,
                   metabolite: str | None, linewidth_hz: float | None) -> list[Path]:
     data_dir, analysis_dir, _figures_dir, panels_dir = ensure_directories(savedir)
     configure_matplotlib()
+    plotters: dict[int, Callable[[], list[Path]]] = {
+        1: lambda: plot_figure01(data_dir, analysis_dir, panels_dir, settings),
+        2: lambda: plot_figure02(data_dir, analysis_dir, panels_dir, settings),
+        3: lambda: plot_figure03(analysis_dir, panels_dir, settings),
+        4: lambda: plot_figure04(analysis_dir, panels_dir, settings, metabolite, linewidth_hz),
+        5: lambda: plot_figure05(data_dir, analysis_dir, panels_dir, settings),
+        6: lambda: plot_figure06(data_dir, analysis_dir, panels_dir, settings),
+        7: lambda: plot_figure07(data_dir, analysis_dir, panels_dir, settings),
+        8: lambda: plot_figure08(data_dir, analysis_dir, panels_dir, settings),
+    }
     made: list[Path] = []
+    skipped: list[int] = []
     for figure in figures:
-        if figure == 1:
-            made += plot_figure01(data_dir, analysis_dir, panels_dir, settings)
-        elif figure == 2:
-            made += plot_figure02(data_dir, analysis_dir, panels_dir, settings)
-        elif figure == 3:
-            made += plot_figure03(analysis_dir, panels_dir, settings)
-        elif figure == 4:
-            made += plot_figure04(analysis_dir, panels_dir, settings, metabolite, linewidth_hz)
-        elif figure == 5:
-            made += plot_figure05(data_dir, analysis_dir, panels_dir, settings)
-        elif figure == 6:
-            made += plot_figure06(data_dir, analysis_dir, panels_dir, settings)
-        elif figure == 7:
-            made += plot_figure07(data_dir, analysis_dir, panels_dir, settings)
-        elif figure == 8:
-            made += plot_figure08(data_dir, analysis_dir, panels_dir, settings)
+        # A figure whose external analysis results are not yet available is
+        # skipped (with a warning) so the remaining figures still render.
+        try:
+            made += plotters[figure]()
+        except (FileNotFoundError, ValueError) as exc:
+            print(f"Warning: skipping figure {figure}: {exc}", file=sys.stderr)
+            skipped.append(figure)
+    if skipped and len(skipped) == len(figures):
+        raise ValueError("No figures could be plotted; see warnings above.")
     return made
 
 
