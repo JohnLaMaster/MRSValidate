@@ -129,6 +129,34 @@ corresponding manuscript edits are tracked in
   `method` is now `"percentile"`, the manuscript's interval; `"BCa"` and
   `"basic"` remain available.
 
+### Changed (method comparison)
+
+- **Bland-Altman** (`method_comparison.bland_altman`), new defaults per
+  the manuscript: `location="median"`, `scale="robust_sd"`
+  (normal-consistent 1.4826 x MAD, so the limits cover 95 % rather than
+  ~81 %), `conditional=True` (regression-based limits; Theil-Sen for the
+  robust estimators), `ci_method="bootstrap"` (paired percentile
+  bootstrap with pointwise bands). New `loa_method="quantile"`
+  (empirical 2.5/97.5 % limits) and `ci_method="analytic"` (Bland &
+  Altman 1999, mean/SD only). New fields for the conditional limits,
+  confidence intervals and bands.
+- **Passing-Bablok** (`method_comparison.passing_bablok`): default
+  `estimator="passing_bablok_1983"` (average of the two middle slopes for
+  even N, S = -1 discarded, +/-inf for equal reference values); the
+  manuscript's printed estimator is `estimator="manuscript_literal"`.
+  Default `ci_method="analytic"` (Passing & Bablok 1983 rank-based
+  interval; bootstrap available). Default CUSUM is the Passing & Bablok
+  (1983) sign-score test with a Kolmogorov critical value; new
+  `cusum_method="bootstrap"` (wild bootstrap under the fitted line with
+  refitting, Stute et al. 1998) is calibrated where the asymptotic test
+  is very conservative (0-1 % rejection at nominal 5 %), with an optional
+  `cusum_bootstrap_variance_ratio` for unequal error variances.
+- **Silveira equivalence tests 1-3**: every test now reports both
+  analytic and bootstrap results and a concordance flag (Tests 1-2:
+  t-based and paired percentile bootstrap intervals; Test 3: jackknife
+  analytic intervals alongside the bootstrap). `reject_joint_null`
+  remains the bootstrap decision.
+
 ### Changed (model-level mixed-effects equivalence tests)
 
 - **Small-sample cluster-robust standard errors** (`mixed_effects`

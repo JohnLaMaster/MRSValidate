@@ -27,7 +27,7 @@ sample_ids = np.array([f"s{i}" for i in range(n_samples)])
 # Constant-variance limits of agreement
 # ----------------------------------------
 
-result = bland_altman(reference, candidate, sample_ids)
+result = bland_altman(reference, candidate, sample_ids, conditional=False, seed=0)
 print(f"bias = {result.bias:.3f}, LoA = [{result.loa_low:.3f}, {result.loa_high:.3f}]")
 
 fig, ax = plot_bland_altman(result)
@@ -37,10 +37,12 @@ fig.suptitle("Bland-Altman: constant-variance limits of agreement")
 # Heteroscedastic (concentration-dependent) limits of agreement
 # ------------------------------------------------------------------
 #
-# Passing ``conditional=True`` fits a transparent linear bias/scale
-# model instead of assuming constant variance — appropriate here, since
-# the simulated noise scale grows with concentration.
+# The default, ``conditional=True``, fits linear bias and scale models
+# against the reference instead of assuming constant variance, which is
+# appropriate here, since the simulated noise scale grows with
+# concentration. Both analyses use the robust estimators (median bias,
+# normal-consistent MAD) by default.
 
-result_conditional = bland_altman(reference, candidate, sample_ids, conditional=True)
+result_conditional = bland_altman(reference, candidate, sample_ids, seed=0)
 fig2, ax2 = plot_bland_altman(result_conditional)
 fig2.suptitle("Bland-Altman: concentration-dependent limits of agreement")
