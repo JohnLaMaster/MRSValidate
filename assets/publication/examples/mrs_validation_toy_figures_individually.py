@@ -334,6 +334,7 @@ def save_panel(
     figsize: tuple[float, float],
     dpi: int,
     legend: bool = False,
+    fixed_size: bool = False,
 ) -> list[Path]:
     """Render one self-contained subplot to its own SVG and PDF file.
 
@@ -342,6 +343,11 @@ def save_panel(
     ``ax.legend()`` -- panels are meant to stand alone once dropped into a
     LaTeX ``subfigure``/``subcaption`` layout, so nothing here should
     depend on sibling panels for context (e.g. a shared y-axis label).
+
+    By default the saved file is cropped tightly to its contents, so its
+    final size depends on label/legend extents. With ``fixed_size`` the
+    full ``figsize`` canvas is kept, so panels sharing a ``figsize`` are
+    saved at exactly the same size and aspect ratio.
     """
     fig, ax = plt.subplots(figsize=figsize)
     draw(ax)
@@ -353,7 +359,9 @@ def save_panel(
     saved: list[Path] = []
     for suffix in PANEL_FORMATS:
         path = out_dir / f"{slug}{suffix}"
-        fig.savefig(path, dpi=dpi)
+        # bbox_inches=None would fall back to rcParams["savefig.bbox"]
+        # ("tight"), so pass the full figure box explicitly instead.
+        fig.savefig(path, dpi=dpi, bbox_inches=fig.bbox_inches if fixed_size else "tight")
         saved.append(path)
     plt.close(fig)
     return saved
@@ -932,14 +940,17 @@ def plot_figure05(data_dir: Path, analysis_dir: Path, panels_dir: Path, settings
         # ax.set_title("D. Fit for the intended use")
         ax.grid(color=LIGHT_GREY, linewidth=0.7)
 
-    saved = save_panel(panels_dir, 5, "a_association", draw_association,
-                       figsize=(5.2, 4.4), dpi=settings.dpi, legend=True)
-    saved += save_panel(panels_dir, 5, "b_bland_altman", draw_bland_altman,
-                        figsize=(5.2, 4.4), dpi=settings.dpi, legend=True)
-    saved += save_panel(panels_dir, 5, "c_deming", draw_deming,
-                        figsize=(5.2, 4.4), dpi=settings.dpi, legend=True)
-    saved += save_panel(panels_dir, 5, "d_fit_for_use", draw_fit_for_use,
-                        figsize=(5.2, 2.6), dpi=settings.dpi, legend=True)
+    # All four panels share one canvas size (no tight cropping) so they
+    # line up when placed side by side as LaTeX subfigures.
+    saved: list[Path] = []
+    for slug, draw in (
+        ("a_association", draw_association),
+        ("b_bland_altman", draw_bland_altman),
+        ("c_deming", draw_deming),
+        ("d_fit_for_use", draw_fit_for_use),
+    ):
+        saved += save_panel(panels_dir, 5, slug, draw, figsize=(5.2, 4.4),
+                            dpi=settings.dpi, legend=True, fixed_size=True)
     return saved
 
 

@@ -9,7 +9,7 @@ deep-learning models. The scientific analysis layer computes every
 metric, statistical test, confidence interval, and standardized
 quantity; the visualization layer only renders those precomputed
 results — it never recomputes a statistic. See
-[`LIBRARY_IMPLEMENTATION_SPEC.md`](LIBRARY_IMPLEMENTATION_SPEC.md) for
+[`LIBRARY_IMPLEMENTATION_SPEC.md`](assets/dev/LIBRARY_IMPLEMENTATION_SPEC.md) for
 the full scientific contract and implementation specification, and
 [`CHANGELOG.md`](CHANGELOG.md) for what is implemented so far.
 
@@ -51,6 +51,9 @@ print(concordance.rho_c)
 
 Implementation status, scientific-definition notes, and known gaps are
 tracked in [`CHANGELOG.md`](CHANGELOG.md). Third-party dependency and
-code-provenance records are in [`THIRD_PARTY_LICENSES.md`](THIRD_PARTY_LICENSES.md)
-and [`THIRD_PARTY_CODE.md`](THIRD_PARTY_CODE.md). The project license
-has not yet been finalized (see `THIRD_PARTY_CODE.md`).
+code-provenance records are in [`THIRD_PARTY_LICENSES.md`](assets/dev/THIRD_PARTY_LICENSES.md)
+and [`THIRD_PARTY_CODE.md`](assets/dev/THIRD_PARTY_CODE.md).
+
+## License
+
+`mrsvalidate` is released under the [MIT License](LICENSE).

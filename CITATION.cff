@@ -4,16 +4,50 @@ title: "mrsvalidate: a scientific analysis and visualization library for evaluat
 authors:
   - family-names: "LaMaster"
     given-names: "John T."
+    orcid: "https://orcid.org/0000-0002-2149-771X"
     name-particle: "Ing."
     email: "john.lamaster@tum.de"
+  - family-names: "Igwe"
+    given-names: "Kay C."
+    orcid: "https://orcid.org/0000-0002-9909-9930"
+  - family-names: "Near"
+    given-names: "Jamie"
+    orcid: "https://orcid.org/0000-0003-3516-936X"
+  - family-names: "Reyes"
+    given-names: "Mauricio"
+    orcid: "https://orcid.org/0000-0002-2434-9990"
+  - family-names: "Kreis"
+    given-names: "Roland"
+    orcid: "https://orcid.org/0000-0002-8618-6875"
+  - family-names: "Rizzo"
+    given-names: "Rudy"
+    orcid: "https://orcid.org/0000-0003-4572-5120"
 version: 0.1.0.dev0
 date-released: 2026-09-11
 repository-code: "https://github.com/JohnLaMaster/MRSValidate"
-# license field intentionally omitted: not yet finalized, see THIRD_PARTY_CODE.md
+license: MIT
 preferred-citation:
   type: article
-  title: "Laying the Foundations: A Methodological Framework for Deep Learning-Based Model Fitting and Metabolite Quantification in Magnetic Resonance Spectroscopy"
+  title: "Laying the Foundation for the Clinical Translation of Deep Learning-based Spectral Fitting Models in Magnetic Resonance Spectroscopy"
   authors:
     - family-names: "LaMaster"
       given-names: "John T."
+      orcid: "https://orcid.org/0000-0002-2149-771X"
+      name-particle: "Ing."
+      email: "john.lamaster@tum.de"
+    - family-names: "Igwe"
+      given-names: "Kay C."
+      orcid: "https://orcid.org/0000-0002-9909-9930"
+    - family-names: "Near"
+      given-names: "Jamie"
+      orcid: "https://orcid.org/0000-0003-3516-936X"
+    - family-names: "Reyes"
+      given-names: "Mauricio"
+      orcid: "https://orcid.org/0000-0002-2434-9990"
+    - family-names: "Kreis"
+      given-names: "Roland"
+      orcid: "https://orcid.org/0000-0002-8618-6875"
+    - family-names: "Rizzo"
+      given-names: "Rudy"
+      orcid: "https://orcid.org/0000-0003-4572-5120"
   year: 2026
