@@ -82,11 +82,16 @@ by the ``generate`` command. Empty cells mean "not yet analyzed".
 * figure04_operating_range.csv: metabolite, linewidth_hz, concentration_mM,
   snr, n_total, n_success, success_probability, success_lcb,
   acceptable_abs_error_mM, evidence_status.
-* figure05_metrics.csv: one row containing pearson_r, lin_ccc,
-  passing_bablok_intercept, passing_bablok_slope, deming_intercept,
-  deming_slope, bland_altman_bias_mM, loa_lower_mM, loa_upper_mM,
-  difference_ci_low_mM, difference_ci_high_mM, equivalence_lower_mM,
-  equivalence_upper_mM, equivalent.
+* figure05_metrics.csv: one row containing pearson_r, lin_ccc, the
+  Passing--Bablok intercept/slope with confidence intervals and CUSUM
+  linearity result (pb_*), the Bland--Altman settings (ba_*), and the
+  pre-specified acceptable limits with the loa_within_acceptable decision.
+* figure05_ba_curves.csv: reference_mM, bias_mM, loa_lower_mM,
+  loa_upper_mM (regression-based bias and limits of agreement).
+* figure05_ba_bands.csv: reference_mM grid with confidence bands for the
+  bias and both limits of agreement.
+* figure05_silveira.csv: one row per Silveira test parameter: test,
+  parameter, estimate, ci_low, ci_high, ci_level, null_value, rejected.
 * figure06_metrics.csv: scenario, pearson_r, lin_ccc, rmse_mM, mae_mM,
   marginal_distance, marginal_test_p.
 * figure07_metrics.csv: scenario, bias_mM, variance_mM2, mse_mM2, rmse_mM.
@@ -108,11 +113,12 @@ Relevant metrics (state them; calculate them elsewhere)
    cell-wise success probability, one-sided confidence lower bound, sample count,
    and an evidence status that distinguishes validated, unacceptable, and
    insufficiently sampled cells.
-5. Method comparison: Pearson r and Lin's $\rho_C$; Bland--Altman bias, limits of
-   agreement and their confidence bands; Passing--Bablok slope/intercept plus a
-   linearity test; Deming slope/intercept with justified error-variance ratio;
-   and pre-specified equivalence analysis (e.g. the manuscript's three-stage
-   accuracy/precision/agreement protocol or another justified TOST design).
+5. Method comparison (in silico, exact reference): Pearson r and Lin's $\rho_C$;
+   Bland--Altman against the reference with robust regression-based limits of
+   agreement and their confidence bands, judged against pre-specified acceptable
+   limits; Passing--Bablok slope/intercept with confidence intervals plus the
+   CUSUM linearity test; and the Silveira three-part accuracy/precision/agreement
+   protocol.
 6. Marginal equality versus pairing: a marginal distribution distance/test plus
    paired MAE/RMSE, Pearson r, and Lin's $\rho_C$.
 7. Bias versus variance: empirical bias, variance, MSE, RMSE, and the externally
@@ -142,6 +148,15 @@ import matplotlib.pyplot as plt
 from matplotlib.colors import BoundaryNorm, ListedColormap
 from matplotlib.patches import Ellipse, Patch
 import numpy as np
+
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+from mrs_validation_toy_figures import (  # noqa: E402
+    _draw_figure05_association,
+    _draw_figure05_bland_altman,
+    _draw_figure05_fit_for_use,
+    _draw_figure05_passing_bablok,
+    _figure05_inputs,
+)
 
 PANEL_FORMATS = (".svg", ".pdf")
 
@@ -192,11 +207,24 @@ ANALYSIS_TEMPLATES: dict[str, list[str]] = {
         "acceptable_abs_error_mM", "evidence_status",
     ],
     "figure05_metrics.csv": [
-        "pearson_r", "lin_ccc", "passing_bablok_intercept",
-        "passing_bablok_slope", "deming_intercept", "deming_slope",
-        "bland_altman_bias_mM", "loa_lower_mM", "loa_upper_mM",
-        "difference_ci_low_mM", "difference_ci_high_mM",
-        "equivalence_lower_mM", "equivalence_upper_mM", "equivalent",
+        "pearson_r", "lin_ccc",
+        "pb_intercept_mM", "pb_intercept_ci_low_mM", "pb_intercept_ci_high_mM",
+        "pb_slope", "pb_slope_ci_low", "pb_slope_ci_high", "pb_ci_method",
+        "pb_cusum_method", "pb_cusum_p_value", "pb_linearity_rejected",
+        "ba_x_axis", "ba_location", "ba_scale", "ba_confidence_level",
+        "acceptable_lower_mM", "acceptable_upper_mM", "loa_within_acceptable",
+    ],
+    "figure05_ba_curves.csv": [
+        "reference_mM", "bias_mM", "loa_lower_mM", "loa_upper_mM",
+    ],
+    "figure05_ba_bands.csv": [
+        "reference_mM", "bias_ci_low_mM", "bias_ci_high_mM",
+        "loa_lower_ci_low_mM", "loa_lower_ci_high_mM",
+        "loa_upper_ci_low_mM", "loa_upper_ci_high_mM",
+    ],
+    "figure05_silveira.csv": [
+        "test", "parameter", "estimate", "ci_low", "ci_high",
+        "ci_level", "null_value", "rejected",
     ],
     "figure06_metrics.csv": [
         "scenario", "pearson_r", "lin_ccc", "rmse_mM", "mae_mM",
@@ -870,87 +898,28 @@ def plot_figure04(analysis_dir: Path, panels_dir: Path, settings: Settings,
 
 
 def plot_figure05(data_dir: Path, analysis_dir: Path, panels_dir: Path, settings: Settings) -> list[Path]:
-    rows = read_csv(data_dir / DATA_FILENAMES[5])
-    metric_rows = read_csv(analysis_dir / "figure05_metrics.csv")
-    if not metric_rows:
-        raise ValueError("figure05_metrics.csv is empty; run the stats library first.")
-    m = metric_rows[0]
-    reference = np.array([as_float(r["reference_mM"], field="reference_mM") for r in rows])
-    candidate = np.array([as_float(r["candidate_mM"], field="candidate_mM") for r in rows])
-    pair_mean = np.array([as_float(r["pair_mean_mM"], field="pair_mean_mM") for r in rows])
-    difference = np.array([
-        as_float(r["candidate_minus_reference_mM"], field="candidate_minus_reference_mM")
-        for r in rows
-    ])
-    low = math.floor(min(reference.min(), candidate.min()))
-    high = math.ceil(max(reference.max(), candidate.max()))
+    # The panel drawing is shared with the composite script so the two
+    # renderings of Figure 5 cannot drift apart.
+    d = _figure05_inputs(data_dir, analysis_dir)
 
-    def draw_association(ax: plt.Axes) -> None:
-        ax.scatter(reference, candidate, s=18, color=BLUE, alpha=0.65)
-        ax.plot([low, high], [low, high], linestyle="--", color=DARK_GREY, label="Identity")
-        pb_i = as_float(m["passing_bablok_intercept"], field="passing_bablok_intercept")
-        pb_s = as_float(m["passing_bablok_slope"], field="passing_bablok_slope")
-        ax.plot([low, high], [pb_i + pb_s * low, pb_i + pb_s * high], color=PURPLE,
-                linewidth=2, label="Supplied Passing–Bablok")
-        ax.set(xlabel="Reference (mM)", ylabel="Candidate (mM)", 
-            #    title="A. Association"
-               )
-        add_metric_box(ax, metric_text(m, (("pearson_r", "r"), ("lin_ccc", r'$\rho_C$'))))
-        ax.grid(color=LIGHT_GREY, linewidth=0.7)
-
-    def draw_bland_altman(ax: plt.Axes) -> None:
-        ax.scatter(pair_mean, difference, s=18, color=ORANGE, alpha=0.65)
-        for field, label, color, linestyle in (
-            ("bland_altman_bias_mM", "Bias", NAVY, "-"),
-            ("loa_lower_mM", "Lower LoA", RED, "--"),
-            ("loa_upper_mM", "Upper LoA", RED, "--"),
-        ):
-            value = as_float(m[field], field=field)
-            ax.axhline(value, color=color, linestyle=linestyle, linewidth=1.5, label=label)
-        ax.set(xlabel="Pair mean (mM)", ylabel="Candidate − reference (mM)",
-            #    title="B. Bland–Altman disagreement"
-            )
-        ax.grid(color=LIGHT_GREY, linewidth=0.7)
-
-    def draw_deming(ax: plt.Axes) -> None:
-        dem_i = as_float(m["deming_intercept"], field="deming_intercept")
-        dem_s = as_float(m["deming_slope"], field="deming_slope")
-        ax.scatter(reference, candidate, s=18, color=TEAL, alpha=0.55)
-        ax.plot([low, high], [low, high], linestyle="--", color=DARK_GREY, label="Identity")
-        ax.plot([low, high], [dem_i + dem_s * low, dem_i + dem_s * high], color=TEAL,
-                linewidth=2, label="Supplied Deming")
-        ax.set(xlabel="Reference (mM)", ylabel="Candidate (mM)",
-            #    title="C. Constant/proportional bias"
-            )
-        ax.grid(color=LIGHT_GREY, linewidth=0.7)
-
-    def draw_fit_for_use(ax: plt.Axes) -> None:
-        ci_low = as_float(m["difference_ci_low_mM"], field="difference_ci_low_mM")
-        ci_high = as_float(m["difference_ci_high_mM"], field="difference_ci_high_mM")
-        eq_low = as_float(m["equivalence_lower_mM"], field="equivalence_lower_mM")
-        eq_high = as_float(m["equivalence_upper_mM"], field="equivalence_upper_mM")
-        center = 0.5 * (ci_low + ci_high)  # Display coordinate, not a re-estimated statistic.
-        ax.axvspan(eq_low, eq_high, color=TEAL, alpha=0.15, label="Pre-specified equivalence region")
-        ax.errorbar(center, 0, xerr=[[center - ci_low], [ci_high - center]], fmt="o",
-                    color=PURPLE, capsize=5, linewidth=2, label="Supplied CI")
-        ax.axvline(0, color=DARK_GREY, linestyle="--", linewidth=1)
-        ax.set_ylim(-0.75, 0.75)
-        ax.set_yticks([])
-        ax.set_xlabel("Candidate − reference (mM)")
-        # ax.set_title("D. Fit for the intended use")
-        ax.grid(color=LIGHT_GREY, linewidth=0.7)
+    def with_grid(draw: Callable[[plt.Axes, Mapping[str, object]], None]) -> Callable[[plt.Axes], None]:
+        def wrapped(ax: plt.Axes) -> None:
+            draw(ax, d)
+            ax.grid(color=LIGHT_GREY, linewidth=0.7)
+            ax.legend(frameon=False, fontsize=8, loc="upper left")
+        return wrapped
 
     # All four panels share one canvas size (no tight cropping) so they
     # line up when placed side by side as LaTeX subfigures.
     saved: list[Path] = []
     for slug, draw in (
-        ("a_association", draw_association),
-        ("b_bland_altman", draw_bland_altman),
-        ("c_deming", draw_deming),
-        ("d_fit_for_use", draw_fit_for_use),
+        ("a_association", with_grid(_draw_figure05_association)),
+        ("b_bland_altman", with_grid(_draw_figure05_bland_altman)),
+        ("c_passing_bablok", with_grid(_draw_figure05_passing_bablok)),
+        ("d_fit_for_use", lambda ax: _draw_figure05_fit_for_use(ax, d)),
     ):
-        saved += save_panel(panels_dir, 5, slug, draw, figsize=(5.2, 4.4),
-                            dpi=settings.dpi, legend=True, fixed_size=True)
+        saved += save_panel(panels_dir, 5, slug, draw, figsize=(5.6, 4.6),
+                            dpi=settings.dpi, fixed_size=True)
     return saved
 
 

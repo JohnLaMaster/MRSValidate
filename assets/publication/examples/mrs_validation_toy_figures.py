@@ -70,11 +70,16 @@ by the ``generate`` command. Empty cells mean "not yet analyzed".
 * figure04_operating_range.csv: metabolite, linewidth_hz, concentration_mM,
   snr, n_total, n_success, success_probability, success_lcb,
   acceptable_abs_error_mM, evidence_status.
-* figure05_metrics.csv: one row containing pearson_r, lin_ccc,
-  passing_bablok_intercept, passing_bablok_slope, deming_intercept,
-  deming_slope, bland_altman_bias_mM, loa_lower_mM, loa_upper_mM,
-  difference_ci_low_mM, difference_ci_high_mM, equivalence_lower_mM,
-  equivalence_upper_mM, equivalent.
+* figure05_metrics.csv: one row containing pearson_r, lin_ccc, the
+  Passing--Bablok intercept/slope with confidence intervals and CUSUM
+  linearity result (pb_*), the Bland--Altman settings (ba_*), and the
+  pre-specified acceptable limits with the loa_within_acceptable decision.
+* figure05_ba_curves.csv: reference_mM, bias_mM, loa_lower_mM,
+  loa_upper_mM (regression-based bias and limits of agreement).
+* figure05_ba_bands.csv: reference_mM grid with confidence bands for the
+  bias and both limits of agreement.
+* figure05_silveira.csv: one row per Silveira test parameter: test,
+  parameter, estimate, ci_low, ci_high, ci_level, null_value, rejected.
 * figure06_metrics.csv: scenario, pearson_r, lin_ccc, rmse_mM, mae_mM,
   marginal_distance, marginal_test_p.
 * figure07_metrics.csv: scenario, bias_mM, variance_mM2, mse_mM2, rmse_mM.
@@ -96,11 +101,12 @@ Relevant metrics (state them; calculate them elsewhere)
    cell-wise success probability, one-sided confidence lower bound, sample count,
    and an evidence status that distinguishes validated, unacceptable, and
    insufficiently sampled cells.
-5. Method comparison: Pearson r and Lin's $\rho_C$; Bland--Altman bias, limits of
-   agreement and their confidence bands; Passing--Bablok slope/intercept plus a
-   linearity test; Deming slope/intercept with justified error-variance ratio;
-   and pre-specified equivalence analysis (e.g. the manuscript's three-stage
-   accuracy/precision/agreement protocol or another justified TOST design).
+5. Method comparison (in silico, exact reference): Pearson r and Lin's $\rho_C$;
+   Bland--Altman against the reference with robust regression-based limits of
+   agreement and their confidence bands, judged against pre-specified acceptable
+   limits; Passing--Bablok slope/intercept with confidence intervals plus the
+   CUSUM linearity test; and the Silveira three-part accuracy/precision/agreement
+   protocol.
 6. Marginal equality versus pairing: a marginal distribution distance/test plus
    paired MAE/RMSE, Pearson r, and Lin's $\rho_C$.
 7. Bias versus variance: empirical bias, variance, MSE, RMSE, and the externally
@@ -187,11 +193,24 @@ ANALYSIS_TEMPLATES: dict[str, list[str]] = {
         "acceptable_abs_error_mM", "evidence_status",
     ],
     "figure05_metrics.csv": [
-        "pearson_r", "lin_ccc", "passing_bablok_intercept",
-        "passing_bablok_slope", "deming_intercept", "deming_slope",
-        "bland_altman_bias_mM", "loa_lower_mM", "loa_upper_mM",
-        "difference_ci_low_mM", "difference_ci_high_mM",
-        "equivalence_lower_mM", "equivalence_upper_mM", "equivalent",
+        "pearson_r", "lin_ccc",
+        "pb_intercept_mM", "pb_intercept_ci_low_mM", "pb_intercept_ci_high_mM",
+        "pb_slope", "pb_slope_ci_low", "pb_slope_ci_high", "pb_ci_method",
+        "pb_cusum_method", "pb_cusum_p_value", "pb_linearity_rejected",
+        "ba_x_axis", "ba_location", "ba_scale", "ba_confidence_level",
+        "acceptable_lower_mM", "acceptable_upper_mM", "loa_within_acceptable",
+    ],
+    "figure05_ba_curves.csv": [
+        "reference_mM", "bias_mM", "loa_lower_mM", "loa_upper_mM",
+    ],
+    "figure05_ba_bands.csv": [
+        "reference_mM", "bias_ci_low_mM", "bias_ci_high_mM",
+        "loa_lower_ci_low_mM", "loa_lower_ci_high_mM",
+        "loa_upper_ci_low_mM", "loa_upper_ci_high_mM",
+    ],
+    "figure05_silveira.csv": [
+        "test", "parameter", "estimate", "ci_low", "ci_high",
+        "ci_level", "null_value", "rejected",
     ],
     "figure06_metrics.csv": [
         "scenario", "pearson_r", "lin_ccc", "rmse_mM", "mae_mM",
@@ -794,71 +813,146 @@ def plot_figure04(analysis_dir: Path, output: Path, settings: Settings,
     save_figure(fig, output, settings.dpi)
 
 
-def plot_figure05(data_dir: Path, analysis_dir: Path, output: Path, settings: Settings) -> None:
+def _fmt(value: str, digits: int = 3) -> str:
+    """Display formatting of a supplied number (no computation)."""
+    return f"{float(value):.{digits}f}"
+
+
+def _figure05_inputs(data_dir: Path, analysis_dir: Path) -> dict[str, object]:
+    """Read every input of Figure 5; values are rendered, never computed."""
     rows = read_csv(data_dir / DATA_FILENAMES[5])
     metric_rows = read_csv(analysis_dir / "figure05_metrics.csv")
     if not metric_rows:
         raise ValueError("figure05_metrics.csv is empty; run the stats library first.")
-    m = metric_rows[0]
-    reference = np.array([as_float(r["reference_mM"], field="reference_mM") for r in rows])
-    candidate = np.array([as_float(r["candidate_mM"], field="candidate_mM") for r in rows])
-    pair_mean = np.array([as_float(r["pair_mean_mM"], field="pair_mean_mM") for r in rows])
-    difference = np.array([
-        as_float(r["candidate_minus_reference_mM"], field="candidate_minus_reference_mM")
-        for r in rows
-    ])
+    curves = read_csv(analysis_dir / "figure05_ba_curves.csv")
+    bands = read_csv(analysis_dir / "figure05_ba_bands.csv")
+    silveira = read_csv(analysis_dir / "figure05_silveira.csv")
+    if not curves or not bands or not silveira:
+        raise ValueError("Figure 5 Bland-Altman or Silveira results are empty; run the stats library first.")
+
+    def column(table: Sequence[Mapping[str, str]], field: str) -> np.ndarray:
+        return np.array([as_float(r[field], field=field) for r in table])
+
+    return {
+        "m": metric_rows[0],
+        "reference": column(rows, "reference_mM"),
+        "candidate": column(rows, "candidate_mM"),
+        "difference": column(rows, "candidate_minus_reference_mM"),
+        "curve_c": column(curves, "reference_mM"),
+        "curve_bias": column(curves, "bias_mM"),
+        "curve_low": column(curves, "loa_lower_mM"),
+        "curve_high": column(curves, "loa_upper_mM"),
+        "band_c": column(bands, "reference_mM"),
+        "band": {
+            key: (column(bands, f"{key}_ci_low_mM"), column(bands, f"{key}_ci_high_mM"))
+            for key in ("bias", "loa_lower", "loa_upper")
+        },
+        "silveira": silveira,
+    }
+
+
+def _draw_figure05_association(ax: plt.Axes, d: Mapping[str, object]) -> None:
+    reference, candidate, m = d["reference"], d["candidate"], d["m"]
     low = math.floor(min(reference.min(), candidate.min()))
     high = math.ceil(max(reference.max(), candidate.max()))
-    fig, axes = plt.subplots(2, 2, figsize=(10.3, 8.0))
-    ax = axes[0, 0]
     ax.scatter(reference, candidate, s=18, color=BLUE, alpha=0.65)
     ax.plot([low, high], [low, high], linestyle="--", color=DARK_GREY, label="Identity")
-    pb_i = as_float(m["passing_bablok_intercept"], field="passing_bablok_intercept")
-    pb_s = as_float(m["passing_bablok_slope"], field="passing_bablok_slope")
-    ax.plot([low, high], [pb_i + pb_s * low, pb_i + pb_s * high], color=PURPLE,
-            linewidth=2, label="Supplied Passing–Bablok")
     ax.set(xlabel="Reference (mM)", ylabel="Candidate (mM)", title="A. Association")
-    add_metric_box(ax, metric_text(m, (("pearson_r", "r"), ("lin_ccc", r'$\rho_C$'))))
-    ax.legend(frameon=False, fontsize=8)
-    ax = axes[0, 1]
-    ax.scatter(pair_mean, difference, s=18, color=ORANGE, alpha=0.65)
-    for field, label, color, linestyle in (
-        ("bland_altman_bias_mM", "Bias", NAVY, "-"),
-        ("loa_lower_mM", "Lower LoA", RED, "--"),
-        ("loa_upper_mM", "Upper LoA", RED, "--"),
-    ):
-        value = as_float(m[field], field=field)
-        ax.axhline(value, color=color, linestyle=linestyle, linewidth=1.5, label=label)
-    ax.set(xlabel="Pair mean (mM)", ylabel="Candidate − reference (mM)",
+    add_metric_box(ax, metric_text(m, (("pearson_r", "r"), ("lin_ccc", r"$\rho_C$"))),
+                   x=0.97, y=0.03, va="bottom")
+
+
+def _draw_figure05_bland_altman(ax: plt.Axes, d: Mapping[str, object]) -> None:
+    m = d["m"]
+    lower = as_float(m["acceptable_lower_mM"], field="acceptable_lower_mM")
+    upper = as_float(m["acceptable_upper_mM"], field="acceptable_upper_mM")
+    level = round(100 * as_float(m["ba_confidence_level"], field="ba_confidence_level"))
+    c = d["band_c"]
+    ax.scatter(d["reference"], d["difference"], s=16, color=ORANGE, alpha=0.55)
+    ax.fill_between(c, *d["band"]["bias"], color=NAVY, alpha=0.18, linewidth=0)
+    ax.fill_between(c, *d["band"]["loa_lower"], color=RED, alpha=0.15, linewidth=0)
+    ax.fill_between(c, *d["band"]["loa_upper"], color=RED, alpha=0.15, linewidth=0,
+                    label=f"{level} % confidence bands")
+    ax.plot(d["curve_c"], d["curve_bias"], color=NAVY, linewidth=1.8, label="Bias (median)")
+    ax.plot(d["curve_c"], d["curve_low"], color=RED, linewidth=1.5, linestyle="--",
+            label="Limits of agreement")
+    ax.plot(d["curve_c"], d["curve_high"], color=RED, linewidth=1.5, linestyle="--")
+    ax.axhline(lower, color=TEAL, linewidth=1.4, linestyle=":")
+    ax.axhline(upper, color=TEAL, linewidth=1.4, linestyle=":", label="Acceptable limits")
+    ax.axhline(0, color=DARK_GREY, linewidth=0.8)
+    ax.set(xlabel="Reference (mM)", ylabel="Candidate − reference (mM)",
            title="B. Bland–Altman disagreement")
-    ax.legend(frameon=False, fontsize=8)
-    ax = axes[1, 0]
-    dem_i = as_float(m["deming_intercept"], field="deming_intercept")
-    dem_s = as_float(m["deming_slope"], field="deming_slope")
+
+
+def _draw_figure05_passing_bablok(ax: plt.Axes, d: Mapping[str, object]) -> None:
+    reference, candidate, m = d["reference"], d["candidate"], d["m"]
+    low = math.floor(min(reference.min(), candidate.min()))
+    high = math.ceil(max(reference.max(), candidate.max()))
+    intercept = as_float(m["pb_intercept_mM"], field="pb_intercept_mM")
+    slope = as_float(m["pb_slope"], field="pb_slope")
     ax.scatter(reference, candidate, s=18, color=TEAL, alpha=0.55)
     ax.plot([low, high], [low, high], linestyle="--", color=DARK_GREY, label="Identity")
-    ax.plot([low, high], [dem_i + dem_s * low, dem_i + dem_s * high], color=TEAL,
-            linewidth=2, label="Supplied Deming")
+    ax.plot([low, high], [intercept + slope * low, intercept + slope * high], color=PURPLE,
+            linewidth=2, label="Passing–Bablok")
+    linearity = "rejected" if m["pb_linearity_rejected"] == "True" else "not rejected"
+    text = (
+        f"slope = {_fmt(m['pb_slope'])} [{_fmt(m['pb_slope_ci_low'])}, {_fmt(m['pb_slope_ci_high'])}]\n"
+        f"intercept = {_fmt(m['pb_intercept_mM'])} [{_fmt(m['pb_intercept_ci_low_mM'])}, "
+        f"{_fmt(m['pb_intercept_ci_high_mM'])}] mM\n"
+        f"linearity (CUSUM): {linearity}, p = {_fmt(m['pb_cusum_p_value'])}"
+    )
+    add_metric_box(ax, text, x=0.97, y=0.03, va="bottom")
     ax.set(xlabel="Reference (mM)", ylabel="Candidate (mM)",
            title="C. Constant/proportional bias")
-    ax.legend(frameon=False, fontsize=8)
-    ax = axes[1, 1]
-    ci_low = as_float(m["difference_ci_low_mM"], field="difference_ci_low_mM")
-    ci_high = as_float(m["difference_ci_high_mM"], field="difference_ci_high_mM")
-    eq_low = as_float(m["equivalence_lower_mM"], field="equivalence_lower_mM")
-    eq_high = as_float(m["equivalence_upper_mM"], field="equivalence_upper_mM")
-    center = 0.5 * (ci_low + ci_high)  # Display coordinate, not a re-estimated statistic.
-    ax.axvspan(eq_low, eq_high, color=TEAL, alpha=0.15, label="Pre-specified equivalence region")
-    ax.errorbar(center, 0, xerr=[[center - ci_low], [ci_high - center]], fmt="o",
-                color=PURPLE, capsize=5, linewidth=2, label="Supplied CI")
-    ax.axvline(0, color=DARK_GREY, linestyle="--", linewidth=1)
-    ax.set_ylim(-0.75, 0.75)
-    ax.set_yticks([])
-    ax.set_xlabel("Candidate − reference (mM)")
+
+
+def _draw_figure05_fit_for_use(ax: plt.Axes, d: Mapping[str, object]) -> None:
+    m = d["m"]
+    acceptable = m["loa_within_acceptable"] == "True"
+    cells = []
+    for row in d["silveira"]:
+        level = round(100 * as_float(row["ci_level"], field="ci_level"), 1)
+        cells.append([
+            f"Test {row['test']}",
+            row["parameter"],
+            f"{_fmt(row['estimate'])} [{_fmt(row['ci_low'])}, {_fmt(row['ci_high'])}]",
+            f"{level:g} %",
+            _fmt(row["null_value"], 0),
+            "rejected" if row["rejected"] == "True" else "not rejected",
+        ])
+    cells.append([
+        "Limits of agreement", "vs acceptable limits",
+        f"[{_fmt(m['acceptable_lower_mM'], 1)}, {_fmt(m['acceptable_upper_mM'], 1)}] mM", "", "",
+        "within" if acceptable else "outside",
+    ])
+    table = ax.table(
+        cellText=cells,
+        colLabels=["Criterion", "Parameter", "Estimate [CI]", "CI level", "H₀", "Decision"],
+        loc="center", cellLoc="left", colLoc="left",
+    )
+    table.auto_set_font_size(False)
+    table.set_fontsize(7.5)
+    table.scale(1.0, 1.45)
+    for (row_index, _col), cell in table.get_celld().items():
+        cell.set_edgecolor("#CBD5E1")
+        if row_index == 0:
+            cell.set_text_props(fontweight="bold")
+            cell.set_facecolor(LIGHT_GREY)
+    table.auto_set_column_width(list(range(6)))
+    ax.set_axis_off()
     ax.set_title("D. Fit for the intended use")
-    ax.legend(frameon=False, fontsize=8, loc="upper center")
-    for ax in axes.flat:
+
+
+def plot_figure05(data_dir: Path, analysis_dir: Path, output: Path, settings: Settings) -> None:
+    d = _figure05_inputs(data_dir, analysis_dir)
+    fig, axes = plt.subplots(2, 2, figsize=(11.0, 8.4))
+    _draw_figure05_association(axes[0, 0], d)
+    _draw_figure05_bland_altman(axes[0, 1], d)
+    _draw_figure05_passing_bablok(axes[1, 0], d)
+    _draw_figure05_fit_for_use(axes[1, 1], d)
+    for ax in (axes[0, 0], axes[0, 1], axes[1, 0]):
         ax.grid(color=LIGHT_GREY, linewidth=0.7)
+        ax.legend(frameon=False, fontsize=8, loc="upper left")
     fig.suptitle("One paired dataset answers four different comparison questions", fontweight="bold")
     fig.tight_layout()
     save_figure(fig, output, settings.dpi)
