@@ -129,6 +129,32 @@ corresponding manuscript edits are tracked in
   `method` is now `"percentile"`, the manuscript's interval; `"BCa"` and
   `"basic"` remain available.
 
+### Changed (model-level mixed-effects equivalence tests)
+
+- **Small-sample cluster-robust standard errors** (`mixed_effects`
+  Tests 1-2): new `small_sample={"auto","CR0","CR1","CR2"}`, default
+  `"auto"`: CR2 with Bell-McCaffrey degrees of freedom below 50 clusters,
+  CR1 with a t(G-1) reference otherwise. p-values now use t(df) instead
+  of a normal z (CR0 keeps z). Fields `alpha_z`/`beta_z` renamed to
+  `alpha_t`/`beta_t`; new `se_method`, `df`; Test 2 also reports
+  `tau_alpha_sq`. At 10 clusters, rejection of a true null at nominal 5 %
+  fell from 11-18 % (CR0 + z) to 4-5 % (CR2).
+- **Test 3 is now a two-stage mixed-effects Deming model**
+  (`mixed_equivalence_test_3`, breaking signature change): per-metabolite
+  York regression with per-observation error variances (reduces exactly
+  to Deming for constant variances), REML random-effects synthesis of
+  intercepts and slopes, and a cluster bootstrap over spectra/subjects.
+  Reports the fixed `alpha`, `beta`, `tau_alpha_sq`, `tau_beta_sq` with
+  intervals and the per-metabolite estimates. New required argument
+  `metabolite_ids`; error variances accept scalars or per-observation
+  arrays. The previous implementation was a single pooled Deming fit
+  that ignored metabolite.
+- **Inference scope** (`mixed_equivalence_test_3(inference=...)`):
+  default `"panel"` (inference conditional on the evaluated joint
+  metabolite set; tau^2 descriptive); `"population"` uses a two-way
+  pigeonhole bootstrap over metabolites and clusters for generalisation
+  beyond the panel (conservative when tau^2 is small).
+
 ### Known scientific-definition notes
 
 - **Deming regression**: the manuscript's displayed slope equation, if
