@@ -61,13 +61,13 @@ of ``alpha`` and ``beta``. The effective number of units is then the
 number of metabolites, so intervals are wide for typical panels of
 20-30 metabolites.
 
-For Test 3 the panel-conditional estimand is the REML precision-weighted
-average of the per-metabolite parameters, with weights
-``1 / (s_i^2 + tau^2)`` (``s_i^2`` the stage-1 sampling variance). It
-equals the unweighted panel average when the stage-1 precisions are
-equal and approaches it as the number of clusters grows (``s_i^2 -> 0``);
-with few clusters, large ``tau^2`` and very unequal ``s_i^2`` the two
-can differ appreciably.
+For Test 3 the panel-conditional estimand is the metabolite-balanced
+(equal-weight) average of the per-metabolite parameters over the
+evaluated joint set, following the manuscript's metabolite-balanced
+aggregation: every metabolite contributes equally, so metabolites that
+are estimated more precisely (e.g. prominent singlets) do not dominate
+the model-level summary. ``tau^2`` is still estimated by REML from the
+stage-1 estimates and variances.
 
 **Simplifications, stated explicitly (this is the spec's own
 highest-complexity item, flagged as needing Statistical Reviewer
@@ -997,8 +997,8 @@ def _reml_random_effects(
     Returns
     -------
     mu : ndarray of float, shape (n_replicates,)
-        Pooled estimate, :math:`\sum w_i\theta_i/\sum w_i` with
-        :math:`w_i = 1/(s_i^2 + \tau^2)`.
+        Metabolite-balanced pooled estimate, the equal-weight mean of the
+        included :math:`\theta_i`.
     tau2 : ndarray of float, shape (n_replicates,)
         REML between-group variance, truncated at 0.
     converged : ndarray of bool, shape (n_replicates,)
@@ -1008,7 +1008,10 @@ def _reml_random_effects(
     Starts from the DerSimonian-Laird estimate and iterates the REML
     fixed point :math:`\tau^2 \leftarrow \sum w_i^2[(\theta_i - \hat\mu)^2
     - s_i^2] / \sum w_i^2 + 1/\sum w_i` (Viechtbauer 2005), truncating
-    at 0, until the change is below ``1e-10 (tau^2 + mean s^2)``.
+    at 0, until the change is below ``1e-10 (tau^2 + mean s^2)``. The
+    REML weights :math:`1/(s_i^2 + \tau^2)` are used only to estimate
+    :math:`\tau^2`; the returned pooled estimate gives every group equal
+    weight (metabolite-balanced aggregation).
     """
 
     m = mask & np.isfinite(theta) & np.isfinite(s2) & (s2 > 0)
@@ -1035,8 +1038,8 @@ def _reml_random_effects(
             tau2 = tau2_new
             if np.all(converged | (k < 2)):
                 break
-        w = np.where(m, 1.0 / (v + tau2[:, None]), 0.0)
-        mu = (w * th).sum(axis=1) / w.sum(axis=1)
+        # Metabolite-balanced fixed effect: equal weight per group.
+        mu = th.sum(axis=1) / k
     bad = k < 2
     mu[bad] = np.nan
     tau2[bad] = np.nan
@@ -1053,13 +1056,13 @@ class MixedTest3Result(AnalysisResult):
     meta : AnalysisMeta
         Provenance and inclusion/exclusion record for this computation.
     alpha : float
-        Fixed intercept: REML random-effects (precision-weighted) pooled
-        mean of the per-metabolite York intercepts, summarising agreement
+        Fixed intercept: metabolite-balanced (equal-weight) mean of the
+        per-metabolite York intercepts, summarising agreement
         of the two fitting methods over the evaluated joint metabolite
         set.
     beta : float
-        Fixed slope: REML random-effects (precision-weighted) pooled mean
-        of the per-metabolite York slopes, over the evaluated joint
+        Fixed slope: metabolite-balanced (equal-weight) mean of the
+        per-metabolite York slopes, over the evaluated joint
         metabolite set.
     tau_alpha_sq : float
         REML between-metabolite variance of the intercepts,
@@ -1267,8 +1270,9 @@ def mixed_equivalence_test_3(
 
     **Stage 2.** Separately for the intercepts ``a_i`` and slopes
     ``b_i``, a univariate random-effects synthesis with the stage-1
-    variances: REML ``tau^2`` (truncated at 0) and the inverse-variance
-    weighted mean with weights ``1/(s_i^2 + tau^2)``. The covariance of
+    variances: REML ``tau^2`` (truncated at 0), and the fixed effect as
+    the metabolite-balanced (equal-weight) mean of the per-metabolite
+    estimates. The covariance of
     ``a_i`` and ``b_i`` is not used (stated simplification, module
     Notes).
 
@@ -1283,7 +1287,7 @@ def mixed_equivalence_test_3(
     metabolites is dropped. Percentile intervals are taken over the
     remaining replicates. In this default (``inference="panel"``)
     metabolites are not resampled: the intervals are panel-conditional,
-    i.e. for the precision-weighted summary of the evaluated joint
+    i.e. for the metabolite-balanced summary of the evaluated joint
     metabolite set, and ``tau^2`` (with its interval) is descriptive
     heterogeneity across that set (see module Notes).
 
@@ -1337,7 +1341,7 @@ def mixed_equivalence_test_3(
     >>> result.meta.status.value
     'valid'
     >>> print(f"{result.alpha:.4f} {result.beta:.4f} {result.tau_beta_sq:.4f}")
-    0.0323 0.9949 0.0000
+    0.1288 0.9939 0.0000
     >>> result.reject_joint_null, result.n_metabolites, result.n_clusters
     (False, 4, 20)
     >>> result.inference
@@ -1350,7 +1354,7 @@ def mixed_equivalence_test_3(
     >>> pop.meta.configuration["ci_method"]
     'two_way_pigeonhole_bootstrap_percentile_two_stage'
     >>> print(f"{pop.beta_ci[0]:.4f} {pop.beta_ci[1]:.4f}")
-    0.9092 1.0886
+    0.9131 1.0957
     """
 
     method_name = "mixed_equivalence_test_3"

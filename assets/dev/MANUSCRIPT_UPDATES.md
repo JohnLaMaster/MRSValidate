@@ -315,7 +315,7 @@ omitted, and the Bonferroni-adjusted quantile $t_{N-2,\,1-\alpha/4}$.
 ```
 New bibliography entry: `Linnet1993`.
 
-### 2.6 [?] Mixed-effects Test 3: estimation procedure — "Mixed-Effects Equivalence Testing", after `eqn:me_test3` (~l. 1736)
+### 2.6 [ ] Mixed-effects Test 3: estimation procedure — "Mixed-Effects Equivalence Testing", after `eqn:me_test3` (~l. 1736)
 The manuscript gives the model but no estimator. Library: two-stage procedure.
 Insert after the sentence on $\lambda_{i,n}$:
 ```latex
@@ -327,15 +327,18 @@ generalizes Deming regression to observation-specific error variances
 $\sigma^2_{\mathrm{ref},i,n}$ and $\sigma^2_{\mathrm{DL},i,n}$ and reduces to it when these
 are constant. Second, the metabolite-level estimates are combined in a random-effects model,
 separately for the intercepts and the slopes, with $\tau^2_\alpha$ and $\tau^2_\beta$
-estimated by restricted maximum likelihood~\cite{Viechtbauer2005} and the fixed effects
-$\alpha$ and $\beta$ given by the inverse-variance weighted means with weights
-$1/(s_i^2 + \tau^2)$. Confidence intervals for $\alpha$, $\beta$, $\tau^2_\alpha$ and
+estimated by restricted maximum likelihood~\cite{Viechtbauer2005}. Consistent with the
+metabolite-balanced aggregation used throughout this work
+(Section~\ref{sec:Eval:subsec:multivariate:subsubsec:error}), the fixed effects $\alpha$ and
+$\beta$ are the equal-weight means of the metabolite-level estimates, so that metabolites
+estimated with higher precision, such as prominent singlets, do not dominate the model-level
+comparison. Confidence intervals for $\alpha$, $\beta$, $\tau^2_\alpha$ and
 $\tau^2_\beta$ are obtained by a cluster bootstrap that resamples whole spectra (or subjects
 \textit{in vivo}) with replacement and repeats both stages for each resample, which preserves
 the intra-spectrum correlation between metabolites.
 ```
-The last sentence depends on Open decision D1 (what the uncertainty should
-include). New bibliography entries: `York2004`, `Viechtbauer2005`.
+The last sentence reflects decision D1 (panel-conditional inference); add
+the D1 paragraph below to the same subsection. New bibliography entries: `York2004`, `Viechtbauer2005`.
 
 ### 2.7 [ ] Small-sample correction for the cluster-robust standard errors — after `eqn:sandwich mean` (~l. 1716)
 The manuscript notes that enough clusters are needed (citing Cameron2008) but
@@ -565,7 +568,7 @@ Possibly needed depending on decisions D1/D2: `Durbin1973`, `Stute1997`,
 
 ## Open decisions
 
-**D1. What the model-level uncertainty should include (mixed-effects Tests 1–3).**
+**D1. What the model-level uncertainty should include (mixed-effects Tests 1–3).** *Decided 2026-10-10: panel-conditional (default), with an optional population mode for Test 3; fixed effects are metabolite-balanced (equal-weight) means.*
 The cluster bootstrap and sandwich estimators resample spectra/subjects only,
 so inference is *conditional on the metabolite panel*: the between-metabolite
 spread ($\tau^2$) does not enter the uncertainty of $\alpha$ and $\beta$.

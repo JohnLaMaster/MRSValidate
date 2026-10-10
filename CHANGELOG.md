@@ -154,6 +154,12 @@ corresponding manuscript edits are tracked in
   metabolite set; tau^2 descriptive); `"population"` uses a two-way
   pigeonhole bootstrap over metabolites and clusters for generalisation
   beyond the panel (conservative when tau^2 is small).
+- **Metabolite-balanced fixed effects** (Test 3): `alpha` and `beta` are
+  the equal-weight means of the per-metabolite estimates (tau^2 still by
+  REML), matching the manuscript's metabolite-balanced aggregation, so
+  precisely estimated metabolites do not dominate. Under a panel null
+  with large between-metabolite spread and unequal precision, rejection
+  at nominal 5 % is 4.0-5.0 % (300 datasets per scenario).
 
 ### Known scientific-definition notes
 

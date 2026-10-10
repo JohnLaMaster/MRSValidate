@@ -437,7 +437,7 @@ def test_mixed_test3_invalid_variances():
 
 
 def test_reml_random_effects_known_cases():
-    # Homogeneous estimates -> tau^2 = 0 and the fixed-effect (inverse-variance) mean.
+    # Homogeneous estimates -> tau^2 = 0 and the common value.
     theta = np.array([[1.0, 1.0, 1.0, 1.0]])
     s2 = np.array([[0.1, 0.2, 0.3, 0.4]])
     mu, tau2, conv = me._reml_random_effects(theta, s2, np.ones_like(theta, dtype=bool))
@@ -454,6 +454,16 @@ def test_reml_random_effects_known_cases():
     mask = np.array([[True] * 5 + [False]])
     mu_m, tau2_m, _ = me._reml_random_effects(theta_m, s2_m, mask)
     assert mu_m[0] == pytest.approx(mu[0]) and tau2_m[0] == pytest.approx(tau2[0])
+
+
+def test_reml_random_effects_pooled_estimate_is_metabolite_balanced():
+    # Very unequal stage-1 precisions must not change the pooled estimate:
+    # every metabolite carries equal weight (metabolite-balanced aggregation).
+    theta = np.array([[0.0, 1.0, 2.0, 10.0]])
+    s2 = np.array([[1e-4, 1e-4, 1e-4, 10.0]])
+    mu, tau2, _ = me._reml_random_effects(theta, s2, np.ones_like(theta, dtype=bool))
+    assert mu[0] == pytest.approx(np.mean(theta))
+    assert tau2[0] > 0.0
 
 
 # ---------------------------------------------------------------------------
