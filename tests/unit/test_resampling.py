@@ -1,5 +1,6 @@
 import numpy as np
 import pytest
+from scipy import stats as scipy_stats
 
 from mrsvalidate.analysis import resampling as rs
 from mrsvalidate.results import ResultStatus
@@ -20,6 +21,19 @@ def test_bootstrap_ci_paired_reproducible_with_seed():
     assert r1.ci_low == pytest.approx(r2.ci_low)
     assert r1.ci_high == pytest.approx(r2.ci_high)
     assert r1.ci_low <= r1.point_estimate <= r1.ci_high
+
+
+def test_bootstrap_ci_defaults_to_manuscript_percentile_interval():
+    rng = np.random.default_rng(4)
+    a = rng.normal(size=40)
+    ids = np.array([f"s{i}" for i in range(40)])
+    r = rs.bootstrap_ci(np.mean, a, sample_ids=ids, n_resamples=500, seed=1)
+    assert r.method == "percentile"
+    expected = scipy_stats.bootstrap(
+        (a,), np.mean, n_resamples=500, method="percentile", random_state=1, vectorized=False
+    ).confidence_interval
+    assert r.ci_low == pytest.approx(expected.low)
+    assert r.ci_high == pytest.approx(expected.high)
 
 
 def test_bootstrap_ci_insufficient_data():

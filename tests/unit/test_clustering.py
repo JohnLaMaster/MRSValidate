@@ -87,3 +87,60 @@ def test_cross_classified_icc_runs_and_reports_both_dimensions():
     assert 0.0 <= r.rho_subject <= 1.0
     assert r.n_metabolites == n_metabolites
     assert r.n_subjects == n_subjects
+
+
+def _simulate_cross_classified(rng, n_metabolites, n_subjects, n_spectra_per_subject):
+    metabolite_effects = rng.normal(scale=1.5, size=n_metabolites)
+    subject_effects = rng.normal(scale=1.0, size=n_subjects)
+    rows = []
+    for si in range(n_subjects):
+        for ni in range(n_spectra_per_subject):
+            for mi in range(n_metabolites):
+                val = metabolite_effects[mi] + subject_effects[si] + rng.normal(scale=0.5)
+                rows.append((val, f"met{mi}", f"subj{si}", f"subj{si}_spec{ni}"))
+    values = np.array([r[0] for r in rows])
+    metabolite_ids = np.array([r[1] for r in rows])
+    subject_ids = np.array([r[2] for r in rows])
+    sample_ids = np.array([r[3] for r in rows])
+    return values, metabolite_ids, subject_ids, sample_ids
+
+
+def test_cross_classified_cluster_sizes_are_observations_per_cluster_balanced():
+    # Balanced design: K metabolites, S subjects, N-bar spectra per subject.
+    # A metabolite cluster holds S * N-bar observations and a subject
+    # cluster holds K * N-bar observations.
+    rng = np.random.default_rng(11)
+    k, s, n_bar = 5, 8, 4
+    values, metabolite_ids, subject_ids, sample_ids = _simulate_cross_classified(rng, k, s, n_bar)
+    r = cl.cross_classified_icc(values, metabolite_ids, subject_ids, sample_ids)
+    assert r.meta.status is ResultStatus.VALID
+    assert r.metabolite_cluster_size == s * n_bar
+    assert r.subject_cluster_size == k * n_bar
+    expected_deff = 1.0 + r.rho_metabolite * (s * n_bar - 1) + r.rho_subject * (k * n_bar - 1)
+    assert r.design_effect == pytest.approx(expected_deff)
+    assert r.n_eff == pytest.approx(k * s * n_bar / expected_deff)
+
+
+def test_cross_classified_design_effect_equals_pooled_mean_variance_ratio_unbalanced():
+    # The design effect must equal Var(pooled mean) under the fitted crossed
+    # model divided by its value under independence, also when cluster
+    # sizes are unequal.
+    rng = np.random.default_rng(12)
+    values, metabolite_ids, subject_ids, sample_ids = _simulate_cross_classified(rng, 6, 10, 3)
+    keep = rng.random(values.shape[0]) > 0.3
+    r = cl.cross_classified_icc(
+        values[keep], metabolite_ids[keep], subject_ids[keep], sample_ids[keep]
+    )
+    assert r.meta.status is ResultStatus.VALID
+
+    n_total = int(keep.sum())
+    _, n_i = np.unique(metabolite_ids[keep], return_counts=True)
+    _, n_s = np.unique(subject_ids[keep], return_counts=True)
+    var_mean = (
+        r.metabolite_variance * np.sum(n_i.astype(float) ** 2) / n_total**2
+        + r.subject_variance * np.sum(n_s.astype(float) ** 2) / n_total**2
+        + r.residual_variance / n_total
+    )
+    var_iid = (r.metabolite_variance + r.subject_variance + r.residual_variance) / n_total
+    assert r.design_effect == pytest.approx(var_mean / var_iid)
+    assert r.n_eff == pytest.approx(n_total / r.design_effect)

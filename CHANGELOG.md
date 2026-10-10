@@ -94,6 +94,41 @@ from `LIBRARY_IMPLEMENTATION_SPEC.md`.
   parameter of a given role (e.g. NAA's Lorentzian linewidth) by schema
   metadata rather than an assumed column position.
 
+### Changed (manuscript-consistency corrections)
+
+Each of these changes numeric results under default settings. The
+corresponding manuscript edits are tracked in
+`assets/dev/MANUSCRIPT_UPDATES.md`.
+
+- **Cross-classified design effect** (`clustering.cross_classified_icc`):
+  each ICC is now weighted by the size of the clusters sharing that
+  random effect (observations per metabolite and per subject,
+  size-weighted mean `sum(N_c^2) / N_tot`), and `n_eff = N_tot / deff`.
+  The previous formula (copied from the manuscript's `eqn:deff_cc`)
+  paired each ICC with the wrong cluster size and overstated `n_eff`
+  about ten-fold in simulation. New result fields
+  `metabolite_cluster_size`, `subject_cluster_size`.
+- **ECWAS critical values** (`distribution.ecwas_kossler_mukherjee`):
+  the default is now the joint permutation null
+  (`critical_value_method="monte_carlo"`, 10 000 relabelings, also the
+  new default for `ecwas_manuscript_max_shape`). The three components
+  are correlated under H0, so the former chi2(3) default was
+  anti-conservative (7.4 % type-I error at nominal 5 %, against 4.6 %
+  for the permutation null). chi2(3) remains available for comparison.
+- **Bias-corrected MAPE** (`errors.bias_corrected_mape`): now
+  `100 * mean|e_n - MPE/100|`, centering the signed relative error
+  before the absolute value. The previous definitions subtracted MPE
+  from the absolute error, which reduces to MAPE - MPE and doubles a
+  negative bias. The `definition` argument was removed.
+- **MeAPE** (`errors.meape`): the default is now `"conventional"`
+  (`100 * median|e_n|`), without the stray `1/N` factor. The
+  bias-corrected median is `definition="bias_corrected"`,
+  `100 * median|e_n - MePE/100|`. The `manuscript_literal` and
+  `manuscript_literal_bias_corrected` definitions were removed.
+- **Bootstrap intervals** (`resampling.bootstrap_ci`): the default
+  `method` is now `"percentile"`, the manuscript's interval; `"BCa"` and
+  `"basic"` remain available.
+
 ### Known scientific-definition notes
 
 - **Deming regression**: the manuscript's displayed slope equation, if
@@ -117,9 +152,7 @@ from `LIBRARY_IMPLEMENTATION_SPEC.md`.
   Passing-Bablok plot) — the architectural pattern and boundary
   enforcement are in place; additional figure families follow the same
   pattern.
-- Narrative documentation site (`docs/`) and worked examples
-  (`examples/`).
+- Narrative documentation site (`docs/`); two gallery examples exist
+  in `docs/source/examples/`.
 - PyPI publication / OIDC Trusted Publishing configuration (requires
   repository-admin action).
-- Final `LICENSE` selection (deferred pending the provenance/dependency
-  review described in `THIRD_PARTY_CODE.md`).

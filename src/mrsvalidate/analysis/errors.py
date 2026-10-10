@@ -1,8 +1,8 @@
 """Manuscript-defined percent-error and squared-error metrics.
 
-Implements MPE, MePE, MAPE/MeAPE (each with a manuscript-literal
-definition mode and one or more corrected/conventional definition
-modes), bias-corrected MAPE, RMSE and RMeSE.
+Implements MPE, MePE, MAPE (manuscript-literal and absolute-reference
+definition modes), MeAPE (conventional and bias-corrected modes),
+bias-corrected MAPE, RMSE and RMeSE.
 
 Sign and variable convention (shared with
 :mod:`mrsvalidate.analysis.regression`): ``prediction`` is the model
@@ -49,10 +49,7 @@ __all__ = [
 
 ZeroReferencePolicy = Literal["omit_and_report", "error"]
 MapeDefinition = Literal["manuscript_literal", "absolute_reference"]
-BiasCorrectedMapeDefinition = Literal["manuscript_literal", "absolute_centered"]
-MeapeDefinition = Literal[
-    "manuscript_literal", "manuscript_literal_bias_corrected", "conventional"
-]
+MeapeDefinition = Literal["conventional", "bias_corrected"]
 
 
 def _prepare(
@@ -453,23 +450,17 @@ def bias_corrected_mape(
     prediction: NDArray[np.float64],
     sample_ids: NDArray[np.str_],
     *,
-    definition: BiasCorrectedMapeDefinition = "manuscript_literal",
     zero_reference_policy: ZeroReferencePolicy = "omit_and_report",
     abs_tol: float = DEFAULT_ABS_TOL,
     rel_tol: float = DEFAULT_REL_TOL,
 ) -> ScalarMetricResult:
     """Bias-corrected mean absolute percent error.
 
-    Centers each sample's manuscript-literal absolute percent error on
-    :func:`mpe` before averaging, so that a systematic bias already
-    captured by MPE is not double-counted in the dispersion measure.
-    Two definitions are supported: `definition` =
-    ``"manuscript_literal"`` reproduces the manuscript's displayed
-    equation exactly, which has *no* outer absolute value and is
-    algebraically ``MAPE_literal - MPE`` (it can be negative);
-    `definition` = ``"absolute_centered"`` takes the absolute value of
-    the centered term before averaging, giving a genuine (always
-    non-negative) dispersion measure.
+    The mean absolute deviation of the percent errors around their
+    mean (the bias, :func:`mpe`): each signed relative error is centered
+    on MPE *before* the absolute value is taken, so a systematic offset
+    is removed and only the dispersion of the errors remains (manuscript
+    eq. ``MAPE w/correction``).
 
     Parameters
     ----------
@@ -480,9 +471,6 @@ def bias_corrected_mape(
         aligned with `reference`.
     sample_ids : ndarray of str
         Sample identifier aligned with `reference`/`prediction`.
-    definition : {"manuscript_literal", "absolute_centered"}, optional
-        Which convention to use; see Notes. Default is
-        ``"manuscript_literal"``.
     zero_reference_policy : {"omit_and_report", "error"}, optional
         How to handle reference values that are effectively zero; see
         the module docstring. Default is ``"omit_and_report"``.
@@ -498,42 +486,39 @@ def bias_corrected_mape(
     -------
     result : ScalarMetricResult
         ``result.value`` is the bias-corrected MAPE over the included
-        rows, under the selected `definition`.
-        ``result.meta.configuration["definition"]`` records which
-        convention was used. ``result.meta.status`` is
+        rows, in percent. ``result.meta.status`` is
         ``ResultStatus.INVALID_INPUT`` when a near-zero reference is
         present and `zero_reference_policy` is ``"error"``, or
         ``ResultStatus.INSUFFICIENT_DATA`` if no rows remain.
 
     Notes
     -----
-    ``definition="manuscript_literal"`` (the displayed equation; no
-    outer absolute value, so the result can be negative):
-
     .. math::
 
-        \\text{MAPE}_{\\text{bc,literal}} = \\frac{100}{N}\\sum_{n=1}^N
-            \\left(\\frac{|\\hat{y}_n - y_n|}{y_n} - \\frac{\\text{MPE}}{100}\\right)
+        \\text{MAPE}_{\\text{bc}} = \\frac{100}{N}\\sum_{n=1}^N
+            \\left|\\frac{\\hat{y}_n - y_n}{y_n} - \\frac{\\text{MPE}}{100}\\right|
 
-    ``definition="absolute_centered"`` (RECOMMENDED EXTENSION — a
-    genuine absolute centered-percent-error dispersion measure):
-
-    .. math::
-
-        \\text{MAPE}_{\\text{bc,abs}} = \\frac{100}{N}\\sum_{n=1}^N
-            \\left|\\,\\frac{|\\hat{y}_n - y_n|}{y_n} - \\frac{\\text{MPE}}{100}\\,\\right|
+    The centering must act on the *signed* error. Subtracting MPE from
+    the absolute error, :math:`|\\hat{y}_n - y_n|/y_n - \\text{MPE}/100`,
+    reduces to MAPE - MPE, which removes a positive bias but doubles a
+    negative one.
 
     Examples
     --------
+    A constant -10 % error is pure bias, so no dispersion remains:
+
     >>> import numpy as np
     >>> from mrsvalidate.analysis.errors import bias_corrected_mape
-    >>> ref = np.array([1.0, 1.0, 1.0, 1.0])
-    >>> pred = np.array([4.0, 1.0, 1.0, -1.0])
+    >>> ref = np.array([2.0, 4.0, 5.0, 10.0])
     >>> ids = np.array(["a", "b", "c", "d"])
-    >>> bias_corrected_mape(ref, pred, ids, definition="manuscript_literal").value
-    100.0
-    >>> bias_corrected_mape(ref, pred, ids, definition="absolute_centered").value
-    125.0
+    >>> round(bias_corrected_mape(ref, 0.9 * ref, ids).value, 10)
+    0.0
+
+    Errors of -5 % and -15 % (bias -10 %) leave a dispersion of 5 %:
+
+    >>> pred = ref * np.array([0.95, 0.85, 0.95, 0.85])
+    >>> round(bias_corrected_mape(ref, pred, ids).value, 10)
+    5.0
     """
 
     early, meta, arrays, _ = _prepare(
@@ -545,17 +530,13 @@ def bias_corrected_mape(
         zero_reference_policy=zero_reference_policy,
         abs_tol=abs_tol,
         rel_tol=rel_tol,
-        extra_configuration={"definition": definition},
+        extra_configuration={"centering": "signed_relative_error_minus_mpe"},
     )
     if early is not None:
         return early
     ref, pred = arrays
-    mpe_value = 100.0 * np.mean((pred - ref) / ref)
-    centered = np.abs(pred - ref) / ref - mpe_value / 100.0
-    if definition == "manuscript_literal":
-        value = float(100.0 * np.mean(centered))
-    else:
-        value = float(100.0 * np.mean(np.abs(centered)))
+    relative_error = (pred - ref) / ref
+    value = float(100.0 * np.mean(np.abs(relative_error - np.mean(relative_error))))
     return ScalarMetricResult(meta=meta, value=value)
 
 
@@ -564,24 +545,19 @@ def meape(
     prediction: NDArray[np.float64],
     sample_ids: NDArray[np.str_],
     *,
-    definition: MeapeDefinition = "manuscript_literal",
+    definition: MeapeDefinition = "conventional",
     zero_reference_policy: ZeroReferencePolicy = "omit_and_report",
     abs_tol: float = DEFAULT_ABS_TOL,
     rel_tol: float = DEFAULT_REL_TOL,
 ) -> ScalarMetricResult:
     """Median absolute percent error.
 
-    Three definitions are supported. `definition` =
-    ``"manuscript_literal"`` reproduces the manuscript's displayed
-    ``1/N`` factor exactly, even though a ``1/N`` prefactor in front of
-    a median is not standard practice — it is preserved here for
-    faithful reproduction rather than silently "fixed". `definition` =
-    ``"manuscript_literal_bias_corrected"`` reproduces the
-    manuscript's displayed bias-corrected line, using
-    :func:`mepe`-centered terms with the same ``1/N`` prefactor.
-    `definition` = ``"conventional"`` drops the ``1/N`` factor and uses
-    an absolute-reference denominator, giving the ordinary statistical
-    definition of a median absolute percent error.
+    Two definitions are supported (manuscript eq. ``MeAPE``).
+    `definition` = ``"conventional"`` is the median of the absolute
+    percent errors. `definition` = ``"bias_corrected"`` is the median
+    absolute deviation of the percent errors around their median (the
+    bias, :func:`mepe`), the nonparametric analogue of
+    :func:`bias_corrected_mape`.
 
     Parameters
     ----------
@@ -592,10 +568,9 @@ def meape(
         aligned with `reference`.
     sample_ids : ndarray of str
         Sample identifier aligned with `reference`/`prediction`.
-    definition : {"manuscript_literal", \
-"manuscript_literal_bias_corrected", "conventional"}, optional
-        Which convention to use; see Notes. Default is
-        ``"manuscript_literal"``.
+    definition : {"conventional", "bias_corrected"}, optional
+        Which quantity to compute; see Notes. Default is
+        ``"conventional"``.
     zero_reference_policy : {"omit_and_report", "error"}, optional
         How to handle reference values that are effectively zero; see
         the module docstring. Default is ``"omit_and_report"``.
@@ -611,54 +586,56 @@ def meape(
     -------
     result : ScalarMetricResult
         ``result.value`` is the median absolute percent error over the
-        included rows, under the selected `definition`.
+        included rows, under the selected `definition`, in percent.
         ``result.meta.configuration["definition"]`` records which
-        convention was used. ``result.meta.status`` is
+        definition was used. ``result.meta.status`` is
         ``ResultStatus.INVALID_INPUT`` when a near-zero reference is
         present and `zero_reference_policy` is ``"error"``, or
         ``ResultStatus.INSUFFICIENT_DATA`` if no rows remain.
 
+    Raises
+    ------
+    ValueError
+        If `definition` is not ``"conventional"`` or
+        ``"bias_corrected"``.
+
     Notes
     -----
-    ``definition="manuscript_literal"`` (reproduces the manuscript's
-    ``1/N`` factor in front of the median, inconsistent with a median
-    but preserved for reproduction):
+    ``definition="conventional"``:
 
     .. math::
 
-        \\text{MeAPE}_{\\text{literal}} = \\frac{100}{N} \\cdot
-            \\operatorname{median}_n\\left(\\frac{|\\hat{y}_n - y_n|}{y_n}\\right)
-
-    ``definition="manuscript_literal_bias_corrected"`` (the
-    manuscript's displayed bias-corrected line):
-
-    .. math::
-
-        \\text{MeAPE}_{\\text{bc}} = \\frac{100}{N} \\cdot
-            \\operatorname{median}_n\\left(\\frac{|\\hat{y}_n - y_n|}{y_n}
-            - \\frac{\\text{MePE}}{100}\\right)
-
-    ``definition="conventional"`` (RECOMMENDED EXTENSION — no ``1/N``
-    factor, absolute-reference denominator):
-
-    .. math::
-
-        \\text{MeAPE}_{\\text{conventional}} = 100 \\cdot
+        \\text{MeAPE} = 100 \\cdot
             \\operatorname{median}_n\\left(\\frac{|\\hat{y}_n - y_n|}{|y_n|}\\right)
+
+    ``definition="bias_corrected"`` (the signed error is centered on
+    MePE before the absolute value is taken):
+
+    .. math::
+
+        \\text{MeAPE}_{\\text{bc}} = 100 \\cdot
+            \\operatorname{median}_n\\left|\\frac{\\hat{y}_n - y_n}{y_n}
+            - \\frac{\\text{MePE}}{100}\\right|
 
     Examples
     --------
     >>> import numpy as np
     >>> from mrsvalidate.analysis.errors import meape
-    >>> ref = np.array([1.0, 2.0, 3.0, 4.0, 100.0])
-    >>> pred = np.array([2.0, 2.0, 5.0, 4.0, 90.0])
+    >>> ref = np.array([2.0, 4.0, 5.0, 10.0, 8.0])
+    >>> pred = ref * np.array([0.95, 0.85, 0.95, 0.85, 0.90])
     >>> ids = np.array(["a", "b", "c", "d", "e"])
-    >>> meape(ref, pred, ids, definition="manuscript_literal").value
-    2.0
-    >>> meape(ref, pred, ids, definition="conventional").value
+
+    Errors of -5 %, -15 % and -10 % (median bias -10 %): the conventional
+    MeAPE includes the bias, the bias-corrected one only the spread.
+
+    >>> round(meape(ref, pred, ids).value, 10)
     10.0
+    >>> round(meape(ref, pred, ids, definition="bias_corrected").value, 10)
+    5.0
     """
 
+    if definition not in ("conventional", "bias_corrected"):
+        raise ValueError(f"Unknown definition: {definition!r}")
     early, meta, arrays, _ = _prepare(
         reference,
         prediction,
@@ -673,17 +650,12 @@ def meape(
     if early is not None:
         return early
     ref, pred = arrays
-    n = len(ref)
 
-    if definition == "manuscript_literal":
-        value = float((100.0 / n) * np.median(np.abs(pred - ref) / ref))
-    elif definition == "manuscript_literal_bias_corrected":
-        mepe_value = 100.0 * np.median((pred - ref) / ref)
-        value = float(
-            (100.0 / n) * np.median(np.abs(pred - ref) / ref - mepe_value / 100.0)
-        )
-    else:  # conventional
+    if definition == "conventional":
         value = float(100.0 * np.median(np.abs(pred - ref) / np.abs(ref)))
+    else:  # bias_corrected
+        relative_error = (pred - ref) / ref
+        value = float(100.0 * np.median(np.abs(relative_error - np.median(relative_error))))
     return ScalarMetricResult(meta=meta, value=value)
 
 

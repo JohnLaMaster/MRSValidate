@@ -34,30 +34,28 @@ it by Monte Carlo simulation under random relabeling (seeded, resample
 count recorded) rather than asserting an unverified closed-form value.
 
 **Critical values.** The composite statistic is a sum of three squared
-standardized statistics — a squared Euclidean distance in 3-space —
-which is asymptotically chi-squared with 3 df when the three components
-are (asymptotically) independent standard normal under H0, the standard
-result for this kind of quadratic-form combination (Kössler & Mukherjee
-2019/2020 derive the exact limiting null distribution; this
-implementation uses the standard chi2(df=3) approximation to it, not a
-re-derivation of their exact asymptotics). Two distinct, switchable
-methods are offered per call via ``critical_value_method``; they are
-not equivalent and are not interchangeable defaults:
+standardized statistics — a squared Euclidean distance in 3-space. The
+three components are computed from the same ranks and are **correlated**
+under H0: for linear rank statistics the null correlation of two
+components equals the correlation of their score vectors, which is 0
+for Wilcoxon/Ansari-Bradley (the Ansari-Bradley scores are symmetric),
+but about -0.87 for Wilcoxon/AntiSavage and -0.34 for
+Ansari-Bradley/AntiSavage. The composite is therefore **not**
+chi-squared with 3 df; using that reference is anti-conservative (about
+7 % type-I error at a nominal 5 % for 100 + 100 observations). Two
+methods are offered via ``critical_value_method``:
 
-``"chi2_asymptotic"`` (fast)
-    ``chi2.ppf(1-alpha, df=3)`` — exact under the independence/normality
-    approximation above. This is the default for
-    :func:`ecwas_kossler_mukherjee`.
-``"monte_carlo"``
-    A joint permutation null of the *whole* composite (all three
-    components recomputed together on each random relabeling of the
-    pooled sample), which does not assume independence between
-    components and is more appropriate for small samples or tie-heavy
-    data (spec: "favor permutation calibration ... instead of pretending
-    continuous-distribution asymptotics remain exact"). Also yields a
-    permutation p-value. This is the default for
-    :func:`ecwas_manuscript_max_shape`, since its max-type shape
-    component is non-normal even asymptotically.
+``"monte_carlo"`` (default for both functions)
+    A joint permutation null of the *whole* composite: all three
+    components are recomputed together on each random relabeling of the
+    pooled sample. This makes no independence or normality assumption,
+    is valid for any sample sizes and for tied data, and is the only
+    option that also covers the max-type shape component of
+    :func:`ecwas_manuscript_max_shape`. The p-value is
+    ``(1 + #{T* >= T}) / (B + 1)``.
+``"chi2_asymptotic"``
+    ``chi2.ppf(1-alpha, df=3)``. Retained for comparison only; it
+    ignores the correlation between components and is not recommended.
 """
 
 from __future__ import annotations
@@ -249,8 +247,8 @@ def ecwas_kossler_mukherjee(
     sample_ids: NDArray[np.str_],
     *,
     alpha: float = 0.05,
-    critical_value_method: CriticalValueMethod = "chi2_asymptotic",
-    n_null_resamples: int = 2000,
+    critical_value_method: CriticalValueMethod = "monte_carlo",
+    n_null_resamples: int = 10000,
     seed: int | None = None,
 ) -> ECWASResult:
     """Kössler-Mukherjee ECWAS omnibus distributional-comparison test.
@@ -275,11 +273,11 @@ def ecwas_kossler_mukherjee(
     critical_value_method : {"chi2_asymptotic", "monte_carlo"}, optional
         How to obtain the composite statistic's critical value; see
         the module docstring's Notes for the distinction. Default
-        ``"chi2_asymptotic"``.
+        ``"monte_carlo"`` (joint permutation null).
     n_null_resamples : int, optional
         Number of random relabelings used to build the joint
         permutation null when `critical_value_method` is
-        ``"monte_carlo"``. Ignored otherwise. Default 2000.
+        ``"monte_carlo"``. Ignored otherwise. Default 10000.
     seed : int or None, optional
         Seed for the permutation random number generator, used only
         when `critical_value_method` is ``"monte_carlo"``. Recorded in
@@ -319,24 +317,19 @@ def ecwas_kossler_mukherjee(
     components. Two switchable ways to obtain its critical value are
     offered via `critical_value_method`:
 
-    ``"chi2_asymptotic"``
-        :math:`Q \\sim \\chi^2_3` asymptotically when the three
-        components are (asymptotically) independent standard normal
-        under :math:`H_0`; the critical value is
-        ``chi2.ppf(1-alpha, df=3)`` and the p-value is
-        ``chi2.sf(Q, df=3)``. Kössler & Mukherjee (2019/2020) derive
-        the exact limiting null distribution; this implementation uses
-        the standard chi-squared approximation to it rather than
-        re-deriving their exact asymptotics.
-    ``"monte_carlo"``
+    ``"monte_carlo"`` (default)
         A joint permutation null: all three components are
         recomputed together on each of `n_null_resamples` random
         relabelings of the pooled sample, and the critical value is
         the empirical :math:`1-\\alpha` quantile of the resulting
-        composite-statistic null distribution. This does not assume
-        independence between components and is more appropriate for
-        small samples or tie-heavy data than the chi-squared
-        approximation.
+        composite-statistic null distribution. Because the components
+        are correlated under :math:`H_0` (see the module docstring),
+        this is the calibrated reference distribution for :math:`Q`.
+    ``"chi2_asymptotic"``
+        Critical value ``chi2.ppf(1-alpha, df=3)`` and p-value
+        ``chi2.sf(Q, df=3)``. This treats the three components as
+        independent, which they are not, and is anti-conservative; it
+        is retained for comparison only.
 
     Examples
     --------
@@ -351,8 +344,10 @@ def ecwas_kossler_mukherjee(
     'valid'
     >>> round(result.statistic, 3)
     16.701
+    >>> result.critical_value_method
+    'monte_carlo'
     >>> round(result.critical_value, 3)
-    7.815
+    8.882
     >>> result.reject_null
     True
     """
@@ -437,7 +432,7 @@ def ecwas_manuscript_max_shape(
     *,
     alpha: float = 0.05,
     critical_value_method: CriticalValueMethod = "monte_carlo",
-    n_null_resamples: int = 2000,
+    n_null_resamples: int = 10000,
     seed: int | None = None,
 ) -> ECWASResult:
     """Manuscript's Funato-style ECWAS extension with a max-type shape term.
@@ -470,7 +465,7 @@ def ecwas_manuscript_max_shape(
         Number of random relabelings used both to standardize the
         max-type shape component and, when `critical_value_method` is
         ``"monte_carlo"``, to build the joint permutation null for the
-        composite. Default 2000.
+        composite. Default 10000.
     seed : int or None, optional
         Seed for the permutation random number generator. Recorded in
         the result so it is exactly reproducible.
@@ -524,10 +519,10 @@ def ecwas_manuscript_max_shape(
         asymptotically, unlike the Kössler-Mukherjee AntiSavage
         component.
     ``"chi2_asymptotic"``
-        ``chi2.ppf(1-alpha, df=3)`` / ``chi2.sf(Q, df=3)``, offered as
-        a fast approximation on the same independence/asymptotic-normality
-        grounds as :func:`ecwas_kossler_mukherjee`, despite the
-        shape component's non-normality.
+        ``chi2.ppf(1-alpha, df=3)`` / ``chi2.sf(Q, df=3)``. Retained
+        for comparison only: it ignores both the correlation between
+        components and the shape component's non-normality, and is not
+        recommended.
 
     Examples
     --------

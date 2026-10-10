@@ -45,6 +45,7 @@ __all__ = [
 
 BootstrapDesign = Literal["paired", "independent"]
 PermutationDesign = Literal["independent", "paired_samples", "paired_association"]
+BootstrapMethod = Literal["percentile", "BCa", "basic"]
 
 _PERMUTATION_TYPE_BY_DESIGN: dict[PermutationDesign, str] = {
     "independent": "independent",
@@ -144,7 +145,7 @@ def bootstrap_ci(
     n_resamples: int = 10_000,
     confidence_level: float = 0.95,
     seed: int | None = None,
-    method: str = "BCa",
+    method: BootstrapMethod = "percentile",
 ) -> BootstrapResult:
     """Bootstrap confidence interval for a statistic of one or more samples.
 
@@ -180,10 +181,16 @@ def bootstrap_ci(
     seed : int or None, optional
         Seed for the resampling random number generator. Recorded in
         the result so the interval is exactly reproducible.
-    method : str, optional
-        Interval-construction method passed straight through to
-        ``scipy.stats.bootstrap`` (e.g. ``"BCa"``, ``"percentile"``,
-        ``"basic"``). Default ``"BCa"``.
+    method : {"percentile", "BCa", "basic"}, optional
+        Interval-construction method passed through to
+        ``scipy.stats.bootstrap``. Default ``"percentile"``, the
+        manuscript's interval ``[Q_{alpha/2}(T*), Q_{1-alpha/2}(T*)]``.
+        ``"BCa"`` (bias-corrected and accelerated) shifts and stretches
+        those quantiles to correct for bias and skewness of the
+        bootstrap distribution, which gives more accurate coverage for
+        skewed statistics at the cost of extra jackknife computation.
+        ``"basic"`` reflects the percentile interval around the point
+        estimate.
 
     Returns
     -------

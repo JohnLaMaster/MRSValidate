@@ -43,35 +43,62 @@ def test_mape_manuscript_literal_vs_absolute_reference_differ_for_negative_refer
     assert literal.value != absref.value
 
 
-def test_meape_literal_and_corrected_are_distinct():
+def test_meape_conventional_is_default_and_has_no_sample_size_factor():
     ref = np.array([1.0, 2.0, 3.0, 4.0, 100.0])
     pred = np.array([2.0, 2.0, 5.0, 4.0, 90.0])
     ids = np.array(["a", "b", "c", "d", "e"])
-
-    literal = e.meape(ref, pred, ids, definition="manuscript_literal")
-    conventional = e.meape(ref, pred, ids, definition="conventional")
-
-    assert literal.meta.configuration["definition"] != conventional.meta.configuration[
-        "definition"
-    ]
-    assert literal.value != conventional.value
-    # literal carries an extra 1/N factor relative to the conventional definition
-    n = len(ref)
-    assert literal.value == pytest.approx(conventional.value / n)
+    r = e.meape(ref, pred, ids)
+    assert r.meta.configuration["definition"] == "conventional"
+    assert r.value == pytest.approx(100.0 * np.median(np.abs(pred - ref) / ref))
 
 
-def test_bias_corrected_mape_literal_and_absolute_centered_are_distinct():
-    # Mixed-sign errors with unequal magnitudes so mean(centered) != mean(|centered|).
-    ref = np.array([1.0, 1.0, 1.0, 1.0])
-    pred = np.array([4.0, 1.0, 1.0, -1.0])
+def test_meape_rejects_removed_manuscript_literal_definition():
+    ref = np.array([1.0, 2.0, 3.0])
+    ids = np.array(["a", "b", "c"])
+    with pytest.raises(ValueError):
+        e.meape(ref, ref, ids, definition="manuscript_literal")
+
+
+@pytest.mark.parametrize(
+    ("factors", "expected"),
+    [
+        ([1.1, 1.1, 1.1, 1.1], 0.0),     # constant +10 % bias: no spread
+        ([0.9, 0.9, 0.9, 0.9], 0.0),     # constant -10 % bias: no spread
+        ([0.95, 0.85, 0.95, 0.85], 5.0),  # bias -10 %, spread +/-5 %
+        ([1.05, 1.15, 1.05, 1.15], 5.0),  # bias +10 %, spread +/-5 %
+    ],
+)
+def test_bias_corrected_mape_removes_bias_of_either_sign(factors, expected):
+    ref = np.array([2.0, 4.0, 5.0, 10.0])
     ids = np.array(["a", "b", "c", "d"])
+    r = e.bias_corrected_mape(ref, ref * np.array(factors), ids)
+    assert r.value == pytest.approx(expected, abs=1e-9)
 
-    literal = e.bias_corrected_mape(ref, pred, ids, definition="manuscript_literal")
-    centered = e.bias_corrected_mape(ref, pred, ids, definition="absolute_centered")
 
-    assert literal.value == pytest.approx(100.0)
-    assert centered.value == pytest.approx(125.0)
-    assert literal.value != centered.value
+@pytest.mark.parametrize(
+    ("factors", "expected"),
+    [
+        ([1.1, 1.1, 1.1, 1.1, 1.1], 0.0),
+        ([0.9, 0.9, 0.9, 0.9, 0.9], 0.0),
+        ([0.95, 0.85, 0.95, 0.85, 0.90], 5.0),
+        ([1.05, 1.15, 1.05, 1.15, 1.10], 5.0),
+    ],
+)
+def test_bias_corrected_meape_removes_bias_of_either_sign(factors, expected):
+    ref = np.array([2.0, 4.0, 5.0, 10.0, 8.0])
+    ids = np.array(["a", "b", "c", "d", "e"])
+    r = e.meape(ref, ref * np.array(factors), ids, definition="bias_corrected")
+    assert r.value == pytest.approx(expected, abs=1e-9)
+
+
+def test_bias_corrected_mape_is_mean_absolute_deviation_of_percent_errors():
+    rng = np.random.default_rng(0)
+    ref = rng.uniform(1.0, 10.0, size=200)
+    pred = ref * (1.0 + rng.normal(-0.08, 0.05, size=200))
+    ids = np.array([f"s{i}" for i in range(200)])
+    pct = 100.0 * (pred - ref) / ref
+    r = e.bias_corrected_mape(ref, pred, ids)
+    assert r.value == pytest.approx(np.mean(np.abs(pct - pct.mean())))
 
 
 def test_zero_reference_omit_and_report_excludes_row():

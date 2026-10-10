@@ -127,6 +127,14 @@ class CrossClassifiedEffectiveSampleSizeResult(AnalysisResult):
         Mean number of metabolites observed per spectrum.
     mean_spectra_per_subject : float
         Mean number of spectra observed per subject.
+    metabolite_cluster_size : float
+        Size-weighted mean number of observations per metabolite
+        cluster, :math:`\\sum_i N_i^2 / N_{tot}` (equals
+        :math:`S \\bar{N}` in a balanced design).
+    subject_cluster_size : float
+        Size-weighted mean number of observations per subject cluster,
+        :math:`\\sum_s N_s^2 / N_{tot}` (equals :math:`K \\bar{N}` in a
+        balanced design).
     """
 
     rho_metabolite: float
@@ -141,6 +149,8 @@ class CrossClassifiedEffectiveSampleSizeResult(AnalysisResult):
     n_subjects: int
     mean_metabolites_per_spectrum: float
     mean_spectra_per_subject: float
+    metabolite_cluster_size: float
+    subject_cluster_size: float
 
 
 def _insufficient(
@@ -392,26 +402,26 @@ def cross_classified_icc(
         \\rho_{subject} = \\frac{\\sigma^2_{subject}}
         {\\sigma^2_{metabolite} + \\sigma^2_{subject} + \\sigma^2_{residual}}
 
-    The cross-classified design effect combines both dimensions'
-    contributions, using the mean metabolites per spectrum
-    :math:`\\bar{k}` and mean spectra per subject :math:`\\bar{n}`
-    (manuscript's unbalanced-design approximation, computed as
-    ``total / number of clusters`` for each dimension):
+    Each ICC inflates the variance of the pooled mean in proportion to
+    the size of the clusters that share that random effect, i.e. the
+    number of *observations* per metabolite and per subject. With
+    :math:`N_i` and :math:`N_s` the observation counts of metabolite
+    :math:`i` and subject :math:`s`, and size-weighted mean cluster
+    sizes :math:`\\tilde{m}_i = \\sum_i N_i^2 / N_{tot}` and
+    :math:`\\tilde{m}_n = \\sum_s N_s^2 / N_{tot}`:
 
     .. math::
 
-        \\text{deff}_{cc} = 1 + \\rho_{metabolite} \\,(\\bar{k} - 1)
-        + \\rho_{subject} \\,(\\bar{n} - 1)
+        \\text{deff}_{cc} = 1 + \\rho_{metabolite} \\,(\\tilde{m}_i - 1)
+        + \\rho_{subject} \\,(\\tilde{m}_n - 1),
+        \\qquad
+        n_{eff} = \\frac{N_{tot}}{\\text{deff}_{cc}}
 
-    and the effective sample size scales the total number of
-    metabolite x subject combinations by that design effect:
-
-    .. math::
-
-        n_{eff} = \\frac{k \\, s \\, \\bar{n}}{\\text{deff}_{cc}}
-
-    where :math:`k` is the number of metabolites and :math:`s` the
-    number of subjects.
+    This is the exact variance ratio of the pooled mean under the
+    crossed random-effects model. In a balanced design with :math:`K`
+    metabolites, :math:`S` subjects and :math:`\\bar{N}` spectra per
+    subject, :math:`\\tilde{m}_i = S \\bar{N}` and
+    :math:`\\tilde{m}_n = K \\bar{N}`.
 
     Examples
     --------
@@ -437,8 +447,10 @@ def cross_classified_icc(
     (3, 2)
     >>> round(result.rho_metabolite, 3), round(result.rho_subject, 3)
     (0.46, 0.533)
+    >>> result.metabolite_cluster_size, result.subject_cluster_size
+    (4.0, 6.0)
     >>> round(result.n_eff, 3)
-    4.893
+    2.379
     """
 
     values_arr = np.asarray(values, dtype=np.float64)
@@ -473,6 +485,8 @@ def cross_classified_icc(
         "n_subjects": s,
         "mean_metabolites_per_spectrum": float("nan"),
         "mean_spectra_per_subject": float("nan"),
+        "metabolite_cluster_size": float("nan"),
+        "subject_cluster_size": float("nan"),
     }
 
     if n_total < 2 or k < min_levels or s < min_levels:
@@ -508,14 +522,21 @@ def cross_classified_icc(
 
     # Number of distinct spectra ("N") equals the number of unique
     # sample_ids among included rows; mean metabolites per spectrum and
-    # mean spectra per subject follow the manuscript's unbalanced-design
-    # approximation (total / number of clusters).
+    # mean spectra per subject are reported descriptively.
     n_spectra = int(np.unique(sample_arr[finite]).shape[0])
     mean_k = n_total / n_spectra if n_spectra else float("nan")
     mean_n = n_spectra / s if s else float("nan")
 
-    deff_cc = 1.0 + rho_i * (mean_k - 1.0) + rho_n * (mean_n - 1.0)
-    n_eff = (k * s * mean_n) / deff_cc if deff_cc else float("nan")
+    # Each ICC is weighted by the size of the clusters sharing that
+    # random effect: observations per metabolite and per subject
+    # (size-weighted mean, sum(N_c^2) / N_tot, for unbalanced designs).
+    _, metab_counts = np.unique(metab, return_counts=True)
+    _, subj_counts = np.unique(subj, return_counts=True)
+    m_metab = float(np.sum(metab_counts.astype(np.float64) ** 2) / n_total)
+    m_subj = float(np.sum(subj_counts.astype(np.float64) ** 2) / n_total)
+
+    deff_cc = 1.0 + rho_i * (m_metab - 1.0) + rho_n * (m_subj - 1.0)
+    n_eff = n_total / deff_cc if deff_cc else float("nan")
 
     meta = build_meta(
         status=ResultStatus.VALID,
@@ -543,4 +564,6 @@ def cross_classified_icc(
         n_subjects=s,
         mean_metabolites_per_spectrum=mean_k,
         mean_spectra_per_subject=mean_n,
+        metabolite_cluster_size=m_metab,
+        subject_cluster_size=m_subj,
     )

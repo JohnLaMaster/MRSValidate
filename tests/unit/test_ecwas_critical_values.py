@@ -73,3 +73,46 @@ def test_reject_null_flag_consistent_with_statistic_vs_critical_value():
     r = dist.ecwas_kossler_mukherjee(x, y, ids)
     assert r.reject_null == (r.statistic > r.critical_value)
     assert r.reject_null is True
+
+
+def test_kossler_mukherjee_defaults_to_permutation_null():
+    rng = np.random.default_rng(5)
+    x, y = rng.normal(size=60), rng.normal(size=60)
+    ids = np.array([f"r{i}" for i in range(120)])
+    r = dist.ecwas_kossler_mukherjee(x, y, ids, seed=0)
+    assert r.critical_value_method == "monte_carlo"
+    assert r.meta.configuration["critical_value_source"] == "joint_permutation_null"
+    assert r.meta.configuration["n_null_resamples"] == 10000
+
+
+def test_permutation_null_accounts_for_correlated_components():
+    # Wilcoxon and AntiSavage scores are strongly correlated, so the
+    # composite's null upper quantile lies above the chi2(3) value that
+    # would apply to three independent components.
+    rng = np.random.default_rng(6)
+    x, y = rng.normal(size=200), rng.normal(size=200)
+    ids = np.array([f"r{i}" for i in range(400)])
+    r = dist.ecwas_kossler_mukherjee(x, y, ids, seed=0)
+    assert r.critical_value > scipy_stats.chi2.ppf(0.95, df=3)
+
+
+def test_permutation_null_controls_type_one_error_where_chi2_does_not():
+    # Without ties the permutation null depends only on the group sizes, so
+    # one permutation critical value applies to every null dataset of that
+    # size. Compare its type-I error with the chi2(3) critical value.
+    rng = np.random.default_rng(7)
+    n, reps = 100, 4000
+    ids = np.array([f"r{i}" for i in range(2 * n)])
+    perm_crit = dist.ecwas_kossler_mukherjee(
+        rng.normal(size=n), rng.normal(size=n), ids, n_null_resamples=20000, seed=0
+    ).critical_value
+    chi2_crit = scipy_stats.chi2.ppf(0.95, df=3)
+    stats = np.array([
+        dist.ecwas_kossler_mukherjee(
+            rng.normal(size=n), rng.normal(size=n), ids, critical_value_method="chi2_asymptotic"
+        ).statistic
+        for _ in range(reps)
+    ])
+    # Binomial SD of a 5 % rate over 4000 replicates is about 0.35 percentage points.
+    assert abs(np.mean(stats > perm_crit) - 0.05) < 0.012
+    assert np.mean(stats > chi2_crit) > 0.06
