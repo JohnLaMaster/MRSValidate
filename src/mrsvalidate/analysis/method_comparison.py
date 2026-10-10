@@ -57,6 +57,9 @@ PBCIMethod = Literal["analytic", "bootstrap"]
 PBCusumMethod = Literal["bootstrap", "passing_bablok_1983", "permutation"]
 
 _Z95 = 1.96
+# Sample size from which the bootstrap CUSUM without a supplied
+# error-variance ratio can be liberal for unequal error variances.
+_CUSUM_LAMBDA_WARNING_N = 500
 #: Normal-consistency constant for the MAD: ``1 / Phi^{-1}(0.75)``, ~1.4826.
 _MAD_CONSISTENCY = float(1.0 / _stats.norm.ppf(0.75))
 _GAUSSIAN_MEAN_ABS_CORRECTION = float(np.sqrt(np.pi / 2.0))
@@ -775,7 +778,7 @@ class PassingBablokResult(AnalysisResult):
     n_infinite_slopes: int = 0
     n_excluded_minus_one_slopes: int = 0
     shift_k: int = 0
-    cusum_method: PBCusumMethod = "passing_bablok_1983"
+    cusum_method: PBCusumMethod = "bootstrap"
     cusum_statistic: float = float("nan")
     cusum_critical_value: float = float("nan")
     cusum_reject_linearity: bool = False
@@ -1062,7 +1065,7 @@ def passing_bablok(
     ci_method: PBCIMethod = "analytic",
     confidence_level: float = 0.95,
     n_bootstrap: int = 2000,
-    cusum_method: PBCusumMethod = "passing_bablok_1983",
+    cusum_method: PBCusumMethod = "bootstrap",
     cusum_alpha: float = 0.05,
     n_cusum_permutations: int = 2000,
     n_cusum_bootstrap: int = 1000,
@@ -1099,13 +1102,14 @@ def passing_bablok(
     n_bootstrap : int, default 2000
         Number of paired bootstrap resamples (``ci_method="bootstrap"``
         only).
-    cusum_method : {"passing_bablok_1983", "bootstrap", "permutation"}, default "passing_bablok_1983"
-        CUSUM linearity test; see Notes. ``"passing_bablok_1983"`` uses
-        the classical asymptotic Kolmogorov critical value (very
-        conservative, about 0-1% rejection at nominal 5%; reproduces
-        published results). ``"bootstrap"`` calibrates the same statistic
-        by a wild bootstrap under the fitted line (close to nominal; see
-        Notes for its one known liberal case). ``"permutation"`` is a
+    cusum_method : {"bootstrap", "passing_bablok_1983", "permutation"}, default "bootstrap"
+        CUSUM linearity test; see Notes. ``"bootstrap"`` (default)
+        calibrates the Passing-Bablok statistic by a wild bootstrap under
+        the fitted line, refitting the line in every replicate (close to
+        nominal; see Notes for its one known liberal case, which is
+        flagged by a warning). ``"passing_bablok_1983"`` uses the
+        classical asymptotic Kolmogorov critical value (very conservative,
+        about 0-1% rejection at nominal 5%; reproduces published results). ``"permutation"`` is a
         different, residual-permutation CUSUM.
     cusum_alpha : float, default 0.05
         Significance level of the linearity decision
@@ -1122,7 +1126,11 @@ def passing_bablok(
         the direction along which the bootstrap flips residuals
         (``cusum_method="bootstrap"`` only). None: perpendicular to the
         fitted line (isotropic errors, :math:`\lambda = 1`). Supply it when
-        the ratio is known (e.g. from replicates) and far from 1; see Notes.
+        the ratio is known (e.g. from replicates, or the value used for
+        :func:`deming`); see Notes. With None and 500 or more pairs, a
+        warning is attached to ``meta.warnings``, because that is where
+        the perpendicular bootstrap can be liberal if :math:`\lambda` is
+        far from 1.
     seed : int or None, default None
         Seed for ``np.random.default_rng`` driving the bootstrap and
         permutation resampling; None draws fresh entropy.
@@ -1275,7 +1283,7 @@ def passing_bablok(
     >>> reference = np.array([10.0, 12.0, 14.0, 16.0, 18.0, 20.0])
     >>> candidate = np.array([10.6, 12.3, 13.7, 16.5, 18.1, 20.9])
     >>> ids = np.array(["s1", "s2", "s3", "s4", "s5", "s6"])
-    >>> result = passing_bablok(reference, candidate, ids)
+    >>> result = passing_bablok(reference, candidate, ids, seed=0)
     >>> print(f"{result.slope:.4f} {result.intercept:.4f}")
     1.0300 -0.0200
     >>> print("{:.4f} {:.4f}".format(*result.slope_ci))
@@ -1283,18 +1291,18 @@ def passing_bablok(
     >>> result.n_pairwise_slopes, result.shift_k
     (15, 0)
 
-    The default CUSUM test compares the PB-1983 statistic ``H`` with the
-    asymptotic Kolmogorov critical value; ``cusum_method="bootstrap"``
-    calibrates the same ``H`` by a wild bootstrap (here ``B = 1000``
-    refits of the line):
+    The default CUSUM test calibrates the PB-1983 statistic ``H`` by a
+    wild bootstrap (here ``B = 1000`` refits of the line);
+    ``cusum_method="passing_bablok_1983"`` compares the same ``H`` with
+    the asymptotic Kolmogorov critical value instead:
 
-    >>> print(f"{result.cusum_statistic:.4f} {result.cusum_critical_value:.4f} {result.cusum_p_value:.3f}")
-    0.3780 1.3581 0.999
-    >>> boot = passing_bablok(reference, candidate, ids, cusum_method="bootstrap", seed=0)
-    >>> boot.meta.configuration["n_cusum_bootstrap"]
+    >>> result.meta.configuration["n_cusum_bootstrap"]
     1000
-    >>> print(f"{boot.cusum_statistic:.4f} {boot.cusum_critical_value:.4f} {boot.cusum_p_value:.3f}")
+    >>> print(f"{result.cusum_statistic:.4f} {result.cusum_critical_value:.4f} {result.cusum_p_value:.3f}")
     0.3780 0.7559 1.000
+    >>> classical = passing_bablok(reference, candidate, ids, cusum_method="passing_bablok_1983")
+    >>> print(f"{classical.cusum_statistic:.4f} {classical.cusum_critical_value:.4f} {classical.cusum_p_value:.3f}")
+    0.3780 1.3581 0.999
 
     The manuscript-literal estimator with a bootstrap interval and the
     permutation CUSUM variant:
@@ -1431,6 +1439,13 @@ def passing_bablok(
             reject_lin = False
             n_boot = int(n_cusum_bootstrap)
             n_valid = 0
+            if cusum_bootstrap_variance_ratio is None and n >= _CUSUM_LAMBDA_WARNING_N:
+                warnings.append(
+                    f"bootstrap CUSUM with n = {n} >= {_CUSUM_LAMBDA_WARNING_N} and no "
+                    "cusum_bootstrap_variance_ratio: if the two methods' error variances "
+                    "differ markedly, the test can be liberal (about 6-15 % at nominal 5 %); "
+                    "supply the error-variance ratio (the same lambda as for deming)"
+                )
             if np.isfinite(cusum_stat):
                 h_star = _pb_cusum_wild_bootstrap(
                     ref, cand, beta0, beta1, estimator, n_boot, rng, cusum_bootstrap_variance_ratio

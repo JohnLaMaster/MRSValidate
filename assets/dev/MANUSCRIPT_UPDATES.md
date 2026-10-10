@@ -289,7 +289,7 @@ A paired bootstrap interval (Section~\ref{sec:perf:subsec:bootstrap}) is a distr
 alternative when the rank-based approximation is in doubt, for example for small $N$.
 ```
 
-### 2.4 [?] Passing–Bablok CUSUM linearity test — "Passing-Bablok Regression" (~l. 1615)
+### 2.4 [ ] Passing–Bablok CUSUM linearity test — "Passing-Bablok Regression" (~l. 1615)
 The manuscript cites the test but does not define it or its critical value.
 Text depends on the calibration decision (Open decision D2). Common part:
 ```latex
@@ -300,7 +300,7 @@ residuals, so that $\sum_i r_i = 0$. The scores are ordered by the position of e
 observation along the fitted line, and the test statistic is
 $H = \max_k \left|\sum_{i \le k} r_{(i)}\right| / \sqrt{n_+ + n_- + 1}$.
 ```
-followed by one of the two calibration sentences in D2.
+followed by the bootstrap calibration sentence in D2, and: "When $\lambda$ is unknown and $N \geq 500$, it should be supplied, since perpendicular resampling can then be liberal for markedly unequal error variances."
 
 ### 2.5 [ ] Silveira Test 3: analytic intervals — "Equivalence Testing" (~l. 1590–1592)
 The manuscript requires analytic $p$-values and bootstrap bands for every test.
@@ -617,9 +617,10 @@ errors for $n$ = 50–1000. Exception: when the two methods have unequal error
 variances and $n \geq 500$, flipping residuals perpendicular to the line is
 liberal (6–15 %). Supplying the error-variance ratio
 (`cusum_bootstrap_variance_ratio`, the same $\lambda$ as for Deming) restores
-calibration (4.6–5.8 %). **Pending decision:** which method is the library
-default (currently the 1983 test; Figure 5 uses the bootstrap with the known
-$\lambda$). Calibration sentence for the current asymptotic version:
+calibration (4.6–5.8 %). *Decided 2026-10-10: the bootstrap is the library
+default; without a supplied $\lambda$ and with $n \geq 500$ it attaches a
+warning recommending one. Use the bootstrap sentence below in section 2.4.*
+Calibration sentence for the asymptotic version (for reference only):
 ```latex
 Linearity is rejected when $H$ exceeds the $(1-\alpha)$ quantile of the Kolmogorov
 distribution (1.36 at $\alpha = 0.05$)~\cite{Passing1983}; because the line is estimated

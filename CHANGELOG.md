@@ -145,12 +145,15 @@ corresponding manuscript edits are tracked in
   even N, S = -1 discarded, +/-inf for equal reference values); the
   manuscript's printed estimator is `estimator="manuscript_literal"`.
   Default `ci_method="analytic"` (Passing & Bablok 1983 rank-based
-  interval; bootstrap available). Default CUSUM is the Passing & Bablok
-  (1983) sign-score test with a Kolmogorov critical value; new
-  `cusum_method="bootstrap"` (wild bootstrap under the fitted line with
-  refitting, Stute et al. 1998) is calibrated where the asymptotic test
-  is very conservative (0-1 % rejection at nominal 5 %), with an optional
-  `cusum_bootstrap_variance_ratio` for unequal error variances.
+  interval; bootstrap available). The CUSUM linearity test defaults to
+  `cusum_method="bootstrap"`: the Passing & Bablok (1983) sign-score
+  statistic calibrated by a wild bootstrap under the fitted line with
+  refitting (Stute et al. 1998), 2-5 % rejection at nominal 5 % where the
+  classical Kolmogorov critical value gives 0-1 %. The classical test
+  remains as `cusum_method="passing_bablok_1983"`. For unequal error
+  variances supply `cusum_bootstrap_variance_ratio` (the Deming lambda);
+  without it, a warning is attached for n >= 500, where the bootstrap
+  can otherwise be liberal (6-15 %).
 - **Silveira equivalence tests 1-3**: every test now reports both
   analytic and bootstrap results and a concordance flag (Tests 1-2:
   t-based and paired percentile bootstrap intervals; Test 3: jackknife

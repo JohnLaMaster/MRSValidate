@@ -438,7 +438,7 @@ def _noisy_linear(seed, n=40):
 
 def test_passing_bablok_bootstrap_cusum_records_configuration():
     ref, cand = _noisy_linear(21)
-    assert mc.passing_bablok(ref, cand, _ids(40)).cusum_method == "passing_bablok_1983"  # default
+    assert mc.passing_bablok(ref, cand, _ids(40), n_cusum_bootstrap=99, seed=0).cusum_method == "bootstrap"  # default
     r = mc.passing_bablok(ref, cand, _ids(40), cusum_method="bootstrap", n_cusum_bootstrap=199, seed=5)
     assert r.cusum_method == "bootstrap"
     cfg = r.meta.configuration
@@ -593,3 +593,20 @@ def test_passing_bablok_bootstrap_variance_ratio_sets_flip_direction():
     )
     assert r.meta.configuration["cusum_bootstrap_variance_ratio"] == lam
     assert r.meta.configuration["cusum_bootstrap_residual_direction"].startswith("error_covariance_conjugate")
+
+
+def test_bootstrap_cusum_warns_for_large_n_without_variance_ratio():
+    rng = np.random.default_rng(31)
+    n = 500
+    truth = rng.uniform(1.0, 10.0, n)
+    ref = truth + rng.normal(0.0, 0.3, n)
+    cand = 0.5 + 1.1 * truth + rng.normal(0.0, 0.33, n)
+    ids = _ids(n)
+    r = mc.passing_bablok(ref, cand, ids, n_cusum_bootstrap=20, seed=0)
+    assert any("cusum_bootstrap_variance_ratio" in w for w in r.meta.warnings)
+    r_lambda = mc.passing_bablok(
+        ref, cand, ids, n_cusum_bootstrap=20, cusum_bootstrap_variance_ratio=0.83, seed=0
+    )
+    assert not any("cusum_bootstrap_variance_ratio" in w for w in r_lambda.meta.warnings)
+    small = mc.passing_bablok(ref[:100], cand[:100], ids[:100], n_cusum_bootstrap=20, seed=0)
+    assert not any("cusum_bootstrap_variance_ratio" in w for w in small.meta.warnings)
