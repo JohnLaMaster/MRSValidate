@@ -145,7 +145,7 @@ reduce to $\tilde{m}_i = S\,\bar{N}$ and $\tilde{m}_n = K\,\bar{N}$.
 metabolites); writing it as $N_{tot}/\mathrm{deff}_{CC}$ also covers
 unbalanced designs. Library: `clustering.cross_classified_icc`.
 
-### 1.11 [ ] Robust limits of agreement cover ~81 %, not 95 % — Bland–Altman, "Robust Estimation of Bias" (~l. 1517)
+### 1.11 [x] Robust limits of agreement cover ~81 %, not 95 % — Bland–Altman, "Robust Estimation of Bias" (~l. 1517)
 *Revised 2026-11-02.* The earlier version of this item (multiply
 $\widetilde{\sigma}_d$ by 1.4826) was applied and checked off; it is replaced by
 the approach below, so the sentence added for the earlier version should be
@@ -220,14 +220,79 @@ satisfying $S_{ij} < -1$, the slope estimate is the shifted median
 Library: `passing_bablok(estimator="passing_bablok_1983")`; the printed version
 is kept as `estimator="manuscript_literal"`.
 
-### 1.13 [ ] Inconsistent sample-variance normalisation in the Monte Carlo section (~l. 864, 982, 986)
-$\hat\sigma^2_{\mathrm{DL}}$ uses $1/(K-1)$ while $\widehat{RMSE}$ uses
-$1/K$, so $\widehat{RMSE}^2 = \widehat{\mathrm{Bias}}^2 + \hat\sigma^2$ holds
-only approximately (exactly with $1/K$ in both). Either use $1/K$ in the
-variance used for the decomposition, or state that the identity holds up to
-the factor $(K-1)/K$.
+#### 1.12 addendum (2026-11-02): regime split — Theil–Sen *in silico*, Deming *in vivo*, Passing–Bablok kept
+The replacement text above remains correct for the Passing–Bablok subsection
+(index by $N_S$, average the two middle slopes, published rules for tied
+reference values and $S_{ij} = -1$). In addition:
 
-### 1.14 [ ] Opposite error sign convention in the multivariate section (~l. 918)
+**Decision.** *In vivo* (both methods have error) → Deming. *In silico*
+(exact reference) → Theil–Sen as the primary robust estimator, with
+Passing–Bablok reported alongside for comparability with the literature.
+Reason: Passing–Bablok assumes both methods carry error (error-variance ratio
+≈ $\beta_1^2$); its shift by $K$ is what accounts for the reference error, so
+with an exact reference it biases the slope slightly upward. Theil–Sen is the
+same median of pairwise slopes without the shift, i.e. the robust counterpart
+of OLS of $x$ on $y$, which the Deming text already names as the exact-reference
+($\lambda \to 0$) limit.
+
+**Manuscript changes** (full instructions and the current text in
+`assets/dev/HANDOVER_regression_section.md`, edits E1–E5):
+- E1: the "Regression-Based Comparisons" intro states the mapping explicitly.
+- E2: Passing–Bablok kept; state its assumption; $N_S$ indexing and
+  averaging; published special-pair rules; replace the incorrect rationale
+  for the shift by $K$ ("ensures consistency when the true slope is
+  negative") with the correct one (median of pairwise angles, symmetric in
+  the two methods; assumes a positive relationship); note the slight upward
+  bias with an exact reference.
+- E3: new "Theil–Sen Regression" subsection between Passing–Bablok and
+  Deming: drop pairs with $y_i = y_j$, median of the retained slopes, same
+  intercept, Sen's interval with tie correction, same CUSUM/reporting.
+- E4: Deming states it is the *in vivo* estimator; the *in silico* sentence
+  points to Theil–Sen; the Passing–Bablok fallback keeps the condition
+  "errors of similar magnitude".
+- E5: bibliography `Theil1950`, `Sen1968` (section 4).
+
+**Knock-on items.** 2.3: add the Theil–Sen (Sen) interval. 2.4: the CUSUM
+applies to both; for Theil–Sen the wild bootstrap flips residuals vertically
+($\lambda = 0$). 3.1: Figure 5 panel C uses Theil–Sen after regeneration, so
+the caption numbers change. Section 5: the bias checks (exact reference:
+Passing–Bablok 1.017 vs Theil–Sen 0.999 for a true slope of 1) are B-kind
+numbers; keep them out of the text or back them with a script.
+
+**Library.** `passing_bablok` (published rules) is unchanged apart from
+removing `estimator="manuscript_literal"`; new `theil_sen` for the *in
+silico* regime with the same result fields; Figure 5 panel C switches to it.
+
+### 1.13 [ ] Inconsistent sample-variance normalisation in the Monte Carlo section — `sections/sec6.1_info-standardizedCharacterization.tex` (l. 245, 249)
+$\hat\sigma^2_{\mathrm{DL},m,j}$ uses $1/(K-1)$ while $\widehat{RMSE}_{m,j}$
+uses $1/K$, so the empirical decomposition
+$\widehat{RMSE}^2 = \widehat{\mathrm{Bias}}^2 + \hat\sigma^2_{\mathrm{DL}}$
+holds only up to the factor $(K-1)/K$ on the variance.
+
+**Decision (2026-11-02): keep $1/(K-1)$ and add a disclaimer.** Switching to
+$1/K$ would make the identity exact, but the $1/K$ variance is biased low by
+$(K-1)/K$. $\hat\sigma_{\mathrm{DL}}$ is used mainly against the CRLB
+($R_{m,j}$, `eqn:variability ratio`; $\Delta V_{m,j}$; the sub-CRLB
+analysis), and a low-biased variance pushes all of them toward apparent
+sub-CRLB precision, which is the effect that analysis is meant to detect. The
+discrepancy ($1/K$ of the variance) is far smaller than the sampling
+uncertainty of $\hat\sigma^2_{\mathrm{DL}}$ itself (relative standard error
+$\approx\sqrt{2/(K-1)}$ for approximately normal predictions): 1 % vs 14 % at
+$K = 100$, 5 % vs 32 % at $K = 20$.
+
+**Change.** Insert directly after the $\widehat{RMSE}_{m,j}$ equation (l. 249,
+before "The additional index $j$ is essential …"):
+```latex
+\noindent The two estimators use different normalizations: $\hat{\sigma}_{\DL,m,j}^{2}$ is the unbiased sample variance with the factor $1/(K-1)$, whereas $\widehat{RMSE}_{m,j}$ averages over all $K$ realizations. The empirical decomposition therefore holds exactly in the form
+\begin{equation}
+    \widehat{RMSE}_{m,j}^{2} = \widehat{\textnormal{Bias}}_{m,j}^{2} + \frac{K-1}{K}\,\hat{\sigma}_{\DL,m,j}^{2},
+\end{equation}
+and only approximately with $\hat{\sigma}_{\DL,m,j}^{2}$ itself. The unbiased form is retained because $\hat{\sigma}_{\DL,m,j}$ is compared with the \CRLB reference (Section~\ref{sec:Analy&Visual:subsec:infoStand:subsubsec:subcrlb var}): normalizing by $K$ would underestimate the variance by the factor $(K-1)/K$ and bias $R_{m,j}$ and $\Delta V_{m,j}$ toward apparent sub-\CRLB precision. The difference amounts to a fraction $1/K$ of the variance, which is small compared with the sampling uncertainty of $\hat{\sigma}_{\DL,m,j}^{2}$ itself, approximately $\sqrt{2/(K-1)}$ in relative terms for approximately normally distributed predictions (e.g., $1\,\%$ against $14\,\%$ for $K = 100$), and it is therefore negligible for the numbers of realizations used in \MC experiments.
+```
+Library: `monte_carlo.monte_carlo_condition` already uses the same convention
+(`ddof=1` variance, $1/K$ RMSE); no change needed.
+
+### 1.14 [x] Opposite error sign convention in the multivariate section (~l. 918)
 $\mathbf{e} = \mathbf{c} - \hat{\mathbf{c}}$ is reference minus prediction,
 the reverse of the $x - y$ convention used elsewhere. Harmless for $D^2$, but
 for consistency use $\mathbf{e} = \hat{\mathbf{c}} - \mathbf{c}$.
@@ -240,7 +305,7 @@ for consistency use $\mathbf{e} = \hat{\mathbf{c}} - \mathbf{c}$.
 is true for $WI$, $AB$, $AS$, but not for $\max(AS,S)$ in `eqn:funato`. Covered
 by the new paragraph in 2.1.
 
-### 1.17 [ ] Silveira Test 2 text swaps $x$ and $y$ (Equivalence Testing, Test 2 paragraph)
+### 1.17 [x] Silveira Test 2 text swaps $x$ and $y$ (Equivalence Testing, Test 2 paragraph)
 Same swap as 1.7: "the regression of $y_i - x_i$ on $x_i + y_i$" →
 "the regression of $x_i - y_i$ on $x_i + y_i$", matching the table and
 `eqn:me_test2`. Consistency only: flipping the sign of the response flips the
@@ -616,6 +681,19 @@ All *(verify)*.
   journal = {Journal of the American Statistical Association},
   volume  = {88}, number = {424}, pages = {1273--1283}, year = {1993},
   doi     = {10.1080/01621459.1993.10476408}
+}
+@article{Sen1968,
+  author  = {Sen, Pranab Kumar},
+  title   = {Estimates of the Regression Coefficient Based on {K}endall's Tau},
+  journal = {Journal of the American Statistical Association},
+  volume  = {63}, number = {324}, pages = {1379--1389}, year = {1968},
+  doi     = {10.1080/01621459.1968.10480934}
+}
+@article{Theil1950,
+  author  = {Theil, Henri},
+  title   = {A rank-invariant method of linear and polynomial regression analysis, {I}, {II}, {III}},
+  journal = {Proceedings of the Royal Netherlands Academy of Sciences, Series A},
+  volume  = {53}, pages = {386--392, 521--525, 1397--1412}, year = {1950}
 }
 @article{Lilliefors1967,
   author  = {Lilliefors, Hubert W.},
