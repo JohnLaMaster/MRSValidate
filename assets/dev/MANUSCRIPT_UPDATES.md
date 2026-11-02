@@ -30,7 +30,7 @@ $\frac{100}{N}\sum_n \left|\frac{x_n-y_n}{y_n} - \frac{MPE}{100}\right|$ and
 $100\cdot\mathrm{med}\left|\frac{x_n-y_n}{y_n} - \frac{MePE}{100}\right|$.
 Library: `errors.bias_corrected_mape`, `errors.meape(definition="bias_corrected")`.
 
-### 1.3 [ ] Coefficient of determination: missing square — `eqn:r2` (~l. 434)
+### 1.3 [x] Coefficient of determination: missing square — `eqn:r2` (~l. 434)
 ```latex
 \\ \textnormal{ and } SS_{tot} &= \sum_i (y_i - \Bar{y})^2
 ```
@@ -41,7 +41,12 @@ $|y|$, i.e. mean magnitude, not power):
 ```latex
 &= \sqrt{\frac{1}{\sigma_{noise}^2}\cdot \frac{1}{Ns}\sum_{n=1}^{Ns}\left(\sqrt{\Re(y)^2 + \Im(y)^2}\right)^2}
 ```
-Still open:
+Checked 2026-11-02 against the 2026-10-30 flattened version: magnitude is now
+squared and the index clash is resolved (metabolite index changed to $m$,
+samples to $n$). Still open: exponent sign, and $\mathcal{I}$ (where-text) /
+$\mathcal{R}(x)$ (spectral SNR where-text).
+
+Original notes:
 - **Index clash.** $n$ labels both the metabolite ($mSNR_P(n)$, $A_n$, $x_n$,
   $d_n$) and the summation over samples. Recommended fix (keeps all existing
   metabolite notation, treats $t$ as the fixed time vector): replace the sum by
@@ -58,7 +63,7 @@ Still open:
   $\mathcal{R}(x)$ → $\Re(x)$ (spectral SNR, `eqn:spectral snr`), to match the
   equations.
 
-### 1.5 [ ] Deming slope written for the reverse regression — `eqn:deming_slope` (~l. 1631)
+### 1.5 [x] Deming slope written for the reverse regression — `eqn:deming_slope` (~l. 1631)
 The objective (`eqn:deming_objective`), the intercept and `eqn:deming_lambda`
 all regress $x$ (DL) on the latent value measured by $y$ (reference). The slope
 equation is the one for $y$ on $x$; taken literally it returns the reciprocal
@@ -78,6 +83,8 @@ slope (0.833 instead of 1.2 on noiseless data). With $\lambda=\sigma_y^2/\sigma_
 Library: `method_comparison.deming` (already uses this form).
 
 ### 1.6 [ ] Contradictory definitions of the error-variance ratio $\lambda$
+Checked 2026-11-02: none of the three locations below is changed yet
+(Deming text, Silveira table and $\lambda_{i,n}$ all still use the old ratio).
 `eqn:deming_lambda` defines $\lambda=\sigma_y^2/\sigma_x^2$ (reference/DL), and
 the limiting cases in the Deming text ($\lambda=1$ orthogonal, $\lambda\to0$
 OLS of $x$ on $y$) are correct for that definition. Make the following agree with it:
@@ -112,7 +119,7 @@ reword the same way.
 ### 1.9 [ ] Typo in `eqn:me_test3` (~l. 1733)
 `\epsilon{i,n}` → `\epsilon_{i,n}`.
 
-### 1.10 [ ] Cross-classified design effect pairs each ICC with the wrong cluster size — `eqn:deff_cc`
+### 1.10 [x] Cross-classified design effect pairs each ICC with the wrong cluster size — `eqn:deff_cc`
 Each ICC must be multiplied by (cluster size − 1), where the cluster size is
 the number of *observations* sharing that random effect: $S\bar N$ per
 metabolite and $K\bar N$ per subject, not $\bar K$ and $\bar N$. In the
@@ -192,10 +199,10 @@ $\mathbf{e} = \mathbf{c} - \hat{\mathbf{c}}$ is reference minus prediction,
 the reverse of the $x - y$ convention used elsewhere. Harmless for $D^2$, but
 for consistency use $\mathbf{e} = \hat{\mathbf{c}} - \mathbf{c}$.
 
-### 1.15 [ ] Broken cross-reference (~l. 1327, ~l. 1523)
+### 1.15 [x] Broken cross-reference (~l. 1327, ~l. 1523)
 `\ref{subsubsec:Lin's rho}` → `\ref{sec:Eval:subsec:RegMetrics:subsubsec:Lin's rho}`.
 
-### 1.16 [ ] ECWAS: max-type moments are not analytic (~l. 612)
+### 1.16 [x] ECWAS: max-type moments are not analytic (~l. 612)
 "derived analytically from the null distributions as functions of sample size"
 is true for $WI$, $AB$, $AS$, but not for $\max(AS,S)$ in `eqn:funato`. Covered
 by the new paragraph in 2.1.
@@ -204,7 +211,7 @@ by the new paragraph in 2.1.
 
 ## 2. New text needed (library behavior the manuscript does not yet describe)
 
-### 2.1 [ ] ECWAS critical values — new paragraph after `eqn:funato` (Distributional Similarity, "Hypothesis Tests for DL-Based Studies")
+### 2.1 [x] ECWAS critical values — new paragraph after `eqn:funato` (Distributional Similarity, "Hypothesis Tests for DL-Based Studies")
 The three components are correlated under $H_0$ (Wilcoxon–AntiSavage
 $\approx -0.87 \to -\sqrt3/2$; Ansari-Bradley–AntiSavage $\approx -0.34$), so
 $\chi^2_3$ is anti-conservative (7.4 % type-I error at nominal 5 % for
@@ -246,6 +253,8 @@ work uses $P = 10\,000$ relabelings. The number of relabelings and the random se
 reported so that the result can be reproduced exactly.
 ```
 New bibliography entries: `Phipson2010`, `Hajek1999` (see section 4).
+Checked 2026-11-02: paragraph is in, but both keys are still missing from
+the project's `mybibliography.bib`.
 
 ### 2.2 [ ] Bland–Altman: how the conditional models and confidence bands are computed — "Regression-Based Limits of Agreement" and "Confidence Intervals and Clinical Acceptability" (~l. 1510–1521)
 The manuscript says $\hat\beta(c)$ and $\hat\sigma_d(c)$ are "each modeled by
