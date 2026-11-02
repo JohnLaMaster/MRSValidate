@@ -35,7 +35,7 @@ Library: `errors.bias_corrected_mape`, `errors.meape(definition="bias_corrected"
 \\ \textnormal{ and } SS_{tot} &= \sum_i (y_i - \Bar{y})^2
 ```
 
-### 1.4 [?] Power SNR — `eqn:power snr` (~l. 69)
+### 1.4 [x] Power SNR — `eqn:power snr` (~l. 69)
 Agreed so far: the second line must square the magnitude (it currently sums
 $|y|$, i.e. mean magnitude, not power):
 ```latex
@@ -82,7 +82,7 @@ slope (0.833 instead of 1.2 on noiseless data). With $\lambda=\sigma_y^2/\sigma_
 ```
 Library: `method_comparison.deming` (already uses this form).
 
-### 1.6 [ ] Contradictory definitions of the error-variance ratio $\lambda$
+### 1.6 [x] Contradictory definitions of the error-variance ratio $\lambda$
 Checked 2026-11-02: none of the three locations below is changed yet
 (Deming text, Silveira table and $\lambda_{i,n}$ all still use the old ratio).
 `eqn:deming_lambda` defines $\lambda=\sigma_y^2/\sigma_x^2$ (reference/DL), and
@@ -92,7 +92,7 @@ OLS of $x$ on $y$) are correct for that definition. Make the following agree wit
 - Silveira table, Test 2 structural $H_0$: $\lambda=\mathrm{V}[\epsilon]/\mathrm{V}[\delta]$ → $\mathrm{V}[\delta]/\mathrm{V}[\epsilon]$ (the Test 2 text, ~l. 1588, already has $\mathrm{V}[\delta]/\mathrm{V}[\epsilon]$; $\delta$ is the error of $y$).
 - Mixed Test 3 text after `eqn:me_test3` (~l. 1736): $\lambda_{i,n}=\sigma^2_{\mathrm{DL}}/\sigma^2_{\mathrm{ref}}$ → $\sigma^2_{\mathrm{ref},i,n}/\sigma^2_{\mathrm{DL},i,n}$.
 
-### 1.7 [ ] Silveira Test 1 text swaps $x$ and $y$ (~l. 1586)
+### 1.7 [x] Silveira Test 1 text swaps $x$ and $y$ (~l. 1586)
 "regressing the pairwise differences $y_i - x_i$ on the mean-centered
 reference values $x_i - \bar{x}$" → "regressing $x_i - y_i$ on the
 mean-centered reference values $y_i - \bar{y}$", matching the table and
@@ -114,9 +114,9 @@ intercept and is therefore relevant to Test~3.
 ```
 and for the mixed-effects Test 2 (~l. 1726), delete "As in the per-metabolite
 case, a translation correction ... prior to evaluating the Test~2 null." or
-reword the same way.
+reword the same way. The same Test 2 paragraph also needs 1.17 and 1.18.
 
-### 1.9 [ ] Typo in `eqn:me_test3` (~l. 1733)
+### 1.9 [x] Typo in `eqn:me_test3` (~l. 1733)
 `\epsilon{i,n}` → `\epsilon_{i,n}`.
 
 ### 1.10 [x] Cross-classified design effect pairs each ICC with the wrong cluster size — `eqn:deff_cc`
@@ -206,6 +206,34 @@ for consistency use $\mathbf{e} = \hat{\mathbf{c}} - \mathbf{c}$.
 "derived analytically from the null distributions as functions of sample size"
 is true for $WI$, $AB$, $AS$, but not for $\max(AS,S)$ in `eqn:funato`. Covered
 by the new paragraph in 2.1.
+
+### 1.17 [ ] Silveira Test 2 text swaps $x$ and $y$ (Equivalence Testing, Test 2 paragraph)
+Same swap as 1.7: "the regression of $y_i - x_i$ on $x_i + y_i$" →
+"the regression of $x_i - y_i$ on $x_i + y_i$", matching the table and
+`eqn:me_test2`. Consistency only: flipping the sign of the response flips the
+sign of the slope, so the test of a zero slope is unchanged.
+
+### 1.18 [ ] Shukla's Test 2 equivalence holds only without proportional bias (Equivalence Testing, Test 2 paragraph)
+$\mathrm{Cov}(x-y,\,x+y) = \mathrm{V}[x] - \mathrm{V}[y]$. With
+$x = \alpha + \beta\xi + \epsilon$ and $y = \xi + \delta$ this is
+$(\beta^2 - 1)\,\mathrm{V}[\xi] + \mathrm{V}[\epsilon] - \mathrm{V}[\delta]$,
+so "the slope is exactly zero if and only if $\lambda = 1$" holds only when
+$\beta = 1$. A constant offset is harmless, but proportional bias makes Test 2
+reject even when the precisions are equal (or mask unequal precisions). First
+check whether Silveira et al.'s structural model fixes the slope at 1, in which
+case "under the specified structural measurement-error model" already covers
+it. If not, add after the sentence ending "$\lambda = \text{V}[\delta] /
+\text{V}[\epsilon] = 1$":
+```latex
+This equivalence requires that the two methods share a unit slope; under
+proportional bias, $\mathrm{Cov}(x - y,\, x + y)$ also contains the term
+$(\beta^2 - 1)\,\mathrm{V}[\xi]$, so Test~2 is interpretable as a test of
+precision only in the absence of proportional bias.
+```
+Don't point to the Test 1 slope as the check: it estimates
+$\left((\beta - 1)\,\mathrm{V}[\xi] - \mathrm{V}[\delta]\right)/\mathrm{V}[y]$, which is pulled negative by
+reference error *in vivo* (exact only *in silico*, where $\delta = 0$).
+The same caveat applies to the mixed-effects Test 2 (`eqn:me_test2`).
 
 ---
 
