@@ -99,7 +99,7 @@ mean-centered reference values $y_i - \bar{y}$", matching the table and
 `eqn:me_test1`. Correspondingly, "the regression intercept $\alpha$
 corresponds directly to the mean difference $\bar{x} - \bar{y}$".
 
-### 1.8 [ ] Translation correction cannot change the Test 2 result (~l. 1588, ~l. 1726)
+### 1.8 [x] Translation correction cannot change the Test 2 result (~l. 1588, ~l. 1726)
 The Test 2 slope is an OLS slope of $x_i-y_i$ on $x_i+y_i$. Subtracting a
 constant $c$ from $x$ shifts both the response and the regressor by constants,
 so $\hat\beta$, its standard error and its $p$-value are unchanged (only the
@@ -146,22 +146,55 @@ metabolites); writing it as $N_{tot}/\mathrm{deff}_{CC}$ also covers
 unbalanced designs. Library: `clustering.cross_classified_icc`.
 
 ### 1.11 [ ] Robust limits of agreement cover ~81 %, not 95 % — Bland–Altman, "Robust Estimation of Bias" (~l. 1517)
-$\widetilde\sigma$ (`eqn:np variance`) is the unscaled median absolute
-deviation, which is $0.674\,\sigma$ for normal data, so
-$\widetilde d \pm 1.96\,\widetilde\sigma_d$ covers about 81 % of differences.
-Add after the sentence introducing $\widetilde{\sigma}_d$:
-```latex
-For the limits of agreement, $\widetilde{\sigma}_d$ is multiplied by the
-normal-consistency constant $1/\Phi^{-1}(0.75) \approx 1.4826$, so that
-$\widetilde{d} \pm 1.96 \times 1.4826\,\widetilde{\sigma}_d$ covers 95\,\% of
-differences under normality; without this constant the coverage is
-approximately 81\,\%. Where no distributional form is assumed, the limits may
-instead be taken as the empirical 2.5\,\% and 97.5\,\% quantiles of $d_n$.
-```
-Note: `eqn:np variance` defines $\widetilde\sigma=\sqrt{\mathrm{med}((\widetilde\mu-x_n)^2)}$,
-which equals the MAD for odd $N$ but not exactly for even $N$; the library's
-Bland–Altman uses the MAD, $\mathrm{med}|d_n-\widetilde d|$, directly. Consider
-defining $\widetilde\sigma$ as the MAD.
+*Revised 2026-11-02.* The earlier version of this item (multiply
+$\widetilde{\sigma}_d$ by 1.4826) was applied and checked off; it is replaced by
+the approach below, so the sentence added for the earlier version should be
+removed or replaced.
+
+**Problem.** The "Robust Estimation of Bias" paragraph estimates the spread of
+the differences with $\widetilde{\sigma}_d$ "defined in
+Section~\ref{sec:Eval:subsec:error:subsubsection:dispersion}", i.e.
+`eqn:np variance`, $\widetilde\sigma=\sqrt{\mathrm{med}((\widetilde\mu-x_n)^2)}$.
+That quantity is (essentially) the unscaled median absolute deviation, which
+is $0.6745\,\sigma$ for normal data, so $\widetilde d \pm 1.96\,\widetilde\sigma_d$
+covers only about 81 % of differences
+($2\Phi(1.96 \times 0.6745) - 1 \approx 0.81$).
+
+**Decision.** Keep `eqn:np variance` unchanged (it is an intentional
+definition used elsewhere, e.g. `eqn:np cv`). In the Bland–Altman paragraph,
+stop pointing to it and define the robust SD of the differences directly as
+the normal-consistent MAD, which is what the library and standard software
+(R `mad()`, `scipy.stats.median_abs_deviation(scale="normal")`) compute. Use a
+new symbol, $\widetilde{s}_d$, so it is not confused with $\widetilde{\sigma}$.
+
+**What to change in the manuscript.**
+1. In "Robust Estimation of Bias" (flattened 2026-10-30 version, l. 3870),
+   replace the sentence
+   ```latex
+   The dispersion of differences is correspondingly estimated using the nonparametric standard deviation $\widetilde{\sigma}_d$ defined in Section~\ref{sec:Eval:subsec:error:subsubsection:dispersion}, and the IQR of the differences is reported as a supplementary robust characterization of spread.
+   ```
+   (and the earlier 1.11 sentence, if already inserted after it) with
+   ```latex
+   The dispersion of differences is correspondingly estimated using the normal-consistent median absolute deviation, $\widetilde{s}_d = 1.4826\,\mathrm{med}\,\lvert d_n - \widetilde{d}\rvert$, where the constant $1/\Phi^{-1}(0.75) \approx 1.4826$ makes $\widetilde{s}_d$ a consistent estimator of the standard deviation under normality~\cite{Rousseeuw1993}, so that the robust limits of agreement $\widetilde{d} \pm 1.96\,\widetilde{s}_d$ cover 95\,\% of differences; without this constant the coverage is approximately 81\,\%. Where no distributional form is assumed, the limits may instead be taken as the empirical 2.5\,\% and 97.5\,\% quantiles of $d_n$. The IQR of the differences is reported as a supplementary robust characterization of spread.
+   ```
+2. Search the Bland–Altman and Silveira subsections for any other
+   $\widetilde{\sigma}_d$ and change it to $\widetilde{s}_d$ (none found in
+   the 2026-10-30 flattened file besides the sentence above, but check the
+   current Overleaf version).
+3. Add `Rousseeuw1993` to the bibliography (entry in section 4).
+4. No change to `eqn:np variance`.
+
+Related: the 2.2 text ("the absolute-residual model is multiplied by
+$1.4826$") applies the same constant to the regression-based robust limits
+and is consistent with this.
+
+**Library.** No computational change: `bland_altman(scale="robust_sd")`
+already computes $1.4826\,\mathrm{med}|d_n-\widetilde d|$
+(`method_comparison.py`, `_ba_point_estimates`). Only its docstring needs
+correcting: it calls the MAD "the manuscript's unscaled
+$\widetilde{\sigma}_d$, cf. `_numerics.robust_sd`", which is true only for odd
+$N$; it should instead describe it as the normal-consistent MAD, matching the
+manuscript's $\widetilde{s}_d$.
 Library: `bland_altman(scale="robust_sd", loa_method="normal"|"quantile")`.
 
 ### 1.12 [ ] Passing–Bablok slope estimator — `eqn:pb_slopes`, `eqn:pb_slope` (~l. 1603–1609)
@@ -577,6 +610,13 @@ All *(verify)*.
   volume  = {50}, number = {2}, pages = {317--372}, year = {2015},
   doi     = {10.3368/jhr.50.2.317}
 }
+@article{Rousseeuw1993,
+  author  = {Rousseeuw, Peter J. and Croux, Christophe},
+  title   = {Alternatives to the Median Absolute Deviation},
+  journal = {Journal of the American Statistical Association},
+  volume  = {88}, number = {424}, pages = {1273--1283}, year = {1993},
+  doi     = {10.1080/01621459.1993.10476408}
+}
 @article{Lilliefors1967,
   author  = {Lilliefors, Hubert W.},
   title   = {On the {K}olmogorov-{S}mirnov Test for Normality with Mean and Variance Unknown},
@@ -614,6 +654,110 @@ All *(verify)*.
 ```
 Possibly needed depending on decisions D1/D2: `Durbin1973`, `Stute1997`,
 `Stute1998`, `Owen2007` (see below).
+
+---
+
+## 5. [ ] Supporting evidence for new numerical claims
+
+Added 2026-11-02. Implementing the library produced numerical values the
+manuscript did not have before (e.g. 1.4826 and ~81 % in 1.11, the 7.4 %
+type-I error behind 2.1). Every number that ends up in the manuscript needs
+support appropriate to where it came from. This section is a brief for
+drafting that support; it is written so that a fresh session with access to
+this repository can do the work.
+
+### 5.1 Policy: three kinds of numbers
+
+**A. Standard mathematical facts — cite or derive inline; no appendix.**
+Values that follow from textbook results and that a reader can check
+in one line. Give the closed form in the text (as the drafts already do,
+e.g. $1/\Phi^{-1}(0.75)$) plus a citation. An appendix proof is warranted
+only for a result that is new or not readily found in the literature.
+
+**B. Simulation results — supplementary material, or keep the claim
+qualitative.** Rates and ratios that came from Monte Carlo runs of the
+library (type-I errors, rejection rates, design-effect discrepancies). A
+reviewer cannot check them without the setup. If such a number is quoted
+in the manuscript, it needs (i) an entry in a supplementary section and
+(ii) a script in the repository that reproduces it exactly. If no
+supplement is wanted, phrase the claim qualitatively ("anti-conservative",
+"strongly conservative") and cite the literature instead.
+
+**C. Toy-example outputs — code and data availability statement.**
+Values computed by the example scripts on the toy data (Figure 5 caption).
+They are reproducible from `assets/publication/examples/` and the CSVs in
+`toy_outputs/analysis/`. Cite an archived, tagged release (e.g. Zenodo DOI).
+
+### 5.2 Inventory
+
+"In draft text?" = whether the number appears in the LaTeX drafted in this
+file (and therefore in the manuscript once that item is applied), as
+opposed to only in the explanatory notes here. Check the current
+manuscript before acting: the author may have added numbers from the notes.
+
+| # | Claim | Kind | Tracking item | In draft text? | Source in repo |
+|---|---|---|---|---|---|
+| a | MAD consistency constant $1/\Phi^{-1}(0.75) \approx 1.4826$; median absolute deviation of a normal $= 0.6745\,\sigma$ | A | 1.11, 2.2 | yes | `method_comparison.bland_altman(scale="robust_sd")` |
+| b | Unscaled-MAD limits cover ~81 %: $2\Phi(1.96 \times 0.6745) - 1 \approx 0.814$ | A | 1.11 | yes | — (closed form) |
+| c | $E\lvert Z\rvert = \sqrt{2/\pi}$, hence the $\sqrt{\pi/2}$ factor for absolute-residual scale models | A | 2.2 | yes | `bland_altman(conditional=True)` |
+| d | ECWAS null correlations: Wilcoxon–AntiSavage $\approx -0.87 \to -\sqrt{3}/2$; Ansari-Bradley–AntiSavage $\approx -0.34$; Wilcoxon–Ansari-Bradley $= 0$ | A (exact for finite $n$ from the score functions) | 2.1 | yes | `src/mrsvalidate/analysis/distribution.py` (module docstring, ~l. 42) |
+| e | ECWAS type-I error: $\chi^2_3$ critical value 7.4 %, permutation null 4.6 %, at nominal 5 % (100 + 100 obs.) | B | 2.1 | **no** (notes only) | `tests/unit/test_ecwas_critical_values.py::test_permutation_null_controls_type_one_error_where_chi2_does_not` (n = 100 per group, 4000 reps, seed 7, permutation critical value from 20 000 relabelings); CHANGELOG |
+| f | Passing–Bablok CUSUM: classical Kolmogorov critical value 0–1 % rejection, wild bootstrap 2–5 %, at nominal 5 %; power against mild curvature at n = 200: 3 % vs 26 % | B | 2.4, D2 | **no** (D2 draft text says only "strongly conservative") | `tests/unit/test_passing_bablok_validation.py` (n = 60, 300 reps, uniform truth 1–10, error SD 0.3); `method_comparison.py` docstrings ~l. 1112, 1231; CHANGELOG |
+| g | CUSUM bootstrap liberal (6–15 %) for unequal error variances at n ≥ 500 without $\lambda$; 4.6–5.8 % when $\lambda$ is supplied | B | 2.4, D2 | partly: 2.4 draft says "can then be liberal" (qualitative) | `method_comparison.py` ~l. 1446 (warning text); CHANGELOG |
+| h | Cluster-robust inference with 10 clusters: CR0 + normal reference rejects a true null 11–18 %; CR2 + Bell–McCaffrey 4–5 % | B | 2.7 | **no** (2.7 draft is qualitative) | `tests/unit/test_mixed_effects.py::test_cr2_bell_mccaffrey_size_closer_to_nominal_than_cr0_with_10_clusters` (docstring records a reference run: R = 2000, seed 123, 10 clusters × 6 obs.: CR0+z 0.110 / 0.175, CR1+t 0.061 / 0.120, CR2+BM 0.044 / 0.051 for intercept / slope); CHANGELOG |
+| i | Old `eqn:deff_cc` gave deff 5.4 against a true ≈ 50 (≈ ten-fold overstatement of $N_\mathrm{eff}$) | B | 1.10 | **no** | `tests/unit/test_clustering.py::test_cross_classified_design_effect_equals_pooled_mean_variance_ratio_unbalanced` checks the corrected formula against the empirical variance ratio; the specific 5.4 vs 50 run is **not** stored |
+| j | Panel-conditional inference rejects a true *population* null in 33 % of cases | B | D1 | **no** | `tests/unit/test_mixed_effects.py::test_mixed_test3_panel_mode_rejects_more_under_population_null` and neighbouring `..._panel_mode_size_...` / `..._population_mode_size_...` tests; the 33 % run itself is **not** stored |
+| k | Translation correction leaves the Test 2 slope, SE and $p$ unchanged; intercept shifts by $-c(1-\hat\beta)$ | A (algebra; verified numerically) | 1.8 | algebra only | — (OLS invariance; can be shown in two lines) |
+| l | Figure 5 caption values ($r = 0.988$, $\rho_C = 0.939$, PB slope 1.118 [1.088, 1.151], intercept 0.237 [0.021, 0.379] mM, BA bias 0.4 → 1.6 mM) | C | 3.1 | yes | `assets/publication/examples/compute_toy_analysis.py`; `toy_outputs/analysis/figure05_*.csv` |
+
+Caveats for B items:
+- The rates in the CHANGELOG and in this file came from development runs.
+  Only (e) and (h) have their setup recorded in the repository (in the
+  tests above). For (f), (g), (i) and (j) the repository has the test
+  design but not the exact run that produced the quoted numbers.
+  Regenerating them will give slightly different values; **use the
+  regenerated values** in the manuscript and update the notes here.
+- Unit tests use small replicate counts to stay fast. Publication runs
+  need enough replicates that the Monte Carlo standard error is small
+  relative to the differences claimed: SE of a rate $p$ over $R$ replicates
+  is $\sqrt{p(1-p)/R}$ (≈ 0.22 percentage points for $p = 0.05$,
+  $R = 10\,000$). Report it.
+
+### 5.3 What to produce
+
+1. **Decide per B item** whether the number is quoted (→ steps 2–3) or the
+   claim is kept qualitative (→ no further work beyond a citation). Ask the
+   author; default recommendation: quote (e) and (h), which directly
+   justify library defaults the manuscript describes (2.1, 2.7); keep
+   (i) and (j) qualitative unless the author wants them.
+2. **Reproduction scripts** in a new directory
+   `assets/publication/simulations/`, one script per quoted claim, following
+   the style of `assets/publication/examples/compute_toy_analysis.py`:
+   fixed seed, replicate count as a constant at the top, results written to
+   CSV (`simulations/outputs/<claim>.csv`) with the rate, its Monte Carlo SE,
+   and the full parameter set. Call the public library API, not private
+   helpers, except where the test already does (e.g. CR0 in (h)). Reuse the
+   data-generating models from the tests named in the inventory.
+3. **Supplementary section** (LaTeX), e.g.
+   `\section{Simulation studies supporting the methodological choices}`,
+   one `\subsection` per quoted claim, each with: purpose (which manuscript
+   statement it supports, by `\ref`); data-generating model with all
+   parameters (sample sizes, error distributions, variance ratios, cluster
+   structure); estimator(s) and critical values compared; number of
+   replicates and seed; result table with Monte Carlo SEs; the script path.
+   Keep each to a short paragraph plus a table. The manuscript text then
+   cites it ("… 7.4 % at nominal 5 %; Supplementary Section~S\ref{…}").
+4. **Inline derivations / citations for A items** (a)–(d), (k): check the
+   drafted text in 1.8, 1.11, 2.1, 2.2 gives the closed form; add citations:
+   Rousseeuw & Croux 1993 for the MAD constant (now cited in the 1.11 text;
+   entry in section 4); Bland & Altman 1999 for the $\sqrt{\pi/2}$ absolute-residual
+   scaling (already in section 4); Hájek, Šidák & Sen 1999 for the
+   rank-score correlations (already in section 4).
+5. **Code and data availability statement** for C items: name the
+   repository, the tagged release used for the figures, and the archive
+   DOI (placeholder until the release is cut). Check the journal's
+   required heading.
+6. Tick this section and the affected items here when done.
 
 ---
 
