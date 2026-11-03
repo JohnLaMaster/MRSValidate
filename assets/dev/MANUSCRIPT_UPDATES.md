@@ -311,7 +311,7 @@ Same swap as 1.7: "the regression of $y_i - x_i$ on $x_i + y_i$" →
 `eqn:me_test2`. Consistency only: flipping the sign of the response flips the
 sign of the slope, so the test of a zero slope is unchanged.
 
-### 1.18 [ ] Shukla's Test 2 equivalence holds only without proportional bias (Equivalence Testing, Test 2 paragraph)
+### 1.18 [x] Shukla's Test 2 equivalence holds only without proportional bias (Equivalence Testing, Test 2 paragraph)
 $\mathrm{Cov}(x-y,\,x+y) = \mathrm{V}[x] - \mathrm{V}[y]$. With
 $x = \alpha + \beta\xi + \epsilon$ and $y = \xi + \delta$ this is
 $(\beta^2 - 1)\,\mathrm{V}[\xi] + \mathrm{V}[\epsilon] - \mathrm{V}[\delta]$,
@@ -332,6 +332,39 @@ Don't point to the Test 1 slope as the check: it estimates
 $\left((\beta - 1)\,\mathrm{V}[\xi] - \mathrm{V}[\delta]\right)/\mathrm{V}[y]$, which is pulled negative by
 reference error *in vivo* (exact only *in silico*, where $\delta = 0$).
 The same caveat applies to the mixed-effects Test 2 (`eqn:me_test2`).
+
+### 1.19 [ ] Mixed-effects Test 2 inherits the 1.18 caveat (Mixed-Effects Equivalence Testing, Test 2 paragraph after `eqn:me_test2`)
+Within metabolite $i$, $\mathrm{Cov}(x_i - y_i,\, x_i + y_i) =
+(b_i^2 - 1)\,\mathrm{V}[\xi_i] + \mathrm{V}[\epsilon_i] - \mathrm{V}[\delta_i]$,
+with $b_i$ the proportional bias of metabolite $i$. Hence (a) the fixed slope
+$\beta$ is zero iff $\lambda = 1$ only if every $b_i = 1$; (b) $\tau^2_\beta$
+also absorbs inter-metabolite heterogeneity in proportional bias, not only in
+the precision ratio; (c) the sentence that a Test 1 bias "does not alter the
+Test 2 null" is true for constant bias only. Same precondition as 1.18: skip
+if Silveira et al.'s structural model already fixes the slope at 1. As in
+1.18, don't point to the Test 1 slope (`eqn:me_test1`) as the check.
+Edits refer to the flattened text; the repo copy of
+`sections/sec8_moodelComparison.tex` (l. ~258–265) still has the older
+"translation correction … is applied" sentence in place of edit 3's target.
+
+1. Replace "By the Shukla result~\cite{Shukla1973} underlying Test~2, the fixed
+   slope $\beta$ is zero if and only if the model-level error variance ratio
+   $\lambda = 1$, and the null $H_{0,2}: \beta = 0$ is the model-level
+   precision test." with:
+   ```latex
+   By the Shukla result~\cite{Shukla1973} underlying Test~2, and provided that, as in the per-metabolite case, the two methods share a unit slope for every metabolite, the fixed slope $\beta$ is zero if and only if the model-level error variance ratio $\lambda = 1$, and the null $H_{0,2}: \beta = 0$ is the model-level precision test. Proportional bias in a metabolite shifts that metabolite's slope away from zero even when the two methods are equally precise (Section~\ref{subsubsec:silveira}).
+   ```
+2. Replace "The random slope variance $\tau^2_\beta$ quantifies inter-metabolite
+   heterogeneity in the precision ratio." with:
+   ```latex
+   The random slope variance $\tau^2_\beta$ quantifies inter-metabolite heterogeneity in the precision ratio, together with any inter-metabolite heterogeneity in proportional bias.
+   ```
+3. Replace "Because the Test~2 slope is unaffected by a constant shift of either
+   method, a non-zero bias established by Test~1 does not alter the Test~2
+   null." with:
+   ```latex
+   Because the Test~2 slope is unaffected by a constant shift of either method, a constant bias established by Test~1 does not alter the Test~2 null; proportional bias does, as noted above.
+   ```
 
 ---
 
