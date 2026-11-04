@@ -366,7 +366,7 @@ Edits refer to the flattened text; the repo copy of
    Because the Test~2 slope is unaffected by a constant shift of either method, a constant bias established by Test~1 does not alter the Test~2 null; proportional bias does, as noted above.
    ```
 
-### 1.20 [ ] Silveira Test 3 paragraph: $\lambda$ is not estimated in Test 2, and Test 2 needs no translation correction (Equivalence Testing, Test 3 paragraph, 10/30 draft l. 4202–4204)
+### 1.20 [x] Silveira Test 3 paragraph: $\lambda$ is not estimated in Test 2, and Test 2 needs no translation correction (Equivalence Testing, Test 3 paragraph, 10/30 draft l. 4202–4204)
 Current text (10/30 draft), with the two problem phrases in bold:
 > Test 3 (Agreement) assesses concordance with the structural bisector line
 > using Deming regression \cite{Linnet1998}, which accounts for measurement
@@ -492,33 +492,44 @@ A paired bootstrap interval (Section~\ref{sec:perf:subsec:bootstrap}) is a distr
 alternative when the rank-based approximation is in doubt, for example for small $N$.
 ```
 
-### 2.4 [ ] Passing–Bablok CUSUM linearity test — "Passing-Bablok Regression" (~l. 1615)
+### 2.4 [ ] Passing–Bablok CUSUM linearity test — "Passing-Bablok Regression" (10/30 draft l. 4254)
 The manuscript cites the test but does not define it or its critical value.
-Text depends on the calibration decision (Open decision D2). Common part:
+D2 is decided (bootstrap default, $\lambda$ supplied), so the earlier split
+into a "common part" plus calibration sentences in D2 is replaced by the
+single draft below. The asymptotic critical value appears only as the reason
+for the bootstrap; the estimator wording is generic so it also covers
+Theil–Sen; and it cites only labels that already exist (`eqn:deming_lambda`,
+`eqn:permutation_pval`).
+
+**Placement:** end of "Passing-Bablok Regression", after "The
+\textit{cumulative sum} linearity test should be reported alongside the
+regression results \cite{Passing1983,Bilic-Zulle2011}." and before "A
+detected departure from linearity indicates…".
 ```latex
-For the linearity test, each residual $e_i = x_i - (\hat{\beta}_0 + \hat{\beta}_1 y_i)$ is
-assigned the score $r_i = \sqrt{n_-/n_+}$ if $e_i > 0$, $r_i = -\sqrt{n_+/n_-}$ if $e_i < 0$
-and $r_i = 0$ otherwise, where $n_+$ and $n_-$ are the numbers of positive and negative
-residuals, so that $\sum_i r_i = 0$. The scores are ordered by the position of each
-observation along the fitted line, and the test statistic is
-$H = \max_k \left|\sum_{i \le k} r_{(i)}\right| / \sqrt{n_+ + n_- + 1}$.
+The test classifies each observation by the sign of its residual $e_i = x_i - (\hat{\beta}_0 + \hat{\beta}_1 y_i)$ and assigns the score $r_i = \sqrt{n_-/n_+}$ if $e_i > 0$, $r_i = -\sqrt{n_+/n_-}$ if $e_i < 0$, and $r_i = 0$ otherwise, where $n_+$ and $n_-$ are the numbers of positive and negative residuals, so that $\sum_i r_i = 0$. The scores are ordered by the position of each observation along the fitted line, and the test statistic is $H = \max_k \bigl|\sum_{i \le k} r_{(i)}\bigr| / \sqrt{n_+ + n_- + 1}$. Because the line is estimated from the same data, the null distribution of $H$ is not the Kolmogorov distribution~\cite{Durbin1973}, and the classical critical value of $1.36$ at $\alpha = 0.05$~\cite{Passing1983} is strongly conservative. Critical values are therefore obtained by a wild bootstrap under the fitted linear model~\cite{Stute1998}: each residual is multiplied by a random sign along a direction set by the error variance ratio $\lambda$ (Eqn.~\ref{eqn:deming_lambda}) and added back to its fitted position, the line is re-estimated with the same estimator, and $H$ is recomputed. The $p$-value follows Eqn.~\ref{eqn:permutation_pval} with the bootstrap replicates in place of permutations.
+
+The bootstrap is calibrated only when this direction matches the error structure of the data. In the \textit{in silico} regime the reference is exact, $\lambda = 0$, and residuals are flipped vertically. In the \textit{in vivo} regime, $\lambda$ cannot be estimated from single paired measurements and is supplied as for Deming regression, from independent precision estimates of the two methods. Overestimating $\lambda$ makes the test conservative and underestimating it makes the test liberal; when $\lambda$ is known only approximately, the test is repeated at $\lambda/2$, $\lambda$, and $2\lambda$, and the largest $p$-value is reported.
 ```
-followed by the bootstrap calibration sentence in D2 and the $\lambda$ guidance
-added to D2 on 2026-11-04:
-```latex
-The bootstrap is calibrated only when the residual direction matches the error structure of
-the data. In the \textit{in silico} regime the reference is exact ($\lambda = 0$) and residuals
-are flipped vertically; in this regime the Theil--Sen estimator
-(Section~\ref{sec:Reg:subsec:comparison:subsubsec:theil-sen}), for which $\lambda = 0$ is
-fixed, is used. In the \textit{in vivo} regime $\lambda$ cannot be estimated from single paired
-measurements and is supplied as the same error-variance ratio used for Deming regression
-(Section~\ref{sec:Reg:subsec:comparison:subsubsec:deming}), with the reference variance taken
-from the absolute \CRLB of the reference fit and the \DL variance from repeated measurements,
-\MC realizations, or calibrated predictive uncertainty. Overestimating $\lambda$ makes the
-test conservative, whereas underestimating it makes the test liberal. When $\lambda$ is known
-only approximately, the test is repeated at $\lambda/2$, $\lambda$, and $2\lambda$, and the
-largest $p$-value is reported.
-```
+New bibliography entries: `Durbin1973`, `Stute1998` (neither is in
+`mybibliography.bib`).
+
+**Theil–Sen (handover E3):** the draft already defines Theil–Sen in "Theil-Sen
+Estimator" (l. 1713, `sec:Eval:subsec:RegMetrics:subsubsec:theil-sen`). The
+new Theil–Sen subsection in the regression section should cite that
+definition rather than repeat it, and add one sentence: "The linearity test
+of Section~\ref{…passing-bablok} applies unchanged, with $\lambda = 0$." Tell
+ChatGPT about the existing section when using the handover.
+
+**Library (to do):**
+- `method_comparison.passing_bablok`: accept
+  `cusum_bootstrap_variance_ratio=0` (vertical flips), so the *in silico*
+  sentence above holds for Passing–Bablok as well; it currently requires a
+  positive value. `theil_sen` already fixes $\lambda = 0$.
+- Optional: a helper or documented recipe for the $\lambda/2$, $\lambda$,
+  $2\lambda$ sensitivity check (report the largest $p$-value).
+- Simulation supporting the calibration claims (D2 table, section 5 row g):
+  add the scratchpad scripts as a reproduction script under
+  `assets/publication/`.
 
 ### 2.5 [x] Silveira Test 3: analytic intervals — "Equivalence Testing" (~l. 1590–1592)
 The manuscript requires analytic $p$-values and bootstrap bands for every test.
@@ -1036,10 +1047,6 @@ underestimating by 4× errs liberal. Recommendations (use the 2.4 text above):
 4. Uncertain $\lambda$: run at $\lambda/2$, $\lambda$, $2\lambda$ and report
    the largest $p$-value.
 
-Library follow-up (not done): `passing_bablok` rejects
-`cusum_bootstrap_variance_ratio=0`; allow it so PB *in silico* can be
-calibrated. Simulation scripts were run from the session scratchpad; for the
-supplement (section 5, row g) add them under `assets/publication/` as a
-reproduction script.
+Library follow-up: see 2.4 ("Library (to do)").
 
 **D3. [ ] Figure 5 redesign.** *Decided and implemented 2026-10-10; see section 3.1.*
