@@ -263,7 +263,7 @@ numbers; keep them out of the text or back them with a script.
 removing `estimator="manuscript_literal"`; new `theil_sen` for the *in
 silico* regime with the same result fields; Figure 5 panel C switches to it.
 
-### 1.13 [ ] Inconsistent sample-variance normalisation in the Monte Carlo section — `sections/sec6.1_info-standardizedCharacterization.tex` (l. 245, 249)
+### 1.13 [x] Inconsistent sample-variance normalisation in the Monte Carlo section — `sections/sec6.1_info-standardizedCharacterization.tex` (l. 245, 249)
 $\hat\sigma^2_{\mathrm{DL},m,j}$ uses $1/(K-1)$ while $\widehat{RMSE}_{m,j}$
 uses $1/K$, so the empirical decomposition
 $\widehat{RMSE}^2 = \widehat{\mathrm{Bias}}^2 + \hat\sigma^2_{\mathrm{DL}}$
@@ -365,6 +365,41 @@ Edits refer to the flattened text; the repo copy of
    ```latex
    Because the Test~2 slope is unaffected by a constant shift of either method, a constant bias established by Test~1 does not alter the Test~2 null; proportional bias does, as noted above.
    ```
+
+### 1.20 [ ] Silveira Test 3 paragraph: $\lambda$ is not estimated in Test 2, and Test 2 needs no translation correction (Equivalence Testing, Test 3 paragraph, 10/30 draft l. 4202–4204)
+Current text (10/30 draft), with the two problem phrases in bold:
+> Test 3 (Agreement) assesses concordance with the structural bisector line
+> using Deming regression \cite{Linnet1998}, which accounts for measurement
+> error in both variables by incorporating the error variance ratio $\lambda$
+> **estimated in Test~2**. […] Analytical intervals for the Deming intercept
+> and slope are obtained from jackknife standard errors […].
+> **As with Test~2**, a translation correction for residual bias is applied
+> when Test~1 is not satisfied. Section~\ref{…regression} describes […].
+
+1. **"$\lambda$ estimated in Test~2".** Test 2 tests $\lambda = 1$; it does not
+   estimate $\lambda$, and $\lambda$ is not identifiable from single paired
+   measurements (D2). It is supplied from independent precision estimates, as
+   the mixed-effects Test 3 text already says for $\lambda_{i,n}$. Replace the
+   first sentence with:
+   ```latex
+   \textcolor{black}{\textbf{Test~3 (Agreement)}} assesses concordance with the structural bisector line using Deming regression \cite{Linnet1998}, which accounts for measurement error in both variables through the error variance ratio $\lambda$ (Eqn.~\ref{eqn:deming_lambda}). Because $\lambda$ cannot be estimated from single paired measurements, it is supplied from independent precision estimates of the two methods; Test~2 only tests whether $\lambda = 1$. In the \textit{in silico} regime the reference is exact, so $\lambda = 0$ and Deming regression reduces to ordinary least-squares regression of $x_i$ on $y_i$.
+   ```
+   The last sentence is optional; it makes explicit what the regime pointer at
+   the end of the paragraph implies. If a label is added to the Deming
+   subsubsection (handover E4, `sec:Reg:subsec:comparison:subsubsec:deming`),
+   "(Section~\ref{…deming})" can follow "independent precision estimates of
+   the two methods".
+2. **"As with Test~2".** The Test 2 paragraph now says a constant bias does
+   not alter the Test 2 null, so no translation correction is applied there.
+   Replace with:
+   ```latex
+   A translation correction for residual bias is applied when Test~1 is not satisfied.
+   ```
+
+Library follow-up (only if the optional *in silico* sentence is kept):
+`method_comparison.deming` and `mixed_effects` Test 3 reject a zero
+reference error variance, so the $\lambda = 0$ (OLS) limit cannot currently be
+run through them.
 
 ---
 
@@ -485,7 +520,7 @@ only approximately, the test is repeated at $\lambda/2$, $\lambda$, and $2\lambd
 largest $p$-value is reported.
 ```
 
-### 2.5 [ ] Silveira Test 3: analytic intervals — "Equivalence Testing" (~l. 1590–1592)
+### 2.5 [x] Silveira Test 3: analytic intervals — "Equivalence Testing" (~l. 1590–1592)
 The manuscript requires analytic $p$-values and bootstrap bands for every test.
 For Tests 1–2 the analytic results are the usual $t_{N-2}$ regression
 inferences. For Test 3 (Deming) the library uses jackknife standard errors,
@@ -498,7 +533,12 @@ omitted, and the Bonferroni-adjusted quantile $t_{N-2,\,1-\alpha/4}$.
 ```
 New bibliography entry: `Linnet1993`.
 
-### 2.6 [ ] Mixed-effects Test 3: estimation procedure — "Mixed-Effects Equivalence Testing", after `eqn:me_test3` (~l. 1736)
+*Status 2026-11-04:* sentence inserted in the 10/30 draft (l. 4203, after the
+Bonferroni sentence). Remaining: `Linnet1993` is not yet in
+`mybibliography.bib`. The rest of that Test 3 paragraph has two
+inconsistencies with recent changes; see 1.20.
+
+### 2.6 [x] Mixed-effects Test 3: estimation procedure — "Mixed-Effects Equivalence Testing", after `eqn:me_test3` (~l. 1736)
 The manuscript gives the model but no estimator. Library: two-stage procedure.
 Insert after the sentence on $\lambda_{i,n}$:
 ```latex
@@ -523,22 +563,39 @@ the intra-spectrum correlation between metabolites.
 The last sentence reflects decision D1 (panel-conditional inference); add
 the D1 paragraph below to the same subsection. New bibliography entries: `York2004`, `Viechtbauer2005`.
 
-### 2.7 [ ] Small-sample correction for the cluster-robust standard errors — after `eqn:sandwich mean` (~l. 1716)
+*Status 2026-11-04:* inserted in the 10/30 draft (l. 4465), followed by the D1
+paragraph (l. 4467), before "The random effect variances…". Remaining:
+`York2004` and `Viechtbauer2005` are not yet in `mybibliography.bib`.
+Library (docstring only): `mixed_effects.py` ~l. 1224 describes
+`lambda_{i,n}` as `test_error_variance / reference_error_variance` (DL /
+reference), the inverse of the convention fixed in 1.6 and of its own
+Notes (~l. 1269); the computation is unaffected.
+
+### 2.7 [x] Small-sample correction for the cluster-robust standard errors — after `eqn:sandwich mean` (~l. 1716)
 The manuscript notes that enough clusters are needed (citing Cameron2008) but
 gives no correction. Library default: CR2 with Bell–McCaffrey degrees of
 freedom below 50 clusters, CR1 with $t(G-1)$ above. In simulation with 10
 clusters, the uncorrected estimator with a normal reference rejected a true
 null in 11–18 % of cases at nominal 5 %, against 4–5 % with CR2.
+
+**Placement:** in the paragraph after `eqn:sandwich mean`, between "…may be
+closer to the number of subjects in the \textit{in vivo} regime~\cite{Cameron2008}."
+and "Calculating effective sample sizes is discussed in detail in
+Section~\ref{sec:Reg:subsec:comparison:subsubsec:samplesize}." (flattened
+10/30 l. 4413; `sections/sec8_moodelComparison.tex:248`). The draft defines
+$G$ as the number of *independent* clusters (subjects *in vivo*) to match that
+paragraph, and defines $p$.
 ```latex
 With few clusters, $\hat{V}$ is biased downwards and normal reference distributions
 over-reject. A small-sample correction is therefore applied according to the number of
-clusters $G$. For $G < 50$, the bias-reduced estimator (CR2) of Bell and
+independent clusters $G$. For $G < 50$, the bias-reduced estimator (CR2) of Bell and
 McCaffrey~\cite{BellMcCaffrey2002} is used, in which each $\hat{e}_n$ in
 Eqn.~\ref{eqn:sandwich mean} is replaced by $(\mathbf{I} - \mathbf{H}_{nn})^{-1/2}\hat{e}_n$
 with $\mathbf{H}_{nn} = \mathbf{X}_n(\mathbf{X}^\top\mathbf{X})^{-1}\mathbf{X}_n^\top$, and
 $t$-statistics are referred to a $t$ distribution with Satterthwaite-type degrees of
 freedom~\cite{Imbens2016}. For $G \geq 50$, the simpler CR1 scaling
-$\tfrac{G}{G-1}\tfrac{N-1}{N-p}$ with a $t_{G-1}$ reference is used~\cite{Cameron2015}.
+$\tfrac{G}{G-1}\tfrac{N-1}{N-p}$, where $p$ is the number of columns of $\mathbf{X}$, with a
+$t_{G-1}$ reference is used~\cite{Cameron2015}.
 ```
 New bibliography entries: `BellMcCaffrey2002`, `Imbens2016`, `Cameron2015`.
 
@@ -889,7 +946,7 @@ Caveats for B items:
 
 ## Open decisions
 
-**D1. What the model-level uncertainty should include (mixed-effects Tests 1–3).** *Decided 2026-10-10: panel-conditional (default), with an optional population mode for Test 3; fixed effects are metabolite-balanced (equal-weight) means.*
+**D1. [x] What the model-level uncertainty should include (mixed-effects Tests 1–3).** *Decided 2026-10-10: panel-conditional (default), with an optional population mode for Test 3; fixed effects are metabolite-balanced (equal-weight) means.*
 The cluster bootstrap and sandwich estimators resample spectra/subjects only,
 so inference is *conditional on the metabolite panel*: the between-metabolite
 spread ($\tau^2$) does not enter the uncertainty of $\alpha$ and $\beta$.
@@ -912,7 +969,7 @@ Draft for the population reading (if chosen): replace the last sentence of
 bootstrap~\cite{Owen2007}) and note that the effective number of units is then
 the number of metabolites.
 
-**D2. Calibration of the Passing–Bablok CUSUM test.** The asymptotic
+**D2. [ ] Calibration of the Passing–Bablok CUSUM test.** The asymptotic
 Kolmogorov critical value ignores that the line is estimated from the same
 data, which makes the test very conservative (0–1 % rejection at nominal 5 %)
 and weak: at $n = 200$ it detects mild curvature in 3 % of datasets, against
@@ -985,4 +1042,4 @@ calibrated. Simulation scripts were run from the session scratchpad; for the
 supplement (section 5, row g) add them under `assets/publication/` as a
 reproduction script.
 
-**D3. Figure 5 redesign.** *Decided and implemented 2026-10-10; see section 3.1.*
+**D3. [ ] Figure 5 redesign.** *Decided and implemented 2026-10-10; see section 3.1.*
