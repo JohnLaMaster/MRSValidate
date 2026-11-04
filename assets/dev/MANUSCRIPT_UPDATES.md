@@ -333,7 +333,7 @@ $\left((\beta - 1)\,\mathrm{V}[\xi] - \mathrm{V}[\delta]\right)/\mathrm{V}[y]$, 
 reference error *in vivo* (exact only *in silico*, where $\delta = 0$).
 The same caveat applies to the mixed-effects Test 2 (`eqn:me_test2`).
 
-### 1.19 [ ] Mixed-effects Test 2 inherits the 1.18 caveat (Mixed-Effects Equivalence Testing, Test 2 paragraph after `eqn:me_test2`)
+### 1.19 [x] Mixed-effects Test 2 inherits the 1.18 caveat (Mixed-Effects Equivalence Testing, Test 2 paragraph after `eqn:me_test2`)
 Within metabolite $i$, $\mathrm{Cov}(x_i - y_i,\, x_i + y_i) =
 (b_i^2 - 1)\,\mathrm{V}[\xi_i] + \mathrm{V}[\epsilon_i] - \mathrm{V}[\delta_i]$,
 with $b_i$ the proportional bias of metabolite $i$. Hence (a) the fixed slope
@@ -415,7 +415,7 @@ New bibliography entries: `Phipson2010`, `Hajek1999` (see section 4).
 Checked 2026-11-02: paragraph is in, but both keys are still missing from
 the project's `mybibliography.bib`.
 
-### 2.2 [ ] Bland–Altman: how the conditional models and confidence bands are computed — "Regression-Based Limits of Agreement" and "Confidence Intervals and Clinical Acceptability" (~l. 1510–1521)
+### 2.2 [x] Bland–Altman: how the conditional models and confidence bands are computed — "Regression-Based Limits of Agreement" and "Confidence Intervals and Clinical Acceptability" (~l. 1510–1521)
 The manuscript says $\hat\beta(c)$ and $\hat\sigma_d(c)$ are "each modeled by
 regression on $c$" and that confidence bands are reported, but not how. Add at
 the end of "Regression-Based Limits of Agreement":
@@ -442,7 +442,7 @@ $\mathrm{LoA} \pm t_{N-1,\,0.975}\,s_d\sqrt{1/N + 1.96^2/(2(N-1))}$ for each lim
 Fill in the `\ref{...robust...}` placeholder with the label of "Robust Estimation of Bias".
 Library: `bland_altman(conditional=True, ci_method="bootstrap"|"analytic")`.
 
-### 2.3 [ ] Passing–Bablok confidence intervals — "Passing-Bablok Regression" (~l. 1617)
+### 2.3 [x] Passing–Bablok confidence intervals — "Passing-Bablok Regression" (~l. 1617)
 The manuscript states 95 % intervals but not the method. Library default: the
 analytic rank-based interval of Passing & Bablok (1983); paired percentile
 bootstrap available. Add after `eqn:pb_intercept`:
@@ -468,7 +468,22 @@ residuals, so that $\sum_i r_i = 0$. The scores are ordered by the position of e
 observation along the fitted line, and the test statistic is
 $H = \max_k \left|\sum_{i \le k} r_{(i)}\right| / \sqrt{n_+ + n_- + 1}$.
 ```
-followed by the bootstrap calibration sentence in D2, and: "When $\lambda$ is unknown and $N \geq 500$, it should be supplied, since perpendicular resampling can then be liberal for markedly unequal error variances."
+followed by the bootstrap calibration sentence in D2 and the $\lambda$ guidance
+added to D2 on 2026-11-04:
+```latex
+The bootstrap is calibrated only when the residual direction matches the error structure of
+the data. In the \textit{in silico} regime the reference is exact ($\lambda = 0$) and residuals
+are flipped vertically; in this regime the Theil--Sen estimator
+(Section~\ref{sec:Reg:subsec:comparison:subsubsec:theil-sen}), for which $\lambda = 0$ is
+fixed, is used. In the \textit{in vivo} regime $\lambda$ cannot be estimated from single paired
+measurements and is supplied as the same error-variance ratio used for Deming regression
+(Section~\ref{sec:Reg:subsec:comparison:subsubsec:deming}), with the reference variance taken
+from the absolute \CRLB of the reference fit and the \DL variance from repeated measurements,
+\MC realizations, or calibrated predictive uncertainty. Overestimating $\lambda$ makes the
+test conservative, whereas underestimating it makes the test liberal. When $\lambda$ is known
+only approximately, the test is repeated at $\lambda/2$, $\lambda$, and $2\lambda$, and the
+largest $p$-value is reported.
+```
 
 ### 2.5 [ ] Silveira Test 3: analytic intervals — "Equivalence Testing" (~l. 1590–1592)
 The manuscript requires analytic $p$-values and bootstrap bands for every test.
@@ -527,12 +542,12 @@ $\tfrac{G}{G-1}\tfrac{N-1}{N-p}$ with a $t_{G-1}$ reference is used~\cite{Camero
 ```
 New bibliography entries: `BellMcCaffrey2002`, `Imbens2016`, `Cameron2015`.
 
-### 2.8 [ ] Mixed-effects Test 2 also reports $\tau^2_\alpha$ (~l. 1726, optional)
+### 2.8 [x] Mixed-effects Test 2 also reports $\tau^2_\alpha$ (~l. 1726, optional)
 The Test 2 model has a random intercept as well as a random slope; the library
 reports both $\tau^2_\alpha$ and $\tau^2_\beta$. Optionally add "and
 $\tau^2_\alpha$" where $\tau^2_\beta$ is discussed.
 
-### 2.9 [ ] Permutation tests: one- and two-sided alternatives — `eqn:permutation_pval` (~l. 275)
+### 2.9 [x] Permutation tests: one- and two-sided alternatives — `eqn:permutation_pval` (~l. 275)
 The printed $p$-value is one-sided (upper tail). Add after the equation:
 ```latex
 \noindent Eqn.~\ref{eqn:permutation_pval} gives the upper-tailed $p$-value, appropriate for
@@ -542,7 +557,7 @@ upper- and lower-tailed values, truncated at one.
 ```
 Library: `permutation_test(alternative="greater"|"less"|"two-sided")`.
 
-### 2.10 [ ] Bootstrap interval method (~l. 259, optional)
+### 2.10 [x] Bootstrap interval method (~l. 259, optional)
 No change required: the library default is now the percentile interval
 printed in the manuscript. Optionally add: "Bias-corrected and accelerated
 (BCa) intervals~\cite{Efron1987} may be preferred for markedly skewed bootstrap
@@ -814,7 +829,7 @@ manuscript before acting: the author may have added numbers from the notes.
 | d | ECWAS null correlations: Wilcoxon–AntiSavage $\approx -0.87 \to -\sqrt{3}/2$; Ansari-Bradley–AntiSavage $\approx -0.34$; Wilcoxon–Ansari-Bradley $= 0$ | A (exact for finite $n$ from the score functions) | 2.1 | yes | `src/mrsvalidate/analysis/distribution.py` (module docstring, ~l. 42) |
 | e | ECWAS type-I error: $\chi^2_3$ critical value 7.4 %, permutation null 4.6 %, at nominal 5 % (100 + 100 obs.) | B | 2.1 | **no** (notes only) | `tests/unit/test_ecwas_critical_values.py::test_permutation_null_controls_type_one_error_where_chi2_does_not` (n = 100 per group, 4000 reps, seed 7, permutation critical value from 20 000 relabelings); CHANGELOG |
 | f | Passing–Bablok CUSUM: classical Kolmogorov critical value 0–1 % rejection, wild bootstrap 2–5 %, at nominal 5 %; power against mild curvature at n = 200: 3 % vs 26 % | B | 2.4, D2 | **no** (D2 draft text says only "strongly conservative") | `tests/unit/test_passing_bablok_validation.py` (n = 60, 300 reps, uniform truth 1–10, error SD 0.3); `method_comparison.py` docstrings ~l. 1112, 1231; CHANGELOG |
-| g | CUSUM bootstrap liberal (6–15 %) for unequal error variances at n ≥ 500 without $\lambda$; 4.6–5.8 % when $\lambda$ is supplied | B | 2.4, D2 | partly: 2.4 draft says "can then be liberal" (qualitative) | `method_comparison.py` ~l. 1446 (warning text); CHANGELOG |
+| g | CUSUM bootstrap liberal (6–15 %) for unequal error variances at n ≥ 500 without $\lambda$; 4.6–5.8 % when $\lambda$ is supplied; 2026-11-04 rerun: 3–6 % with correct $\lambda$, 9–15 % *in silico* without $\lambda$, Theil–Sen 4.0–4.3 % (D2 table) | B | 2.4, D2 | partly: 2.4 draft says "can then be liberal" (qualitative) | `method_comparison.py` ~l. 1446 (warning text); CHANGELOG |
 | h | Cluster-robust inference with 10 clusters: CR0 + normal reference rejects a true null 11–18 %; CR2 + Bell–McCaffrey 4–5 % | B | 2.7 | **no** (2.7 draft is qualitative) | `tests/unit/test_mixed_effects.py::test_cr2_bell_mccaffrey_size_closer_to_nominal_than_cr0_with_10_clusters` (docstring records a reference run: R = 2000, seed 123, 10 clusters × 6 obs.: CR0+z 0.110 / 0.175, CR1+t 0.061 / 0.120, CR2+BM 0.044 / 0.051 for intercept / slope); CHANGELOG |
 | i | Old `eqn:deff_cc` gave deff 5.4 against a true ≈ 50 (≈ ten-fold overstatement of $N_\mathrm{eff}$) | B | 1.10 | **no** | `tests/unit/test_clustering.py::test_cross_classified_design_effect_equals_pooled_mean_variance_ratio_unbalanced` checks the corrected formula against the empirical variance ratio; the specific 5.4 vs 50 run is **not** stored |
 | j | Panel-conditional inference rejects a true *population* null in 33 % of cases | B | D1 | **no** | `tests/unit/test_mixed_effects.py::test_mixed_test3_panel_mode_rejects_more_under_population_null` and neighbouring `..._panel_mode_size_...` / `..._population_mode_size_...` tests; the 33 % run itself is **not** stored |
@@ -925,10 +940,49 @@ is not the Kolmogorov distribution~\cite{Durbin1973}, and the classical critical
 strongly conservative. Critical values are therefore obtained by a wild
 bootstrap under the fitted linear model~\cite{Stute1998}: each residual is multiplied by a
 random sign along the direction conjugate to the fitted line under the error-variance ratio
-$\lambda$ (perpendicular to the line when $\lambda$ is unknown and assumed equal to one),
+$\lambda$ (vertical for an exact reference, $\lambda = 0$),
 added back to its fitted position, the Passing--Bablok line is re-estimated for each
 resample, and $H$ is recomputed. The $p$-value follows Eqn.~\ref{eqn:permutation_pval} with
 the bootstrap replicates in place of permutations.
 ```
+
+*Update 2026-11-04: how $\lambda$ is obtained, and recommendations.* The library
+does not estimate $\lambda$; it is user-supplied (`cusum_bootstrap_variance_ratio`,
+$\lambda = \sigma^2_{\text{ref}}/\sigma^2_{\text{DL}}$, same convention as Deming), and `None`
+is equivalent to $\lambda = 1$ (perpendicular flips). It is not identifiable
+from single paired measurements. The 0–1 % figure is the classical
+Kolmogorov critical value; the 6–15 % figure is the bootstrap with the wrong
+$\lambda$, which grows with $n$. Simulation (truth uniform 1–10, unit slope,
+DL error SD 0.5 or 0.25 mM, nominal 5 %, 199 bootstrap replicates, 300–400
+reps per cell, MC SE about 1.1–1.3 %):
+
+| n | True setting | $\lambda$ supplied | Rejection |
+|---|---|---|---|
+| 500 / 1000 | *in silico* ($\lambda = 0$) | none (PB) | 9.0 % / 15.3 % |
+| 1000 | *in silico* | $\approx 0$ (PB, 0.01) | 5.7 % |
+| 500 / 1000 | *in silico* | Theil–Sen ($\lambda = 0$ fixed) | 4.0 % / 4.3 % |
+| 500 / 1000 | $\lambda = 0.25$ | none | 5.2 % / 8.3 % |
+| 500 / 1000 | $\lambda = 0.25$ | correct | 3.0 % / 3.0 % |
+| 1000 | $\lambda = 0.25$ | $\lambda/4$ to $2\lambda$ | 3.7–5.0 % |
+| 500 / 1000 | $\lambda = 4$ | none | 6.0 % / 12.3 % |
+| 500 / 1000 | $\lambda = 4$ | correct | 4.8 % / 6.2 % |
+| 1000 | $\lambda = 4$ | $\lambda/2$ / $2\lambda$ / $4\lambda$ | 6.3 % / 2.8 % / 3.3 % |
+| 1000 | $\lambda = 1$ | correct | 5.8 % |
+
+Correct $\lambda$: 3–6 % throughout. Overestimating errs conservative,
+underestimating by 4× errs liberal. Recommendations (use the 2.4 text above):
+1. Bootstrap only; never the classical critical value.
+2. *In silico*: Theil–Sen ($\lambda = 0$ built in). Do not run the PB CUSUM
+   without $\lambda = 0$.
+3. *In vivo*: always supply the Deming $\lambda$ (reference from absolute
+   CRLB, DL from test–retest / MC / calibrated uncertainty, both in mmol²/L²).
+4. Uncertain $\lambda$: run at $\lambda/2$, $\lambda$, $2\lambda$ and report
+   the largest $p$-value.
+
+Library follow-up (not done): `passing_bablok` rejects
+`cusum_bootstrap_variance_ratio=0`; allow it so PB *in silico* can be
+calibrated. Simulation scripts were run from the session scratchpad; for the
+supplement (section 5, row g) add them under `assets/publication/` as a
+reproduction script.
 
 **D3. Figure 5 redesign.** *Decided and implemented 2026-10-10; see section 3.1.*
