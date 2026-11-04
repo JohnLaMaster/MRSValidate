@@ -563,7 +563,7 @@ printed in the manuscript. Optionally add: "Bias-corrected and accelerated
 (BCa) intervals~\cite{Efron1987} may be preferred for markedly skewed bootstrap
 distributions." (`Efron1987` would be a new entry.)
 
-### 2.11 [ ] New subsection: assessing normality — insert after "Distributions in Deep Learning" (~l. 318), before `\subsection{Error Metrics}`
+### 2.11 [x] New subsection: assessing normality — insert after "Distributions in Deep Learning" (~l. 318), before `\subsection{Error Metrics}`
 Requested 2026-10-10. The manuscript notes that normality is rarely checked
 (~l. 233, 311–318) but does not say how to check it. The library implements
 five tests (`analysis.normality`); the draft below covers what to test, how,
