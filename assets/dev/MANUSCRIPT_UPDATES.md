@@ -197,71 +197,175 @@ $N$; it should instead describe it as the normal-consistent MAD, matching the
 manuscript's $\widetilde{s}_d$.
 Library: `bland_altman(scale="robust_sd", loa_method="normal"|"quantile")`.
 
-### 1.12 [ ] Passing–Bablok slope estimator — `eqn:pb_slopes`, `eqn:pb_slope` (~l. 1603–1609)
-The printed estimator takes the upper-middle order statistic when the number of
-slopes is even, keeps $S_{ij}=-1$, and drops all pairs with $y_i=y_j$. The
-original estimator (Passing & Bablok 1983), now the library default, differs on
-all three. Replace the sentence after `eqn:pb_slopes` and `eqn:pb_slope` with:
+### 1.12 Regression-based comparisons: Passing–Bablok corrections, Theil–Sen *in silico*, Deming *in vivo* ("Regression-Based Comparisons", 10/30 draft)
+Context only (nothing to check here): *in vivo* → Deming; *in silico* →
+Theil–Sen as the primary robust estimator, Passing–Bablok reported alongside.
+Passing–Bablok assumes error in both methods, so with an exact reference it
+biases the slope upward. Each sub-item below is one edit. Line numbers are
+from the draft saved 2026-11-05 10:02 and will drift; the quoted text is the
+anchor.
+
+#### 1.12.1 [ ] Intro: state which estimator is used in which regime
+**Where:** first paragraph of "Regression-Based Comparisons" (~l. 4222).
+**Find:**
 ```latex
-\noindent where $y_i$ and $x_i$ are the reference and \DL model values for the
-$i$-th observation. Pairs with $y_i = y_j$ and $x_i = x_j$ are discarded; pairs
-with $y_i = y_j$ and $x_i \neq x_j$ are assigned $S_{ij} = +\infty$ or
-$-\infty$ according to the sign of $x_j - x_i$; and slopes with $S_{ij} = -1$
-are discarded. With $N_S$ the number of retained slopes and $K$ the number
-satisfying $S_{ij} < -1$, the slope estimate is the shifted median
+The consequences of this distinction for the choice of regression estimator are detailed below.
+```
+**Replace with:**
+```latex
+The choice of estimator follows from this distinction. In the \textit{in silico} regime, the Theil--Sen estimator (Section~\ref{sec:Reg:subsec:comparison:subsubsec:theil-sen}) is the primary robust estimator, because it treats the reference as error-free. In the \textit{in vivo} regime, Deming regression (Section~\ref{sec:Reg:subsec:comparison:subsubsec:deming}) is the primary estimator, because it accounts for error in both methods through the error variance ratio $\lambda$. Passing--Bablok regression (Section~\ref{sec:Reg:subsec:comparison:subsubsec:passing-bablok}) is described first, as the most widely used robust method-comparison estimator, and is reported alongside in both regimes for comparability with the literature, subject to the assumption stated there.
+```
+
+#### 1.12.2 [ ] Passing–Bablok: add the missing section label
+The Theil–Sen subsection, the Deming subsection and 1.12.1 reference
+`sec:Reg:subsec:comparison:subsubsec:passing-bablok`, which is not defined
+(compiles as "??").
+**Where:** ~l. 4227.
+**Find:**
+```latex
+\subsubsection{Passing-Bablok Regression}
+```
+**Replace with:**
+```latex
+\subsubsection{Passing-Bablok Regression}
+\label{sec:Reg:subsec:comparison:subsubsec:passing-bablok}
+```
+
+#### 1.12.3 [ ] Passing–Bablok: state its error assumption
+The Theil–Sen subsection refers back to "the two-method measurement-error
+assumption of Passing--Bablok regression", which the PB subsection never
+states. (The upward-bias consequence is already at the end of the paragraph
+after `eqn:pb_intercept`.)
+**Where:** first paragraph of "Passing-Bablok Regression" (~l. 4230).
+**Find:**
+```latex
+It nevertheless assumes a linear relationship between the two methods and continuously distributed measurements.
+```
+**Replace with:**
+```latex
+It nevertheless assumes a linear relationship between the two methods and continuously distributed measurements. It treats the two methods symmetrically and is derived under the assumption that both carry measurement error, with error variances in the ratio $\sigma_x^2/\sigma_y^2 \approx \beta_1^2$, that is, errors of similar magnitude for a slope near one~\cite{Passing1983}.
+```
+
+#### 1.12.4 [ ] `eqn:pb_slopes`: remove the $y_i \neq y_j$ condition and the unused $M$
+The condition in the equation contradicts the next sentence, which assigns
+$\pm\infty$ to pairs with $y_i = y_j$; $M$ is no longer used after 1.12.5.
+**Where:** ~l. 4232–4236.
+**Find:**
+```latex
+The estimator begins by computing all $M = N(N-1)/2$ pairwise slopes over ordered pairs
+$(i,j)$ with $i < j$:
+\begin{equation}\label{eqn:pb_slopes}
+    S_{ij} = \frac{x_j - x_i}{y_j - y_i}, \qquad i < j, \quad y_i \neq y_j
+\end{equation}%
+```
+**Replace with:**
+```latex
+The estimator begins by computing the pairwise slopes over all $N(N-1)/2$ pairs $(i,j)$ with $i < j$:
+\begin{equation}\label{eqn:pb_slopes}
+    S_{ij} = \frac{x_j - x_i}{y_j - y_i}, \qquad 1 \leq i < j \leq N
+\end{equation}%
+```
+
+#### 1.12.5 [ ] `eqn:pb_slope`: index by $N_S$, average for even $N_S$, correct the rationale for $K$
+The equation still uses $\lfloor M/2 \rfloor + K + 1$ (one order statistic,
+indexed by all pairs); the following sentence defines $K$ a second time; and
+"ensures consistency when the true slope is negative" is not the reason for
+the shift.
+**Where:** ~l. 4239–4242.
+**Find** (from the equation through the sentence ending "about $-1$."; the
+sentence "The intercept is estimated as…" that follows stays):
+```latex
+\begin{equation}\label{eqn:pb_slope}
+    \hat{\beta}_1 = S_{\left(\lfloor M/2 \rfloor + K + 1\right)}
+\end{equation}%
+\noindent where $S_{(m)}$ denotes the $m$-th order statistic of the sorted slope set, $\lfloor \cdot \rfloor$ is the floor operator, and $K$ is the number of pairwise slopes satisfying $S_{ij} < -1$. The shift by $K$ is what distinguishes the Passing-Bablok estimator from a naive median-of-slopes: it ensures consistency when the true slope is negative by correcting for the asymmetric distribution of slopes about $-1$.
+```
+**Replace with:**
+```latex
 \begin{equation}\label{eqn:pb_slope}
     \hat{\beta}_1 =
     \begin{cases}
         S_{\left((N_S+1)/2 + K\right)}, & N_S \text{ odd},\\[2pt]
         \tfrac{1}{2}\left(S_{(N_S/2 + K)} + S_{(N_S/2 + K + 1)}\right), & N_S \text{ even},
     \end{cases}
-\end{equation}
+\end{equation}%
+\noindent where $S_{(m)}$ denotes the $m$-th order statistic of the retained slopes sorted in ascending order. The shift by $K$ is what distinguishes the Passing-Bablok estimator from a plain median of slopes: it moves the $K$ slopes below $-1$ to the upper end of the ordering, which is equivalent to ordering the pairwise slopes by their angle on $(-45^\circ, 135^\circ)$. This makes the estimate symmetric in the two methods, so that exchanging them yields the reciprocal slope, and presumes a positive relationship between them.
 ```
-Library: `passing_bablok(estimator="passing_bablok_1983")`; the printed version
-is kept as `estimator="manuscript_literal"`.
 
-#### 1.12 addendum (2026-11-02): regime split — Theil–Sen *in silico*, Deming *in vivo*, Passing–Bablok kept
-The replacement text above remains correct for the Passing–Bablok subsection
-(index by $N_S$, average the two middle slopes, published rules for tied
-reference values and $S_{ij} = -1$). In addition:
+#### 1.12.6 [x] Passing–Bablok: upward bias with an exact reference
+Done (end of the paragraph after `eqn:pb_intercept`).
 
-**Decision.** *In vivo* (both methods have error) → Deming. *In silico*
-(exact reference) → Theil–Sen as the primary robust estimator, with
-Passing–Bablok reported alongside for comparability with the literature.
-Reason: Passing–Bablok assumes both methods carry error (error-variance ratio
-≈ $\beta_1^2$); its shift by $K$ is what accounts for the reference error, so
-with an exact reference it biases the slope slightly upward. Theil–Sen is the
-same median of pairwise slopes without the shift, i.e. the robust counterpart
-of OLS of $x$ on $y$, which the Deming text already names as the exact-reference
-($\lambda \to 0$) limit.
+#### 1.12.7 [x] New "Theil–Sen Regression" subsection
+Done (before "Deming Regression"; label `…:subsubsec:theil-sen`).
 
-**Manuscript changes** (full instructions and the current text in
-`assets/dev/HANDOVER_regression_section.md`, edits E1–E5):
-- E1: the "Regression-Based Comparisons" intro states the mapping explicitly.
-- E2: Passing–Bablok kept; state its assumption; $N_S$ indexing and
-  averaging; published special-pair rules; replace the incorrect rationale
-  for the shift by $K$ ("ensures consistency when the true slope is
-  negative") with the correct one (median of pairwise angles, symmetric in
-  the two methods; assumes a positive relationship); note the slight upward
-  bias with an exact reference.
-- E3: new "Theil–Sen Regression" subsection between Passing–Bablok and
-  Deming: drop pairs with $y_i = y_j$, median of the retained slopes, same
-  intercept, Sen's interval with tie correction, same CUSUM/reporting.
-- E4: Deming states it is the *in vivo* estimator; the *in silico* sentence
-  points to Theil–Sen; the Passing–Bablok fallback keeps the condition
-  "errors of similar magnitude".
-- E5: bibliography `Theil1950`, `Sen1968` (section 4).
+#### 1.12.8 [ ] Theil–Sen: missing bibliography entries `Theil1950b`, `Theil1950c`
+The subsection cites `Theil1950b` and `Theil1950c`; only `Theil1950` is in
+`mybibliography.bib`. Add to `mybibliography.bib` (Parts II and III of the
+same paper; verify pages against the PDF):
+```bibtex
+@inproceedings{Theil1950b,
+author = {Theil, Henri},
+booktitle = {Proceedings of the Royal Netherlands Academy of Sciences},
+pages = {521--525},
+title = {{A Rank-Invariant Method of Linear and Polynomial Regression Analysis. II}},
+volume = {53},
+year = {1950}
+}
 
-**Knock-on items.** 2.3: add the Theil–Sen (Sen) interval. 2.4: the CUSUM
-applies to both; for Theil–Sen the wild bootstrap flips residuals vertically
-($\lambda = 0$). 3.1: Figure 5 panel C uses Theil–Sen after regeneration, so
-the caption numbers change. Section 5: the bias checks (exact reference:
-Passing–Bablok 1.017 vs Theil–Sen 0.999 for a true slope of 1) are B-kind
-numbers; keep them out of the text or back them with a script.
+@inproceedings{Theil1950c,
+author = {Theil, Henri},
+booktitle = {Proceedings of the Royal Netherlands Academy of Sciences},
+pages = {1397--1412},
+title = {{A Rank-Invariant Method of Linear and Polynomial Regression Analysis. III}},
+volume = {53},
+year = {1950}
+}
+```
+While there: the existing `Theil1950` title has two typos ("Ploynomial",
+"Analsys") → "Polynomial", "Analysis".
 
-**Library.** `passing_bablok` (published rules) is unchanged apart from
-removing `estimator="manuscript_literal"`; new `theil_sen` for the *in
-silico* regime with the same result fields; Figure 5 panel C switches to it.
+#### 1.12.9 [ ] Theil–Sen: ties in the DL output are not adjusted for
+The library does not apply a variance adjustment for ties in $x$.
+**Where:** paragraph after `eqn:ts_ci` (~l. 4293).
+**Find:**
+```latex
+ties in the latter require additional variance adjustments.
+```
+**Replace with:**
+```latex
+ties in the latter are not accounted for.
+```
+
+#### 1.12.10 [x] Deming opening: Deming *in vivo*, Theil–Sen *in silico*
+Done.
+
+#### 1.12.11 [x] Deming: Passing–Bablok fallback with its condition
+Done (single paragraph "When sufficiently reliable estimates … provides a
+robust alternative, provided …").
+
+#### 1.12.12 [ ] Deming: "orthogonal" residuals only for $\lambda = 1$
+Optional wording fix: `eqn:deming_objective` weights residuals in both
+variables; they are orthogonal only when $\lambda = 1$, as the text itself
+says two sentences later.
+**Where:** sentence before `eqn:deming_objective` (~l. 4302).
+**Find:**
+```latex
+The Deming estimator is obtained by minimizing a weighted sum of squared orthogonal residuals over both the model parameters and the latent true predictor values $\{\xi_i\}$:
+```
+**Replace with:**
+```latex
+The Deming estimator is obtained by minimizing a weighted sum of squared residuals in both variables over the model parameters and the latent true predictor values $\{\xi_i\}$:
+```
+
+#### 1.12.13 [ ] Knock-on: Figure 5 caption
+Figure 5 panel C now shows Theil–Sen; update the caption under 3.1. Keep the
+simulation bias comparison (Passing–Bablok 1.017 vs Theil–Sen 0.999 for a
+true slope of 1) out of the text unless it is backed by a script (section 5).
+
+Library status (no manuscript action): `passing_bablok` implements the
+published rules (`manuscript_literal` removed); `theil_sen` implements the
+Theil–Sen subsection; Figure 5 panel C uses `theil_sen`. Open: allow λ = 0 in
+`passing_bablok` (see 2.4).
 
 ### 1.13 [x] Inconsistent sample-variance normalisation in the Monte Carlo section — `sections/sec6.1_info-standardizedCharacterization.tex` (l. 245, 249)
 $\hat\sigma^2_{\mathrm{DL},m,j}$ uses $1/(K-1)$ while $\widehat{RMSE}_{m,j}$
@@ -492,7 +596,7 @@ A paired bootstrap interval (Section~\ref{sec:perf:subsec:bootstrap}) is a distr
 alternative when the rank-based approximation is in doubt, for example for small $N$.
 ```
 
-### 2.4 [ ] Passing–Bablok CUSUM linearity test — "Passing-Bablok Regression" (10/30 draft l. 4254)
+### 2.4 [x] Passing–Bablok CUSUM linearity test — "Passing-Bablok Regression" (10/30 draft l. 4254)
 The manuscript cites the test but does not define it or its critical value.
 D2 is decided (bootstrap default, $\lambda$ supplied), so the earlier split
 into a "common part" plus calibration sentences in D2 is replaced by the
