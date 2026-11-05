@@ -205,18 +205,27 @@ biases the slope upward. Each sub-item below is one edit. Line numbers are
 from the draft saved 2026-11-05 10:02 and will drift; the quoted text is the
 anchor.
 
-#### 1.12.1 [ ] Intro: state which estimator is used in which regime
-**Where:** first paragraph of "Regression-Based Comparisons" (~l. 4222).
+#### 1.12.1 [x] Intro: state which estimator is used in which regime
+Done on Overleaf (2026-11-05): "The consequences of this distinction…" was
+replaced by "This distinction determines the regression estimator: … Deming
+regression is used." Passing–Bablok stays *in silico* only; *in vivo* it is
+the fallback in 1.12.11.
+
+#### 1.12.1a [ ] Intro: add cross-references and the reason for each estimator (optional)
+**Where:** first paragraph of "Regression-Based Comparisons" (~l. 4222), between
+"…with neither variable treated as error-free." and "This distinction must
+also be accounted for…". Needs 1.12.2 (Passing–Bablok label) or the reference
+compiles as "??".
 **Find:**
 ```latex
-The consequences of this distinction for the choice of regression estimator are detailed below.
+This distinction determines the regression estimator: in the \textit{in silico} regime, Theil--Sen regression is the primary robust estimator, with Passing--Bablok regression reported alongside it for comparability with the method-comparison literature, but in the \textit{in vivo} regime, Deming regression is used.
 ```
 **Replace with:**
 ```latex
-The choice of estimator follows from this distinction. In the \textit{in silico} regime, the Theil--Sen estimator (Section~\ref{sec:Reg:subsec:comparison:subsubsec:theil-sen}) is the primary robust estimator, because it treats the reference as error-free. In the \textit{in vivo} regime, Deming regression (Section~\ref{sec:Reg:subsec:comparison:subsubsec:deming}) is the primary estimator, because it accounts for error in both methods through the error variance ratio $\lambda$. Passing--Bablok regression (Section~\ref{sec:Reg:subsec:comparison:subsubsec:passing-bablok}) is described first, as the most widely used robust method-comparison estimator, and is reported alongside in both regimes for comparability with the literature, subject to the assumption stated there.
+This distinction determines the regression estimator. In the \textit{in silico} regime, Theil--Sen regression (Section~\ref{sec:Reg:subsec:comparison:subsubsec:theil-sen}) is the primary robust estimator because it treats the reference as error-free, with Passing--Bablok regression (Section~\ref{sec:Reg:subsec:comparison:subsubsec:passing-bablok}) reported alongside it for comparability with the method-comparison literature. In the \textit{in vivo} regime, Deming regression (Section~\ref{sec:Reg:subsec:comparison:subsubsec:deming}) is used because it accounts for error in both methods through the error variance ratio $\lambda$.
 ```
 
-#### 1.12.2 [ ] Passing–Bablok: add the missing section label
+#### 1.12.2 [x] Passing–Bablok: add the missing section label
 The Theil–Sen subsection, the Deming subsection and 1.12.1 reference
 `sec:Reg:subsec:comparison:subsubsec:passing-bablok`, which is not defined
 (compiles as "??").
@@ -231,65 +240,39 @@ The Theil–Sen subsection, the Deming subsection and 1.12.1 reference
 \label{sec:Reg:subsec:comparison:subsubsec:passing-bablok}
 ```
 
-#### 1.12.3 [ ] Passing–Bablok: state its error assumption
-The Theil–Sen subsection refers back to "the two-method measurement-error
-assumption of Passing--Bablok regression", which the PB subsection never
-states. (The upward-bias consequence is already at the end of the paragraph
-after `eqn:pb_intercept`.)
-**Where:** first paragraph of "Passing-Bablok Regression" (~l. 4230).
+#### 1.12.3 [x] Passing–Bablok: state its error assumption
+Done (draft saved 2026-11-05 16:46) with different wording: "Its
+method-comparison formulation assumes that both methods have measurement
+error, with \(\sigma_x^2/\sigma_y^2 \approx \beta_1^2\) …", which replaced the
+old "It nevertheless assumes …" sentence.
+
+#### 1.12.4 [x] `eqn:pb_slopes`: remove the $y_i \neq y_j$ condition and the unused $M$
+Done (draft saved 2026-11-05 16:46): $M$ and the $y_i \neq y_j$ condition are gone.
+
+#### 1.12.5 [x] `eqn:pb_slope`: index by $N_S$, average for even $N_S$, correct the rationale for $K$
+Done (draft saved 2026-11-05 16:46): the cases equation and the angular-ordering
+rationale are in place.
+
+#### 1.12.5a [ ] Passing–Bablok: remove two repeated statements
+The paragraph around `eqn:pb_slope` defines $K$ twice (before and after the
+equation) and repeats the positive-relationship assumption already stated in
+the first paragraph.
+**Where:** ~l. 4247–4249, the sentence after `eqn:pb_slope`.
 **Find:**
 ```latex
-It nevertheless assumes a linear relationship between the two methods and continuously distributed measurements.
+\noindent where $S_{(m)}$ denotes the $m$-th order statistic of the sorted set of $N_S$ retained slopes, and $K$ is the number of retained slopes satisfying $S_{ij} < -1$.
 ```
 **Replace with:**
 ```latex
-It nevertheless assumes a linear relationship between the two methods and continuously distributed measurements. It treats the two methods symmetrically and is derived under the assumption that both carry measurement error, with error variances in the ratio $\sigma_x^2/\sigma_y^2 \approx \beta_1^2$, that is, errors of similar magnitude for a slope near one~\cite{Passing1983}.
+\noindent where $S_{(m)}$ denotes the $m$-th order statistic of the sorted set of $N_S$ retained slopes.
 ```
-
-#### 1.12.4 [ ] `eqn:pb_slopes`: remove the $y_i \neq y_j$ condition and the unused $M$
-The condition in the equation contradicts the next sentence, which assigns
-$\pm\infty$ to pairs with $y_i = y_j$; $M$ is no longer used after 1.12.5.
-**Where:** ~l. 4232–4236.
-**Find:**
+**Find** (same paragraph, a few sentences later):
 ```latex
-The estimator begins by computing all $M = N(N-1)/2$ pairwise slopes over ordered pairs
-$(i,j)$ with $i < j$:
-\begin{equation}\label{eqn:pb_slopes}
-    S_{ij} = \frac{x_j - x_i}{y_j - y_i}, \qquad i < j, \quad y_i \neq y_j
-\end{equation}%
+For even $N_S$, the arithmetic mean of the central slopes is an approximation to the exactly symmetric angular median. The method assumes a positive linear relationship. The intercept
 ```
 **Replace with:**
 ```latex
-The estimator begins by computing the pairwise slopes over all $N(N-1)/2$ pairs $(i,j)$ with $i < j$:
-\begin{equation}\label{eqn:pb_slopes}
-    S_{ij} = \frac{x_j - x_i}{y_j - y_i}, \qquad 1 \leq i < j \leq N
-\end{equation}%
-```
-
-#### 1.12.5 [ ] `eqn:pb_slope`: index by $N_S$, average for even $N_S$, correct the rationale for $K$
-The equation still uses $\lfloor M/2 \rfloor + K + 1$ (one order statistic,
-indexed by all pairs); the following sentence defines $K$ a second time; and
-"ensures consistency when the true slope is negative" is not the reason for
-the shift.
-**Where:** ~l. 4239–4242.
-**Find** (from the equation through the sentence ending "about $-1$."; the
-sentence "The intercept is estimated as…" that follows stays):
-```latex
-\begin{equation}\label{eqn:pb_slope}
-    \hat{\beta}_1 = S_{\left(\lfloor M/2 \rfloor + K + 1\right)}
-\end{equation}%
-\noindent where $S_{(m)}$ denotes the $m$-th order statistic of the sorted slope set, $\lfloor \cdot \rfloor$ is the floor operator, and $K$ is the number of pairwise slopes satisfying $S_{ij} < -1$. The shift by $K$ is what distinguishes the Passing-Bablok estimator from a naive median-of-slopes: it ensures consistency when the true slope is negative by correcting for the asymmetric distribution of slopes about $-1$.
-```
-**Replace with:**
-```latex
-\begin{equation}\label{eqn:pb_slope}
-    \hat{\beta}_1 =
-    \begin{cases}
-        S_{\left((N_S+1)/2 + K\right)}, & N_S \text{ odd},\\[2pt]
-        \tfrac{1}{2}\left(S_{(N_S/2 + K)} + S_{(N_S/2 + K + 1)}\right), & N_S \text{ even},
-    \end{cases}
-\end{equation}%
-\noindent where $S_{(m)}$ denotes the $m$-th order statistic of the retained slopes sorted in ascending order. The shift by $K$ is what distinguishes the Passing-Bablok estimator from a plain median of slopes: it moves the $K$ slopes below $-1$ to the upper end of the ordering, which is equivalent to ordering the pairwise slopes by their angle on $(-45^\circ, 135^\circ)$. This makes the estimate symmetric in the two methods, so that exchanging them yields the reciprocal slope, and presumes a positive relationship between them.
+For even $N_S$, the arithmetic mean of the central slopes is an approximation to the exactly symmetric angular median. The intercept
 ```
 
 #### 1.12.6 [x] Passing–Bablok: upward bias with an exact reference
