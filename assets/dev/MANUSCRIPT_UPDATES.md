@@ -307,7 +307,7 @@ year = {1950}
 While there: the existing `Theil1950` title has two typos ("Ploynomial",
 "Analsys") → "Polynomial", "Analysis".
 
-#### 1.12.9 [ ] Theil–Sen: correct the statement about ties in the DL output
+#### 1.12.9 [x] Theil–Sen: correct the statement about ties in the DL output
 No library change is needed. Sen's interval inverts Kendall's test between
 $y_i$ and $x_i-\beta_1 y_i$. Two residuals tie only when $\beta_1$ equals that
 pair's slope $S_{ij}$, so ties in $x$ need no variance term. Ties in $y$ are
@@ -936,9 +936,50 @@ All *(verify)*.
   journal = {Journal of Statistical Modeling and Analytics},
   volume  = {2}, number = {1}, pages = {21--33}, year = {2011}
 }
+@article{Durbin1973,
+  author  = {Durbin, James},
+  title   = {Weak Convergence of the Sample Distribution Function When Parameters Are Estimated},
+  journal = {The Annals of Statistics},
+  volume  = {1}, number = {2}, pages = {279--290}, year = {1973},
+  doi     = {10.1214/aos/1176342365}
+}
+@article{Stute1998,
+  author  = {Stute, Winfried and Gonz{\'a}lez Manteiga, Wenceslao and Presedo Quindimil, Manuel},
+  title   = {Bootstrap Approximations in Model Checks for Regression},
+  journal = {Journal of the American Statistical Association},
+  volume  = {93}, number = {441}, pages = {141--149}, year = {1998},
+  doi     = {10.1080/01621459.1998.10474096}
+}
+@article{Efron1987,
+  author  = {Efron, Bradley},
+  title   = {Better Bootstrap Confidence Intervals},
+  journal = {Journal of the American Statistical Association},
+  volume  = {82}, number = {397}, pages = {171--185}, year = {1987},
+  doi     = {10.1080/01621459.1987.10478410}
+}
+@inproceedings{Theil1950b,
+  author    = {Theil, Henri},
+  title     = {A Rank-Invariant Method of Linear and Polynomial Regression Analysis. {II}},
+  booktitle = {Proceedings of the Royal Netherlands Academy of Sciences},
+  volume    = {53}, pages = {521--525}, year = {1950}
+}
+@inproceedings{Theil1950c,
+  author    = {Theil, Henri},
+  title     = {A Rank-Invariant Method of Linear and Polynomial Regression Analysis. {III}},
+  booktitle = {Proceedings of the Royal Netherlands Academy of Sciences},
+  volume    = {53}, pages = {1397--1412}, year = {1950}
+}
 ```
-Possibly needed depending on decisions D1/D2: `Durbin1973`, `Stute1997`,
-`Stute1998`, `Owen2007` (see below).
+Cited by: `Durbin1973`, `Stute1998` → 2.4 (draft l. 4261); `Efron1987` → BCa
+sentence (draft l. 1075); `Theil1950b`, `Theil1950c` → 1.12.8 (draft l. 4269).
+`Sen1968`, `Theil1950` and `Rousseeuw1993` above are already in
+`mybibliography.bib`; skip them (but fix the `Theil1950` title typos, 1.12.8).
+Only if the cluster-bootstrap alternative in D1 is adopted: `Owen2007`.
+
+Also cited in the draft but missing from the local `mybibliography.bib`, and
+not from items in this file (probably already in the Overleaf copy; check):
+`Clarke2021` (l. 533), `Maudsley2021` (l. 511, 536), `MacKinnon1985`
+(l. 4449), `MacKay2003` (l. 4795, 4802).
 
 ---
 
