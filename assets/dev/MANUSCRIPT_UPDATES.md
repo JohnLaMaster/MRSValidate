@@ -936,6 +936,13 @@ All *(verify)*.
   journal = {Journal of Statistical Modeling and Analytics},
   volume  = {2}, number = {1}, pages = {21--33}, year = {2011}
 }
+@article{Morris2019,
+  author  = {Morris, Tim P. and White, Ian R. and Crowther, Michael J.},
+  title   = {Using Simulation Studies to Evaluate Statistical Methods},
+  journal = {Statistics in Medicine},
+  volume  = {38}, number = {11}, pages = {2074--2102}, year = {2019},
+  doi     = {10.1002/sim.8086}
+}
 @article{Durbin1973,
   author  = {Durbin, James},
   title   = {Weak Convergence of the Sample Distribution Function When Parameters Are Estimated},
@@ -971,7 +978,8 @@ All *(verify)*.
 }
 ```
 Cited by: `Durbin1973`, `Stute1998` → 2.4 (draft l. 4261); `Efron1987` → BCa
-sentence (draft l. 1075); `Theil1950b`, `Theil1950c` → 1.12.8 (draft l. 4269).
+sentence (draft l. 1075); `Morris2019` → Monte Carlo SE convention in the
+simulation supplement (`assets/publication/simulations/supplement_simulations.tex`); `Theil1950b`, `Theil1950c` → 1.12.8 (draft l. 4269).
 `Sen1968`, `Theil1950` and `Rousseeuw1993` above are already in
 `mybibliography.bib`; skip them (but fix the `Theil1950` title typos, 1.12.8).
 Only if the cluster-bootstrap alternative in D1 is adopted: `Owen2007`.

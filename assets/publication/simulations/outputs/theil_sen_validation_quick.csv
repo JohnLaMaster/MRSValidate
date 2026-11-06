@@ -1,0 +1,6 @@
+part,quantity,reference,n_reps,seed,n,dl_error_sd,true_slope,true_intercept,ts_value,ts_mc_se,pb_value,pb_mc_se,confidence_level,curvature,alpha,n_cusum_bootstrap,ts_power,ts_power_mc_se,mrsvalidate_version,numpy_version,python_version,quick_run,elapsed_s
+theil_sen,slope_bias,"continuous U(1, 10)",100,20261104,150,0.5,1.0,0.0,0.002382549439677417,0.0013727198015544124,0.0199465733534665,0.0013670908350020558,,,,,,,0.1.0.dev0,2.5.3,3.12.11,True,7.6
+theil_sen,slope_bias,"5 levels in [1, 10]",100,20261104,150,0.5,1.0,0.0,5.896296485041752e-05,0.0012309259427516308,0.04878645732099507,0.0012870664120127602,,,,,,,0.1.0.dev0,2.5.3,3.12.11,True,7.6
+theil_sen,slope_ci_coverage,"continuous U(1, 10)",100,20261104,60,0.5,1.1,0.5,0.94,0.023748684174075843,0.89,0.031288975694324025,0.95,,,,,,0.1.0.dev0,2.5.3,3.12.11,True,7.6
+theil_sen,slope_ci_coverage,"10 levels in [1, 10]",100,20261104,60,0.5,1.1,0.5,0.99,0.009949874371066205,0.85,0.035707142142714254,0.95,,,,,,0.1.0.dev0,2.5.3,3.12.11,True,7.6
+theil_sen,ts_cusum_size_power,"continuous U(1, 10)",100,20261104,60,0.5,1.1,0.5,0.04,0.019595917942265423,,,,0.15,0.05,199,0.97,0.017058722109231986,0.1.0.dev0,2.5.3,3.12.11,True,7.6

@@ -1,0 +1,253 @@
+% =============================================================================
+% Supplementary material: simulation studies (section 5, rows e-h, of
+% assets/dev/MANUSCRIPT_UPDATES.md).
+%
+% Standalone-includable: no preamble. Needs only amsmath (already loaded by
+% the manuscript). Cross-references point to labels in the 10/30 draft
+% (flattened_10_30_2026.tex/two-column_version.tex); if the supplement is
+% compiled as a separate document, load `xr` (\externaldocument{...}) so the
+% \ref{} commands resolve.
+%
+% Numbers: every value below is either
+%   - PROVISIONAL: copied from a development run recorded in the repository
+%     (test docstring, CHANGELOG, MANUSCRIPT_UPDATES.md, or the scratchpad
+%     .out files of the 2026-11-04 lambda study). Regenerate with the named
+%     script and replace; or
+%   - \textbf{TBD}: no value is recorded; produced by the named script.
+% Scripts and expected runtimes: assets/publication/simulations/README.md.
+% =============================================================================
+
+\section{Simulation studies supporting the methodological choices}
+\label{supp:sim}
+
+This section documents the Monte Carlo studies behind the numerical statements on type-I error, power and coverage made in the main text. Each study is reproduced exactly by a script in the accompanying repository (directory \texttt{assets/publication/simulations/}); the scripts call the public functions of the \texttt{mrsvalidate} library that implement the procedures described in the main text, use a fixed random seed, and write every result together with its full parameter set to a CSV file. Each simulation cell (one combination of parameters) draws from its own independent random stream, derived from the script seed with NumPy's \texttt{SeedSequence.spawn}, so the results do not depend on the order in which cells are run or on the number of parallel workers.
+All results were computed with \texttt{mrsvalidate} 0.1.0.dev0, Python 3.12.11, NumPy 2.5.3 and SciPy 1.18.1.
+% Versions from the CSV provenance columns (SciPy from the same environment). Replace
+% 0.1.0.dev0 with the tagged release (and its archive DOI) once it is cut.
+
+Throughout, $x$ denotes the DL output and $y$ the reference, as in the main text, and $\lambda = \sigma^2_y/\sigma^2_x$ is the error-variance ratio of Eqn.~\ref{eqn:deming_lambda}. \textit{In silico} refers to an exact reference ($\sigma_y = 0$, $\lambda = 0$) and \textit{in vivo} to measurement error in both methods. Concentrations are in mmol\,L$^{-1}$. A rejection (or coverage) rate $\hat p$ estimated from $R$ independent replicates is reported with its Monte Carlo standard error $\sqrt{\hat p(1-\hat p)/R}$~\cite{Morris2019}; all tests use a nominal significance level of $\alpha = 0.05$.
+
+% -----------------------------------------------------------------------------
+\subsection{Type-I error of the ECWAS test: $\chi^2_3$ versus permutation critical values}
+\label{supp:sim:ecwas_type1}
+
+\textit{Purpose.} Section~\ref{sec:Eval:subsec:DistSim:subsubsec:hypothesis tests} states that, because the Wilcoxon, Ansari--Bradley and AntiSavage components of Eqn.~\ref{eqn:ecwas} are correlated under the null hypothesis, the $\chi^2_3$ reference distribution inflates the type-I error, and that critical values are therefore taken from the joint permutation distribution of the composite statistic~\cite{Kossler2019,Good2005}.
+
+\textit{Design.} Two independent samples of $n$ observations each are drawn from $\mathcal{N}(0,1)$, so the null hypothesis of equal distributions holds; $n \in \{30, 100, 500\}$. For each dataset, $T_{ECWAS}$ (Eqn.~\ref{eqn:ecwas}) is computed and compared with two critical values: the $0.95$ quantile of $\chi^2_3$ ($7.815$), and the $0.95$ quantile of the joint permutation distribution, obtained once per $n$ from $P = 20\,000$ random relabelings with the library's permutation procedure. Without ties, the permutation distribution of a rank statistic depends only on the two sample sizes, so a single permutation critical value applies to every null dataset of a given size; this is equivalent to, and much cheaper than, running the permutation test separately on each dataset. $R = 10\,000$ datasets per sample size; seed 7.
+
+\textit{Results.} Table~\ref{tab:supp:sim:ecwas_type1}. The $\chi^2_3$ critical value rejects a true null hypothesis in 7.2--8.0\,\% of datasets, and the excess grows with $n$; the permutation critical value keeps the type-I error at 5.0--5.4\,\%.
+
+\begin{table}[htbp]
+\centering
+\caption{Type-I error (\%) of the ECWAS test at nominal 5\,\%, with Monte Carlo standard errors in parentheses. $n$: observations per group; $c_{\mathrm{perm}}$: permutation critical value ($P = 20\,000$).}
+\label{tab:supp:sim:ecwas_type1}
+\begin{tabular}{rccc}
+\hline
+$n$ & $c_{\mathrm{perm}}$ & $\chi^2_3$ ($c = 7.815$) & Permutation \\
+\hline
+% Full run 2026-11-06 (R = 10 000, P = 20 000, seed 7).
+30  & 8.82 & 7.2 (0.3) & 5.0 (0.2) \\
+100 & 9.00 & 7.3 (0.3) & 5.0 (0.2) \\
+500 & 8.99 & 8.0 (0.3) & 5.4 (0.2) \\
+\hline
+\end{tabular}
+\end{table}
+
+\noindent Script: \texttt{assets/publication/simulations/sim\_ecwas\_type1.py}; output \texttt{outputs/ecwas\_type1.csv}.
+
+% -----------------------------------------------------------------------------
+\subsection{Calibration and power of the Passing--Bablok CUSUM linearity test}
+\label{supp:sim:pb_cusum_calibration}
+
+\textit{Purpose.} Section~\ref{sec:Reg:subsec:comparison:subsubsec:passing-bablok} states that the classical Kolmogorov critical value of the CUSUM statistic $H$ ($1.358$ at $\alpha = 0.05$~\cite{Passing1983}) is strongly conservative because the regression line is estimated from the same data~\cite{Durbin1973}, and that the wild bootstrap under the fitted line, which re-estimates the line in every replicate~\cite{Stute1998}, is used instead.
+
+\textit{Design.} The true concentration is $T \sim \mathcal{U}(1, 10)$\,mmol\,L$^{-1}$, the reference is $y = T + e_y$ and the DL output is $x = 0.5 + 1.1\,T + e_x$ under the null hypothesis of linearity. Three error models are used: normal, $e_y \sim \mathcal{N}(0, 0.3^2)$ and $e_x \sim \mathcal{N}(0, 0.33^2)$, so that the ratio of the error standard deviations equals the slope, the consistency condition of Passing--Bablok regression ($\lambda = 0.83$); heteroscedastic, with both standard deviations multiplied by $T/5.5$ (constant coefficient of variation, same average standard deviation); and skewed, with centred lognormal errors (log-scale standard deviation $0.5$) rescaled to the same standard deviations. Sample sizes are $n \in \{60, 200, 500\}$. Power is assessed against $x = T + c\,(T - 5.5)^2 + e_x$ with normal errors of standard deviation $0.3$ in both methods ($\lambda = 1$), curvature $c \in \{0.01, 0.02, 0.04, 0.06\}$ and $n \in \{60, 200\}$. For each dataset, the Passing--Bablok line (Eqn.~\ref{eqn:pb_slope}) and $H$ are computed once; the classical decision is $H > 1.358$, and the bootstrap decision uses $B = 199$ wild-bootstrap replicates with residuals flipped perpendicular to the fitted line (the library default, appropriate here because the two error variances are of similar size). $R = 5000$ datasets per cell; seed 20261010. The design extends the validation tests of the library (\texttt{tests/unit/test\_passing\_bablok\_validation.py}).
+
+\textit{Results.} Table~\ref{tab:supp:sim:pb_cusum_calibration}. % PROVISIONAL sentence (CHANGELOG, MANUSCRIPT_UPDATES.md D2): the classical critical value rejects a true linear null in 0-1 % of datasets and the bootstrap in 2-5 %, near the best attainable level for this lattice-valued statistic, across error models and n = 50-1000; at n = 200, mild curvature is detected in 3 % (classical) versus 26 % (bootstrap) of datasets.
+Because $H$ takes values on a coarse lattice and ties $H^* = H$ count as exceedances, the bootstrap test is expected to reject slightly below the nominal level.
+
+\begin{table}[htbp]
+\centering
+\caption{Rejection rate (\%) of the Passing--Bablok CUSUM linearity test at nominal 5\,\%, with Monte Carlo standard errors in parentheses ($R = 5000$). Top: size under a linear relation; bottom: power against curvature $c$.}
+\label{tab:supp:sim:pb_cusum_calibration}
+\begin{tabular}{llrcc}
+\hline
+ & Errors / $c$ & $n$ & Classical ($H > 1.358$) & Wild bootstrap \\
+\hline
+% PROVISIONAL: development runs recorded only as ranges (classical 0-1 %, bootstrap 2-5 %,
+% n = 50-1000; CHANGELOG, method_comparison.passing_bablok docstring). No per-cell values recorded.
+Size & normal          & 60  & \textbf{TBD} & \textbf{TBD} \\
+     & heteroscedastic & 60  & \textbf{TBD} & \textbf{TBD} \\
+     & skewed          & 60  & \textbf{TBD} & \textbf{TBD} \\
+     & normal          & 200 & \textbf{TBD} & \textbf{TBD} \\
+     & heteroscedastic & 200 & \textbf{TBD} & \textbf{TBD} \\
+     & skewed          & 200 & \textbf{TBD} & \textbf{TBD} \\
+     & normal          & 500 & \textbf{TBD} & \textbf{TBD} \\
+     & heteroscedastic & 500 & \textbf{TBD} & \textbf{TBD} \\
+     & skewed          & 500 & \textbf{TBD} & \textbf{TBD} \\
+\hline
+% PROVISIONAL: "3 % vs 26 % at n = 200 against mild curvature" (D2); the curvature of that run
+% is not recorded. Quick runs (R = 40) put it between c = 0.01 and 0.02 at n = 200. Regenerate with
+% sim_pb_cusum_calibration.py and quote the matching row.
+Power & $c = 0.01$ & 60  & \textbf{TBD} & \textbf{TBD} \\
+      & $c = 0.02$ & 60  & \textbf{TBD} & \textbf{TBD} \\
+      & $c = 0.04$ & 60  & \textbf{TBD} & \textbf{TBD} \\
+      & $c = 0.06$ & 60  & \textbf{TBD} & \textbf{TBD} \\
+      & $c = 0.01$ & 200 & \textbf{TBD} & \textbf{TBD} \\
+      & $c = 0.02$ & 200 & \textbf{TBD} & \textbf{TBD} \\
+      & $c = 0.04$ & 200 & \textbf{TBD} & \textbf{TBD} \\
+      & $c = 0.06$ & 200 & \textbf{TBD} & \textbf{TBD} \\
+\hline
+\end{tabular}
+\end{table}
+
+\noindent Script: \texttt{assets/publication/simulations/sim\_pb\_cusum\_calibration.py}; output \texttt{outputs/pb\_cusum\_calibration.csv}.
+
+% -----------------------------------------------------------------------------
+\subsection{The CUSUM bootstrap and the error-variance ratio; Theil--Sen regression with an exact reference}
+\label{supp:sim:cusum_lambda}
+
+\textit{Purpose.} Sections~\ref{sec:Reg:subsec:comparison:subsubsec:passing-bablok} and \ref{sec:Reg:subsec:comparison:subsubsec:theil-sen} state that the wild bootstrap is calibrated only when the direction along which residuals are flipped matches the error structure of the data; that \textit{in silico} the reference is exact, residuals are flipped vertically ($\lambda = 0$) and Theil--Sen regression is used; that \textit{in vivo} $\lambda$ is supplied as for Deming regression (Section~\ref{sec:Reg:subsec:comparison:subsubsec:deming}); and how misspecifying $\lambda$ affects the test. They further state that Passing--Bablok regression is biased upwards when the reference is exact, whereas Theil--Sen is not, and that Sen's interval (Eqns.~\ref{eqn:ts_ci_variance} and \ref{eqn:ts_ci}) covers the true slope with and without tied reference values.
+
+\textit{Design: CUSUM and $\lambda$.} $T \sim \mathcal{U}(1, 10)$\,mmol\,L$^{-1}$, $y = T + e_y$, $x = 0.3 + T + e_x$, with $e_y \sim \mathcal{N}(0, \sigma_y^2)$ and $e_x \sim \mathcal{N}(0, \sigma_x^2)$, so that linearity holds. Four error settings $(\sigma_y, \sigma_x)$ are used: \textit{in silico} $(0, 0.5)$, $\lambda = 0$; $(0.25, 0.5)$, $\lambda = 0.25$; $(0.5, 0.5)$, $\lambda = 1$; and $(0.5, 0.25)$, $\lambda = 4$. In the bootstrap, residuals are flipped along $(-\lambda\hat\beta_1, 1)$ in the $(y, x)$ plane, the direction conjugate to the fitted line under the error covariance $\mathrm{diag}(\lambda, 1)$; without a supplied $\lambda$, they are flipped perpendicular to the line, which is identical to supplying $\lambda = 1$. \textit{In silico}, three procedures are compared: Passing--Bablok without $\lambda$, Passing--Bablok with $\lambda = 0.01$ (the implementation requires $\lambda > 0$ for Passing--Bablok), and Theil--Sen, for which $\lambda = 0$ is fixed. With error in both methods, Passing--Bablok is run without $\lambda$ and with the true $\lambda$ at $n \in \{200, 500, 1000\}$, and with $\lambda/4$, $\lambda/2$, $2\lambda$ and $4\lambda$ at $n = 1000$. $B = 199$ bootstrap replicates; $R = 2000$ datasets per cell (Monte Carlo standard error about $0.5$ percentage points at 5\,\%; larger $R$ is impractical at $n = 1000$, where each dataset requires $B$ refits with $O(n^2)$ pairwise slopes); seed 20261104.
+
+\textit{Design: Theil--Sen with an exact reference.} Slope bias: $n = 150$, $y = T$ exact, either continuous, $T \sim \mathcal{U}(1, 10)$, or $5$ equally spaced levels in $[1, 10]$ repeated $30$ times; $x = y + \mathcal{N}(0, 0.5^2)$ (true slope $1$). Coverage: $n = 60$, $y$ continuous or $10$ levels repeated $6$ times, $x = 0.5 + 1.1\,y + \mathcal{N}(0, 0.5^2)$; nominal 95\,\% analytic intervals (Sen's tie-corrected interval for Theil--Sen, the Passing--Bablok interval for comparison). CUSUM: $n = 60$, the same linear model (size) and $x = y + 0.15\,(y - 5.5)^2 + \mathcal{N}(0, 0.5^2)$ (power), Theil--Sen with $B = 199$. $R = 5000$ datasets per cell; seed 20261104. The design follows the library tests \texttt{tests/unit/test\_theil\_sen\_validation.py}.
+
+\textit{Results.} Tables~\ref{tab:supp:sim:cusum_lambda}--\ref{tab:supp:sim:theil_sen}.
+% PROVISIONAL summary (MANUSCRIPT_UPDATES.md D2, 2026-11-04): with the correct lambda the bootstrap
+% rejects in 3-6 % of datasets throughout; without lambda it is liberal for lambda far from 1 and
+% the excess grows with n (in silico Passing-Bablok 9.0 % at n = 500, 15.3 % at n = 1000); Theil-Sen
+% 4.0-4.3 %.
+% CHECK BEFORE QUOTING: the recorded misspecification runs do not support a one-directional rule.
+% For lambda = 4, under-estimation is liberal (lambda/4: 12.3 %) and over-estimation conservative
+% (2 lambda: 2.8 %, 4 lambda: 3.3 %); for lambda = 0.25, however, 4 lambda (= 1) is liberal (7.7 %)
+% while lambda/4 is not (4.3 %). In both cases the liberal direction is the one towards lambda = 1
+% (perpendicular flips). Re-examine the main-text sentence "Overestimating lambda makes the test
+% conservative and underestimating it makes the test liberal" after the full run.
+
+\begin{table}[htbp]
+\centering
+\caption{Rejection rate (\%) of the bootstrap CUSUM test under linearity at nominal 5\,\%, by error setting and supplied $\lambda$, with Monte Carlo standard errors in parentheses. ``None'': perpendicular flips (equivalent to $\lambda = 1$).}
+\label{tab:supp:sim:cusum_lambda}
+\begin{tabular}{llccc}
+\hline
+True setting & Estimator, $\lambda$ supplied & $n = 200$ & $n = 500$ & $n = 1000$ \\
+\hline
+% PROVISIONAL: development run, regenerate with sim_cusum_lambda.py
+% (scratchpad lam_sim.py, R = 300, and lam_sim2.py, R = 400; B = 199; 2026-11-04).
+\textit{In silico} ($\lambda = 0$) & Passing--Bablok, none          & \textbf{TBD} & 9.0 (1.4) & 15.3 (2.1) \\
+                                  & Passing--Bablok, $0.01$        & \textbf{TBD} & \textbf{TBD} & 5.7 (1.3) \\
+                                  & Theil--Sen ($\lambda = 0$)     & \textbf{TBD} & 4.0 (1.0) & 4.3 (1.2) \\
+\hline
+$\lambda = 0.25$ & Passing--Bablok, none   & \textbf{TBD} & 5.2 (1.1) & 8.3 (1.6) \\
+% NOTE: n = 1000, true lambda: lam_sim2 (R = 400) gave 3.0 %, lam_sim (R = 300) gave 7.3 % for the
+% same cell (difference > 3 MC SE). The D2 table uses 3.0 %.
+                 & Passing--Bablok, true   & \textbf{TBD} & 3.0 (0.9) & 3.0 (0.9) \\
+\hline
+$\lambda = 1$    & Passing--Bablok, true (= none) & \textbf{TBD} & \textbf{TBD} & 5.8 (1.2) \\
+\hline
+% NOTE: n = 1000, none: this is the lam_sim run with lambda supplied = 1 (= none), the same run as the x1/4 cell of the next table.
+$\lambda = 4$    & Passing--Bablok, none   & \textbf{TBD} & 6.0 (1.2) & 12.3 (1.9) \\
+                 & Passing--Bablok, true   & \textbf{TBD} & 4.8 (1.1) & 6.2 (1.2) \\
+\hline
+\end{tabular}
+\end{table}
+
+\begin{table}[htbp]
+\centering
+\caption{Rejection rate (\%) of the Passing--Bablok bootstrap CUSUM test under linearity at $n = 1000$ when the supplied error-variance ratio differs from the true $\lambda$ by the factor shown, with Monte Carlo standard errors in parentheses. For $\lambda = 0.25$ the factor $4$, and for $\lambda = 4$ the factor $1/4$, correspond to perpendicular flips.}
+\label{tab:supp:sim:cusum_lambda_misspec}
+\begin{tabular}{lccccc}
+\hline
+True $\lambda$ & $\times 1/4$ & $\times 1/2$ & $\times 1$ & $\times 2$ & $\times 4$ \\
+\hline
+% PROVISIONAL: development run, regenerate with sim_cusum_lambda.py
+% (lam_sim.py R = 300 except the x1 column and lambda = 4, x2 from lam_sim2.py R = 400).
+$0.25$ & 4.3 (1.2) & 3.7 (1.1) & 3.0 (0.9) & 5.0 (1.3) & 7.7 (1.5) \\
+$1$    & \textbf{TBD} & \textbf{TBD} & 5.8 (1.2) & \textbf{TBD} & \textbf{TBD} \\
+$4$    & 12.3 (1.9) & 6.3 (1.4) & 6.2 (1.2) & 2.8 (0.8) & 3.3 (1.0) \\
+\hline
+\end{tabular}
+\end{table}
+
+\begin{table}[htbp]
+\centering
+\caption{Theil--Sen and Passing--Bablok regression with an exact reference. Bias: mean estimated slope minus the true slope ($\times 10^{3}$); coverage and CUSUM rates in \%. Monte Carlo standard errors in parentheses ($R = 5000$).}
+\label{tab:supp:sim:theil_sen}
+\begin{tabular}{lllcc}
+\hline
+Quantity & Reference values & $n$ & Theil--Sen & Passing--Bablok \\
+\hline
+% Full run 2026-11-06 (R = 5000, seed 20261104).
+Slope bias          & continuous & 150 & 0.1 (0.2)  & 18.2 (0.2) \\
+                    & 5 levels   & 150 & 0.3 (0.2)  & 49.1 (0.2) \\
+95\,\% CI coverage  & continuous & 60  & 94.6 (0.3) & 89.9 (0.4) \\
+                    & 10 levels  & 60  & 95.4 (0.3) & 84.6 (0.5) \\
+CUSUM size          & continuous & 60  & 3.4 (0.3)  & -- \\
+CUSUM power ($c = 0.15$) & continuous & 60 & 97.9 (0.2) & -- \\
+\hline
+\end{tabular}
+\end{table}
+
+\noindent Script: \texttt{assets/publication/simulations/sim\_cusum\_lambda.py} (parts \texttt{lambda} and \texttt{theil\_sen}); outputs \texttt{outputs/cusum\_lambda.csv} and \texttt{outputs/theil\_sen\_validation.csv}.
+
+% -----------------------------------------------------------------------------
+\subsection{Cluster-robust inference with few clusters}
+\label{supp:sim:cluster_robust}
+
+\textit{Purpose.} Section~\ref{subsubsec:mixed_effects_silveira} states that with few clusters the sandwich estimator of Eqn.~\ref{eqn:sandwich mean} is biased downwards and normal reference distributions over-reject~\cite{Cameron2008,Cameron2015}, and that the bias-reduced CR2 estimator with Bell--McCaffrey degrees of freedom~\cite{BellMcCaffrey2002,Imbens2016} is therefore used below 50 independent clusters.
+
+\textit{Design.} $G \in \{10, 20, 50\}$ clusters of $m = 6$ observations each. The covariate is $z_{gn} = a_g + 0.5\,b_{gn}$ and the response is $y_{gn} = u_g + \varepsilon_{gn}$, with $a_g$, $b_{gn}$, $u_g$, $\varepsilon_{gn}$ independent $\mathcal{N}(0,1)$, so the true intercept and slope are zero and both the covariate (intraclass correlation $0.8$) and the errors (intraclass correlation $0.5$) are clustered. The model $y = \beta_0 + \beta_1 z$ is fitted by ordinary least squares, and each coefficient is tested against its true value of zero with a two-sided Wald test using three variance estimators and reference distributions: CR0 with a standard normal reference; CR1, which scales CR0 by $\tfrac{G}{G-1}\tfrac{N-1}{N-p}$, with a $t_{G-1}$ reference; and CR2 with a $t$ reference whose degrees of freedom follow Bell and McCaffrey. $R = 10\,000$ datasets per $G$; seed 123.
+
+\textit{Results.} Table~\ref{tab:supp:sim:cluster_robust}. With 10 clusters, CR0 with a normal reference rejects a true null hypothesis in 11.7\,\% (intercept) and 17.1\,\% (slope) of datasets, and CR1 with a $t_{G-1}$ reference in 6.2\,\% and 10.4\,\%; CR2 with Bell--McCaffrey degrees of freedom stays at 4.6\,\% for both. CR1 still over-rejects the slope at $G = 50$ (6.6\,\%), whereas CR2 is within 0.4 percentage points of nominal for every $G$.
+
+\begin{table}[htbp]
+\centering
+\caption{Rejection rate (\%) of a true null hypothesis at nominal 5\,\% for the intercept and slope of a regression with clustered covariate and errors, with Monte Carlo standard errors in parentheses. $G$: number of clusters (6 observations each).}
+\label{tab:supp:sim:cluster_robust}
+\begin{tabular}{rlcc}
+\hline
+$G$ & Estimator, reference & Intercept & Slope \\
+\hline
+% Full run 2026-11-06 (R = 10 000, seed 123).
+10 & CR0, normal                & 11.7 (0.3) & 17.1 (0.4) \\
+   & CR1, $t_{G-1}$             & 6.2 (0.2)  & 10.4 (0.3) \\
+   & CR2, $t$ (Bell--McCaffrey) & 4.6 (0.2)  & 4.6 (0.2) \\
+\hline
+20 & CR0, normal                & 8.0 (0.3)  & 11.1 (0.3) \\
+   & CR1, $t_{G-1}$             & 5.6 (0.2)  & 8.2 (0.3) \\
+   & CR2, $t$ (Bell--McCaffrey) & 5.1 (0.2)  & 4.8 (0.2) \\
+\hline
+50 & CR0, normal                & 6.3 (0.2)  & 7.5 (0.3) \\
+   & CR1, $t_{G-1}$             & 5.3 (0.2)  & 6.6 (0.2) \\
+   & CR2, $t$ (Bell--McCaffrey) & 5.2 (0.2)  & 5.4 (0.2) \\
+\hline
+\end{tabular}
+\end{table}
+
+\noindent Script: \texttt{assets/publication/simulations/sim\_cluster\_robust.py}; output \texttt{outputs/cluster\_robust.csv}.
+
+% -----------------------------------------------------------------------------
+% Rows (i) and (j) of MANUSCRIPT_UPDATES.md section 5.2: kept qualitative in the
+% main text unless the author decides to quote the numbers. No script yet; if
+% enabled, add sim_deff_cc.py / sim_panel_conditional.py and fill the tables.
+%
+% \subsection{Design effect for cross-classified clustering}
+% \label{supp:sim:deff_cc}
+% \textit{Purpose.} Supports the corrected design effect of Eqn.~\ref{eqn:deff_cc}, in which each
+% intraclass correlation is paired with the cluster size of its own clustering dimension. The
+% previous form gave a design effect of about 5.4 against a true value of about 50, overstating the
+% effective sample size about ten-fold. % PROVISIONAL: the run behind 5.4 vs 50 is not stored.
+% \textit{Design.} Unbalanced cross-classified data (subjects x metabolites); empirical variance
+% ratio of the pooled mean against independent sampling, as in
+% tests/unit/test_clustering.py::test_cross_classified_design_effect_equals_pooled_mean_variance_ratio_unbalanced.
+% Table: design effect (empirical, corrected Eqn., previous Eqn.) -- \textbf{TBD}.
+%
+% \subsection{Panel-conditional versus population inference in mixed-effects Test 3}
+% \label{supp:sim:panel_conditional}
+% \textit{Purpose.} Supports the statement in Section~\ref{subsubsec:mixed_effects_silveira} that
+% inference conditional on the metabolite panel is anti-conservative for claims about a population
+% of metabolites. % PROVISIONAL: 33 % rejection of a true population null; run not stored.
+% \textit{Design.} As in tests/unit/test_mixed_effects.py::test_mixed_test3_panel_mode_rejects_more_under_population_null
+% and the neighbouring ..._panel_mode_size_... / ..._population_mode_size_... tests.
+% Table: rejection rate under the panel and population nulls, panel vs population mode -- \textbf{TBD}.
