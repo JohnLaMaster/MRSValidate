@@ -253,7 +253,7 @@ Done (draft saved 2026-11-05 16:46): $M$ and the $y_i \neq y_j$ condition are go
 Done (draft saved 2026-11-05 16:46): the cases equation and the angular-ordering
 rationale are in place.
 
-#### 1.12.5a [ ] Passing–Bablok: remove two repeated statements
+#### 1.12.5a [x] Passing–Bablok: remove two repeated statements
 The paragraph around `eqn:pb_slope` defines $K$ twice (before and after the
 equation) and repeats the positive-relationship assumption already stated in
 the first paragraph.
@@ -307,16 +307,20 @@ year = {1950}
 While there: the existing `Theil1950` title has two typos ("Ploynomial",
 "Analsys") → "Polynomial", "Analysis".
 
-#### 1.12.9 [ ] Theil–Sen: ties in the DL output are not adjusted for
-The library does not apply a variance adjustment for ties in $x$.
-**Where:** paragraph after `eqn:ts_ci` (~l. 4293).
+#### 1.12.9 [ ] Theil–Sen: correct the statement about ties in the DL output
+No library change is needed. Sen's interval inverts Kendall's test between
+$y_i$ and $x_i-\beta_1 y_i$. Two residuals tie only when $\beta_1$ equals that
+pair's slope $S_{ij}$, so ties in $x$ need no variance term. Ties in $y$ are
+already subtracted in `eqn:ts_ci_variance` (`_pb_analytic_ci(...,
+tie_corrected=True)`).
+**Where:** paragraph after `eqn:ts_ci` (~l. 4297).
 **Find:**
 ```latex
-ties in the latter require additional variance adjustments.
+This approximation assumes independent observations and continuously distributed \DL outputs; ties in the latter require additional variance adjustments.
 ```
 **Replace with:**
 ```latex
-ties in the latter are not accounted for.
+This approximation assumes independent observations and continuously distributed \DL outputs, so that ties among the pairwise slopes are negligible. Because the interval inverts Kendall's test between $y_i$ and $x_i-\beta_1 y_i$, ties in the \DL outputs themselves require no variance adjustment; only ties in the reference enter $V$.
 ```
 
 #### 1.12.10 [x] Deming opening: Deming *in vivo*, Theil–Sen *in silico*
